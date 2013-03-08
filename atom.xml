@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-09T00:38:14+08:00</updated>
+  <updated>2013-03-09T01:08:44+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -27,7 +27,7 @@
     <link href="http://ajia.github.com/blog/2013/03/06/my-first-blog/"/>
     <updated>2013-03-06T17:20:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/06/my-first-blog</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<h1>折腾了几天，终于把部落格搞定了，庆贺一下，接下来要折腾的事情还很多，<strong>enjoy it</strong>！</h1>
 ]]></content>
   </entry>
   
