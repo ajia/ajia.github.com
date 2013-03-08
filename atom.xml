@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-09T01:43:32+08:00</updated>
+  <updated>2013-03-09T01:45:09+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -70,19 +70,19 @@ Failed during: git reset --hard origin/master
 
 <p><strong>解决办法：sudo chown -R ${USER} /usr/local/Library</strong></p>
 
-<p><strong>如果已经安装了Macports，先卸载掉</strong><br/>
-&#8220;`sudo rm -rf \</p>
+<p><strong>如果已经安装了Macports，先卸载掉</strong></p>
 
-<pre><code>/opt/local \
-/Applications/DarwinPorts \
-/Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.* \
-/Library/Receipts/DarwinPorts*.pkg \
-/Library/Receipts/MacPorts*.pkg \
-/Library/StartupItems/DarwinPortsStartup \
-/Library/Tcl/darwinports1.0 \
-/Library/Tcl/macports1.0 \
-~/.macports```
+<pre><code>sudo rm -rf \  
+/opt/local \  
+/Applications/DarwinPorts \  
+/Applications/MacPorts \  
+/Library/LaunchDaemons/org.macports.* \  
+/Library/Receipts/DarwinPorts*.pkg \  
+/Library/Receipts/MacPorts*.pkg \  
+/Library/StartupItems/DarwinPortsStartup \  
+/Library/Tcl/darwinports1.0 \  
+/Library/Tcl/macports1.0 \  
+~/.macports
 </code></pre>
 
 <h1>Step2 安装RVM</h1>
