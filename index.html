@@ -9,8 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="系统是Mac OS X Lion 10.7.5 Step1 安装homebrew ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-brew update 如果出现如下错误 error: unable to unlink old ' &hellip;">
+  <meta name="description" content="系统是Mac OS X Lion 10.7.5 Step1 安装homebrew ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -38,7 +37,7 @@ brew update 如果出现如下错误 error: unable to unlink old ' &hellip;">
   <header role="banner"><hgroup>
   <h1><a href="/">Ajia's Blog</a></h1>
   
-    <h2>开心生活，用心工作.</h2>
+    <h2>开心生活，用心工作</h2>
   
 </hgroup>
 
@@ -98,84 +97,12 @@ brew update 如果出现如下错误 error: unable to unlink old ' &hellip;">
 
 <h1>Step1 安装homebrew</h1>
 
-<pre><code>ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-brew update  
-</code></pre>
-
-<p>如果出现如下错误</p>
-
-<pre><code>error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.commit.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.css' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.index.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/apr-1-config' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/bsdmake' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c89' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c99' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cpp' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/git' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/ld' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/make' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/mig' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/sed' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/svn' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/xcrun' (Permission denied)  
-error: unable to unlink old 'Library/ENV/libsuperenv.rb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcrypto.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libexslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxml-2.0.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xcode.rb' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xquartz.rb' (Permission denied)  
-fatal: Could not reset index file to revision 'origin/master'.  
-Failed during: git reset --hard origin/master  
-</code></pre>
-
-<p><strong>解决办法：sudo chown -R ${USER} /usr/local/Library</strong></p>
-
-<p><strong>如果已经安装了Macports，先卸载掉</strong></p>
-
-<pre><code>sudo rm -rf \  
-/opt/local \  
-/Applications/DarwinPorts \  
-/Applications/MacPorts \  
-/Library/LaunchDaemons/org.macports.* \  
-/Library/Receipts/DarwinPorts*.pkg \  
-/Library/Receipts/MacPorts*.pkg \  
-/Library/StartupItems/DarwinPortsStartup \  
-/Library/Tcl/darwinports1.0 \  
-/Library/Tcl/macports1.0 \  
-~/.macports
-</code></pre>
-
-<h1>Step2 安装RVM</h1>
-
-<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-source ~/.bashrc
-</code></pre>
-
-<h1>Step3 安装Ruby</h1>
-
-<pre><code>rvm install 1.9.3
-rvm use 1.9.3 --default
-</code></pre>
-
-<h1>Step4 安装Octopress(待续)</h1>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/06/how-to-install-octopress/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -240,7 +167,22 @@ rvm use 1.9.3 --default
   </ul>
 </section>
 
-
+  
+<section>  
+  <h1>新浪微博</h1>  
+  <ul id="weibo">  
+    <li>  
+      <iframe   
+        width="100%"   
+        height="550"   
+        class="share_self"   
+        frameborder="0"   
+        scrolling="no"   
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1773810951&verifier=c56fe36a">  
+      </iframe>  
+    </li>  
+  </ul>  
+</section>  
 
 
 

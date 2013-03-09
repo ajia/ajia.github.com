@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-09T01:45:09+08:00</updated>
+  <updated>2013-03-09T11:46:36+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>系统是Mac OS X Lion 10.7.5</p>
 
 <h1>Step1 安装homebrew</h1>
+
+<!-- more -->
+
 
 <pre><code>ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 brew update  
