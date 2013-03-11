@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>how-to-install-octopress - Ajia's Blog</title>
+  <title>遇到resin com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException - Ajia's Blog</title>
   
   <meta name="author" content="Ajia">
   
   <meta name="description" content="Swim in the code, Ajia's blog">
-  <meta name="keywords" content="java, solr, cocos2d, game develop, ruby, web development">
+  <meta name="keywords" content="解决 resin 问题">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">How-to-install-octopress</h1>
+      <h1 class="entry-title">遇到resin com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException</h1>
     
     
       <p class="meta">
@@ -95,7 +95,7 @@
   
 
 
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+<time datetime="2013-03-11T14:46:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -104,89 +104,18 @@
   </header>
 
 
-<div class="entry-content"><p>系统是Mac OS X Lion 10.7.5</p>
+<div class="entry-content"><h1>遭遇</h1>
 
-<h1>Step1 安装homebrew</h1>
+<p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
+问题原因：DNS解析不到本机名。</p>
 
-<!-- more -->
+<h1>解决方案：</h1>
 
+<p>编辑/etc/hosts,添加127.0.0.1 xxxx（本机名）</p>
 
-<pre><code>ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-brew update  
-</code></pre>
+<h1>问题原因</h1>
 
-<p>如果出现如下错误</p>
-
-<pre><code>error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.commit.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.css' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.index.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/apr-1-config' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/bsdmake' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c89' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c99' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cpp' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/git' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/ld' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/make' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/mig' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/sed' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/svn' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/xcrun' (Permission denied)  
-error: unable to unlink old 'Library/ENV/libsuperenv.rb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcrypto.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libexslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxml-2.0.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xcode.rb' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xquartz.rb' (Permission denied)  
-fatal: Could not reset index file to revision 'origin/master'.  
-Failed during: git reset --hard origin/master  
-</code></pre>
-
-<p><strong>解决办法：sudo chown -R ${USER} /usr/local/Library</strong></p>
-
-<p><strong>如果已经安装了Macports，先卸载掉</strong></p>
-
-<pre><code>sudo rm -rf \  
-/opt/local \  
-/Applications/DarwinPorts \  
-/Applications/MacPorts \  
-/Library/LaunchDaemons/org.macports.* \  
-/Library/Receipts/DarwinPorts*.pkg \  
-/Library/Receipts/MacPorts*.pkg \  
-/Library/StartupItems/DarwinPortsStartup \  
-/Library/Tcl/darwinports1.0 \  
-/Library/Tcl/macports1.0 \  
-~/.macports
-</code></pre>
-
-<h1>Step2 安装RVM</h1>
-
-<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-source ~/.bashrc
-</code></pre>
-
-<h1>Step3 安装Ruby</h1>
-
-<pre><code>rvm install 1.9.3
-rvm use 1.9.3 --default
-</code></pre>
-
-<h1>Step4 安装Octopress(待续)</h1>
+<p>resin启动时会根据hostname来拼url地址</p>
 </div>
 
 
@@ -209,8 +138,14 @@ rvm use 1.9.3 --default
   
 
 
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+<time datetime="2013-03-11T14:46:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
 
 
     </p>
@@ -224,10 +159,8 @@ rvm use 1.9.3 --default
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/03/06/my-first-blog/" title="Previous Post: my first blog">&laquo; my first blog</a>
+        <a class="basic-alignment left" href="/blog/2013/03/06/how-to-install-octopress/" title="Previous Post: how-to-install-octopress">&laquo; how-to-install-octopress</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/" title="Next Post: 遇到resin com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException">遇到resin com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException &raquo;</a>
       
     </p>
   </footer>
@@ -338,8 +271,8 @@ rvm use 1.9.3 --default
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/';
         var disqus_script = 'embed.js';
       
     (function () {
