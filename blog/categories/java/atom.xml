@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-11T14:52:44+08:00</updated>
+  <updated>2013-03-11T15:09:00+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[遇到resin com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException]]></title>
+    <title type="html"><![CDATA[遇到resin的java.net.UnknownHostException]]></title>
     <link href="http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/"/>
     <updated>2013-03-11T14:46:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception</id>
