@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-12T10:04:24+08:00</updated>
+  <updated>2013-03-13T18:29:28+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -120,7 +120,15 @@ source ~/.bashrc
 rvm use 1.9.3 --default
 </code></pre>
 
-<h1>Step4 安装Octopress(待续)</h1>
+<h1>Step4 安装Octopress</h1>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress  
+gem install bundler  
+bundle install
+rake install
+</code></pre>
+
+<h3>大概的步骤就是这么多，遇见别的问题去请教google大神吧</h3>
 ]]></content>
   </entry>
   
