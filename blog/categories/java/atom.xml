@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-20T10:13:14+08:00</updated>
+  <updated>2013-03-22T14:18:39+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[解决cookie中文出现乱码的问题]]></title>
+    <link href="http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/"/>
+    <updated>2013-03-22T14:13:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti</id>
+    <content type="html"><![CDATA[<pre><code>#Java Cookie 中文乱码解决方法
+String value = java.net.URLEncoder.encode("中文","utf-8");
+Cookie cookie = new Cookie("chinese_code",value);
+cookie.setMaxAge(60*60*24*6);
+response.addCookie(cookie);
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[遇到resin的java.net.UnknownHostException]]></title>

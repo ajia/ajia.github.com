@@ -82,6 +82,49 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/">解决cookie中文出现乱码的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-22T14:13:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>#Java Cookie 中文乱码解决方法
+String value = java.net.URLEncoder.encode("中文","utf-8");
+Cookie cookie = new Cookie("chinese_code",value);
+cookie.setMaxAge(60*60*24*6);
+response.addCookie(cookie);
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">遇到resin的java.net.UnknownHostException</a></h1>
     
     
@@ -224,15 +267,19 @@
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/java' style='font-size: 160.0%'>java(1)</a> <a href='/blog/categories/otcopress' style='font-size: 160.0%'>Otcopress(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/java' style='font-size: 160.0%'>java(2)</a> <a href='/blog/categories/otcopress' style='font-size: 130.0%'>Otcopress(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/java'>java (1)</a></li><li><a href='/blog/categories/otcopress'>Otcopress (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/java'>java (2)</a></li><li><a href='/blog/categories/otcopress'>Otcopress (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/">解决cookie中文出现乱码的问题</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">遇到resin的java.net.UnknownHostException</a>
