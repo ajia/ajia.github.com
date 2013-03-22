@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-22T14:18:39+08:00</updated>
+  <updated>2013-03-22T18:22:31+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,8 +18,9 @@
     <link href="http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/"/>
     <updated>2013-03-22T14:13:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti</id>
-    <content type="html"><![CDATA[<pre><code>#Java Cookie 中文乱码解决方法
-String value = java.net.URLEncoder.encode("中文","utf-8");
+    <content type="html"><![CDATA[<h1>Java Cookie 中文乱码解决方法</h1>
+
+<pre><code>String value = java.net.URLEncoder.encode("中文","utf-8");
 Cookie cookie = new Cookie("chinese_code",value);
 cookie.setMaxAge(60*60*24*6);
 response.addCookie(cookie);
@@ -140,6 +141,29 @@ rvm use 1.9.3 --default
 gem install bundler  
 bundle install
 rake install
+</code></pre>
+
+<h1>Step5 在github中托管</h1>
+
+<p>到目前我止，我们的blog仅能在本机中访问，如何将其托管到github中呢？如何使用我们自己的域名呢？让一切看起来就如同我们自己的站点。</p>
+
+<p>如果你要使用自己的域名，github需要一个CNAME文件，进入source文件夹，新建CNAME文件。</p>
+
+<pre><code>$ ch source
+$ touch CNAME
+</code></pre>
+
+<p>托管到github中</p>
+
+<pre><code>$ rake setup_github_pages
+</code></pre>
+
+<p>系统提示你输入一个形如:git@github.com:username/username.github.com.git,username是你在github.com中注册的用户名，username.github.com.git是你自己在github.com中创建的代码库。输入后按回车确定.</p>
+
+<p>向github提交</p>
+
+<pre><code>$ rake generate
+$ rake deploy
 </code></pre>
 
 <h3>大概的步骤就是这么多，遇见别的问题去请教google大神吧</h3>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-22T14:18:39+08:00</updated>
+  <updated>2013-03-22T18:22:31+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,8 +18,9 @@
     <link href="http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/"/>
     <updated>2013-03-22T14:13:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti</id>
-    <content type="html"><![CDATA[<pre><code>#Java Cookie 中文乱码解决方法
-String value = java.net.URLEncoder.encode("中文","utf-8");
+    <content type="html"><![CDATA[<h1>Java Cookie 中文乱码解决方法</h1>
+
+<pre><code>String value = java.net.URLEncoder.encode("中文","utf-8");
 Cookie cookie = new Cookie("chinese_code",value);
 cookie.setMaxAge(60*60*24*6);
 response.addCookie(cookie);
