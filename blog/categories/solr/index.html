@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Ajia's Blog</title>
+  <title>Category: solr - Ajia's Blog</title>
   
   <meta name="author" content="Ajia">
   
-  <meta name="description" content="Swim in the code, Ajia's blog">
+  <meta name="description" content="Category: solr">
   <meta name="keywords" content="java, solr, cocos2d, game develop, ruby, web development, 设计模式, 数据结构, 算法, 创业">
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/">
+  <link rel="canonical" href="http://ajia.github.com/blog/categories/solr/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -74,276 +74,40 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article role="article">
   
-  
-  
-    <article>
-      
   <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/">Solr高亮的配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-25T18:07:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: Solr</h1>
     
   </header>
-
-
-  <div class="entry-content"><p>打开solrconfig.xml，找到<lst name="defaults">，比如我要高亮content和title这两个field，配置如下：</p>
-
-<pre><code>&lt;bool name="hl"&gt;true&lt;/bool&gt;
-&lt;str name="hl.fl"&gt;title&lt;/str&gt;
-&lt;str name="hl.fl"&gt;content&lt;/str&gt;
-</code></pre>
-
-<p>然后就不用在参数里加这几个也可以返回高亮后的结果了。</p>
-</div>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/25/ti-huan-diao-slash-n/">Java中替换掉换行符</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2013</h2>
 
-
-<time datetime="2013-03-25T14:14:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/25/ti-huan-diao-slash-n/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>问题：要替换掉内容中出现的&#8221;\n&#8221;，写成str.replace(&#8220;\n&#8221;, &#8220;&#8221;)才能正确执行。<br/>
-str.replace(&#8220;\n&#8221;,&#8221;&#8220;) 、str.replaceAll(&#8220;\n&#8221;,&#8221;&#8220;)、str.replaceAll(&#8220;\n&#8221;,&#8221;&#8220;)都不能替换掉</p>
-</div>
+<article>
   
-  
+<h1><a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/">solr高亮的配置</a></h1>
+<time datetime="2013-03-25T18:07:00+08:00" pubdate><span class='month'>Mar</span> <span class='day'>25</span> <span class='year'>2013</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/solr/'>solr</a></span>
+</footer>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/">解决cookie中文出现乱码的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-22T14:13:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>String value = java.net.URLEncoder.encode("中文","utf-8");
-Cookie cookie = new Cookie("chinese_code",value);
-cookie.setMaxAge(60*60*24*6);
-response.addCookie(cookie);
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">遇到resin的java.net.UnknownHostException</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-11T14:46:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
-问题原因：DNS解析不到本机名。</p>
-
-<h1>解决方案：</h1>
-
-<p>编辑/etc/hosts,添加127.0.0.1 xxxx（本机名）</p>
-
-<h1>问题原因</h1>
-
-<p>resin启动时会根据hostname来拼url地址</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/06/how-to-install-octopress/">How-to-install-octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/06/how-to-install-octopress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>系统是Mac OS X Lion 10.7.5</p>
-
-<h1>Step1 安装homebrew</h1>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/06/how-to-install-octopress/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/06/my-first-blog/">My First Blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
 
   
-
-
-<time datetime="2013-03-06T17:20:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/06/my-first-blog/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>折腾了几天，终于把部落格搞定了，咱也有了自己的地盘了，庆贺一下，接下来要折腾的事情还很多，<strong>enjoy it</strong>！</h1>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/06/my-first-blog/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -384,7 +148,7 @@ response.addCookie(cookie);
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/ajia">@ajia</a> on GitHub
@@ -432,6 +196,7 @@ response.addCookie(cookie);
 
   
 </aside>
+
 
     </div>
   </div>

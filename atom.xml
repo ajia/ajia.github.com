@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-25T14:30:25+08:00</updated>
+  <updated>2013-03-25T18:17:01+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[solr高亮的配置]]></title>
+    <link href="http://ajia.github.com/blog/2013/03/25/solrgao-liang-de-pei-zhi/"/>
+    <updated>2013-03-25T18:07:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/03/25/solrgao-liang-de-pei-zhi</id>
+    <content type="html"><![CDATA[<p>打开solrconfig.xml，找到<lst name="defaults">，比如我要高亮content和title这两个field，配置如下：</p>
+
+<pre><code>&lt;bool name="hl"&gt;true&lt;/bool&gt;
+&lt;str name="hl.fl"&gt;title&lt;/str&gt;
+&lt;str name="hl.fl"&gt;content&lt;/str&gt;
+</code></pre>
+
+<p>然后就不用在参数里加这几个也可以返回高亮后的结果了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[java中替换掉换行符]]></title>
