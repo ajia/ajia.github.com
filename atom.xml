@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-25T14:19:21+08:00</updated>
+  <updated>2013-03-25T14:27:53+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,14 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[替换掉
-]]></title>
+    <title type="html"><![CDATA[java中替换掉换行符]]></title>
     <link href="http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n/"/>
     <updated>2013-03-25T14:14:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n</id>
-    <content type="html"><![CDATA[<h1>java中替换掉“\n”</h1>
-
-<p>问题：要替换掉内容中出现的&#8221;\n&#8221;，写成str.replace(&#8220;\n&#8221;, &#8220;&#8221;)才能正确执行。<br/>
+    <content type="html"><![CDATA[<p>问题：要替换掉内容中出现的&#8221;\n&#8221;，写成str.replace(&#8220;\n&#8221;, &#8220;&#8221;)才能正确执行。<br/>
 str.replace(&#8220;\n&#8221;,&#8221;&#8220;) 、str.replaceAll(&#8220;\n&#8221;,&#8221;&#8220;)、str.replaceAll(&#8220;\n&#8221;,&#8221;&#8220;)都不能替换掉</p>
 ]]></content>
   </entry>
