@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-22T18:22:31+08:00</updated>
+  <updated>2013-03-25T14:19:21+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[替换掉
+]]></title>
+    <link href="http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n/"/>
+    <updated>2013-03-25T14:14:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n</id>
+    <content type="html"><![CDATA[<h1>java中替换掉“\n”</h1>
+
+<p>问题：要替换掉内容中出现的"\n"，写成str.replace("\n", "")才能正确执行。<br/>
+str.replace("\n","") 、str.replaceAll("\n","")、str.replaceAll("\n","")都不能替换掉</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[解决cookie中文出现乱码的问题]]></title>
