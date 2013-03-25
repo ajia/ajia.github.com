@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-25T14:27:53+08:00</updated>
+  <updated>2013-03-25T14:30:25+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -28,9 +28,7 @@ str.replace("\n","") 、str.replaceAll("\n","")、str.replaceAll("\n","")都不�
     <link href="http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/"/>
     <updated>2013-03-22T14:13:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti</id>
-    <content type="html"><![CDATA[<h1>Java Cookie 中文乱码解决方法</h1>
-
-<pre><code>String value = java.net.URLEncoder.encode("中文","utf-8");
+    <content type="html"><![CDATA[<pre><code>String value = java.net.URLEncoder.encode("中文","utf-8");
 Cookie cookie = new Cookie("chinese_code",value);
 cookie.setMaxAge(60*60*24*6);
 response.addCookie(cookie);
@@ -43,9 +41,7 @@ response.addCookie(cookie);
     <link href="http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/"/>
     <updated>2013-03-11T14:46:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception</id>
-    <content type="html"><![CDATA[<h1>遭遇</h1>
-
-<p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
+    <content type="html"><![CDATA[<p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
 问题原因：DNS解析不到本机名。</p>
 
 <h1>解决方案：</h1>
