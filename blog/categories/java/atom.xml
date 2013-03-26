@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-26T16:57:02+08:00</updated>
+  <updated>2013-03-26T17:48:51+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,8 +18,8 @@
     <link href="http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n/"/>
     <updated>2013-03-25T14:14:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n</id>
-    <content type="html"><![CDATA[<p>问题：要替换掉内容中出现的"\n"，写成str.replace("\\n", "")才能正确执行。<br/>
-str.replace("\n","") 、str.replaceAll("\\n","")、str.replaceAll("\n","")都不能替换掉</p>
+    <content type="html"><![CDATA[<p>问题：要替换掉内容中出现的"\n"，写成str.replace("\\\n", "")才能正确执行。<br/>
+str.replace("\n","") 、str.replaceAll("\\\n","")、str.replaceAll("\n","")都不能替换掉</p>
 ]]></content>
   </entry>
   
