@@ -104,11 +104,16 @@
   </header>
 
 
-<div class="entry-content"><pre><code>String value = java.net.URLEncoder.encode("中文","utf-8");
-Cookie cookie = new Cookie("chinese_code",value);
-cookie.setMaxAge(60*60*24*6);
-response.addCookie(cookie);
-</code></pre>
+<div class="entry-content"><figure class='code'><figcaption><span>code</span><a href='http://ajia.github.com'>ajia</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">URLEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="s">&quot;中文&quot;</span><span class="o">,</span><span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">Cookie</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="s">&quot;chinese_code&quot;</span><span class="o">,</span><span class="n">value</span><span class="o">);</span>
+</span><span class='line'><span class="n">cookie</span><span class="o">.</span><span class="na">setMaxAge</span><span class="o">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">6</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
