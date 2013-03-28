@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-28T15:49:54+08:00</updated>
+  <updated>2013-03-28T15:55:54+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>Exodus-Maksim Mrvica<br/>
 <audio controls><source src='http://ajia.github.com/downloads/media/exodus.mp3'></audio></p>
 
-<p>最后的倾述-韩磊
+<p>最后的倾述-韩磊<br/>
 <audio controls><source src='http://ajia.github.com/downloads/media/zhdqs.mp3'></audio></p>
 ]]></content>
   </entry>
