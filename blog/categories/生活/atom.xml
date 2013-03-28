@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 生活 | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/生活/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2013-03-28T10:23:05+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[推荐微信]]></title>
+    <link href="http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin/"/>
+    <updated>2013-03-27T21:42:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin</id>
+    <content type="html"><![CDATA[<p>推荐一个微信公众账号，有笑话、有彩票、有菜谱，还有对生活的态度<br/>
+<img class="center" src="/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
+]]></content>
+  </entry>
+  
+</feed>
