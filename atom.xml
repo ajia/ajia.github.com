@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-28T10:23:05+08:00</updated>
+  <updated>2013-03-28T13:21:38+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在octopress里写博客]]></title>
+    <link href="http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/"/>
+    <updated>2013-03-28T11:00:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke</id>
+    <content type="html"><![CDATA[<h3>代码高亮</h3>
+
+<h4>Codeblock</h4>
+
+<h6>语法</h6>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % codeblock [title] [lang:language] [url] [link text] % }
+</span><span class='line'>code snippet
+</span><span class='line'>{ % endcodeblock % }</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>例子</h6>
+
+<pre><code>{ % codeblock % }
+Awesome code snippet
+{ % endcodeblock % }
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<h4>Backtick Code Blocks</h4>
+
+<h6>语法</h6>
+
+<pre><code>``` [language] [title] [url] [link text]
+code snippet
+```
+</code></pre>
+
+<h6>例子</h6>
+
+<pre><code>```
+$ sudo make me a sandwich
+```
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo make me a sandwich</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>摘要</h4>
+
+<p>如果不希望显示全文，只需要在你希望首页显示的内容最后，输入：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!--more--></span></code></pre></td></tr></table></div></figure>
+
+
+<h3>插入图片</h3>
+
+<h4>语法</h4>
+
+<pre><code>{ % img [class names] /path/to/image [width] [height] [title text [alt text]] % }
+</code></pre>
+
+<h4>例子</h4>
+
+<pre><code>{ % img center /images/zy.jpg 300 300 品 % }
+{ % img center /images/zd.jpg 300 300 丹丹 % }
+</code></pre>
+
+<p><img class="center" src="http://ajia.github.com/images/zy.jpg" width="300" height="300" title="品" >
+<img class="center" src="http://ajia.github.com/images/zd.jpg" width="300" height="300" title="朱朱" ></p>
+
+<h3>插入视频</h3>
+
+<h4>语法</h4>
+
+<pre><code>{ % video url/to/video [width height] [url/to/poster] % }
+</code></pre>
+
+<h4>例子</h4>
+
+<pre><code>{ % video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png % }
+</code></pre>
+
+<p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[推荐微信]]></title>

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>推荐微信 - Ajia's Blog</title>
+  <title>在octopress里写博客 - Ajia's Blog</title>
   
   <meta name="author" content="Ajia">
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">推荐微信</h1>
+      <h1 class="entry-title">在octopress里写博客</h1>
     
     
       <p class="meta">
@@ -95,7 +95,7 @@
   
 
 
-<time datetime="2013-03-27T21:42:00+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
+<time datetime="2013-03-28T11:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -104,8 +104,93 @@
   </header>
 
 
-<div class="entry-content"><p>推荐一个微信公众账号，有笑话、有彩票、有菜谱，还有对生活的态度<br/>
-<img class="center" src="/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
+<div class="entry-content"><h3>代码高亮</h3>
+
+<h4>Codeblock</h4>
+
+<h6>语法</h6>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % codeblock [title] [lang:language] [url] [link text] % }
+</span><span class='line'>code snippet
+</span><span class='line'>{ % endcodeblock % }</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>例子</h6>
+
+<pre><code>{ % codeblock % }
+Awesome code snippet
+{ % endcodeblock % }
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<h4>Backtick Code Blocks</h4>
+
+<h6>语法</h6>
+
+<pre><code>``` [language] [title] [url] [link text]
+code snippet
+```
+</code></pre>
+
+<h6>例子</h6>
+
+<pre><code>```
+$ sudo make me a sandwich
+```
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo make me a sandwich</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>摘要</h4>
+
+<p>如果不希望显示全文，只需要在你希望首页显示的内容最后，输入：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!--more--></span></code></pre></td></tr></table></div></figure>
+
+
+<h3>插入图片</h3>
+
+<h4>语法</h4>
+
+<pre><code>{ % img [class names] /path/to/image [width] [height] [title text [alt text]] % }
+</code></pre>
+
+<h4>例子</h4>
+
+<pre><code>{ % img center /images/zy.jpg 300 300 品 % }
+{ % img center /images/zd.jpg 300 300 丹丹 % }
+</code></pre>
+
+<p><img class="center" src="/images/zy.jpg" width="300" height="300" title="品" >
+<img class="center" src="/images/zd.jpg" width="300" height="300" title="朱朱" ></p>
+
+<h3>插入视频</h3>
+
+<h4>语法</h4>
+
+<pre><code>{ % video url/to/video [width height] [url/to/poster] % }
+</code></pre>
+
+<h4>例子</h4>
+
+<pre><code>{ % video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png % }
+</code></pre>
+
+<p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
 </div>
 
 
@@ -128,12 +213,12 @@
   
 
 
-<time datetime="2013-03-27T21:42:00+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
+<time datetime="2013-03-28T11:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/生活/'>生活</a>
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
   
 </span>
 
@@ -149,10 +234,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/" title="Previous Post: solr高亮的配置">&laquo; solr高亮的配置</a>
+        <a class="basic-alignment left" href="/blog/2013/03/27/tui-jian-wei-xin/" title="Previous Post: 推荐微信">&laquo; 推荐微信</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/" title="Next Post: 在octopress里写博客">在octopress里写博客 &raquo;</a>
       
     </p>
   </footer>
@@ -271,8 +354,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/';
         var disqus_script = 'embed.js';
       
     (function () {
