@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-03-28T13:21:38+08:00</updated>
+  <updated>2013-03-28T13:24:48+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -116,6 +116,142 @@ $ sudo make me a sandwich
 </code></pre>
 
 <p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[how-to-install-octopress]]></title>
+    <link href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/"/>
+    <updated>2013-03-06T18:06:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/03/06/how-to-install-octopress</id>
+    <content type="html"><![CDATA[<p>系统是Mac OS X Lion 10.7.5</p>
+
+<h1>Step1 安装homebrew</h1>
+
+<!-- more -->
+
+
+<pre><code>ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+brew update  
+</code></pre>
+
+<p>如果出现如下错误</p>
+
+<pre><code>error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.commit.html.erb' (Permission denied)  
+error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.css' (Permission denied)  
+error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.index.html.erb' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/apr-1-config' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/bsdmake' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/c++' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/c89' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/c99' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/cc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/clang' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/clang++' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/cpp' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/g++' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/gcc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/git' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-g++-4.2' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-gcc-4.2' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/ld' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/llvm-g++' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/llvm-g++-4.2' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/llvm-gcc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/llvm-gcc-4.2' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/make' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/mig' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/sed' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/svn' (Permission denied)  
+error: unable to unlink old 'Library/ENV/4.3/xcrun' (Permission denied)  
+error: unable to unlink old 'Library/ENV/libsuperenv.rb' (Permission denied)  
+error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcrypto.pc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcurl.pc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libcurl.pc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libexslt.pc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxml-2.0.pc' (Permission denied)  
+error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxslt.pc' (Permission denied)  
+error: unable to unlink old 'Library/Homebrew/macos/xcode.rb' (Permission denied)  
+error: unable to unlink old 'Library/Homebrew/macos/xquartz.rb' (Permission denied)  
+fatal: Could not reset index file to revision 'origin/master'.  
+Failed during: git reset --hard origin/master  
+</code></pre>
+
+<p><strong>解决办法：sudo chown -R ${USER} /usr/local/Library</strong></p>
+
+<p><strong>如果已经安装了Macports，先卸载掉</strong></p>
+
+<pre><code>sudo rm -rf \  
+/opt/local \  
+/Applications/DarwinPorts \  
+/Applications/MacPorts \  
+/Library/LaunchDaemons/org.macports.* \  
+/Library/Receipts/DarwinPorts*.pkg \  
+/Library/Receipts/MacPorts*.pkg \  
+/Library/StartupItems/DarwinPortsStartup \  
+/Library/Tcl/darwinports1.0 \  
+/Library/Tcl/macports1.0 \  
+~/.macports
+</code></pre>
+
+<h1>Step2 安装RVM</h1>
+
+<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+source ~/.bashrc
+</code></pre>
+
+<h1>Step3 安装Ruby</h1>
+
+<pre><code>rvm install 1.9.3
+rvm use 1.9.3 --default
+</code></pre>
+
+<h1>Step4 安装Octopress</h1>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress  
+gem install bundler  
+bundle install
+rake install
+</code></pre>
+
+<h1>Step5 在github中托管</h1>
+
+<p>到目前我止，我们的blog仅能在本机中访问，如何将其托管到github中呢？如何使用我们自己的域名呢？让一切看起来就如同我们自己的站点。</p>
+
+<p>如果你要使用自己的域名，github需要一个CNAME文件，进入source文件夹，新建CNAME文件。</p>
+
+<pre><code>$ ch source
+$ touch CNAME
+</code></pre>
+
+<p>托管到github中</p>
+
+<pre><code>$ rake setup_github_pages
+</code></pre>
+
+<p>系统提示你输入一个形如:git@github.com:username/username.github.com.git,username是你在github.com中注册的用户名，username.github.com.git是你自己在github.com中创建的代码库。输入后按回车确定.</p>
+
+<p>向github提交</p>
+
+<pre><code>$ rake generate
+$ rake deploy
+</code></pre>
+
+<h3>大概的步骤就是这么多，遇见别的问题去请教google大神吧</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[my first blog]]></title>
+    <link href="http://ajia.github.com/blog/2013/03/06/my-first-blog/"/>
+    <updated>2013-03-06T17:20:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/03/06/my-first-blog</id>
+    <content type="html"><![CDATA[<h1>折腾了几天，终于把部落格搞定了，咱也有了自己的地盘了，庆贺一下，接下来要折腾的事情还很多，<strong>enjoy it</strong>！</h1>
+
+<!--more-->
+
+
+<h1>朱丹宝贝我爱你！</h1>
 ]]></content>
   </entry>
   
