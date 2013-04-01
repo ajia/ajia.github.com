@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2013-04-01T12:22:20+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[学习ruby on rails-ruby和rails的安装]]></title>
+    <link href="http://ajia.github.com/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/"/>
+    <updated>2013-04-01T11:59:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang</id>
+    <content type="html"><![CDATA[<p>ruby的安装在文章<a href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/" title="点击查看">how-to-install-octopress</a>里有说过。</p>
+
+<h3>在Lion安装rails</h3>
+
+<pre><code>gem install rails
+</code></pre>
+
+<h3>创建rails的应用</h3>
+
+<pre><code>rails new myapp
+</code></pre>
+
+<h3>启动应用</h3>
+
+<pre><code>cd myapp
+rails server
+</code></pre>
+
+<h3>进入</h3>
+
+<pre><code>http://localhost:3000
+"Welcome aboard: You're riding Ruby on Rails!"
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
