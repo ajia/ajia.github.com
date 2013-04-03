@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-01T12:22:20+08:00</updated>
+  <updated>2013-04-03T14:17:59+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[javascript遇上的几个问题]]></title>
+    <link href="http://ajia.github.com/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/"/>
+    <updated>2013-04-03T14:11:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai</id>
+    <content type="html"><![CDATA[<h3>判断方法存不存在</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">nl</span><span class="p">.</span><span class="nx">onBlue</span><span class="p">)</span><span class="o">==</span><span class="s2">&quot;function&quot;</span><span class="p">){</span>
+</span><span class='line'>      <span class="c1">//存在   </span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="c1">//不存在   </span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>把字符串转换成对象</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;{id:&quot;1&quot;,name:&quot;aaaa&quot;}&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;var obj=&quot;</span><span class="o">+</span><span class="nx">str</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[学习ruby on rails-ruby和rails的安装]]></title>
@@ -258,6 +293,10 @@ $ sudo make me a sandwich
 </code></pre>
 
 <p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
+
+<h3>插入超链</h3>
+
+<p><a href="http://ajia.github.com" title="ajia's blog">欢迎来到ajia的部落格</a></p>
 ]]></content>
   </entry>
   

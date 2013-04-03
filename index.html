@@ -6,7 +6,14 @@
 	<title>Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="Published on: Apr 1st, 2013 Tags: ruby ruby的安装在文章how-to-install-octopress里有说过。 在Lion安装rails gem install rails 创建rails的应用 rails new myapp 启动应用 cd &hellip;">
+	<meta name="description" content="Published on: Apr 3rd, 2013 Tags: javascript 判断方法存不存在 1
+2
+3
+4
+5
+6 if(typeof(nl.onBlue)==&quot;function&quot;){ //存在 } else{ //不存在 } 把字符串转换成对象 1
+2
+3 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,6 +108,76 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/">
+		
+			Javascript遇上的几个问题</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T14:11:00+08:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/javascript/'>javascript</a>
+
+
+</div>
+    </div>
+		<h3>判断方法存不存在</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">nl</span><span class="p">.</span><span class="nx">onBlue</span><span class="p">)</span><span class="o">==</span><span class="s2">&quot;function&quot;</span><span class="p">){</span>
+</span><span class='line'>      <span class="c1">//存在   </span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="c1">//不存在   </span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>把字符串转换成对象</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;{id:&quot;1&quot;,name:&quot;aaaa&quot;}&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;var obj=&quot;</span><span class="o">+</span><span class="nx">str</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai//index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -646,53 +723,6 @@ str.replaceAll("\n","")
 <div class="meta">
 	
 		<span class="comments"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception//index.html#disqus_thread">Comments</a></span>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/06/how-to-install-octopress/">
-		
-			How-to-install-octopress</a>
-	</h2>
-    <div class="entry-content">
-    <div class="meta">
-      <div class="date">Published on: 
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time></div>
-      <div class="tags">Tags: 
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-
-</div>
-    </div>
-		<p>系统是Mac OS X Lion 10.7.5</p>
-
-<h1>Step1 安装homebrew</h1>
-
-
-		
-		<a href="/blog/2013/03/06/how-to-install-octopress/" class="more-link">Read on &rarr;</a>
-	</div>
-
-<div class="meta">
-	
-		<span class="comments"><a href="/blog/2013/03/06/how-to-install-octopress//index.html#disqus_thread">Comments</a></span>
 	
 </div>
 </article>

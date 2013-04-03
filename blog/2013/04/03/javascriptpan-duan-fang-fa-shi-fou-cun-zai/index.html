@@ -3,16 +3,18 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>在octopress里写博客 - Ajia's Blog</title>
+	<title>javascript遇上的几个问题 - Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="代码高亮 Codeblock 语法 1
+	<meta name="description" content="判断方法存不存在 1
 2
 3
-{ % codeblock [title] [lang:language] [url] [link text] % }
-code snippet
-{ % endcodeblock % } 例子 { % codeblock % }
-Awesome &hellip;">
+4
+5
+6 if(typeof(nl.onBlue)==&quot;function&quot;){ //存在 } else{ //不存在 } 把字符串转换成对象 1
+2
+3
+var str = &#39;{id:&quot;1&quot;,name:&quot; &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -107,103 +109,39 @@ Awesome &hellip;">
 <!-- begin toload --> 
     <div id="content" class="inner">
         <article class="post">
-	<h2 class="title">在octopress里写博客</h2>
-	<div class="entry-content"><h3>代码高亮</h3>
+	<h2 class="title">Javascript遇上的几个问题</h2>
+	<div class="entry-content"><h3>判断方法存不存在</h3>
 
-<h4>Codeblock</h4>
-
-<h6>语法</h6>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{ % codeblock [title] [lang:language] [url] [link text] % }
-</span><span class='line'>code snippet
-</span><span class='line'>{ % endcodeblock % }</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">nl</span><span class="p">.</span><span class="nx">onBlue</span><span class="p">)</span><span class="o">==</span><span class="s2">&quot;function&quot;</span><span class="p">){</span>
+</span><span class='line'>      <span class="c1">//存在   </span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="c1">//不存在   </span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h6>例子</h6>
+<h3>把字符串转换成对象</h3>
 
-<pre><code>{ % codeblock % }
-Awesome code snippet
-{ % endcodeblock % }
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;{id:&quot;1&quot;,name:&quot;aaaa&quot;}&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;var obj=&quot;</span><span class="o">+</span><span class="nx">str</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
-
-
-<h4>Backtick Code Blocks</h4>
-
-<h6>语法</h6>
-
-<pre><code>``` [language] [title] [url] [link text]
-code snippet
-```
-</code></pre>
-
-<h6>例子</h6>
-
-<pre><code>```
-$ sudo make me a sandwich
-```
-</code></pre>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo make me a sandwich</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>摘要</h4>
-
-<p>如果不希望显示全文，只需要在你希望首页显示的内容最后，输入：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!--more--></span></code></pre></td></tr></table></div></figure>
-
-
-<h3>插入图片</h3>
-
-<h4>语法</h4>
-
-<pre><code>{ % img [class names] /path/to/image [width] [height] [title text [alt text]] % }
-</code></pre>
-
-<h4>例子</h4>
-
-<pre><code>{ % img center /images/zy.jpg 300 300 品 % }
-{ % img center /images/zd.jpg 300 300 丹丹 % }
-</code></pre>
-
-<p><img class="center" src="/images/zy.jpg" width="300" height="300" title="品" >
-<img class="center" src="/images/zd.jpg" width="300" height="300" title="朱朱" ></p>
-
-<h3>插入视频</h3>
-
-<h4>语法</h4>
-
-<pre><code>{ % video url/to/video [width height] [url/to/poster] % }
-</code></pre>
-
-<h4>例子</h4>
-
-<pre><code>{ % video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png % }
-</code></pre>
-
-<p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
-
-<h3>插入超链</h3>
-
-<p><a href="http://ajia.github.com" title="ajia's blog">欢迎来到ajia的部落格</a></p>
 </div>
 
 <div class="meta">
 	
-		<span class="comments"><a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/#disqus_thread">Comments</a></span>
+		<span class="comments"><a href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/#disqus_thread">Comments</a></span>
 	
 </div>
 </article>
@@ -252,8 +190,8 @@ $ sudo make me a sandwich
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/';
         var disqus_script = 'embed.js';
       
     (function () {

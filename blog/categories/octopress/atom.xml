@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-01T12:22:20+08:00</updated>
+  <updated>2013-04-03T14:17:59+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -215,6 +215,10 @@ $ sudo make me a sandwich
 </code></pre>
 
 <p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
+
+<h3>插入超链</h3>
+
+<p><a href="http://ajia.github.com" title="ajia's blog">欢迎来到ajia的部落格</a></p>
 ]]></content>
   </entry>
   
