@@ -6,7 +6,12 @@
 	<title>Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="Published on: Mar 11th, 2013 Tags: java linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net. &hellip;">
+	<meta name="description" content="Published on: Mar 22nd, 2013 Tags: java codeajia1
+2
+3
+4
+String value = java.net.URLEncoder.encode(&quot;中文&quot;,&quot;utf-8&quot;);
+Cookie cookie &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,6 +106,59 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/">
+		
+			解决cookie中文出现乱码的问题</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-22T14:13:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/java/'>java</a>
+
+
+</div>
+    </div>
+		<figure class='code'><figcaption><span>code</span><a href='http://ajia.github.com'>ajia</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">URLEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="s">&quot;中文&quot;</span><span class="o">,</span><span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">Cookie</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="s">&quot;chinese_code&quot;</span><span class="o">,</span><span class="n">value</span><span class="o">);</span>
+</span><span class='line'><span class="n">cookie</span><span class="o">.</span><span class="na">setMaxAge</span><span class="o">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">6</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti//blog/page/2/index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
 
 
     <article class="post">

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-04T22:55:23+08:00</updated>
+  <updated>2013-04-07T21:53:32+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HttpClient上传文件]]></title>
+    <link href="http://ajia.github.com/blog/2013/04/07/httpclientshang-chuan-wen-jian/"/>
+    <updated>2013-04-07T21:44:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/04/07/httpclientshang-chuan-wen-jian</id>
+    <content type="html"><![CDATA[<p>折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”
+```java
+PostMethod method = new PostMethod(url);</p>
+
+<pre><code>    Part[] part = new Part[params.size()+1];
+    Set&lt;String&gt; keySet = params.keySet();
+    int i=0;
+    for(String key : keySet) {
+        String value = params.get(key);
+        if(StringUtil.isNotNull(value)){
+            part[i] = new StringPart(key, value, "UTF-8");
+        }else{
+            part[i] = new StringPart(key, "", "UTF-8");
+        }
+        i++;
+    }
+    FilePart fp = new  FilePart("image", file);
+    fp.setContentType(MIME.ENC_BINARY);
+    part[i] = fp;
+    HttpConnectionManagerParams managerParams = httpClient.getHttpConnectionManager().getParams();
+    managerParams.setConnectionTimeout(3000000);
+     managerParams.setSoTimeout(12000000);
+    int statusCode;
+    try {
+        MultipartRequestEntity mrp= new  MultipartRequestEntity(part, method.getParams());  
+        method.setRequestEntity(mrp);
+        statusCode = httpClient.executeMethod(method);
+        if(statusCode != HttpStatus.SC_OK){
+            log.error("Method failed code=" + statusCode + ": " + method.getStatusLine());
+        }else{
+            InputStream inputStream = method.getResponseBodyAsStream();  
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));  
+            String str= "";  
+            while((str = br.readLine()) != null){   
+                response .append(str);  
+            }   
+        }
+    } catch (HttpException e) {
+        log.error(e.getMessage(), e);
+    } catch (IOException e) {
+        log.error(e.getMessage(), e);
+    } finally{
+        method.releaseConnection();
+    }
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[java中替换掉换行符]]></title>

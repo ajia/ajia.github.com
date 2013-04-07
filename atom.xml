@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-04T22:55:23+08:00</updated>
+  <updated>2013-04-07T21:53:09+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,100 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HttpClient上传文件]]></title>
+    <link href="http://ajia.github.com/blog/2013/04/07/httpclientshang-chuan-wen-jian/"/>
+    <updated>2013-04-07T21:44:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/04/07/httpclientshang-chuan-wen-jian</id>
+    <content type="html"><![CDATA[<p>折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PostMethod</span> <span class="n">method</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PostMethod</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">Part</span><span class="o">[]</span> <span class="n">part</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Part</span><span class="o">[</span><span class="n">params</span><span class="o">.</span><span class="na">size</span><span class="o">()+</span><span class="mi">1</span><span class="o">];</span>
+</span><span class='line'>        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keySet</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span> <span class="o">:</span> <span class="n">keySet</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>          <span class="k">if</span><span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isNotNull</span><span class="o">(</span><span class="n">value</span><span class="o">)){</span>
+</span><span class='line'>              <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span><span class='line'>              <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>          <span class="n">i</span><span class="o">++;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="n">FilePart</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span>  <span class="n">FilePart</span><span class="o">(</span><span class="s">&quot;image&quot;</span><span class="o">,</span> <span class="n">file</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">fp</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="n">MIME</span><span class="o">.</span><span class="na">ENC_BINARY</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">HttpConnectionManagerParams</span> <span class="n">managerParams</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">getHttpConnectionManager</span><span class="o">().</span><span class="na">getParams</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">managerParams</span><span class="o">.</span><span class="na">setConnectionTimeout</span><span class="o">(</span><span class="mi">3000000</span><span class="o">);</span>
+</span><span class='line'>         <span class="n">managerParams</span><span class="o">.</span><span class="na">setSoTimeout</span><span class="o">(</span><span class="mi">12000000</span><span class="o">);</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">statusCode</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">MultipartRequestEntity</span> <span class="n">mrp</span><span class="o">=</span> <span class="k">new</span>  <span class="n">MultipartRequestEntity</span><span class="o">(</span><span class="n">part</span><span class="o">,</span> <span class="n">method</span><span class="o">.</span><span class="na">getParams</span><span class="o">());</span>
+</span><span class='line'>            <span class="n">method</span><span class="o">.</span><span class="na">setRequestEntity</span><span class="o">(</span><span class="n">mrp</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">statusCode</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">executeMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
+</span><span class='line'>          <span class="k">if</span><span class="o">(</span><span class="n">statusCode</span> <span class="o">!=</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">SC_OK</span><span class="o">){</span>
+</span><span class='line'>              <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Method failed code=&quot;</span> <span class="o">+</span> <span class="n">statusCode</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">method</span><span class="o">.</span><span class="na">getStatusLine</span><span class="o">());</span>
+</span><span class='line'>          <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span><span class='line'>              <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">getResponseBodyAsStream</span><span class="o">();</span>
+</span><span class='line'>              <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">inputStream</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">));</span>
+</span><span class='line'>              <span class="n">String</span> <span class="n">str</span><span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>              <span class="k">while</span><span class="o">((</span><span class="n">str</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+</span><span class='line'>                  <span class="n">response</span> <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+</span><span class='line'>              <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">HttpException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">finally</span><span class="o">{</span>
+</span><span class='line'>          <span class="n">method</span><span class="o">.</span><span class="na">releaseConnection</span><span class="o">();</span>
+</span><span class='line'>      <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何获得创业点子]]></title>
