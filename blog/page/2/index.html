@@ -6,12 +6,8 @@
 	<title>Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="Published on: Mar 22nd, 2013 Tags: java codeajia1
-2
-3
-4
-String value = java.net.URLEncoder.encode(&quot;中文&quot;,&quot;utf-8&quot;);
-Cookie cookie &hellip;">
+	<meta name="description" content="Published on: Mar 25th, 2013 Tags: java 问题：要替换掉内容中出现的“\n”，写成 str.replace("\\n", "") 才能正确执行。
+下面的都不能替换掉 str.replace("\n","") str.replaceAll("\\n","") &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -106,6 +102,61 @@ Cookie cookie &hellip;">
 <!-- begin toload --> 
     <div id="content" class="inner">
         
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/25/ti-huan-diao-slash-n/">
+		
+			Java中替换掉换行符</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-25T14:14:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/java/'>java</a>
+
+
+</div>
+    </div>
+		<p>问题：要替换掉内容中出现的“\n”，写成</p>
+
+<pre><code>str.replace("\\n", "")  
+</code></pre>
+
+<p>才能正确执行。
+下面的都不能替换掉</p>
+
+<pre><code>str.replace("\n","") 
+str.replaceAll("\\n","")
+str.replaceAll("\n","")
+</code></pre>
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2013/03/25/ti-huan-diao-slash-n//blog/page/2/index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
 
 
     <article class="post">

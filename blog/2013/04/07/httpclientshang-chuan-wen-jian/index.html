@@ -6,7 +6,7 @@
 	<title>HttpClient上传文件 - Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data” 1
+	<meta name="description" content="折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”,否则会出现“the request was rejected because no multipart boundary was found” 1
 2
 3
 4
@@ -17,31 +17,7 @@
 9
 10
 11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36 &hellip;">
+12 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -137,7 +113,7 @@
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">HttpClient上传文件</h2>
-	<div class="entry-content"><p>折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”</p>
+	<div class="entry-content"><p>折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”,否则会出现“the request was rejected because no multipart boundary was found”</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -181,46 +157,46 @@
 <span class='line-number'>40</span>
 <span class='line-number'>41</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PostMethod</span> <span class="n">method</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PostMethod</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">Part</span><span class="o">[]</span> <span class="n">part</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Part</span><span class="o">[</span><span class="n">params</span><span class="o">.</span><span class="na">size</span><span class="o">()+</span><span class="mi">1</span><span class="o">];</span>
-</span><span class='line'>        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keySet</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span> <span class="o">:</span> <span class="n">keySet</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>          <span class="k">if</span><span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isNotNull</span><span class="o">(</span><span class="n">value</span><span class="o">)){</span>
-</span><span class='line'>              <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
-</span><span class='line'>          <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-</span><span class='line'>              <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>          <span class="n">i</span><span class="o">++;</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="n">FilePart</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span>  <span class="n">FilePart</span><span class="o">(</span><span class="s">&quot;image&quot;</span><span class="o">,</span> <span class="n">file</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">fp</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="n">MIME</span><span class="o">.</span><span class="na">ENC_BINARY</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">HttpConnectionManagerParams</span> <span class="n">managerParams</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">getHttpConnectionManager</span><span class="o">().</span><span class="na">getParams</span><span class="o">();</span>
-</span><span class='line'>        <span class="n">managerParams</span><span class="o">.</span><span class="na">setConnectionTimeout</span><span class="o">(</span><span class="mi">3000000</span><span class="o">);</span>
-</span><span class='line'>         <span class="n">managerParams</span><span class="o">.</span><span class="na">setSoTimeout</span><span class="o">(</span><span class="mi">12000000</span><span class="o">);</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">statusCode</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">MultipartRequestEntity</span> <span class="n">mrp</span><span class="o">=</span> <span class="k">new</span>  <span class="n">MultipartRequestEntity</span><span class="o">(</span><span class="n">part</span><span class="o">,</span> <span class="n">method</span><span class="o">.</span><span class="na">getParams</span><span class="o">());</span>
-</span><span class='line'>            <span class="n">method</span><span class="o">.</span><span class="na">setRequestEntity</span><span class="o">(</span><span class="n">mrp</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">statusCode</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">executeMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
-</span><span class='line'>          <span class="k">if</span><span class="o">(</span><span class="n">statusCode</span> <span class="o">!=</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">SC_OK</span><span class="o">){</span>
-</span><span class='line'>              <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Method failed code=&quot;</span> <span class="o">+</span> <span class="n">statusCode</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">method</span><span class="o">.</span><span class="na">getStatusLine</span><span class="o">());</span>
-</span><span class='line'>          <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-</span><span class='line'>              <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">getResponseBodyAsStream</span><span class="o">();</span>
-</span><span class='line'>              <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">inputStream</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">));</span>
-</span><span class='line'>              <span class="n">String</span> <span class="n">str</span><span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
-</span><span class='line'>              <span class="k">while</span><span class="o">((</span><span class="n">str</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
-</span><span class='line'>                  <span class="n">response</span> <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">HttpException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">finally</span><span class="o">{</span>
-</span><span class='line'>          <span class="n">method</span><span class="o">.</span><span class="na">releaseConnection</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">Part</span><span class="o">[]</span> <span class="n">part</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Part</span><span class="o">[</span><span class="n">params</span><span class="o">.</span><span class="na">size</span><span class="o">()+</span><span class="mi">1</span><span class="o">];</span>
+</span><span class='line'>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keySet</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>    <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span> <span class="o">:</span> <span class="n">keySet</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span><span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isNotNull</span><span class="o">(</span><span class="n">value</span><span class="o">)){</span>
+</span><span class='line'>          <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span><span class='line'>          <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
 </span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">i</span><span class="o">++;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="n">FilePart</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span>  <span class="n">FilePart</span><span class="o">(</span><span class="s">&quot;image&quot;</span><span class="o">,</span> <span class="n">file</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">fp</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="n">MIME</span><span class="o">.</span><span class="na">ENC_BINARY</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">HttpConnectionManagerParams</span> <span class="n">managerParams</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">getHttpConnectionManager</span><span class="o">().</span><span class="na">getParams</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">managerParams</span><span class="o">.</span><span class="na">setConnectionTimeout</span><span class="o">(</span><span class="mi">3000000</span><span class="o">);</span>
+</span><span class='line'>     <span class="n">managerParams</span><span class="o">.</span><span class="na">setSoTimeout</span><span class="o">(</span><span class="mi">12000000</span><span class="o">);</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">statusCode</span><span class="o">;</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">MultipartRequestEntity</span> <span class="n">mrp</span><span class="o">=</span> <span class="k">new</span>  <span class="n">MultipartRequestEntity</span><span class="o">(</span><span class="n">part</span><span class="o">,</span> <span class="n">method</span><span class="o">.</span><span class="na">getParams</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">method</span><span class="o">.</span><span class="na">setRequestEntity</span><span class="o">(</span><span class="n">mrp</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">statusCode</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">executeMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span><span class="o">(</span><span class="n">statusCode</span> <span class="o">!=</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">SC_OK</span><span class="o">){</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Method failed code=&quot;</span> <span class="o">+</span> <span class="n">statusCode</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">method</span><span class="o">.</span><span class="na">getStatusLine</span><span class="o">());</span>
+</span><span class='line'>        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span><span class='line'>          <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">getResponseBodyAsStream</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">inputStream</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">));</span>
+</span><span class='line'>            <span class="n">String</span> <span class="n">str</span><span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">while</span><span class="o">((</span><span class="n">str</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+</span><span class='line'>              <span class="n">response</span> <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">HttpException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">finally</span><span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">.</span><span class="na">releaseConnection</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
