@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-08T17:52:03+08:00</updated>
+  <updated>2013-04-08T18:07:41+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -48,7 +48,8 @@ $.ajax({
 response.setHeader("Pragma", "No-cache");
 response.setDateHeader("Expires", 0);
 response.setHeader("Cache-Control", "no-cache");
-PrintWriter out = null;
+PrintWriter out = response.getWriter();
+//业务逻辑
 String callback = request.getParameter("callback");
         result = callback+"("+resultJson.toString()+")";
 out.print(result);
