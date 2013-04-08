@@ -6,8 +6,8 @@
 	<title>Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="Published on: Mar 25th, 2013 Tags: java 问题：要替换掉内容中出现的“\n”，写成 str.replace("\\n", "") 才能正确执行。
-下面的都不能替换掉 str.replace("\n","") str.replaceAll("\\n","") &hellip;">
+	<meta name="description" content="Published on: Mar 25th, 2013 Tags: solr 打开solrconfig.xml，找到，比如我要高亮content和title这两个field，配置如下： &lt;bool name="hl"&gt;true&lt;/bool&gt;
+&lt;str name=" &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -102,6 +102,57 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/">
+		
+			Solr高亮的配置</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-25T18:07:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/solr/'>solr</a>
+
+
+</div>
+    </div>
+		<p>打开solrconfig.xml，找到<lst name="defaults">，比如我要高亮content和title这两个field，配置如下：</p>
+
+<pre><code>&lt;bool name="hl"&gt;true&lt;/bool&gt;
+&lt;str name="hl.fl"&gt;title&lt;/str&gt;
+&lt;str name="hl.fl"&gt;content&lt;/str&gt;
+</code></pre>
+
+<p>然后就不用在参数里加这几个也可以返回高亮后的结果了。</p>
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi//blog/page/2/index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
 
 
     <article class="post">

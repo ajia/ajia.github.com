@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-08T17:29:23+08:00</updated>
+  <updated>2013-04-08T17:52:03+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[jquery的jsonp方式的ajax提交解决跨域的问题]]></title>
+    <link href="http://ajia.github.com/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/"/>
+    <updated>2013-04-08T17:45:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti</id>
+    <content type="html"><![CDATA[<p>jquery请求：
+```javascript</p>
+
+<pre><code>var action = form.attr("action");
+$.ajax({  
+    type:"get",  
+    data: {  
+        mobile : $('#mobile'+id).val()  
+    },  
+    url:action,  
+    dataType:"jsonp",  
+    jsonp:"callback",  
+    success:function(data){
+        var res = eval(data);
+        if(res.resultObj.result){
+            alert("发送成功");
+        }
+    }  
+}); 
+</code></pre>
+
+<p>```</p>
+
+<p>服务器端：
+```java</p>
+
+<pre><code>response.setContentType("text/html; charset=utf-8");
+response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");
+PrintWriter out = null;
+String callback = request.getParameter("callback");
+        result = callback+"("+resultJson.toString()+")";
+out.print(result);
+out.flush();
+out.close();
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[遇上MySql的奇怪问题]]></title>
@@ -147,24 +194,6 @@ response.addCookie(cookie);
 </code></pre>
 
 <p>```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[遇到resin的java.net.UnknownHostException]]></title>
-    <link href="http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/"/>
-    <updated>2013-03-11T14:46:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception</id>
-    <content type="html"><![CDATA[<p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
-问题原因：DNS解析不到本机名。</p>
-
-<h1>解决方案：</h1>
-
-<p>编辑/etc/hosts,添加127.0.0.1 xxxx（本机名）</p>
-
-<h1>问题原因</h1>
-
-<p>resin启动时会根据hostname来拼url地址</p>
 ]]></content>
   </entry>
   
