@@ -6,24 +6,8 @@
 	<title>Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="Published on: Apr 8th, 2013 Tags: java jquery请求： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-var action = form.attr(&quot;action&quot;);
-$.ajax({ type:& &hellip;">
+	<meta name="description" content="Published on: Apr 9th, 2013 Tags: javascript Create session cookie: 1
+$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); Create expiring cookie, 7 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -123,6 +107,99 @@ $.ajax({ type:& &hellip;">
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/">
+		
+			Jquery插件之cookie</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-09T11:59:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2013</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/javascript/'>javascript</a>
+
+
+</div>
+    </div>
+		<p>Create session cookie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create expiring cookie, 7 days:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">expires</span><span class="o">:</span> <span class="mi">7</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create expiring cookie, valid across entire site:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">expires</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Read cookie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">);</span> <span class="c1">// =&gt; &quot;the_value&quot;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;not_existing&#39;</span><span class="p">);</span> <span class="c1">// =&gt; undefined</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Read all available cookies:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">();</span> <span class="c1">// =&gt; { &quot;the_cookie&quot;: &quot;the_value&quot;, &quot;...remaining&quot;: &quot;cookies&quot; }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Delete cookie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// Returns true when cookie was found, false when no cookie was found...</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">removeCookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// Same path as when the cookie was written...</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">removeCookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+		
+		<a href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/" class="more-link">Read on &rarr;</a>
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2013/04/09/jquerycha-jian-zhi-cookie//index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/">
 		
 			Jquery的jsonp方式的ajax提交解决跨域的问题</a>
@@ -207,7 +284,7 @@ $.ajax({ type:& &hellip;">
 </span><span class='line'><span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
 </span><span class='line'><span class="c1">//业务逻辑</span>
 </span><span class='line'><span class="n">String</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;callback&quot;</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">result</span> <span class="o">=</span> <span class="n">callback</span><span class="o">+</span><span class="s">&quot;(&quot;</span><span class="o">+</span><span class="n">resultJson</span><span class="o">.</span><span class="na">toString</span><span class="o">()+</span><span class="s">&quot;)&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">callback</span><span class="o">+</span><span class="s">&quot;(&quot;</span><span class="o">+</span><span class="n">resultJson</span><span class="o">.</span><span class="na">toString</span><span class="o">()+</span><span class="s">&quot;)&quot;</span><span class="o">;</span>
 </span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
 </span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
 </span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
@@ -869,51 +946,6 @@ Awesome code snippet
 <div class="meta">
 	
 		<span class="comments"><a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke//index.html#disqus_thread">Comments</a></span>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/27/tui-jian-wei-xin/">
-		
-			推荐微信</a>
-	</h2>
-    <div class="entry-content">
-    <div class="meta">
-      <div class="date">Published on: 
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-27T21:42:00+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time></div>
-      <div class="tags">Tags: 
-
-
-	<a class='category' href='/blog/categories/生活/'>生活</a>
-
-
-</div>
-    </div>
-		<p>推荐一个微信公众账号，有笑话、有彩票、有菜谱，还有对生活的态度<br/>
-<img class="center" src="/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
-
-		
-		
-	</div>
-
-<div class="meta">
-	
-		<span class="comments"><a href="/blog/2013/03/27/tui-jian-wei-xin//index.html#disqus_thread">Comments</a></span>
 	
 </div>
 </article>
