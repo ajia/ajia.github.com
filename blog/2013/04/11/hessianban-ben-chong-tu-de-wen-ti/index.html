@@ -3,10 +3,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: java - Ajia's Blog</title>
+	<title>hessian版本冲突的问题 - Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="Category: java">
+	<meta name="description" content="项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错 HessianProtocolException：expected integer at… 非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话 use hessian-4.* spring-3.* и resin &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -100,151 +100,45 @@
 <div id="toload">
 <!-- begin toload --> 
     <div id="content" class="inner">
-        
+        <article class="post">
+	<h2 class="title">Hessian版本冲突的问题</h2>
+	<div class="entry-content"><p>项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错</p>
+
+<pre><code>HessianProtocolException：expected integer at…
+</code></pre>
+
+<p>非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话</p>
+
+<pre><code>use hessian-4.* spring-3.* и resin-4.*. for Hessian protocol 2.And resin-3.*, spring-2.* hessian before 3.2.0 for Hessian protocol version 1.
+</code></pre>
+
+<p>看来是版本的问题，我的环境是resin-4.*、spring-2.*、hessian-4.*，后来改成用resin.3.1.13版本就正常了。接下来试试把spring升级到3。</p>
+</div>
+
+<div class="meta">
 	
-
-
+		<span class="comments"><a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/#disqus_thread">Comments</a></span>
 	
-	
-	<section class="archives"><h1 class="year">2013</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/">hessian版本冲突的问题</a></h2>
-	<div class="meta">
-		<span class="date">Apr 11</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/#disqus_thread">Comments</a></span>
-	    
-	</div>
+</div>
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/">jquery的jsonp方式的ajax提交解决跨域的问题</a></h2>
-	<div class="meta">
-		<span class="date">Apr  8</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/">遇上MySql的奇怪问题</a></h2>
-	<div class="meta">
-		<span class="date">Apr  8</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/07/httpclientshang-chuan-wen-jian/">HttpClient上传文件</a></h2>
-	<div class="meta">
-		<span class="date">Apr  7</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/07/httpclientshang-chuan-wen-jian/#disqus_thread">Comments</a></span>
-	    
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/03/25/ti-huan-diao-slash-n/">java中替换掉换行符</a></h2>
-	<div class="meta">
-		<span class="date">Mar 25</span>
-		<span class="tags">
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
 
 
-	<a class='category' href='/blog/categories/java/'>java</a>
 
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/03/25/ti-huan-diao-slash-n/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/">解决cookie中文出现乱码的问题</a></h2>
-	<div class="meta">
-		<span class="date">Mar 22</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">遇到resin的java.net.UnknownHostException</a></h2>
-	<div class="meta">
-		<span class="date">Mar 11</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 
     </div>
     <footer id="footer">
@@ -271,7 +165,10 @@
       var disqus_shortname = 'ajia';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

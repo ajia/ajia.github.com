@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-09T13:49:45+08:00</updated>
+  <updated>2013-04-11T18:23:24+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[hessian版本冲突的问题]]></title>
+    <link href="http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/"/>
+    <updated>2013-04-11T17:53:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti</id>
+    <content type="html"><![CDATA[<p>项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错</p>
+
+<pre><code>HessianProtocolException：expected integer at…
+</code></pre>
+
+<p>非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话</p>
+
+<pre><code>use hessian-4.* spring-3.* и resin-4.*. for Hessian protocol 2.And resin-3.*, spring-2.* hessian before 3.2.0 for Hessian protocol version 1.
+</code></pre>
+
+<p>看来是版本的问题，我的环境是resin-4.*、spring-2.*、hessian-4.*，后来改成用resin.3.1.13版本就正常了。接下来试试把spring升级到3。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[jquery插件之cookie]]></title>
