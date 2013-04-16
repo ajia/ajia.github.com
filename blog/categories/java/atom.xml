@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-11T18:23:24+08:00</updated>
+  <updated>2013-04-16T18:18:16+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mysql创建function失败]]></title>
+    <link href="http://ajia.github.com/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/"/>
+    <updated>2013-04-16T16:12:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/04/16/mysqlchuang-jian-functionshi-bai</id>
+    <content type="html"><![CDATA[<p>出错信息：</p>
+
+<p>创建function时</p>
+
+<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled (you might want to use the less safe log_bin_trust_function_creators variable)
+</code></pre>
+
+<p>原因：</p>
+
+<p>这是我们开启了bin-log, 我们就必须指定我们的函数是否是
+1 DETERMINISTIC 不确定的
+2 NO SQL 没有SQl语句，当然也不会修改数据
+3 READS SQL DATA 只是读取数据，当然也不会修改数据
+4 MODIFIES SQL DATA 要修改数据
+5 CONTAINS SQL 包含了SQL语句</p>
+
+<p>其中在function里面，只有 DETERMINISTIC, NO SQL 和 READS SQL DATA 被支持。如果我们开启了 bin-log, 我们就必须为我们的function指定一个参数。</p>
+
+<p>解决办法</p>
+
+<pre><code>mysql&gt;show variables like '%func%';
++---------------------------------+-------+
+|Variable_name                  |Value|
++---------------------------------+-------+
+|log_bin_trust_function_creators|OFF  |
++---------------------------------+-------+
+
+set global log_bin_trust_function_creators=1;
+
+mysql&gt;show variables like '%func%';
++---------------------------------+-------+ |Variable_name                  |Value|
++---------------------------------+-------+
+|log_bin_trust_function_creators|ON   |
++---------------------------------+-------+
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[hessian版本冲突的问题]]></title>
@@ -25,8 +68,7 @@
 
 <p>非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话</p>
 
-<pre><code>use hessian-4.* spring-3.* и resin-4.*. for Hessian protocol 2.And resin-3.*, spring-2.* hessian before 3.2.0 for Hessian protocol version 1.
-</code></pre>
+<blockquote><blockquote><p>use hessian-4.<em> spring-3.</em>  resin-4.<em>. for Hessian protocol 2.And resin-3.</em>, spring-2.* hessian before 3.2.0 for Hessian protocol version 1.</p></blockquote></blockquote>
 
 <p>看来是版本的问题，我的环境是resin-4.*、spring-2.*、hessian-4.*，后来改成用resin.3.1.13版本就正常了。接下来试试把spring升级到3。</p>
 ]]></content>
@@ -177,26 +219,6 @@ at $Proxy163.importDate(Unknown Source)
 </code></pre>
 
 <p>```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[java中替换掉换行符]]></title>
-    <link href="http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n/"/>
-    <updated>2013-03-25T14:14:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n</id>
-    <content type="html"><![CDATA[<p>问题：要替换掉内容中出现的“\n”，写成</p>
-
-<pre><code>str.replace("\\n", "")  
-</code></pre>
-
-<p>才能正确执行。
-下面的都不能替换掉</p>
-
-<pre><code>str.replace("\n","") 
-str.replaceAll("\\n","")
-str.replaceAll("\n","")
-</code></pre>
 ]]></content>
   </entry>
   

@@ -3,10 +3,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>hessian版本冲突的问题 - Ajia's Blog</title>
+	<title>mysql创建function失败 - Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错 HessianProtocolException：expected integer at… 非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话 use hessian-4. spring-3. resin-4 &hellip;">
+	<meta name="description" content="出错信息： 创建function时 ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,22 +101,47 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         <article class="post">
-	<h2 class="title">Hessian版本冲突的问题</h2>
-	<div class="entry-content"><p>项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错</p>
+	<h2 class="title">Mysql创建function失败</h2>
+	<div class="entry-content"><p>出错信息：</p>
 
-<pre><code>HessianProtocolException：expected integer at…
+<p>创建function时</p>
+
+<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled (you might want to use the less safe log_bin_trust_function_creators variable)
 </code></pre>
 
-<p>非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话</p>
+<p>原因：</p>
 
-<blockquote><blockquote><p>use hessian-4.<em> spring-3.</em>  resin-4.<em>. for Hessian protocol 2.And resin-3.</em>, spring-2.* hessian before 3.2.0 for Hessian protocol version 1.</p></blockquote></blockquote>
+<p>这是我们开启了bin-log, 我们就必须指定我们的函数是否是
+1 DETERMINISTIC 不确定的
+2 NO SQL 没有SQl语句，当然也不会修改数据
+3 READS SQL DATA 只是读取数据，当然也不会修改数据
+4 MODIFIES SQL DATA 要修改数据
+5 CONTAINS SQL 包含了SQL语句</p>
 
-<p>看来是版本的问题，我的环境是resin-4.*、spring-2.*、hessian-4.*，后来改成用resin.3.1.13版本就正常了。接下来试试把spring升级到3。</p>
+<p>其中在function里面，只有 DETERMINISTIC, NO SQL 和 READS SQL DATA 被支持。如果我们开启了 bin-log, 我们就必须为我们的function指定一个参数。</p>
+
+<p>解决办法</p>
+
+<pre><code>mysql&gt;show variables like '%func%';
++---------------------------------+-------+
+|Variable_name                  |Value|
++---------------------------------+-------+
+|log_bin_trust_function_creators|OFF  |
++---------------------------------+-------+
+
+set global log_bin_trust_function_creators=1;
+
+mysql&gt;show variables like '%func%';
++---------------------------------+-------+ |Variable_name                  |Value|
++---------------------------------+-------+
+|log_bin_trust_function_creators|ON   |
++---------------------------------+-------+
+</code></pre>
 </div>
 
 <div class="meta">
 	
-		<span class="comments"><a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/#disqus_thread">Comments</a></span>
+		<span class="comments"><a href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/#disqus_thread">Comments</a></span>
 	
 </div>
 </article>
@@ -165,8 +190,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/';
         var disqus_script = 'embed.js';
       
     (function () {
