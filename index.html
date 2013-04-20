@@ -154,19 +154,19 @@
 <p>解决办法</p>
 
 <pre><code>mysql&gt;show variables like '%func%';
-+---------------------------------+-------+
-|Variable_name                  |Value|
-+---------------------------------+-------+
-|log_bin_trust_function_creators|OFF  |
-+---------------------------------+-------+
++---------------------------------+-------+  
+|Variable_name                  |Value|  
++---------------------------------+-------+  
+|log_bin_trust_function_creators|OFF  |  
++---------------------------------+-------+  
 
-set global log_bin_trust_function_creators=1;
+set global log_bin_trust_function_creators=1;  
 
-mysql&gt;show variables like '%func%';
-+---------------------------------+-------+ |Variable_name                  |Value|
-+---------------------------------+-------+
-|log_bin_trust_function_creators|ON   |
-+---------------------------------+-------+
+mysql&gt;show variables like '%func%';  
++---------------------------------+-------+     |Variable_name                  |Value|  
++---------------------------------+-------+  
+|log_bin_trust_function_creators|ON   |  
++---------------------------------+-------+  
 </code></pre>
 
 		
