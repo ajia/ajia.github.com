@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-20T10:49:48+08:00</updated>
+  <updated>2013-04-21T12:58:09+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -22,7 +22,9 @@
 
 <p>创建function时</p>
 
-<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled (you might want to use the less safe log_bin_trust_function_creators variable)
+<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
+or READS SQL DATA in its declaration and binary logging is enabled 
+(you might want to use the less safe log_bin_trust_function_creators variable)
 </code></pre>
 
 <p>原因：</p>

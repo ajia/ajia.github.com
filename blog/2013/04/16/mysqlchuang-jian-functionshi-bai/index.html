@@ -6,7 +6,8 @@
 	<title>mysql创建function失败 - Ajia's Blog</title>
     <meta name="author" content="Ajia">
     
-	<meta name="description" content="出错信息： 创建function时 ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is &hellip;">
+	<meta name="description" content="出错信息： 创建function时 ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
+or READS SQL DATA in its declaration and binary logging is &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -106,7 +107,9 @@
 
 <p>创建function时</p>
 
-<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled (you might want to use the less safe log_bin_trust_function_creators variable)
+<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
+or READS SQL DATA in its declaration and binary logging is enabled 
+(you might want to use the less safe log_bin_trust_function_creators variable)
 </code></pre>
 
 <p>原因：</p>
