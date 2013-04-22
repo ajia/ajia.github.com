@@ -7,6 +7,7 @@
     <meta name="author" content="Ajia">
     
 	<meta name="description" content="升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错 1
+2
 Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -106,23 +107,25 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
 	<div class="entry-content"><p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">Sending</span> <span class="err">&#39;</span><span class="n">ccColor4B</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">aka</span> <span class="err">&#39;</span><span class="k">struct</span> <span class="n">_ccColor4B</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">to</span> <span class="n">parameter</span> <span class="n">of</span> <span class="n">incompatible</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">CIColor</span> <span class="o">*</span><span class="err">&#39;</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">Sending</span> <span class="err">&#39;</span><span class="n">ccColor4B</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">aka</span> <span class="err">&#39;</span><span class="k">struct</span> <span class="n">_ccColor4B</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">to</span> <span class="n">parameter</span>
+</span><span class='line'> <span class="n">of</span> <span class="n">incompatible</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">CIColor</span> <span class="o">*</span><span class="err">&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>把</p>
 
-<pre><code>```objective-c
-return [[[self alloc] initWithColor:color] autorelease];
-```
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>改成</p>
 
-<pre><code>```objective-c
-return [[(CCColorLayer*)[self alloc] initWithColor:color] autorelease];
-```
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[(</span><span class="n">CCColorLayer</span><span class="o">*</span><span class="p">)[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>就可以了</p>
 </div>
