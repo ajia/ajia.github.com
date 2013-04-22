@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cocos2d | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/cocos2d/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-22T15:28:39+08:00</updated>
+  <updated>2013-04-22T15:31:08+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,19 +18,25 @@
     <link href="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/"/>
     <updated>2013-04-22T15:25:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star</id>
-    <content type="html"><![CDATA[<p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错</p>
+    <content type="html"><![CDATA[<p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错
+```objective-c</p>
 
 <pre><code>Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *'
 </code></pre>
 
-<p>把</p>
+<p>```
+把</p>
 
-<pre><code>return [[[self alloc] initWithColor:color] autorelease];
+<pre><code>```objective-c
+return [[[self alloc] initWithColor:color] autorelease];
+```
 </code></pre>
 
 <p>改成</p>
 
-<pre><code>return [[(CCColorLayer*)[self alloc] initWithColor:color] autorelease];
+<pre><code>```objective-c
+return [[(CCColorLayer*)[self alloc] initWithColor:color] autorelease];
+```
 </code></pre>
 
 <p>就可以了</p>
