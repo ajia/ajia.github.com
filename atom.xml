@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-22T15:32:40+08:00</updated>
+  <updated>2013-04-26T16:42:35+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -98,8 +98,10 @@ mysql&gt;show variables like '%func%';
     <id>http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti</id>
     <content type="html"><![CDATA[<p>项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错</p>
 
-<pre><code>HessianProtocolException：expected integer at…
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">HessianProtocolException</span><span class="err">：</span><span class="n">expected</span> <span class="n">integer</span> <span class="n">at</span><span class="err">…</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话</p>
 
