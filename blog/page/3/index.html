@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *' - Ajia's Blog</title>
+  <title>Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错 1
-2
-Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &hellip;">
+  <meta name="description" content="折腾了几天，终于把部落格搞定了，咱也有了自己的地盘了，庆贺一下，接下来要折腾的事情还很多，enjoy it！ ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">
+  <link rel="canonical" href="http://ajia.github.com/blog/page/3/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -79,12 +77,15 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
 </nav> -->
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">Sending 'ccColor4B' (Aka 'Struct _ccColor4B') to Parameter of Incompatible Type 'CIColor *'</h1>
+      <h1 class="entry-title"><a href="/blog/2013/03/06/my-first-blog/">My First Blog</a></h1>
     
     
       <p class="meta">
@@ -100,99 +101,36 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   
 
 
-<time datetime="2013-04-22T15:25:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
+<time datetime="2013-03-06T17:20:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
         
-         | <a href="#disqus_thread">Comments</a>
+         | <a href="/blog/2013/03/06/my-first-blog/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错</p>
+  <div class="entry-content"><h1>折腾了几天，终于把部落格搞定了，咱也有了自己的地盘了，庆贺一下，接下来要折腾的事情还很多，<strong>enjoy it</strong>！</h1>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">Sending</span> <span class="err">&#39;</span><span class="n">ccColor4B</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">aka</span> <span class="err">&#39;</span><span class="k">struct</span> <span class="n">_ccColor4B</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">to</span> <span class="n">parameter</span>
-</span><span class='line'> <span class="n">of</span> <span class="n">incompatible</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">CIColor</span> <span class="o">*</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>把</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>改成</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[(</span><span class="n">CCColorLayer</span><span class="o">*</span><span class="p">)[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就可以了</p>
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Ajia</span></span>
-
-      
-
-
-
-
-
-
-
-
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/06/my-first-blog/">Read on &rarr;</a>
+    </footer>
   
 
 
-<time datetime="2013-04-22T15:25:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
-      
-
-<span class="categories">
+    </article>
   
-    <a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>
-  
-</span>
-
-
-    </p>
+  <div class="pagination">
     
-      <div class="sharing">
-  
-  
-  
-</div>
-
+    <a href="archives">Blog Archives</a>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/" title="Previous Post: mysql创建function失败">&laquo; mysql创建function失败</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/04/27/seoyou-hua/" title="Next Post: seo优化">seo优化 &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
 </div>
-  </section>
-
-</div>
-
 <aside class="sidebar">
   
     <section>
@@ -212,7 +150,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *'</a>
+        <a href="/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">Sending &#8216;ccColor4B&#8217; (aka &#8216;struct _ccColor4B&#8217;) to parameter of incompatible type &#8216;CIColor *&#8217;</a>
       </li>
     
       <li class="post">
@@ -233,7 +171,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/ajia">@ajia</a> on GitHub
@@ -291,7 +229,6 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   
 </aside>
 
-
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -306,10 +243,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
       var disqus_shortname = 'ajia';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

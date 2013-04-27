@@ -5,14 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *' - Ajia's Blog</title>
+  <title>seo优化 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错 1
-2
-Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &hellip;">
-  
+  <meta name="description" content="添加 meta data description 文章生产时默认会生成 layout, title, date, comments, categories 这几项，如果多添加2个选项 ‘keywords’, ‘description’，会在 generate 文章的时候自动生成相应的 meta &hellip;">
+  <meta name="keywords" content="seo优化, octopress">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +18,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2013/04/27/seoyou-hua/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -31,7 +29,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   <meta name="author" content="Ajia">
 
 <meta name="description" content="Swim in the code, Ajia's blog">
-<meta name="keywords" content="java, solr, cocos2d, game develop, ruby, web development, 设计模式, 数据结构, 算法, 创业">
+<meta name="keywords" content="seo优化, octopress">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -84,7 +82,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   
   <header>
     
-      <h1 class="entry-title">Sending 'ccColor4B' (Aka 'Struct _ccColor4B') to Parameter of Incompatible Type 'CIColor *'</h1>
+      <h1 class="entry-title">Seo优化</h1>
     
     
       <p class="meta">
@@ -100,7 +98,7 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   
 
 
-<time datetime="2013-04-22T15:25:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
+<time datetime="2013-04-27T17:10:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -109,30 +107,86 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   </header>
 
 
-<div class="entry-content"><p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错</p>
+<div class="entry-content"><p>添加 meta data description</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>文章生产时默认会生成 layout, title, date, comments, categories 这几项，如果多添加2个选项 ‘keywords’, ‘description’，会在 generate 文章的时候自动生成相应的 meta 标签
+如果文章 header 写成这样</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">Sending</span> <span class="err">&#39;</span><span class="n">ccColor4B</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">aka</span> <span class="err">&#39;</span><span class="k">struct</span> <span class="n">_ccColor4B</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">to</span> <span class="n">parameter</span>
-</span><span class='line'> <span class="n">of</span> <span class="n">incompatible</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">CIColor</span> <span class="o">*</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>layout: post
+</span><span class='line'>title: "SEO for Octopress"
+</span><span class='line'>date: 2012-04-22 09:55
+</span><span class='line'>comments: true
+</span><span class='line'>categories: [seo,octopress]
+</span><span class='line'>keywords: seo,octopress
+</span><span class='line'>description: How to optimize Octopress for SEO</span></code></pre></td></tr></table></div></figure>
 
 
-<p>把</p>
+<p></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>生成的post head标签中会生成</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;title&gt;SEO for Octopress &lt;/title&gt;
+</span><span class='line'>&lt;meta name="author" content="Yatish Mehta"&gt;
+</span><span class='line'>&lt;meta name="description" content="How to optimize Octopress for SEO"&gt;
+</span><span class='line'>&lt;meta name="keywords" content="seo,octopress"&gt;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>改成</p>
+<p>如果不想每次都得手动添加，可以修改 Rakefile文件</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[(</span><span class="n">CCColorLayer</span><span class="o">*</span><span class="p">)[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>open(filename, 'w') do |post|
+</span><span class='line'>  post.puts "---"
+</span><span class='line'>  post.puts "layout: post"
+</span><span class='line'>  post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+</span><span class='line'>  post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
+</span><span class='line'>  post.puts "comments: true"
+</span><span class='line'>  post.puts "categories: "
+</span><span class='line'>  post.puts "keywords: "
+</span><span class='line'>  post.puts "description: "
+</span><span class='line'>  post.puts "---"
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
-<p>就可以了</p>
+<p>上面的方法只能给每个 post 生成对应的 meta标签，如果要给主页添加 meta 标签，修改 source/_includes/head.html，添加以下内容</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;meta name="author" content="Ajia"&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;meta name="description" content="Swim in the code, Ajia's blog"&gt;
+</span><span class='line'>&lt;meta name="keywords" content="seo优化, octopress"&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 _config.yml 文件中填充全局的 keywords 和 description, 比如这样</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>description: Ajia's blog
+</span><span class='line'>keywords: java,算法,数据结构,web development,Ajax</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -155,12 +209,12 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
   
 
 
-<time datetime="2013-04-22T15:25:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
+<time datetime="2013-04-27T17:10:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
   
 </span>
 
@@ -176,10 +230,8 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/" title="Previous Post: mysql创建function失败">&laquo; mysql创建function失败</a>
+        <a class="basic-alignment left" href="/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/" title="Previous Post: Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *'">&laquo; Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *'</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/04/27/seoyou-hua/" title="Next Post: seo优化">seo优化 &raquo;</a>
       
     </p>
   </footer>
@@ -307,8 +359,8 @@ Sending &#39;ccColor4B&#39; (aka &#39;struct _ccColor4B&#39;) to parameter of &h
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/27/seoyou-hua/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/04/27/seoyou-hua/';
         var disqus_script = 'embed.js';
       
     (function () {
