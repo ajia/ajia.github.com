@@ -5,29 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>jquery的jsonp方式的ajax提交解决跨域的问题 - Ajia's Blog</title>
+  <title>使用jave转换音视频格式 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="jquery请求： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-var action = form.attr(&quot;action&quot;);
-$.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
-  
+  <meta name="description" content="JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个macox版本的。 官网地址：http://www.sauronsoftware.it &hellip;">
+  <meta name="keywords" content="jave,java,ffmpeg,转换格式">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -35,7 +18,7 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -46,7 +29,7 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   <meta name="author" content="Ajia">
 
 <meta name="description" content="Swim in the code, Ajia's blog">
-<meta name="keywords" content="java, solr, cocos2d, game develop, ruby, web development, 设计模式, 数据结构, 算法, 创业">
+<meta name="keywords" content="jave,java,ffmpeg,转换格式">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -99,7 +82,7 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Jquery的jsonp方式的ajax提交解决跨域的问题</h1>
+      <h1 class="entry-title">使用jave转换音视频格式</h1>
     
     
       <p class="meta">
@@ -115,7 +98,7 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   
 
 
-<time datetime="2013-04-08T17:45:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
+<time datetime="2013-05-04T15:54:00+08:00" pubdate data-updated="true">May 4<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -124,7 +107,15 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   </header>
 
 
-<div class="entry-content"><p>jquery请求：</p>
+<div class="entry-content"><p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个macox版本的。</p>
+
+<p>官网地址：http://www.sauronsoftware.it/projects/jave/。养成去看官网的习惯很重要，英语差点的话可以先看中文的介绍，有个概念再去看官网的说明。</p>
+
+<!-- more -->
+
+
+<p>
+我是直接用源代码跑的，方便调试问题。下面是mp3转换为m4a格式的一个例子，更多的例子和请去官网查看</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -142,51 +133,56 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class='line'>  <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;get&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">mobile</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mobile&#39;</span><span class="o">+</span><span class="nx">id</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>  <span class="nx">url</span><span class="o">:</span><span class="nx">action</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">dataType</span><span class="o">:</span><span class="s2">&quot;jsonp&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">jsonp</span><span class="o">:</span><span class="s2">&quot;callback&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">resultObj</span><span class="p">.</span><span class="nx">result</span><span class="p">){</span>
-</span><span class='line'>          <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;发送成功&quot;</span><span class="p">);</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">});</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * 转化音频格式</span>
+</span><span class='line'><span class="cm">     * @param s</span>
+</span><span class='line'><span class="cm">     * @param t</span>
+</span><span class='line'><span class="cm">     * @throws IllegalArgumentException</span>
+</span><span class='line'><span class="cm">     * @throws InputFormatException</span>
+</span><span class='line'><span class="cm">     * @throws EncoderException</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">convertAudio</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="n">String</span> <span class="n">t</span><span class="o">){</span>
+</span><span class='line'>      <span class="n">File</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">File</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">AudioAttributes</span> <span class="n">audio</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AudioAttributes</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setCodec</span><span class="o">(</span><span class="s">&quot;libmp3lame&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setBitRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">128000</span><span class="o">));</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setChannels</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">2</span><span class="o">));</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setSamplingRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">44100</span><span class="o">));</span>
+</span><span class='line'>      <span class="n">EncodingAttributes</span> <span class="n">attrs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EncodingAttributes</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">attrs</span><span class="o">.</span><span class="na">setFormat</span><span class="o">(</span><span class="s">&quot;mp4&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">attrs</span><span class="o">.</span><span class="na">setAudioAttributes</span><span class="o">(</span><span class="n">audio</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">Encoder</span> <span class="n">encoder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">();</span>
+</span><span class='line'>      <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">encoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">target</span><span class="o">,</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InputFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">EncoderException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>服务器端：</p>
+<p>转换的时候老是报错，抛出EncoderException异常，我查了一下源码，注释掉Encoder.java的864行</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Pragma&quot;</span><span class="o">,</span> <span class="s">&quot;No-cache&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setDateHeader</span><span class="o">(</span><span class="s">&quot;Expires&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Cache-Control&quot;</span><span class="o">,</span> <span class="s">&quot;no-cache&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
-</span><span class='line'><span class="c1">//业务逻辑</span>
-</span><span class='line'><span class="n">String</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;callback&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">callback</span><span class="o">+</span><span class="s">&quot;(&quot;</span><span class="o">+</span><span class="n">resultJson</span><span class="o">.</span><span class="na">toString</span><span class="o">()+</span><span class="s">&quot;)&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<blockquote><blockquote><p>throw new EncoderException(line);</p></blockquote></blockquote>
 </div>
 
 
@@ -209,14 +205,8 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   
 
 
-<time datetime="2013-04-08T17:45:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
+<time datetime="2013-05-04T15:54:00+08:00" pubdate data-updated="true">May 4<span>th</span>, 2013</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/java/'>java</a>
-  
-</span>
 
 
     </p>
@@ -230,10 +220,8 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/" title="Previous Post: 遇上MySql的奇怪问题">&laquo; 遇上MySql的奇怪问题</a>
+        <a class="basic-alignment left" href="/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/" title="Previous Post: 音乐播放器dewplayer的使用">&laquo; 音乐播放器dewplayer的使用</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/" title="Next Post: jquery插件之cookie">jquery插件之cookie &raquo;</a>
       
     </p>
   </footer>
@@ -361,8 +349,8 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/';
         var disqus_script = 'embed.js';
       
     (function () {

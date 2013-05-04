@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-27T17:39:12+08:00</updated>
+  <updated>2013-05-04T17:35:03+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,224 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用jave转换音视频格式]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/"/>
+    <updated>2013-05-04T15:54:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi</id>
+    <content type="html"><![CDATA[<p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个macox版本的。</p>
+
+<p>官网地址：http://www.sauronsoftware.it/projects/jave/。养成去看官网的习惯很重要，英语差点的话可以先看中文的介绍，有个概念再去看官网的说明。</p>
+
+<!-- more -->
+
+
+<p>
+我是直接用源代码跑的，方便调试问题。下面是mp3转换为m4a格式的一个例子，更多的例子和请去官网查看</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * 转化音频格式</span>
+</span><span class='line'><span class="cm">     * @param s</span>
+</span><span class='line'><span class="cm">     * @param t</span>
+</span><span class='line'><span class="cm">     * @throws IllegalArgumentException</span>
+</span><span class='line'><span class="cm">     * @throws InputFormatException</span>
+</span><span class='line'><span class="cm">     * @throws EncoderException</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">convertAudio</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="n">String</span> <span class="n">t</span><span class="o">){</span>
+</span><span class='line'>      <span class="n">File</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">File</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">AudioAttributes</span> <span class="n">audio</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AudioAttributes</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setCodec</span><span class="o">(</span><span class="s">&quot;libmp3lame&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setBitRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">128000</span><span class="o">));</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setChannels</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">2</span><span class="o">));</span>
+</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setSamplingRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">44100</span><span class="o">));</span>
+</span><span class='line'>      <span class="n">EncodingAttributes</span> <span class="n">attrs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EncodingAttributes</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">attrs</span><span class="o">.</span><span class="na">setFormat</span><span class="o">(</span><span class="s">&quot;mp4&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">attrs</span><span class="o">.</span><span class="na">setAudioAttributes</span><span class="o">(</span><span class="n">audio</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">Encoder</span> <span class="n">encoder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">();</span>
+</span><span class='line'>      <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">encoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">target</span><span class="o">,</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InputFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">EncoderException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>转换的时候老是报错，抛出EncoderException异常，我查了一下源码，注释掉Encoder.java的864行</p>
+
+<blockquote><blockquote><p>throw new EncoderException(line);</p></blockquote></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[音乐播放器dewplayer的使用]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/"/>
+    <updated>2013-05-04T15:53:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong</id>
+    <content type="html"><![CDATA[<p>介绍一个flash音乐播放器：dewplayer(法国的)<br/>
+官网地址：http://www.alsacreations.fr/dewplayer.html。它提供几种风格，根据自己的需要选择一种风格。下面说一下用javascript来操作dewplayer</p>
+
+<!-- more -->
+
+
+<p>引入swfobject.js</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;swfobject.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后是js代码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">dewp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;dewplayerjs&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">play</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewplay</span><span class="p">();</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">stop</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewstop</span><span class="p">();</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">pause</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewpause</span><span class="p">();</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">next</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewnext</span><span class="p">();</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">prev</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewprev</span><span class="p">();</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">set</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewset</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">go</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewgo</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">setpos</span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">dewp</span><span class="p">.</span><span class="nx">dewsetpos</span><span class="p">(</span><span class="nx">ms</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">getpos</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">dewp</span><span class="p">.</span><span class="nx">dewgetpos</span><span class="p">());</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="kd">function</span> <span class="nx">volume</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">dewp</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">dewp</span><span class="p">.</span><span class="nx">dewvolume</span><span class="p">(</span><span class="nx">val</span><span class="p">));</span>
+</span><span class='line'>          <span class="p">}</span>            
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>html代码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>     <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;dewplayer_content_js&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;object</span> <span class="na">data=</span><span class="s">&quot;dewplayer.swf&quot;</span> <span class="na">width=</span><span class="s">&quot;200&quot;</span> <span class="na">height=</span><span class="s">&quot;20&quot;</span> <span class="na">name=</span><span class="s">&quot;dewplayer&quot;</span> <span class="na">id=</span><span class="s">&quot;dewplayerjs&quot;</span> <span class="na">type=</span><span class="s">&quot;application/x-shockwave-flash&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;movie&quot;</span> <span class="na">value=</span><span class="s">&quot;dewplayer.swf&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;flashvars&quot;</span> <span class="na">value=</span><span class="s">&quot;mp3=mp3/test1.mp3|mp3/test2.mp3|mp3/test3.mp3&amp;javascript=on&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;wmode&quot;</span> <span class="na">value=</span><span class="s">&quot;transparent&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/object&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;play();&quot;</span> <span class="na">value=</span><span class="s">&quot;Play&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;stop();&quot;</span> <span class="na">value=</span><span class="s">&quot;Stop&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;pause();&quot;</span> <span class="na">value=</span><span class="s">&quot;Pause&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;next();&quot;</span> <span class="na">value=</span><span class="s">&quot;Next&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;prev();&quot;</span> <span class="na">value=</span><span class="s">&quot;Prev&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;go(2);&quot;</span> <span class="na">value=</span><span class="s">&quot;Go(2)&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;set(&#39;mp3/test2.mp3&#39;);&quot;</span> <span class="na">value=</span><span class="s">&quot;Set mp3&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;set(&#39;mp3/test3.mp3&#39;);&quot;</span> <span class="na">value=</span><span class="s">&quot;Set another mp3&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;setpos(10000);&quot;</span> <span class="na">value=</span><span class="s">&quot;Set position 10 sec&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;getpos();&quot;</span> <span class="na">value=</span><span class="s">&quot;Get position&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;volume(50);&quot;</span> <span class="na">value=</span><span class="s">&quot;Set volume 50%&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[seo优化]]></title>
@@ -40,6 +258,9 @@
 
 
 <p></p>
+
+<!-- more -->
+
 
 <p>生成的post head标签中会生成</p>
 
@@ -5933,146 +6154,6 @@ str.replaceAll("\n","")
 </span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[遇到resin的java.net.UnknownHostException]]></title>
-    <link href="http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/"/>
-    <updated>2013-03-11T14:46:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception</id>
-    <content type="html"><![CDATA[<p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
-问题原因：DNS解析不到本机名。</p>
-
-<h1>解决方案：</h1>
-
-<p>编辑/etc/hosts,添加127.0.0.1 xxxx（本机名）</p>
-
-<h1>问题原因</h1>
-
-<p>resin启动时会根据hostname来拼url地址</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[how-to-install-octopress]]></title>
-    <link href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/"/>
-    <updated>2013-03-06T18:06:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/03/06/how-to-install-octopress</id>
-    <content type="html"><![CDATA[<p>系统是Mac OS X Lion 10.7.5</p>
-
-<h1>Step1 安装homebrew</h1>
-
-<!-- more -->
-
-
-<pre><code>ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-brew update  
-</code></pre>
-
-<p>如果出现如下错误</p>
-
-<pre><code>error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.commit.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.css' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.index.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/apr-1-config' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/bsdmake' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c89' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c99' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cpp' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/git' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/ld' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/make' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/mig' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/sed' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/svn' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/xcrun' (Permission denied)  
-error: unable to unlink old 'Library/ENV/libsuperenv.rb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcrypto.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libexslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxml-2.0.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xcode.rb' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xquartz.rb' (Permission denied)  
-fatal: Could not reset index file to revision 'origin/master'.  
-Failed during: git reset --hard origin/master  
-</code></pre>
-
-<p><strong>解决办法：sudo chown -R ${USER} /usr/local/Library</strong></p>
-
-<p><strong>如果已经安装了Macports，先卸载掉</strong></p>
-
-<pre><code>sudo rm -rf \  
-/opt/local \  
-/Applications/DarwinPorts \  
-/Applications/MacPorts \  
-/Library/LaunchDaemons/org.macports.* \  
-/Library/Receipts/DarwinPorts*.pkg \  
-/Library/Receipts/MacPorts*.pkg \  
-/Library/StartupItems/DarwinPortsStartup \  
-/Library/Tcl/darwinports1.0 \  
-/Library/Tcl/macports1.0 \  
-~/.macports
-</code></pre>
-
-<h1>Step2 安装RVM</h1>
-
-<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-source ~/.bashrc
-</code></pre>
-
-<h1>Step3 安装Ruby</h1>
-
-<pre><code>rvm install 1.9.3
-rvm use 1.9.3 --default
-</code></pre>
-
-<h1>Step4 安装Octopress</h1>
-
-<pre><code>git clone git://github.com/imathis/octopress.git octopress  
-gem install bundler  
-bundle install
-rake install
-</code></pre>
-
-<h1>Step5 在github中托管</h1>
-
-<p>到目前我止，我们的blog仅能在本机中访问，如何将其托管到github中呢？如何使用我们自己的域名呢？让一切看起来就如同我们自己的站点。</p>
-
-<p>如果你要使用自己的域名，github需要一个CNAME文件，进入source文件夹，新建CNAME文件。</p>
-
-<pre><code>$ ch source
-$ touch CNAME
-</code></pre>
-
-<p>托管到github中</p>
-
-<pre><code>$ rake setup_github_pages
-</code></pre>
-
-<p>系统提示你输入一个形如:git@github.com:username/username.github.com.git,username是你在github.com中注册的用户名，username.github.com.git是你自己在github.com中创建的代码库。输入后按回车确定.</p>
-
-<p>向github提交</p>
-
-<pre><code>$ rake generate
-$ rake deploy
-</code></pre>
-
-<h3>大概的步骤就是这么多，遇见别的问题去请教google大神吧</h3>
 ]]></content>
   </entry>
   

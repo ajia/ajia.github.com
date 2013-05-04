@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-04-27T17:39:12+08:00</updated>
+  <updated>2013-05-04T17:35:03+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -31,6 +31,9 @@ categories: [seo,octopress]
 keywords: seo,octopress
 description: How to optimize Octopress for SEO
 </code></p>
+
+<!-- more -->
+
 
 <p>生成的post head标签中会生成
 <code>
