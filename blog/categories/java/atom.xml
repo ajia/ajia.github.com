@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-04T17:35:03+08:00</updated>
+  <updated>2013-05-04T17:40:54+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用jave转换音视频格式]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/"/>
+    <updated>2013-05-04T15:54:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi</id>
+    <content type="html"><![CDATA[<p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个macox版本的。</p>
+
+<p>官网地址：http://www.sauronsoftware.it/projects/jave/。养成去看官网的习惯很重要，英语差点的话可以先看中文的介绍，有个概念再去看官网的说明。</p>
+
+<!-- more -->
+
+
+<p>
+我是直接用源代码跑的，方便调试问题。下面是mp3转换为m4a格式的一个例子，更多的例子和请去官网查看
+```java
+/**</p>
+
+<pre><code> * 转化音频格式
+ * @param s
+ * @param t
+ * @throws IllegalArgumentException
+ * @throws InputFormatException
+ * @throws EncoderException
+ */
+private void convertAudio(String s, String t){
+    File source = new File(s);
+    File target = new File(t);
+    AudioAttributes audio = new AudioAttributes();
+    audio.setCodec("libmp3lame");
+    audio.setBitRate(new Integer(128000));
+    audio.setChannels(new Integer(2));
+    audio.setSamplingRate(new Integer(44100));
+    EncodingAttributes attrs = new EncodingAttributes();
+    attrs.setFormat("mp4");
+    attrs.setAudioAttributes(audio);
+    Encoder encoder = new Encoder();
+    try {
+        encoder.encode(source, target, attrs);
+    } catch (IllegalArgumentException e) {
+        log.error(e.getMessage(), e);
+    } catch (InputFormatException e) {
+        log.error(e.getMessage(), e);
+    } catch (EncoderException e) {
+        log.error(e.getMessage(), e);
+    }
+}
+</code></pre>
+
+<p>```
+转换的时候老是报错，抛出EncoderException异常，我查了一下源码，注释掉Encoder.java的864行</p>
+
+<blockquote><blockquote><p>throw new EncoderException(line);</p></blockquote></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mysql创建function失败]]></title>
@@ -170,61 +225,6 @@ at $Proxy163.importDate(Unknown Source)
 
 <p>```
 找了一个上午和半个下午终于解决了，原因是线上的数据库服务器关掉了innodb引擎，myisam对事务支持有问题，所以修改spring的配置文件，把事务的配置去掉就可以了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[HttpClient上传文件]]></title>
-    <link href="http://ajia.github.com/blog/2013/04/07/httpclientshang-chuan-wen-jian/"/>
-    <updated>2013-04-07T21:44:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/04/07/httpclientshang-chuan-wen-jian</id>
-    <content type="html"><![CDATA[<p>折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”,否则会出现“the request was rejected because no multipart boundary was found”
-```java</p>
-
-<pre><code>PostMethod method = new PostMethod(url); 
-    Part[] part = new Part[params.size()+1];
-    Set&lt;String&gt; keySet = params.keySet();
-    int i=0;
-    for(String key : keySet) {
-        String value = params.get(key);
-        if(StringUtil.isNotNull(value)){
-            part[i] = new StringPart(key, value, "UTF-8");
-        }else{
-            part[i] = new StringPart(key, "", "UTF-8");
-        }
-        i++;
-    }
-    FilePart fp = new  FilePart("image", file);
-    fp.setContentType(MIME.ENC_BINARY);
-    part[i] = fp;
-    HttpConnectionManagerParams managerParams = httpClient.getHttpConnectionManager().getParams();
-    managerParams.setConnectionTimeout(3000000);
-     managerParams.setSoTimeout(12000000);
-    int statusCode;
-    try {
-        MultipartRequestEntity mrp= new  MultipartRequestEntity(part, method.getParams());  
-        method.setRequestEntity(mrp);
-        statusCode = httpClient.executeMethod(method);
-        if(statusCode != HttpStatus.SC_OK){
-            log.error("Method failed code=" + statusCode + ": " + method.getStatusLine());
-        }else{
-            InputStream inputStream = method.getResponseBodyAsStream();  
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));  
-            String str= "";  
-            while((str = br.readLine()) != null){   
-                response .append(str);  
-            }   
-        }
-    } catch (HttpException e) {
-        log.error(e.getMessage(), e);
-    } catch (IOException e) {
-        log.error(e.getMessage(), e);
-    } finally{
-        method.releaseConnection();
-    }
-</code></pre>
-
-<p>```</p>
 ]]></content>
   </entry>
   

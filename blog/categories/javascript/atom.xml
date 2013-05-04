@@ -4,7 +4,7 @@
   <title><![CDATA[Category: javascript | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-04T17:35:03+08:00</updated>
+  <updated>2013-05-04T17:40:54+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[音乐播放器dewplayer的使用]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/"/>
+    <updated>2013-05-04T15:53:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong</id>
+    <content type="html"><![CDATA[<p>介绍一个flash音乐播放器：dewplayer(法国的)<br/>
+官网地址：http://www.alsacreations.fr/dewplayer.html。它提供几种风格，根据自己的需要选择一种风格。下面说一下用javascript来操作dewplayer</p>
+
+<!-- more -->
+
+
+<p>引入swfobject.js<br/>
+```javascript</p>
+
+<script type="text/javascript" src="swfobject.js"></script>
+
+
+<p>```</p>
+
+<p>然后是js代码
+```javascript
+var dewp = document.getElementById("dewplayerjs");
+function play() {</p>
+
+<pre><code>          if(dewp!=null) dewp.dewplay();
+        }
+        function stop() {
+          if(dewp!=null) dewp.dewstop();
+        }
+        function pause() {
+          if(dewp!=null) dewp.dewpause();
+        }
+        function next() {
+          if(dewp!=null) dewp.dewnext();
+        }
+        function prev() {
+          if(dewp!=null) dewp.dewprev();
+        }
+        function set(file) {
+          if(dewp!=null) dewp.dewset(file);
+        }
+        function go(index) {
+          if(dewp!=null) dewp.dewgo(index);
+        }
+        function setpos(ms) {
+          if(dewp!=null) dewp.dewsetpos(ms);
+        }
+        function getpos() {
+          if(dewp!=null) alert(dewp.dewgetpos());
+        }
+        function volume(val) {
+          if(dewp!=null) alert(dewp.dewvolume(val));
+        }           
+</code></pre>
+
+<p>```</p>
+
+<p>html代码
+```html</p>
+
+<pre><code>        &lt;div id="dewplayer_content_js"&gt;
+        &lt;object data="dewplayer.swf" width="200" height="20" name="dewplayer" id="dewplayerjs" type="application/x-shockwave-flash"&gt;
+        &lt;param name="movie" value="dewplayer.swf" /&gt;
+        &lt;param name="flashvars" value="mp3=mp3/test1.mp3|mp3/test2.mp3|mp3/test3.mp3&amp;javascript=on" /&gt;
+        &lt;param name="wmode" value="transparent" /&gt;
+        &lt;/object&gt;
+        &lt;/div&gt;
+        &lt;p&gt;
+        &lt;input type="button" onclick="play();" value="Play" /&gt;
+        &lt;input type="button" onclick="stop();" value="Stop" /&gt;
+        &lt;input type="button" onclick="pause();" value="Pause" /&gt;
+        &lt;input type="button" onclick="next();" value="Next" /&gt;
+        &lt;input type="button" onclick="prev();" value="Prev" /&gt;
+        &lt;input type="button" onclick="go(2);" value="Go(2)" /&gt;
+        &lt;input type="button" onclick="set('mp3/test2.mp3');" value="Set mp3" /&gt;
+        &lt;input type="button" onclick="set('mp3/test3.mp3');" value="Set another mp3" /&gt;
+        &lt;input type="button" onclick="setpos(10000);" value="Set position 10 sec" /&gt;
+        &lt;input type="button" onclick="getpos();" value="Get position" /&gt;
+        &lt;input type="button" onclick="volume(50);" value="Set volume 50%" /&gt;
+        &lt;/p&gt;
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[jquery插件之cookie]]></title>
