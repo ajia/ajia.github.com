@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-04T17:40:54+08:00</updated>
+  <updated>2013-05-06T18:41:55+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,11 +14,137 @@
 
   
   <entry>
+    <title type="html"><![CDATA[读取音频文件的信息]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/"/>
+    <updated>2013-05-06T18:33:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi</id>
+    <content type="html"><![CDATA[<p>项目里需要读取音频的播放时间，找了一个下午发现这个：jaudiotagger(http://www.jthink.net/jaudiotagger/)，它是一个音频标签JAVA库，目前支持 Mp3, Mp4 (Mp4 audio, M4a and M4p audio) Ogg Vorbis, Flac and Wma, 但是对Wav 和 Real 的支持有限。</p>
+
+<!-- more -->
+
+
+<p>读取m4a格式的播放时间</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 获取m4a格式文件的播放时间</span>
+</span><span class='line'><span class="cm"> * @param filePath</span>
+</span><span class='line'><span class="cm"> * @return</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getMp4AudioLength</span> <span class="o">(</span><span class="n">String</span> <span class="n">filePath</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">filePath</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">Mp4FileReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mp4FileReader</span><span class="o">();</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">AudioFile</span> <span class="n">f</span><span class="o">;</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">f</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">AudioHeader</span> <span class="n">head</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">getAudioHeader</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">length</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">getTrackLength</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CannotReadException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TagException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ReadOnlyFileException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidAudioFrameException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">length</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>读取mp3格式的播放时间</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 获取mp3格式文件的播放时间</span>
+</span><span class='line'><span class="cm"> * @param filePath</span>
+</span><span class='line'><span class="cm"> * @return</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getMp3AudioLength</span> <span class="o">(</span><span class="n">String</span> <span class="n">filePath</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">filePath</span><span class="o">);</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">MP3File</span> <span class="n">f</span> <span class="o">=</span> <span class="o">(</span><span class="n">MP3File</span><span class="o">)</span><span class="n">AudioFileIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">MP3AudioHeader</span> <span class="n">audioHeader</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">getMP3AudioHeader</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">length</span> <span class="o">=</span> <span class="n">audioHeader</span><span class="o">.</span><span class="na">getTrackLength</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CannotReadException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TagException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ReadOnlyFileException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidAudioFrameException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">length</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[使用jave转换音视频格式]]></title>
     <link href="http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/"/>
     <updated>2013-05-04T15:54:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi</id>
-    <content type="html"><![CDATA[<p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个macox版本的。</p>
+    <content type="html"><![CDATA[<p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个Mac OSX版本的。</p>
 
 <p>官网地址：http://www.sauronsoftware.it/projects/jave/。养成去看官网的习惯很重要，英语差点的话可以先看中文的介绍，有个概念再去看官网的说明。</p>
 
@@ -6136,24 +6262,6 @@ $ sudo make me a sandwich
 str.replaceAll("\\n","")
 str.replaceAll("\n","")
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[解决cookie中文出现乱码的问题]]></title>
-    <link href="http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/"/>
-    <updated>2013-03-22T14:13:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span>code</span><a href='http://ajia.github.com'>ajia</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">URLEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="s">&quot;中文&quot;</span><span class="o">,</span><span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">Cookie</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="s">&quot;chinese_code&quot;</span><span class="o">,</span><span class="n">value</span><span class="o">);</span>
-</span><span class='line'><span class="n">cookie</span><span class="o">.</span><span class="na">setMaxAge</span><span class="o">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">6</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
