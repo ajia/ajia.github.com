@@ -9,12 +9,9 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="codeajia1
-2
-3
-4
-String value = java.net.URLEncoder.encode(&quot;中文&quot;,&quot;utf-8&quot;);
-Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
+  <meta name="description" content="问题：要替换掉内容中出现的“\n”，写成 str.replace("\\n", "") 才能正确执行。
+下面的都不能替换掉 str.replace("\n","") str.replaceAll("\\n","")
+str.replaceAll("\n","") ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +81,55 @@ Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/25/ti-huan-diao-slash-n/">Java中替换掉换行符</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-25T14:14:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/25/ti-huan-diao-slash-n/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>问题：要替换掉内容中出现的“\n”，写成</p>
+
+<pre><code>str.replace("\\n", "")  
+</code></pre>
+
+<p>才能正确执行。
+下面的都不能替换掉</p>
+
+<pre><code>str.replace("\n","") 
+str.replaceAll("\\n","")
+str.replaceAll("\n","")
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -279,15 +325,19 @@ Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 106.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(10)</a> <a href='/blog/categories/javascript' style='font-size: 118.0%'>javascript(3)</a> <a href='/blog/categories/octopress' style='font-size: 130.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 106.0%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 106.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 106.0%'>创业(1)</a> <a href='/blog/categories/生活' style='font-size: 112.0%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 105.45454545454545%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(11)</a> <a href='/blog/categories/javascript' style='font-size: 116.36363636363636%'>javascript(3)</a> <a href='/blog/categories/octopress' style='font-size: 127.27272727272728%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 105.45454545454545%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 105.45454545454545%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 105.45454545454545%'>创业(1)</a> <a href='/blog/categories/生活' style='font-size: 110.9090909090909%'>生活(2)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (10)</a></li><li><a href='/blog/categories/javascript'>javascript (3)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (11)</a></li><li><a href='/blog/categories/javascript'>javascript (3)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/24/jodari-qi-ji-suan/">joda日期计算</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/">读取音频文件的信息</a>
@@ -303,10 +353,6 @@ Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
     
       <li class="post">
         <a href="/blog/2013/04/27/seoyou-hua/">seo优化</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">Sending &#8216;ccColor4B&#8217; (aka &#8216;struct _ccColor4B&#8217;) to parameter of incompatible type &#8216;CIColor *&#8217;</a>
       </li>
     
   </ul>

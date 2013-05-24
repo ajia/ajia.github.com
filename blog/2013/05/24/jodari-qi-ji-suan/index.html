@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>joda日期计算 - Ajia's Blog</title>
+  <meta name="author" content="Ajia">
+
+  
+  <meta name="description" content="joda的使用">
+  <meta name="keywords" content="joda date time">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
+  <meta name="author" content="Ajia">
+
+<meta name="description" content="joda的使用">
+<meta name="keywords" content="joda date time">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39153617-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ajia.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav> -->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Joda日期计算</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-24T10:19:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成</p>
+
+<!-- more -->
+
+
+<ol>
+<li>获取DateTime:</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//方法一：取系统点间  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">dt1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//方法二：通过java.util.Date对象生成  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">dt2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span><span class='line'><span class="c1">//方法三：指定年月日点分秒生成(参数依次是：年,月,日,时,分,秒,毫秒)  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">dt3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="mi">2012</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">13</span><span class="o">,</span> <span class="mi">14</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//方法四：ISO8601形式生成  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">dt4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="s">&quot;2012-05-20&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">dt5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="s">&quot;2012-05-20T13:14:00&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//只需要年月日的时候  </span>
+</span><span class='line'><span class="n">LocalDate</span> <span class="n">localDate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LocalDate</span><span class="o">(</span><span class="mi">2009</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">6</span><span class="o">);</span><span class="c1">// September 6, 2009  </span>
+</span><span class='line'><span class="c1">//只需要时分秒毫秒的时候  </span>
+</span><span class='line'><span class="n">LocalTime</span> <span class="n">localTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="o">(</span><span class="mi">13</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">26</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span><span class="c1">// 1:30:26PM</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>获取年月日点分秒</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">dt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//年  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getYear</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//月  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getMonthOfYear</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//日  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//星期  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">week</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getDayOfWeek</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//点  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getHourOfDay</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//分  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getMinuteOfHour</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//秒  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">sec</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getSecondOfMinute</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//毫秒  </span>
+</span><span class='line'><span class="kt">int</span> <span class="n">msec</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">getMillisOfSecond</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>星期的特殊处理</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">dt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//星期  </span>
+</span><span class='line'><span class="k">switch</span><span class="o">(</span><span class="n">dt</span><span class="o">.</span><span class="na">getDayOfWeek</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'><span class="k">case</span> <span class="n">DateTimeConstants</span><span class="o">.</span><span class="na">SUNDAY</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;星期日&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'><span class="k">case</span> <span class="n">DateTimeConstants</span><span class="o">.</span><span class="na">MONDAY</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;星期一&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'><span class="k">case</span> <span class="n">DateTimeConstants</span><span class="o">.</span><span class="na">TUESDAY</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;星期二&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'><span class="k">case</span> <span class="n">DateTimeConstants</span><span class="o">.</span><span class="na">WEDNESDAY</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;星期三&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'><span class="k">case</span> <span class="n">DateTimeConstants</span><span class="o">.</span><span class="na">THURSDAY</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;星期四&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'><span class="k">case</span> <span class="n">DateTimeConstants</span><span class="o">.</span><span class="na">FRIDAY</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;星期五&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'><span class="k">case</span> <span class="n">DateTimeConstants</span><span class="o">.</span><span class="na">SATURDAY</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;星期六&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>与JDK日期对象转换</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">dt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//转换成java.util.Date对象  </span>
+</span><span class='line'><span class="n">Date</span> <span class="n">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">dt</span><span class="o">.</span><span class="na">getMillis</span><span class="o">());</span>
+</span><span class='line'><span class="n">Date</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">toDate</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//转换成java.util.Calendar对象  </span>
+</span><span class='line'><span class="n">Calendar</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+</span><span class='line'><span class="n">c1</span><span class="o">.</span><span class="na">setTimeInMillis</span><span class="o">(</span><span class="n">dt</span><span class="o">.</span><span class="na">getMillis</span><span class="o">());</span>
+</span><span class='line'><span class="n">Calendar</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">toCalendar</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">getDefault</span><span class="o">());</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<ol>
+<li>日期前后推算</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">dt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//昨天  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">yesterday</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">minusDays</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//明天  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">tomorrow</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//1个月前  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">before1month</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">minusMonths</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//3个月后  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">after3month</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">plusMonths</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//2年前  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">before2year</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">minusYears</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//5年后  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">after5year</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>取特殊日期</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">dt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//月末日期    </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">lastday</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">dayOfMonth</span><span class="o">().</span><span class="na">withMaximumValue</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//90天后那周的周一  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">firstday</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="mi">90</span><span class="o">).</span><span class="na">dayOfWeek</span><span class="o">().</span><span class="na">withMinimumValue</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>计算区间</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">begin</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="s">&quot;2012-02-01&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">end</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="s">&quot;2012-05-01&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//计算区间毫秒数  </span>
+</span><span class='line'><span class="n">Duration</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="n">begin</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+</span><span class='line'><span class="kt">long</span> <span class="n">time</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="na">getMillis</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//计算区间天数  </span>
+</span><span class='line'><span class="n">Period</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Period</span><span class="o">(</span><span class="n">begin</span><span class="o">,</span> <span class="n">end</span><span class="o">,</span> <span class="n">PeriodType</span><span class="o">.</span><span class="na">days</span><span class="o">());</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">days</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">getDays</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//计算特定日期是否在该区间内  </span>
+</span><span class='line'><span class="n">Interval</span> <span class="n">i</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Interval</span><span class="o">(</span><span class="n">begin</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">contained</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="s">&quot;2012-03-01&quot;</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>日期比较</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="s">&quot;2012-02-01&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">d2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="s">&quot;2012-05-01&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//和系统时间比  </span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="na">isAfterNow</span><span class="o">();</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="na">isBeforeNow</span><span class="o">();</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">b3</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="na">isEqualNow</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//和其他日期比  </span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="na">isAfter</span><span class="o">(</span><span class="n">d2</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="na">isBefore</span><span class="o">(</span><span class="n">d2</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">f3</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="na">isEqual</span><span class="o">(</span><span class="n">d2</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>格式化输出</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DateTime</span> <span class="n">dateTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">dateTime</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="s">&quot;yyyy/MM/dd hh:mm:ss.SSSa&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">dateTime</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="s">&quot;yyyy-MM-dd HH:mm:ss&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">dateTime</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="s">&quot;EEEE dd MMMM, yyyy HH:mm:ssa&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">String</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">dateTime</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="s">&quot;yyyy/MM/dd HH:mm ZZZZ&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">String</span> <span class="n">s5</span> <span class="o">=</span> <span class="n">dateTime</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="s">&quot;yyyy/MM/dd HH:mm Z&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>时区</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//默认设置为日本时间  </span>
+</span><span class='line'><span class="n">DateTimeZone</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="n">DateTimeZone</span><span class="o">.</span><span class="na">forID</span><span class="o">(</span><span class="s">&quot;Asia/Tokyo&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">dt1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//伦敦时间  </span>
+</span><span class='line'><span class="n">DateTime</span> <span class="n">dt2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="n">DateTimeZone</span><span class="o">.</span><span class="na">forID</span><span class="o">(</span><span class="s">&quot;Europe/London&quot;</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ajia</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-24T10:19:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/" title="Previous Post: 读取音频文件的信息">&laquo; 读取音频文件的信息</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 105.45454545454545%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(11)</a> <a href='/blog/categories/javascript' style='font-size: 116.36363636363636%'>javascript(3)</a> <a href='/blog/categories/octopress' style='font-size: 127.27272727272728%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 105.45454545454545%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 105.45454545454545%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 105.45454545454545%'>创业(1)</a> <a href='/blog/categories/生活' style='font-size: 110.9090909090909%'>生活(2)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (11)</a></li><li><a href='/blog/categories/javascript'>javascript (3)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/24/jodari-qi-ji-suan/">joda日期计算</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/">读取音频文件的信息</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/">使用jave转换音视频格式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/">音乐播放器dewplayer的使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/27/seoyou-hua/">seo优化</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/ajia">@ajia</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'ajia',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+  
+<section>  
+  <h1>新浪微博</h1>  
+  <ul id="weibo">  
+    <li>  
+      <iframe   
+        width="100%"   
+        height="550"   
+        class="share_self"   
+        frameborder="0"   
+        scrolling="no"   
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1773810951&verifier=c56fe36a">  
+      </iframe>  
+    </li>  
+  </ul>  
+</section>  
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/pinpin9811@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Ajia -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'ajia';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
