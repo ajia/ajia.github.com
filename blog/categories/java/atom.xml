@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-24T11:51:33+08:00</updated>
+  <updated>2013-05-24T11:53:38+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -23,8 +23,7 @@
 <!-- more -->
 
 
-<ol>
-<li><p>获取DateTime:<br/>
+<p>1.获取DateTime:<br/>
 <code>java
 //方法一：取系统点间  
 DateTime dt1 = new DateTime();  
@@ -39,8 +38,9 @@ DateTime dt5 = new DateTime("2012-05-20T13:14:00");
 LocalDate localDate = new LocalDate(2009, 9, 6);// September 6, 2009  
 //只需要时分秒毫秒的时候  
 LocalTime localTime = new LocalTime(13, 30, 26, 0);// 1:30:26PM
-</code></p></li>
-<li><p>获取年月日点分秒<br/>
+</code></p>
+
+<p>2.获取年月日点分秒<br/>
 <code>java
 DateTime dt = new DateTime();  
 //年  
@@ -59,36 +59,59 @@ int min = dt.getMinuteOfHour();
 int sec = dt.getSecondOfMinute();  
 //毫秒  
 int msec = dt.getMillisOfSecond();
-</code></p></li>
-<li><p>星期的特殊处理<br/>
-<code>java
-DateTime dt = new DateTime();  
-//星期  
-switch(dt.getDayOfWeek()) {  
-case DateTimeConstants.SUNDAY:  
- System.out.println("星期日");  
- break;  
-case DateTimeConstants.MONDAY:  
- System.out.println("星期一");  
- break;  
-case DateTimeConstants.TUESDAY:  
- System.out.println("星期二");  
- break;  
-case DateTimeConstants.WEDNESDAY:  
- System.out.println("星期三");  
- break;  
-case DateTimeConstants.THURSDAY:  
- System.out.println("星期四");  
- break;  
-case DateTimeConstants.FRIDAY:  
- System.out.println("星期五");  
- break;  
-case DateTimeConstants.SATURDAY:  
- System.out.println("星期六");  
- break;  
-}
-</code></p></li>
-<li><p>与JDK日期对象转换<br/>
+</code></p>
+
+<p>3.星期的特殊处理<br/>
+```java
+DateTime dt = new DateTime();<br/>
+//星期<br/>
+switch(dt.getDayOfWeek()) {<br/>
+case DateTimeConstants.SUNDAY:</p>
+
+<pre><code>System.out.println("星期日");  
+break;  
+</code></pre>
+
+<p>case DateTimeConstants.MONDAY:</p>
+
+<pre><code>System.out.println("星期一");  
+break;  
+</code></pre>
+
+<p>case DateTimeConstants.TUESDAY:</p>
+
+<pre><code>System.out.println("星期二");  
+break;  
+</code></pre>
+
+<p>case DateTimeConstants.WEDNESDAY:</p>
+
+<pre><code>System.out.println("星期三");  
+break;  
+</code></pre>
+
+<p>case DateTimeConstants.THURSDAY:</p>
+
+<pre><code>System.out.println("星期四");  
+break;  
+</code></pre>
+
+<p>case DateTimeConstants.FRIDAY:</p>
+
+<pre><code>System.out.println("星期五");  
+break;  
+</code></pre>
+
+<p>case DateTimeConstants.SATURDAY:</p>
+
+<pre><code>System.out.println("星期六");  
+break;  
+</code></pre>
+
+<p>}
+```</p>
+
+<p>4.与JDK日期对象转换<br/>
 <code>java
 DateTime dt = new DateTime();  
 //转换成java.util.Date对象  
@@ -98,8 +121,9 @@ Date d2 = dt.toDate();
 Calendar c1 = Calendar.getInstance();  
 c1.setTimeInMillis(dt.getMillis());  
 Calendar c2 = dt.toCalendar(Locale.getDefault());
-</code></p></li>
-<li><p>日期前后推算<br/>
+</code></p>
+
+<p>5.日期前后推算<br/>
 <code>java
 DateTime dt = new DateTime();  
 //昨天  
@@ -114,16 +138,18 @@ DateTime after3month = dt.plusMonths(3);
 DateTime before2year = dt.minusYears(2);          
 //5年后  
 DateTime after5year = dt.plusYears(5);
-</code></p></li>
-<li><p>取特殊日期<br/>
+</code></p>
+
+<p>6.取特殊日期<br/>
 <code>java
 DateTime dt = new DateTime();     
 //月末日期    
 DateTime lastday = dt.dayOfMonth().withMaximumValue();  
 //90天后那周的周一  
 DateTime firstday = dt.plusDays(90).dayOfWeek().withMinimumValue();
-</code></p></li>
-<li><p>计算区间<br/>
+</code></p>
+
+<p>7.计算区间<br/>
 <code>java
 DateTime begin = new DateTime("2012-02-01");  
 DateTime end = new DateTime("2012-05-01");  
@@ -136,8 +162,9 @@ int days = p.getDays();
 //计算特定日期是否在该区间内  
 Interval i = new Interval(begin, end);  
 boolean contained = i.contains(new DateTime("2012-03-01"));
-</code></p></li>
-<li><p>日期比较<br/>
+</code></p>
+
+<p>8.日期比较<br/>
 <code>java
 DateTime d1 = new DateTime("2012-02-01");  
 DateTime d2 = new DateTime("2012-05-01");  
@@ -149,8 +176,9 @@ boolean b3 = d1.isEqualNow();
 boolean f1 = d1.isAfter(d2);  
 boolean f2 = d1.isBefore(d2);  
 boolean f3 = d1.isEqual(d2);
-</code></p></li>
-<li><p>格式化输出<br/>
+</code></p>
+
+<p>9.格式化输出<br/>
 <code>java
 DateTime dateTime = new DateTime();  
 String s1 = dateTime.toString("yyyy/MM/dd hh:mm:ss.SSSa");  
@@ -158,17 +186,15 @@ String s2 = dateTime.toString("yyyy-MM-dd HH:mm:ss");
 String s3 = dateTime.toString("EEEE dd MMMM, yyyy HH:mm:ssa");  
 String s4 = dateTime.toString("yyyy/MM/dd HH:mm ZZZZ");  
 String s5 = dateTime.toString("yyyy/MM/dd HH:mm Z");
-</code></p></li>
-<li>时区<br/>
+</code>
+10.时区<br/>
 <code>java
 //默认设置为日本时间  
 DateTimeZone.setDefault(DateTimeZone.forID("Asia/Tokyo"));  
 DateTime dt1 = new DateTime();  
 //伦敦时间  
 DateTime dt2 = new DateTime(DateTimeZone.forID("Europe/London"));
-</code></li>
-</ol>
-
+</code></p>
 ]]></content>
   </entry>
   
