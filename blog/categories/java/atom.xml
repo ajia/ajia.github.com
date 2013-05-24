@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-24T11:53:38+08:00</updated>
+  <updated>2013-05-24T11:56:21+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -23,7 +23,7 @@
 <!-- more -->
 
 
-<p>1.获取DateTime:<br/>
+<p>获取DateTime:<br/>
 <code>java
 //方法一：取系统点间  
 DateTime dt1 = new DateTime();  
@@ -40,7 +40,7 @@ LocalDate localDate = new LocalDate(2009, 9, 6);// September 6, 2009
 LocalTime localTime = new LocalTime(13, 30, 26, 0);// 1:30:26PM
 </code></p>
 
-<p>2.获取年月日点分秒<br/>
+<p>获取年月日点分秒<br/>
 <code>java
 DateTime dt = new DateTime();  
 //年  
@@ -61,7 +61,7 @@ int sec = dt.getSecondOfMinute();
 int msec = dt.getMillisOfSecond();
 </code></p>
 
-<p>3.星期的特殊处理<br/>
+<p>星期的特殊处理<br/>
 ```java
 DateTime dt = new DateTime();<br/>
 //星期<br/>
@@ -111,7 +111,7 @@ break;
 <p>}
 ```</p>
 
-<p>4.与JDK日期对象转换<br/>
+<p>与JDK日期对象转换<br/>
 <code>java
 DateTime dt = new DateTime();  
 //转换成java.util.Date对象  
@@ -123,7 +123,7 @@ c1.setTimeInMillis(dt.getMillis());
 Calendar c2 = dt.toCalendar(Locale.getDefault());
 </code></p>
 
-<p>5.日期前后推算<br/>
+<p>日期前后推算<br/>
 <code>java
 DateTime dt = new DateTime();  
 //昨天  
@@ -140,7 +140,7 @@ DateTime before2year = dt.minusYears(2);
 DateTime after5year = dt.plusYears(5);
 </code></p>
 
-<p>6.取特殊日期<br/>
+<p>取特殊日期<br/>
 <code>java
 DateTime dt = new DateTime();     
 //月末日期    
@@ -149,7 +149,7 @@ DateTime lastday = dt.dayOfMonth().withMaximumValue();
 DateTime firstday = dt.plusDays(90).dayOfWeek().withMinimumValue();
 </code></p>
 
-<p>7.计算区间<br/>
+<p>计算区间<br/>
 <code>java
 DateTime begin = new DateTime("2012-02-01");  
 DateTime end = new DateTime("2012-05-01");  
@@ -164,7 +164,7 @@ Interval i = new Interval(begin, end);
 boolean contained = i.contains(new DateTime("2012-03-01"));
 </code></p>
 
-<p>8.日期比较<br/>
+<p>日期比较<br/>
 <code>java
 DateTime d1 = new DateTime("2012-02-01");  
 DateTime d2 = new DateTime("2012-05-01");  
@@ -178,7 +178,7 @@ boolean f2 = d1.isBefore(d2);
 boolean f3 = d1.isEqual(d2);
 </code></p>
 
-<p>9.格式化输出<br/>
+<p>格式化输出<br/>
 <code>java
 DateTime dateTime = new DateTime();  
 String s1 = dateTime.toString("yyyy/MM/dd hh:mm:ss.SSSa");  
@@ -187,7 +187,7 @@ String s3 = dateTime.toString("EEEE dd MMMM, yyyy HH:mm:ssa");
 String s4 = dateTime.toString("yyyy/MM/dd HH:mm ZZZZ");  
 String s5 = dateTime.toString("yyyy/MM/dd HH:mm Z");
 </code>
-10.时区<br/>
+时区<br/>
 <code>java
 //默认设置为日本时间  
 DateTimeZone.setDefault(DateTimeZone.forID("Asia/Tokyo"));  
