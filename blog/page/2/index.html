@@ -9,7 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="今天遇上一个异常： 1
+  <meta name="description" content="jquery请求： 1
 2
 3
 4
@@ -25,21 +25,8 @@
 14
 15
 16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-2013-04-08 15:35:47 072 [ERROR] JDBC commit failed [org. &hellip;">
+var action = form.attr(&quot;action&quot;);
+$.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,6 +96,106 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/">Jquery的jsonp方式的ajax提交解决跨域的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-08T17:45:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>jquery请求：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;get&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">mobile</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mobile&#39;</span><span class="o">+</span><span class="nx">id</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">url</span><span class="o">:</span><span class="nx">action</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">dataType</span><span class="o">:</span><span class="s2">&quot;jsonp&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">jsonp</span><span class="o">:</span><span class="s2">&quot;callback&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">resultObj</span><span class="p">.</span><span class="nx">result</span><span class="p">){</span>
+</span><span class='line'>          <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;发送成功&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>服务器端：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Pragma&quot;</span><span class="o">,</span> <span class="s">&quot;No-cache&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setDateHeader</span><span class="o">(</span><span class="s">&quot;Expires&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Cache-Control&quot;</span><span class="o">,</span> <span class="s">&quot;no-cache&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//业务逻辑</span>
+</span><span class='line'><span class="n">String</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;callback&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">callback</span><span class="o">+</span><span class="s">&quot;(&quot;</span><span class="o">+</span><span class="n">resultJson</span><span class="o">.</span><span class="na">toString</span><span class="o">()+</span><span class="s">&quot;)&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -765,51 +852,6 @@ Awesome code snippet
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/">Solr高亮的配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-25T18:07:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>打开solrconfig.xml，找到<lst name="defaults">，比如我要高亮content和title这两个field，配置如下：</p>
-
-<pre><code>&lt;bool name="hl"&gt;true&lt;/bool&gt;
-&lt;str name="hl.fl"&gt;title&lt;/str&gt;
-&lt;str name="hl.fl"&gt;content&lt;/str&gt;
-</code></pre>
-
-<p>然后就不用在参数里加这几个也可以返回高亮后的结果了。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -824,15 +866,19 @@ Awesome code snippet
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 105.45454545454545%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(11)</a> <a href='/blog/categories/javascript' style='font-size: 116.36363636363636%'>javascript(3)</a> <a href='/blog/categories/octopress' style='font-size: 127.27272727272728%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 105.45454545454545%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 105.45454545454545%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 105.45454545454545%'>创业(1)</a> <a href='/blog/categories/生活' style='font-size: 110.9090909090909%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 105.45454545454545%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(11)</a> <a href='/blog/categories/javascript' style='font-size: 121.81818181818181%'>javascript(4)</a> <a href='/blog/categories/octopress' style='font-size: 127.27272727272728%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 105.45454545454545%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 105.45454545454545%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 105.45454545454545%'>创业(1)</a> <a href='/blog/categories/生活' style='font-size: 110.9090909090909%'>生活(2)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (11)</a></li><li><a href='/blog/categories/javascript'>javascript (3)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (11)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/24/javacha-jian-zhi-timer/">java插件之timer</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/05/24/jodari-qi-ji-suan/">joda日期计算</a>
@@ -848,10 +894,6 @@ Awesome code snippet
     
       <li class="post">
         <a href="/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/">音乐播放器dewplayer的使用</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/27/seoyou-hua/">seo优化</a>
       </li>
     
   </ul>

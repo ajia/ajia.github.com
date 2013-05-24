@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-24T11:56:21+08:00</updated>
+  <updated>2013-05-24T14:33:27+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,7 +18,7 @@
     <link href="http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/"/>
     <updated>2013-05-24T10:19:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan</id>
-    <content type="html"><![CDATA[<p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成</p>
+    <content type="html"><![CDATA[<p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成。<a href="http://joda-time.sourceforge.net/">项目地址</a></p>
 
 <!-- more -->
 

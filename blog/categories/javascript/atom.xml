@@ -4,7 +4,7 @@
   <title><![CDATA[Category: javascript | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-24T11:56:21+08:00</updated>
+  <updated>2013-05-24T14:33:27+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[java插件之timer]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer/"/>
+    <updated>2013-05-24T14:20:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer</id>
+    <content type="html"><![CDATA[<p>JQuery Timers应用知识<br/>
+提供了三个函式<br/>
+1. everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</p>
+
+<p>```javascript
+/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>
+*   everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])
+</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/
+//每1秒执行函式test()
+function test(){
+   //do something...
+}
+$('body').everyTime('1s',test);
+//每1秒执行
+$('body').everyTime('1s',function(){
+//do something...
+});
+//每1秒执行，并命名计时器名称为A
+$('body').everyTime('1s','A',function(){
+//do something...
+});
+//每20秒执行，最多5次，并命名计时器名称为B
+$('body').everyTime('2das','B',function(){
+//do something...
+},5);
+//每20秒执行，无限次，并命名计时器名称为C
+//若时间间隔抵到，但函式程序仍未完成则需等待执行函式完成后再继续计时
+$('body').everyTime('2das','C',function(){</p>
+
+<pre><code>//执行一个会超过20秒以上的程式
+</code></pre>
+
+<p>},0,true);
+```</p>
+
+<!-- more -->
+
+
+<ol>
+<li>oneTime(时间间隔, [计时器名称], 呼叫的函式)
+```javascript
+/***********************************************************</li>
+<li>oneTime(时间间隔, [计时器名称], 呼叫的函式)
+***********************************************************/
+//倒数10秒后执行
+$('body').oneTime('1das',function(){
+//do something...
+});
+//倒数100秒后执行，并命名计时器名称为D
+$('body').oneTime('1hs','D',function(){
+//do something...
+});
+```</li>
+<li>stopTime ([计时器名称], [函式名称])<br/>
+```javascript
+/************************************************************</li>
+<li>stopTime ([计时器名称], [函式名称])
+************************************************************/
+//停止所有的在$('body')上计时器
+$('body').stopTime ();
+//停止$('body')上名称为A的计时器
+$('body').stopTime ('A');
+//停止$('body')上所有呼叫test()的计时器
+$('body').stopTime (test);
+```</li>
+</ol>
+
+
+<p>自定义时间单位
+打开源代码
+找到<br/>
+<code>javascript
+powers: {
+   // Yeah this is major overkill...
+   'ms': 1,
+   'cs': 10,
+   'ds': 100,
+   's': 1000,
+   'das': 10000,
+   'hs': 100000,
+   'ks': 1000000
+  }
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[音乐播放器dewplayer的使用]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-05-24T11:56:21+08:00</updated>
+  <updated>2013-05-24T14:33:27+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,11 +14,163 @@
 
   
   <entry>
+    <title type="html"><![CDATA[java插件之timer]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer/"/>
+    <updated>2013-05-24T14:20:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer</id>
+    <content type="html"><![CDATA[<p>JQuery Timers应用知识<br/>
+提供了三个函式<br/>
+1. everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*************************************************************</span>
+</span><span class='line'><span class="cm">*   everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</span>
+</span><span class='line'><span class="cm">*************************************************************/</span>
+</span><span class='line'><span class="c1">//每1秒执行函式test()</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">test</span><span class="p">(){</span>
+</span><span class='line'>   <span class="c1">//do something...</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="nx">test</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//每1秒执行</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="c1">//每1秒执行，并命名计时器名称为A</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="c1">//每20秒执行，最多5次，并命名计时器名称为B</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">},</span><span class="mi">5</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//每20秒执行，无限次，并命名计时器名称为C</span>
+</span><span class='line'><span class="c1">//若时间间隔抵到，但函式程序仍未完成则需等待执行函式完成后再继续计时</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="c1">//执行一个会超过20秒以上的程式</span>
+</span><span class='line'><span class="p">},</span><span class="mi">0</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<ol>
+<li>oneTime(时间间隔, [计时器名称], 呼叫的函式)</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/***********************************************************</span>
+</span><span class='line'><span class="cm">*   oneTime(时间间隔, [计时器名称], 呼叫的函式)</span>
+</span><span class='line'><span class="cm">***********************************************************/</span>
+</span><span class='line'><span class="c1">//倒数10秒后执行</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">oneTime</span><span class="p">(</span><span class="s1">&#39;1das&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="c1">//倒数100秒后执行，并命名计时器名称为D</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">oneTime</span><span class="p">(</span><span class="s1">&#39;1hs&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>stopTime ([计时器名称], [函式名称])</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/************************************************************</span>
+</span><span class='line'><span class="cm">*  stopTime ([计时器名称], [函式名称])</span>
+</span><span class='line'><span class="cm">************************************************************/</span>
+</span><span class='line'><span class="c1">//停止所有的在$(&#39;body&#39;)上计时器</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">stopTime</span> <span class="p">();</span>
+</span><span class='line'><span class="c1">//停止$(&#39;body&#39;)上名称为A的计时器</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">stopTime</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//停止$(&#39;body&#39;)上所有呼叫test()的计时器</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">stopTime</span> <span class="p">(</span><span class="nx">test</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>自定义时间单位
+打开源代码
+找到</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">powers</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>   <span class="c1">// Yeah this is major overkill...</span>
+</span><span class='line'>   <span class="s1">&#39;ms&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;cs&#39;</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;ds&#39;</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;s&#39;</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;das&#39;</span><span class="o">:</span> <span class="mi">10000</span><span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;hs&#39;</span><span class="o">:</span> <span class="mi">100000</span><span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;ks&#39;</span><span class="o">:</span> <span class="mi">1000000</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[joda日期计算]]></title>
     <link href="http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/"/>
     <updated>2013-05-24T10:19:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan</id>
-    <content type="html"><![CDATA[<p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成</p>
+    <content type="html"><![CDATA[<p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成。<a href="http://joda-time.sourceforge.net/">项目地址</a></p>
 
 <!-- more -->
 
@@ -6505,6 +6657,9 @@ $ sudo make me a sandwich
 
 <h3>插入超链</h3>
 
+<pre><code>[欢迎来到ajia的部落格](http://ajia.github.com "ajia's blog")
+</code></pre>
+
 <p><a href="http://ajia.github.com" title="ajia's blog">欢迎来到ajia的部落格</a></p>
 ]]></content>
   </entry>
@@ -6516,22 +6671,6 @@ $ sudo make me a sandwich
     <id>http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin</id>
     <content type="html"><![CDATA[<p>推荐一个微信公众账号，带给你一些关于情侣和夫妻之间好玩的事
 <img class="center" src="http://ajia.github.com/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[solr高亮的配置]]></title>
-    <link href="http://ajia.github.com/blog/2013/03/25/solrgao-liang-de-pei-zhi/"/>
-    <updated>2013-03-25T18:07:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/03/25/solrgao-liang-de-pei-zhi</id>
-    <content type="html"><![CDATA[<p>打开solrconfig.xml，找到<lst name="defaults">，比如我要高亮content和title这两个field，配置如下：</p>
-
-<pre><code>&lt;bool name="hl"&gt;true&lt;/bool&gt;
-&lt;str name="hl.fl"&gt;title&lt;/str&gt;
-&lt;str name="hl.fl"&gt;content&lt;/str&gt;
-</code></pre>
-
-<p>然后就不用在参数里加这几个也可以返回高亮后的结果了。</p>
 ]]></content>
   </entry>
   
