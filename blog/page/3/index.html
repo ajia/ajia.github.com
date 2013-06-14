@@ -9,9 +9,15 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="打开solrconfig.xml，找到，比如我要高亮content和title这两个field，配置如下： &lt;bool name="hl"&gt;true&lt;/bool&gt;
-&lt;str name="hl.fl"&gt;title&lt;/str&gt;
-&lt;str name &hellip;">
+  <meta name="description" content="判断方法存不存在 1
+2
+3
+4
+5
+6 if(typeof(nl.onBlue)==&quot;function&quot;){ //存在 } else{ //不存在 } 把字符串转换成对象 1
+2
+3
+var str = &#39;{id:&quot;1&quot;,name:&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +87,389 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/">Javascript遇上的几个问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T14:11:00+08:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>判断方法存不存在</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">nl</span><span class="p">.</span><span class="nx">onBlue</span><span class="p">)</span><span class="o">==</span><span class="s2">&quot;function&quot;</span><span class="p">){</span>
+</span><span class='line'>      <span class="c1">//存在</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="c1">//不存在</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>把字符串转换成对象</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;{id:&quot;1&quot;,name:&quot;aaaa&quot;}&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;var obj=&quot;</span><span class="o">+</span><span class="nx">str</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/">学习ruby on Rails-ruby和rails的安装</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-01T11:59:00+08:00" pubdate data-updated="true">Apr 1<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ruby的安装在文章<a href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/" title="点击查看">how-to-install-octopress</a>里有说过。</p>
+
+<h3>在Lion安装rails</h3>
+
+<pre><code>gem install rails
+</code></pre>
+
+<h3>创建rails的应用</h3>
+
+<pre><code>rails new myapp
+</code></pre>
+
+<h3>启动应用</h3>
+
+<pre><code>cd myapp
+rails server
+</code></pre>
+
+<h3>进入</h3>
+
+<pre><code>http://localhost:3000
+"Welcome aboard: You're riding Ruby on Rails!"
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/28/hao-ting-de-qu-zi/">好听的曲子</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-28T15:15:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/28/hao-ting-de-qu-zi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Exodus-Maksim Mrvica<br/>
+<audio controls><source src='/downloads/media/exodus.mp3'></audio></p>
+
+<p>最后的倾述-韩磊<br/>
+<audio controls><source src='/downloads/media/zhdqs.mp3'></audio></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/28/octopressde-cha-jian/">Octopress的插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-28T13:27:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/28/octopressde-cha-jian/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>记得去掉{和%之间的空格</p>
+
+<h2>包含代码（Include Code）</h2>
+
+<h5>语法</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code [title] [lang:language] path/to/file % }</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>例子</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code test.js % }</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">sample javascript from xui</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
+</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/28/octopressde-cha-jian/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/">在octopress里写博客</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-28T11:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>代码高亮</h3>
+
+<h4>Codeblock</h4>
+
+<h6>语法</h6>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % codeblock [title] [lang:language] [url] [link text] % }
+</span><span class='line'>code snippet
+</span><span class='line'>{ % endcodeblock % }</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>例子</h6>
+
+<pre><code>{ % codeblock % }
+Awesome code snippet
+{ % endcodeblock % }
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/27/tui-jian-wei-xin/">推荐微信</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-27T21:42:00+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/27/tui-jian-wei-xin/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>推荐一个微信公众账号，带给你一些关于情侣和夫妻之间好玩的事
+<img class="center" src="/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -270,95 +659,9 @@ str.replaceAll("\n","")
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/06/how-to-install-octopress/">How-to-install-octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/06/how-to-install-octopress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>系统是Mac OS X Lion 10.7.5</p>
-
-<h1>Step1 安装homebrew</h1>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/06/how-to-install-octopress/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/06/my-first-blog/">My First Blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-06T17:20:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/06/my-first-blog/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>折腾了几天，终于把部落格搞定了，咱也有了自己的地盘了，庆贺一下，接下来要折腾的事情还很多，<strong>enjoy it</strong>！</h1>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/06/my-first-blog/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
     
     <a href="archives">Blog Archives</a>
     
@@ -370,34 +673,34 @@ str.replaceAll("\n","")
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 105.45454545454545%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(11)</a> <a href='/blog/categories/javascript' style='font-size: 121.81818181818181%'>javascript(4)</a> <a href='/blog/categories/octopress' style='font-size: 127.27272727272728%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 105.45454545454545%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 105.45454545454545%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 105.45454545454545%'>创业(1)</a> <a href='/blog/categories/生活' style='font-size: 110.9090909090909%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 105.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(12)</a> <a href='/blog/categories/javascript' style='font-size: 130.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 125.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 105.0%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 105.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 105.0%'>创业(1)</a> <a href='/blog/categories/数据库' style='font-size: 105.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 110.0%'>生活(2)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (11)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (12)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/24/javacha-jian-zhi-timer/">java插件之timer</a>
+        <a href="/blog/2013/06/08/chang-yong-sql/">常用sql</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/24/jodari-qi-ji-suan/">joda日期计算</a>
+        <a href="/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/">时间格式化插件jquery-dateFormat</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/">读取音频文件的信息</a>
+        <a href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/">数字格式化插件Numeral.js</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/">使用jave转换音视频格式</a>
+        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/">Guava的使用指南之Collections</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/">音乐播放器dewplayer的使用</a>
+        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/">Guava的使用指南之Basic Utilities</a>
       </li>
     
   </ul>

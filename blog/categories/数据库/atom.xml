@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 数据库 | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/数据库/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2013-06-14T15:00:17+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[常用sql]]></title>
+    <link href="http://ajia.github.com/blog/2013/06/08/chang-yong-sql/"/>
+    <updated>2013-06-08T11:22:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/06/08/chang-yong-sql</id>
+    <content type="html"><![CDATA[<h1>查询重复的userid</h1>
+
+<pre><code>select * from WebsiteUser where userid in 
+(select userid from WebsiteUser group by userid having(count(*)&gt;1))
+</code></pre>
+
+<p>作为记录、待续</p>
+]]></content>
+  </entry>
+  
+</feed>

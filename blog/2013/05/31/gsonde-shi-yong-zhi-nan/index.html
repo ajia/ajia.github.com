@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Gson的使用指南 - Ajia's Blog</title>
+  <meta name="author" content="Ajia">
+
+  
+  <meta name="description" content="gson的使用指南">
+  <meta name="keywords" content="java,gson,gson,google,json">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
+  <meta name="author" content="Ajia">
+
+<meta name="description" content="gson的使用指南">
+<meta name="keywords" content="java,gson,gson,google,json">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39153617-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ajia.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav> -->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Gson的使用指南</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T13:42:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>介绍</h1>
+
+<p>Gson是一个可以把Java对象转化成JSON格式的字符串，也可以从一个JSON字符串转换为一个Java对象。Gson是一个开源项目，<a href="http://code.google.com/p/google-gson">这里是地址</a></p>
+
+<!-- more -->
+
+
+<h1>开始使用</h1>
+
+<p>可以使用</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">new</span> <span class="nf">Gson</span><span class="o">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>来创建主要的类Gson的实例。也可以使用GsonBuilder来定制你需要的Gson实例，比如版本控制等等。</p>
+
+<h3>基本的例子</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
+</span><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>            <span class="o">==&gt;</span> <span class="n">prints</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="s">&quot;abcd&quot;</span><span class="o">);</span>       <span class="o">==&gt;</span> <span class="n">prints</span> <span class="s">&quot;abcd&quot;</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="k">new</span> <span class="n">Long</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span> <span class="o">==&gt;</span> <span class="n">prints</span> <span class="mi">10</span>
+</span><span class='line'><span class="kt">int</span><span class="o">[]</span> <span class="n">values</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">1</span> <span class="o">};</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">values</span><span class="o">);</span>       <span class="o">==&gt;</span> <span class="n">prints</span> <span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">one</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="n">Integer</span> <span class="n">one</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="n">Long</span> <span class="n">one</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="n">Boolean</span> <span class="kc">false</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;false&quot;</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;\&quot;abc\&quot;&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="n">String</span> <span class="n">anotherStr</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;[\&quot;abc\&quot;]&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h3>关于对象的例子</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">BagOfPrimitives</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">value1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">String</span> <span class="n">value2</span> <span class="o">=</span> <span class="s">&quot;abc&quot;</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">transient</span> <span class="kt">int</span> <span class="n">value3</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">BagOfPrimitives</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// no-args constructor</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
+</span><span class='line'><span class="n">BagOfPrimitives</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BagOfPrimitives</span><span class="o">();</span>
+</span><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
+</span><span class='line'><span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+</span><span class='line'><span class="o">==&gt;</span> <span class="n">json</span> <span class="n">is</span> <span class="o">{</span><span class="s">&quot;value1&quot;</span><span class="o">:</span><span class="mi">1</span><span class="o">,</span><span class="s">&quot;value2&quot;</span><span class="o">:</span><span class="s">&quot;abc&quot;</span><span class="o">}</span>
+</span><span class='line'><span class="n">Note</span> <span class="n">that</span> <span class="n">you</span> <span class="n">can</span> <span class="n">not</span> <span class="n">serialize</span> <span class="n">objects</span> <span class="n">with</span> <span class="n">circular</span> <span class="n">references</span> <span class="n">since</span> <span class="n">that</span> <span class="n">will</span> <span class="n">result</span> <span class="n">in</span> <span class="n">infinite</span> <span class="n">recursion</span><span class="o">.</span>
+</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
+</span><span class='line'><span class="n">BagOfPrimitives</span> <span class="n">obj2</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">BagOfPrimitives</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="o">==&gt;</span> <span class="n">obj2</span> <span class="n">is</span> <span class="n">just</span> <span class="n">like</span> <span class="n">obj</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+以下是转换对象的时候几点事项：
+* 建议使用private的成员变量
+* 没有必要对所有的成员变量使用任何的注解来表示这个变量需要被序列化或反序列化
+* 如果一个成员变量被关键字transient修饰，（默认）那么它将在序列化和反序列化的时候被忽略
+* 这样处理nulls是正确的
+<strong> 序列化的时候，一个null变量在输出的时候将被跳过
+</strong> 反序列化的时候，JSON中一个丢失的实体会被设置为null
+* 如果一个成员变量被synthetic修饰，在序列化和反序列化的时候会被忽略
+* 内部类、匿名类、局部类会被忽略掉。</p>
+
+<h3>数组的例子</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
+</span><span class='line'><span class="kt">int</span><span class="o">[]</span> <span class="n">ints</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">};</span>
+</span><span class='line'><span class="n">String</span><span class="o">[]</span> <span class="n">strings</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;abc&quot;</span><span class="o">,</span> <span class="s">&quot;def&quot;</span><span class="o">,</span> <span class="s">&quot;ghi&quot;</span><span class="o">};</span>
+</span><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">ints</span><span class="o">);</span>     <span class="o">==&gt;</span> <span class="n">prints</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">strings</span><span class="o">);</span>  <span class="o">==&gt;</span> <span class="n">prints</span> <span class="o">[</span><span class="s">&quot;abc&quot;</span><span class="o">,</span> <span class="s">&quot;def&quot;</span><span class="o">,</span> <span class="s">&quot;ghi&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
+</span><span class='line'><span class="kt">int</span><span class="o">[]</span> <span class="n">ints2</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;[1,2,3,4,5]&quot;</span><span class="o">,</span> <span class="kt">int</span><span class="o">[].</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="o">==&gt;</span> <span class="n">ints2</span> <span class="n">will</span> <span class="n">be</span> <span class="n">same</span> <span class="n">as</span> <span class="n">ints</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h3>集合的例子</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
+</span><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ints</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">immutableList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
+</span><span class='line'><span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">ints</span><span class="o">);</span> <span class="o">==&gt;</span> <span class="n">json</span> <span class="n">is</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
+</span><span class='line'><span class="n">Type</span> <span class="n">collectionType</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TypeToken</span><span class="o">&lt;</span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;(){}.</span><span class="na">getType</span><span class="o">();</span>
+</span><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ints2</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">collectionType</span><span class="o">);</span>
+</span><span class='line'><span class="n">ints2</span> <span class="n">is</span> <span class="n">same</span> <span class="n">as</span> <span class="n">ints</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>序列化和反序列化通用的类型</h4>
+
+<p>当你在调用toJson(obj)的时候，Gson会调用obj.getClass()来获得即将被序列化的对象的成员变量。然后调用fromJson(json, MyClass.class)方法来得到MyClass的对象。如果这个类没有使用范性的情况下是正常的。但是，如果是使用范型的，由于java的类型擦除机制，就不能正常工作了。如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Foo</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">T</span> <span class="n">value</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
+</span><span class='line'><span class="n">Foo</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;</span> <span class="n">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Foo</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">foo</span><span class="o">);</span> <span class="c1">// May not serialize foo.value correctly</span>
+</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">foo</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span> <span class="c1">// Fails to deserialize foo.value as Bar</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ajia</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T13:42:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/24/javacha-jian-zhi-timer/" title="Previous Post: java插件之timer">&laquo; java插件之timer</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/" title="Next Post: Guava的使用指南之Basic Utilities">Guava的使用指南之Basic Utilities &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 105.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(12)</a> <a href='/blog/categories/javascript' style='font-size: 130.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 125.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 105.0%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 105.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 105.0%'>创业(1)</a> <a href='/blog/categories/数据库' style='font-size: 105.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 110.0%'>生活(2)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (12)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/08/chang-yong-sql/">常用sql</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/">时间格式化插件jquery-dateFormat</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/">数字格式化插件Numeral.js</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/">Guava的使用指南之Collections</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/">Guava的使用指南之Basic Utilities</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/ajia">@ajia</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'ajia',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+  
+<section>  
+  <h1>新浪微博</h1>  
+  <ul id="weibo">  
+    <li>  
+      <iframe   
+        width="100%"   
+        height="550"   
+        class="share_self"   
+        frameborder="0"   
+        scrolling="no"   
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1773810951&verifier=c56fe36a">  
+      </iframe>  
+    </li>  
+  </ul>  
+</section>  
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/pinpin9811@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Ajia -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'ajia';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan/';
+        var disqus_url = 'http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
