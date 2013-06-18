@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-06-14T15:00:17+08:00</updated>
+  <updated>2013-06-18T15:37:04+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,332 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Guava的使用指南之Collections]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/"/>
+    <updated>2013-05-31T13:45:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections</id>
+    <content type="html"><![CDATA[<p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。看看Guava Collections为我们做了哪些很酷的事情：</p>
+
+<ul>
+<li>Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable Collections这才是真正的不可修改的集合</li>
+<li>Multiset:看看如何把重复的元素放入一个集合</li>
+<li>Multimaps:需要在一个key对应多个value的时候，自己写一个实现比较繁琐，让Multimaps来帮帮</li>
+<li>BiMap:java.util.Map只能保证key的不重复，BiMap保证value也不重复</li>
+<li>MapMaker:超级强大的Map构造类</li>
+<li>Ordering class:大家知道用Comparator作为比较器来对集合排序，但是对于多关键字排序Ordering class可以简化很多的代码</li>
+<li>其他特性</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p>当然，如果没有Guava Collections你也可以用Java Collections Framework完成上面的功能。但是Guava Collections提供的这些API经过精心设计，而且还有2500个单元测试来保障它的质量。所以我们没必要重新发明轮子。接下来我们来详细看看Guava Collections的一些具体功能。</p>
+
+<h2>Immutable Collections：真正的不可修改的集合</h2>
+
+<p>大家都用过Collections.unmodifiableXXX()来做一个不可修改的集合。例如你要构造存储常量的Set,你可以这样做：</p>
+
+<p><code>java
+Set&lt;String&gt; set = new HashSet&lt;String&gt;(Arrays.asList(new String[]{"RED","GREEN"}));
+Set&lt;String&gt; unmodifiableSet = Collections.unmodifiableSet(set);
+</code></p>
+
+<p>这看上去似乎不错，因为每次调unmodifiableSet.add()都会抛出一个UnsupportedOperationException。感觉安全了？慢！如果有人在原来的set上add或者remove元素会怎么样？结果unmodifiableSet也是被add或者remove元素了。而且构造这样一个简单的set写了两句长的代码。下面看看ImmutableSet是怎么来做地更安全和简洁：</p>
+
+<p><code>java
+ImmutableSet&lt;String&gt; immutableSet = ImmutableSet.of("RED","GREEN");
+</code></p>
+
+<p>就这样一句就够了，而且试图调add方法的时候，它一样会抛出UnsupportedOperationException。重要的是代码的可读性增强了不少，非常直观的展现了代码的用意。如果像之前这个代码保护一个set怎么做呢？你可以：</p>
+
+<p><code>java
+ImmutableSet&lt;String&gt; immutableSet = ImmutableSet.copyOf(set);
+</code></p>
+
+<p>从构造的方式来说，ImmutableSet集合还提供了Builder模式来构造一个集合：</p>
+
+<p><code>java
+Builder&lt;String&gt; builder = ImmutableSet.builder();
+ImmutableSet&lt;String&gt; immutableSet = builder.add("RED").addAll(set).build();
+</code></p>
+
+<p>在这个例子里面Builder不但能加入单个元素还能加入既有的集合。</p>
+
+<p>除此之外，Guava Collections还提供了各种Immutable集合的实现：ImmutableList, ImmutableMap, ImmutableSortedSet, ImmutableSortedMap。</p>
+
+<h2>Multiset:把重复的元素放入集合</h2>
+
+<p>你可能会说这和Set接口的契约冲突，因为Set接口的javaDoc里面规定不能放入重复元素。事实上，Multiset并没有实现java.util.Set接口，它更像是一个Bag。普通的Set就像这样：[car,ship,bike],而Multiset会是这样：[carx2,shipx6,bikex3]。</p>
+
+<p>譬如一个List里面有各种字符，然后你要统计每个字符串在List里面出现的次数：</p>
+
+<p>```java
+Map&lt;String, Integer> map = new HashMap&lt;String, Integer>();
+for(String word:wordList){</p>
+
+<pre><code>Integer count = map.get(word);
+map.put(word, (count==null)?1:count+1);
+</code></pre>
+
+<p>}
+//count word "the"
+Integer count = map.get("the");
+```</p>
+
+<p>如果用Multiset就可以这样：
+<code>java
+HashMultiset&lt;String&gt; multiSet = HashMultiset.create();
+multiSet.addAll(wordList);
+//count word "the"
+Integer count = multiSet.count("the");
+</code></p>
+
+<p>这样连循环都不用了，而且Multiset用的方法叫count，显然比在Map里面调用get有更好的可读性。Multiset还提供了setCount这样设定元素重复次数的方法，虽然你可以通过使用Map来实现类似的功能，但是程序的可读性比Multiset差了很多。</p>
+
+<p>常用实现Multiset接口的类有：
+* HashMultiset:元素存放于HashMap
+* LinkedHashMultiset:元素存放于LinkedHashMap,即元素的排列顺序由第一次放入的顺序决定
+* TreeMultiset:元素被排序存放于TreeMap
+* EnumMultiset:元素必须是enum类型
+* ImmutableMultiset:不可修改的Mutiset</p>
+
+<p>看到这里你可能已经发现Guava Collections都是以create或是of这样的静态方法来构造对象。这是因为这些集合类大多有多个参数的私有构造方法，由于参数数目很多，客户代码程序员使用起来就很不方便。而且以这种方式可以返回原类型的子类型对象。另外，对于创建范型对象来讲，这种方式更加简洁。</p>
+
+<h2>Muitimap:在Map的value里面放多个元素</h2>
+
+<p>Muitimap就是一个key对应多个value的数据结构。看上去它很像java.util.Map的结构，但是Muitimap不是Map，没有实现Map的接口。设想你对Map调了2次参数key一样的put方法，结果就是第2次的value覆盖了第一次的value。但是对Muitimap来说这个key同时对应了2个value。所以Map看上去是：{k1=v1,k2=v2,…}，而Muitimap是：{k1=[v1,v2,v3],k2=[v7,v8],…}。</p>
+
+<p>举个记名投票的例子。所有选票都放在一个List<Ticket>里面，List的每个元素包括投票人和选举人的名字。我们可以这样写:</p>
+
+<p>```java
+//Key is cadidate name, its value is his voters
+HashMap&lt;String, HashSet<String>> hMap = new HashMap&lt;String, HashSet<String>>();
+for(Ticket ticket:tickets){</p>
+
+<pre><code>HashSet&lt;String&gt; set = hMap.get(ticket.getCandidate());
+if(set==null){
+    set = new HashSet&lt;String&gt;();
+    hMap.put(ticket.getCandidate(), set);
+}
+set.add(ticket.getVoter);
+</code></pre>
+
+<p>}
+```</p>
+
+<p>我们再来看看Muitimap能做些什么：</p>
+
+<p>```java
+HashMultimap&lt;String, String> map = HashMultimap.create();
+for(Ticket ticket:tickets){</p>
+
+<pre><code>map.put(ticket.getCandidate(), ticket.getVoter());
+</code></pre>
+
+<p>}
+```</p>
+
+<p>就这么简单！</p>
+
+<p>Muitimap接口的主要实现类有：
+* HashMultimap:key放在HashMap, 而value放在HashSet, 即一个key对应的value不可重复
+* ArrayListMultimap：key放在HashMap,而value放在ArrayList,即一个key对应的value有顺序可重复
+* LinkedHashMultimap:key放在LinkedHashMap,而value放在LinkedHashSet,即一个key对应的value有顺序不可重复
+* TreeMultimap：key放在TreeMap，而value放在TreeSet，即一个key对应的value有排列顺序
+* ImmutableMultimap:不可修改的Multimap</p>
+
+<h2>BiMap:双向Map</h2>
+
+<p>BiMap实现了java.util.Map接口。它的特点是它的value和它key一样也是不可重复的，换句话说它的key和value是等价的。如果你往BiMap的value里面放了重复的元素，就会得到IllegalArgumentException.</p>
+
+<p>举个例子，你可能经常会碰到在Map里面根据value值来反推它的key值的逻辑：</p>
+
+<p>```java
+for(Map.Entry&lt;User, Address> entry:map.entreSet()){</p>
+
+<pre><code>if(entry.getValue().equals(anAddress)){
+    return entry.getKey();
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>如果把User和Address都放在BiMap,那么一句代码就得到结果了：</p>
+
+<p>```java</p>
+
+<pre><code>return biMap.inverse().get(anAddress);
+</code></pre>
+
+<p>```</p>
+
+<p>这里的inverse方法就是把BiMap的key集合value集合对调，因此biMap==biMap.inverse().inverse()。</p>
+
+<p>BiMap的常用实现有：
+* HashBiMap:key集合与value集合都有HashMap实现
+* EnumBiMap:key与value都必须是enum类型
+* ImmutableBiMap:不可修改的BiMap</p>
+
+<h2>MapMaker:超级强大的Map构造工具</h2>
+
+<p>MapMaker是用来构造ConcurrentMap的工具类。为什么可以把MapMaker叫做超级强大？看了下面的例子你就知道了。首先，它可以用来构造ConcurrentHashMap:</p>
+
+<p><code>java
+//ConcurrentHashMap with concurrency level 8
+ConcurrentMap&lt;String, Object&gt; map1 = new MapMaker().concurrencyLevel(8).makeMap();
+</code></p>
+
+<p>或者构造用各种不同reference作为key和value的Map：</p>
+
+<p><code>java
+//ConcurrentMap with soft reference key and weak reference value
+ConcurrentMap&lt;String, Object&gt; map2 = new MapMaker().softKeys().weakValues().makeMap();
+</code></p>
+
+<p>或者构造有自动移除时间过期项的Map:</p>
+
+<p><code>java
+//Automatically removed entries from map after 30 seconds since they are created
+ConcurrentMap&lt;String, Object&gt; map3 = new MapMaker().expireAfterWrite(30, TimeUnit.SECONDS).makeMap();
+</code></p>
+
+<p>或者构造有最大限制数目的Map：</p>
+
+<p><code>java
+//Map size grows close to the 100, the map vill evict
+//entries that are less likely to be used again
+ConcurrentMap&lt;String, Object&gt; map4 = new MapMaker().maximumSize(100).makeMap();
+</code>
+或者提供当Map里面不包含所get的项，而需要自动加入到Map的功能。这个功能当Map作为缓存的时候很有用：</p>
+
+<p>```java
+//Create an Object to the map, when get() is missing in map
+ConcurrentMap&lt;String, Object> map5 = new MapMaker().makeComputingMap(new Function&lt;>(String, Object){</p>
+
+<pre><code>public Object apply(String key){
+    return createObject(key);
+}
+</code></pre>
+
+<p>});
+```</p>
+
+<p>这些还不是最强大的特性，最厉害的是MapMaker可以提供拥有以上所有特性的Map:</p>
+
+<p>```java
+//Put all features together!
+ConcurrentMap&lt;String, Object> mapAll = new MapMaker()
+.concurrencyLevel(8)
+.softKeys()
+.weakValues()
+.expireAfterWrite(30, TimeUnit.SECONDS)
+.makeComputingMap(</p>
+
+<pre><code>new Function&lt;String, Object&gt;(){
+    public Object apply(String key){
+        return createObject(key);
+    }
+}
+</code></pre>
+
+<p>);
+```</p>
+
+<h2>Ordering class:灵活的多字段排序比较器</h2>
+
+<p>需对集合排序或者求最大值最小值，首推java.util.Collections类，但关键是要提供Comparator接口的实现。假设有个待排序的List<Foo>, 而Foo里面有两个排序关键字int a, int b和int c:</p>
+
+<p>```java
+Collections.sort(list, new Comparator<Foo>(){</p>
+
+<pre><code>@Override
+public int compare(Foo f1, Foo f2){
+    int resultA = f1.a-f2.a;
+    int resultB = f1.b-f2.b;
+    return resultA==0?(resultB==0?fl.c-f2.c:resultB):resultA;
+}
+</code></pre>
+
+<p>})
+```</p>
+
+<p>这看上去有点眼晕，如果用一串if-else也好不到哪里去。看看ComparisonChain能做到什么：</p>
+
+<p>```java
+Collections.sort*(list, new Comparator<Foo>(){</p>
+
+<pre><code>@Override
+return ComparisonChain.start()
+    .compare(f1.a, f2.a)
+    .compare(f1.b, f2.b)
+    .compare(f1.c, f2.c).result();
+</code></pre>
+
+<p>});
+```</p>
+
+<p>如果排序关键字要用自定义比较器，compare方法也有接受Comparator的重载版本。譬如Foo里面每个排序关键字都已经有了各自的Comparator,那么利用ComparisonChain可以：</p>
+
+<p>```java
+Collections.sort(list, new Comparator<Foo>(){</p>
+
+<pre><code>@Override
+return ComparisonChain.start()
+    .compare(f1.a, f2.a, comparatorA)
+    .compare(f1.b, f2.b, comparatorB)
+    .compare(f1.c, f2.c, comparatorC).result();
+</code></pre>
+
+<p>});
+```</p>
+
+<p>Ordring类还提供了一个组合Comparator对象的方法。而且Ordring本身实现了Comparator接口所以它能直接作为Comparator使用：</p>
+
+<p>```java
+Ordering<Foo> ordering = Ordering.compound(</p>
+
+<pre><code>Arrays.asList(ComparatorA, comparatorB, comparatorC));
+</code></pre>
+
+<p>Collections.sort(list, ordering);
+```</p>
+
+<h2>其他特性</h2>
+
+<h3>过滤器：利用Collection2.filter()方法过滤集合中不符合条件的元素。譬如过滤一个List<Integer>里面小于10的元素：</h3>
+
+<p>```java
+Collection<Integer> filterCollection = Collections2.filter(list, new Predicate<Integer>(){</p>
+
+<pre><code>@Override
+public boolean apply(Integer input){
+    return input &gt;= 10;
+}
+</code></pre>
+
+<p>});
+```
+当然，你可以自己写一个循环来实现这个功能，但是这样不能保证之后小于10的元素不被放入集合。filter的强大之处在于返回的filterCollection仍然有排斥小于10的元素的特性，如果调filterCollection.add(9)就会得到一个IllegalArgumentException.</p>
+
+<h3>转换器：利用Collections.transform方法来转换集合中的元素。譬如把一个Set<Integer>里面所有元素都转化成带格式的String来产生新的Collection<String>:</h3>
+
+<p>```java
+Collection<String> formatCollection = Collection2.transform(set, new Function&lt;Integer, String>(){</p>
+
+<pre><code>@Override
+public String apply(Integer input){
+    return new DecimalFormat("#,###").format(input);
+}
+</code></pre>
+
+<p>})
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Gson的使用指南]]></title>
@@ -443,52 +769,6 @@ private void convertAudio(String s, String t){
 转换的时候老是报错，抛出EncoderException异常，我查了一下源码，注释掉Encoder.java的864行</p>
 
 <blockquote><blockquote><p>throw new EncoderException(line);</p></blockquote></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[mysql创建function失败]]></title>
-    <link href="http://ajia.github.com/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/"/>
-    <updated>2013-04-16T16:12:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/04/16/mysqlchuang-jian-functionshi-bai</id>
-    <content type="html"><![CDATA[<p>出错信息：</p>
-
-<p>创建function时</p>
-
-<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
-or READS SQL DATA in its declaration and binary logging is enabled 
-(you might want to use the less safe log_bin_trust_function_creators variable)
-</code></pre>
-
-<p>原因：</p>
-
-<p>这是我们开启了bin-log, 我们就必须指定我们的函数是否是
-1 DETERMINISTIC 不确定的
-2 NO SQL 没有SQl语句，当然也不会修改数据
-3 READS SQL DATA 只是读取数据，当然也不会修改数据
-4 MODIFIES SQL DATA 要修改数据
-5 CONTAINS SQL 包含了SQL语句</p>
-
-<p>其中在function里面，只有 DETERMINISTIC, NO SQL 和 READS SQL DATA 被支持。如果我们开启了 bin-log, 我们就必须为我们的function指定一个参数。</p>
-
-<p>解决办法</p>
-
-<pre><code>mysql&gt;show variables like '%func%';
-+---------------------------------+-------+  
-|Variable_name                  |Value|  
-+---------------------------------+-------+  
-|log_bin_trust_function_creators|OFF  |  
-+---------------------------------+-------+  
-
-set global log_bin_trust_function_creators=1;  
-
-mysql&gt;show variables like '%func%';  
-+---------------------------------+-------+  
-|Variable_name                  |Value|  
-+---------------------------------+-------+  
-|log_bin_trust_function_creators|ON   |  
-+---------------------------------+-------+  
-</code></pre>
 ]]></content>
   </entry>
   
