@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-06-18T15:37:04+08:00</updated>
+  <updated>2013-06-21T18:02:12+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -641,7 +641,846 @@ var value = number.value();
     <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/"/>
     <updated>2013-05-31T13:44:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<h2>从避免使用null开始</h2>
+
+<p>由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。举个例子来说，如果原先有getNickName方法可以传回String，调用它如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="k">if</span><span class="o">(</span><span class="n">nickName</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">nickName</span> <span class="o">=</span> <span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>如果客户端忘了检查null，那么就会直接显示null，在这个简单的例子中并不会怎么样，只是显示的结果令人困惑罢了，但如果后面的执行流程牵涉到至关重要的结果，程序快乐的继续执行下去，错误可能到最后才会呈现发生。</p>
+
+<p>那么可将getNickName修改使一定传回Optional<String>(com.google.common.base)实例，但绝对不要传回null。Optional的语义是它可能包含也可能不包括值，如果你呼叫直接呼叫它的get方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">).</span><span class="na">get</span><span class="o">();</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在Optional没有包含值的情况下，就会直接抛出IllegalStateException，这实现了速错的概念，开发者可以立即发现错误，并了解到必须作出些检查，可能的方式之一像是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">nick</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">String</span> <span class="n">nickname</span> <span class="o">=</span> <span class="n">nick</span><span class="o">.</span><span class="na">isPresent</span><span class="o">()?</span><span class="n">nick</span><span class="o">.</span><span class="na">get</span><span class="o">():</span><span class="s">&quot;CodeData User&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>不过这看来有点啰嗦，一个比较好的方式可以是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">).</span><span class="na">or</span><span class="o">(</span><span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在getNickName方法内部，原先如果是这样传回值：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">()?</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;nickname&quot;</span><span class="o">):</span><span class="kc">null</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>则可以使用Optional改为：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">()?</span><span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;nickname&quot;</span><span class="o">)):</span><span class="n">Optional</span><span class="o">.</span><span class="na">absent</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Optional.of方法用来建立Optional对象包含传入的值，而Optional.absent建立的对象不包含任何值，也就是如果你直接调用后者建立的Optional对象上get方法，就会抛出异常。在有值的情况下使用Optional.of,在原本会传回null的情况下使用Optional.absent。</p>
+
+<p>当然，过去许多程序库中使用了不少的null，这些程序无法说改就改，Guava提供了一些衔接程序库中null的方法。例如，如果原先的getNickName是你无法修改的，那么可以这么修改客户端：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">)).</span><span class="na">or</span><span class="o">(</span><span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Optional.fromNullable在传入值为null的情况下，传回的Optional实例调用其get方法，就会抛出错误。</p>
+
+<h3>使用Preconditions作参数的与判断</h3>
+
+<p>Guava中提供了一个工作参数检查的工具类-Preconditions,静态导入这个类，可以大大地简化代码中对于参数的预判断和处理。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.</span><span class="na">Preconditions</span><span class="o">.*;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在以前，我们需要判断一个参数不为空需要像下面这样写：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMethod</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">obj</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+</span><span class='line'>      <span class="k">throw</span> <span class="k">new</span> <span class="nf">NullPointerException</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">//... other operations</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>每次都要添加if语句来做判断，重复的工作会做好多次，使用Preconditions可以简化成下面这样</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMethod</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">Object</span> <span class="n">other</span> <span class="o">=</span> <span class="n">checkNotNull</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+</span><span class='line'>  <span class="c1">//... other operations</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>checkNotNull会检查参数是否为null，当为null的时候会抛出NullPointerException，否则直接返回参数。</p>
+
+<p>checkNotNull, checkArgument和checkState，都有三种形式的参数：
+* public static<T> T checkNotNull(T reference),只包含需要判断的对象，无其他多余的参数，抛出的异常不带有任何异常信息
+* public static<T> T checkNotNull(T reference, @Nullable Object errorMessage),只包含一个错误信息的额外参数，抛出的异常带有errorMessage.toString()的异常信息
+* public static<T> T checkNotNull(T reference, @Nullable String errorMessageTemplate, @Nullable Object…errorMessageArgs),这种是printf风格的错误信息，后面是变参，errorMessageTemplate可以使用一些占位符，例如可以这样写</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">checkArgument</span><span class="o">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;Argument was %s but expected nonnegative&quot;</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+</span><span class='line'><span class="n">checkArgument</span><span class="o">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">j</span><span class="o">,</span> <span class="s">&quot;Expected i&lt;j, but %s&gt;%s&quot;</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>捕获异常后可以获取自定义的详细错误信息，对于调试来说很有帮助，而且代码也很简洁。例如，</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'><span class="k">try</span><span class="o">{</span>
+</span><span class='line'>  <span class="n">checkNotNull</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="s">&quot;cannot be null&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行后可以获得自定义的异常信息“cannot be null”</p>
+
+<p>Preconditions里面的方法还有下面几个</p>
+
+<ul>
+<li>checkArgument(boolean)  检查boolean是否为真，用作方法中检查参数</li>
+<li>checkNotNull(T)检查value不为null，直接返回value</li>
+<li>checkState(boolean)检查对象的一些状态，不依赖方法参数。例如，Iterator可以用来next是否在remove之前被调用</li>
+<li>checkElementIndex(int index, int size)检查index是否为在一个长度为size的list、string或array合法的范围。index的范围区间是[0,size)(包含0不包含size)。无需直接传入list、string或array，只需传入大小。 返回index</li>
+<li>checkPositionIndex(int index, int size)检查位置index是否为在一个长度为size的list、string或array合法的范围。index的范围区间是[0, size)(包含0不包含size). 无需直接传入list, string或array, 只需传入大小</li>
+<li>checkPositionIndexes(int start, int end, int size),检查[start, end)是一个长度为size的list, string或array合法的范围子集.伴随着错误信息.</li>
+</ul>
+
+
+<p>Guava的preconditions有这样几个有点：
+* 在静态导入后，方法很明确无歧义，checkNotNull可以清楚地告诉你他是干什么的，它会抛出怎样的异常
+* checkNotNull在验证通过后直接返回，可以这样方便地写代码：this.field = checkNotNull(field).
+* 简单而又强大的可变参数printf风格的自定义错误信息。</p>
+
+<p>建议将preconditions放置在单独的行上，这样可以在调试的时候清楚地指明哪个precondition出现错误。另外，提供有帮助的错误信息也非常有用。</p>
+
+<h2>Ordering简介</h2>
+
+<p>Ordering是Guava最常用的Comparator类，可以用来操作、扩展和使用comparators。自定义比较器，进行排序判断，进行排序，获取最大值最小值，获取最大最小的前几个值等方法。</p>
+
+<p>几个常用的static方法，提供了三种常用的比较器</p>
+
+<ul>
+<li>natural()     使用Comparable类型的自然排序，例如，整数从小到大，字符串是按字典顺序</li>
+<li>usingToString()       使用toString()返回的字符串按字典顺序进行排序</li>
+</ul>
+
+
+<p>使用Ordering.from(Comparator)从一个已经存在的Comparator来构建Ordering实例</p>
+
+<p>自定义Ordering</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.collect.Ordering</span><span class="o">;</span>
+</span><span class='line'> <span class="kn">import</span> <span class="nn">com.google.common.primitives.Ints</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+</span><span class='line'>     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>         <span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">byLengthOrdering</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class='line'>             <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">String</span> <span class="n">left</span><span class="o">,</span> <span class="n">String</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                 <span class="k">return</span> <span class="n">Ints</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">left</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">right</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span><span class='line'>             <span class="o">}</span>
+</span><span class='line'>         <span class="o">};</span>
+</span><span class='line'>         <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;abc&quot;</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;bcd&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">reverse</span><span class="o">().</span><span class="na">isOrdered</span><span class="o">(</span><span class="n">strList</span><span class="o">));</span>
+</span><span class='line'>         <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strList1</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;ab&quot;</span><span class="o">,</span> <span class="s">&quot;bcd&quot;</span><span class="o">);</span>
+</span><span class='line'>         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">isOrdered</span><span class="o">(</span><span class="n">strList1</span><span class="o">));</span>
+</span><span class='line'>     <span class="o">}</span>
+</span><span class='line'> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>操作方法</p>
+
+<p>reverse()方法，获取了Ordering的反排序。使用自定义的Ordering判断collection是否符合自定义顺序。</p>
+
+<ul>
+<li>reverse()     返回与当前Ordering相反的排序</li>
+<li>nullsFirst()      返回一个将null放在non-null元素之前的Ordering,其他的和原始的Ordering一样</li>
+<li>compound(Comparator)返回一个使用Comparator的Ordering, Comparator作为第二排序元素，例如对bug列表进行排序，先根据bug的级别，再根据优先级进行排序。</li>
+<li>lexicographical()    Returns an Ordering that orders iterables lexicographically by their elements.</li>
+<li>onResultOf(Function)将function应用在各个元素上之后，再使用原始ordering进行排序。</li>
+</ul>
+
+
+<p>假如我们希望按sortedBy字段进行排序,</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Foo</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">sortedBy</span><span class="o">;</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">notSortedBy</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">ordering</span> <span class="o">=</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsFirst</span><span class="o">().</span><span class="na">onResultOf</span><span class="o">(</span><span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Foo</span> <span class="n">foo</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">foo</span><span class="o">.</span><span class="na">sortedBy</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还有一些很有用的方法
+* greatestOf(Iterable iterable, int k)      Returns the k greatest elements of the specified iterable, according to this ordering, in order from greatest to least. Not necessarily stable.
+* isOrdered(Iterable)       Tests if the specified Iterable is in nondecreasing order according to this ordering.
+* sortedCopy(Iterable)      Returns a sorted copy of the specified elements as a List.
+* min(E, E)     Returns the minimum of its two arguments according to this ordering. If the values compare as equal, the first argument is returned.
+* min(E, E, E, E&#8230;)        Returns the minimum of its arguments according to this ordering. If there are multiple least values, the first is returned.
+* min(Iterable)     Returns the minimum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.</p>
+
+<h3>复写Object的常用方法</h3>
+
+<p>在Java中Object类是所有类的父类，其中有几个需要override的方法比如equals,hashCode和toString等方法。每次写这几个方法都要做很多重复性的判断，很多类库提供了复写这几个方法的工具类，Guava也提供了类似的方式。下面我们来看看Guava中这几个方法简单使用。</p>
+
+<h3>equals</h3>
+
+<p>equals是一个经常需要覆写的方法，可以查看Object的equals方法注释，对equals有几个性质的要求：
+* 1.自反性reflexive: 任何非空引用x,x.equals(x)返回为true；
+* 2.对称性symmetric: 任何非空引用x和y,x.equals(y)返回true当且仅当y.equals(x)返回true；
+* 传递性transitive：任何非空引用x和y，如果x.equals(y)返回true，并且y.equals(z)返回true，那么x.equals(z)返回true；
+* 一致性consistent：两个非空引用x和y，x.equals(y)的多次调用应该保持一致的结果，（前提条件是在多次比较之前没有修改x和y用于比较的相关信息）；
+* 对于所有非null的值x，x.equals(null)都要返回false</p>
+
+<p>当我们要覆写的类中某些值可能为null的时候，就需要对null做很多判断和分支处理。使用Guava的Object.equal方法可以避免这个问题，使得equals的方法的覆写变得更加容易，而且可读性强，简洁优雅。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Test</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">equalTest</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Test</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">equalPersonTest</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">),</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">)));</span>
+</span><span class='line'>        <span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">person</span><span class="o">,</span><span class="n">person</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行输出：</p>
+
+<pre><code>true
+false
+false
+true
+false
+true
+</code></pre>
+
+<h3>hashCode</h3>
+
+<p>当覆写(override)了equals()方法之后，必须也覆写hashCode()方法，反之亦然。这个方法返回一个整型值，如果两个对象被equals()方法判断为相等，那么它们就应该拥有同样的hash code。Object类的hashCode()方法为不同的对象返回不同的值，Object类的hashCode值表示的是对象的地址。</p>
+
+<p>hashCode的一般性契约（需要满足的条件）如下：
+* 1.在Java应用的一次执行过程中，如果对象用于equals比较的信息没有被修改，那么同一个对象多次调用hashCode()方法应该返回同一个整型值。应用的多次执行中，这个值不需要保持一致，即每次执行都是保持着各自不同的值。
+* 2.如果equals()判断两个对象相等，那么它们的hashCode()方法应该返回同样的值。
+* 3.并没有强制要求如果equals()判断两个对象不相等，那么它们的hashCode()方法就应该返回不同的值。即，两个对象用equals()方法比较返回false，它们的hashCode可以相同也可以不同。但是，应该意识到，为两个不相等的对象产生两个不同的hashCode可以改善哈希表的性能。</p>
+
+<p>写一个hashCode本来也不是很难，但是Guava提供给我们一个更加简单的方法&#8211;Objects.hashCode(Object …)，这是个可变参数的方法，参数列表可以是任意数量，所以可以像这样使用Object.hashCode(field1, field2, … ,fieldn)。非常方便和简洁。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Test</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">hashcodeTest</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span><span class="s">&quot;b&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;b&quot;</span><span class="o">,</span><span class="s">&quot;a&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span><span class="s">&quot;b&quot;</span><span class="o">,</span><span class="s">&quot;c&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>toString()</h3>
+
+<p>因为每个类都直接或间接地继承自Object,因此每个类都有toString()方法。这个方法是用得最多的，覆写得最多，一个好的toString方法对于调试来说是非常重要的，但是写起来确实很不爽。Guava也提供了toString()方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Test</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">toStringTest</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;x&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;x&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">age</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="c1">//============输出===============</span>
+</span><span class='line'><span class="n">ObjectTest</span><span class="o">{</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">}</span>
+</span><span class='line'><span class="n">Person</span><span class="o">{</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">}</span>
+</span><span class='line'><span class="n">Person</span><span class="o">{</span><span class="n">name</span><span class="o">=</span><span class="n">peida</span><span class="o">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">23</span><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>compare/compareTo</h3>
+
+<p>compareTo(Object o)方法是java.lang.Comparable<T>接口中的方法，当需要对某个类的对象进行排序时，该类需要实现Comparable<T>接口的，必须重写public int compareTo(T o)方法。java规定，若a,b是两个对象，当a.compareTo(b)>0时，则a大于b，a.compareTo(b)&lt;0时，a&lt;b，即规定对象的比较大小的规则；</p>
+
+<p>compare（Object o1, Object o2）方法是java.util.Comparator<T>接口的方法，compare方法内主要靠定义的compareTo规定的对象大小关系规则来确定对象的大小。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
+</span><span class='line'><span class="nd">@Test</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">compareTest</span><span class="o">(){</span>
+</span><span class='line'>        <span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">Person</span> <span class="n">person1</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">Person</span> <span class="n">person2</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">Person</span> <span class="n">person3</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">26</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">Person</span> <span class="n">person4</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">26</span><span class="o">);</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person1</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person2</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person3</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person4</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person4</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Person</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">cmpName</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">cmpName</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">cmpName</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="o">(</span><span class="n">age</span><span class="o">&gt;</span><span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">age</span><span class="o">&lt;</span><span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>：</p>
+
+<p>上面的compareTo方法，代码看上去并不是十分优雅，如果实体属性很多，数据类型丰富，代码可读性将会很差。在guava里, 对所有原始类型都提供了比较的工具函数来避免这个麻烦. 比如对Integer, 可以用Ints.compare()。利用guava的原始类型的compare，我们对上面的方法做一个简化，实现compare方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">PersonComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Person</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Person</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p2</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">Ints</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">p1</span><span class="o">.</span><span class="na">age</span><span class="o">,</span> <span class="n">p2</span><span class="o">.</span><span class="na">age</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面的代码看上去简单了一点，但还是不那么优雅简单，对此, guava有一个相当聪明的解决办法, 提供了ComparisonChain:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Student</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">Student</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span><span class="kt">int</span> <span class="n">score</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">score</span><span class="o">=</span><span class="n">score</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Student</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">score</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsLast</span><span class="o">())</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">result</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">StudentComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">compare</span><span class="o">(</span><span class="n">Student</span> <span class="n">s1</span><span class="o">,</span> <span class="n">Student</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">age</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">score</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">result</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ComparisonChain是一个lazy的比较过程， 当比较结果为0的时候， 即相等的时候， 会继续比较下去， 出现非0的情况， 就会忽略后面的比较。ComparisonChain实现的compare和compareTo在代码可读性和性能上都有很大的提高。</p>
+
+<p>下面是个综合应用的实例：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.collect.ComparisonChain</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.collect.Ordering</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
+</span><span class='line'><span class="nd">@Test</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">StudentTest</span><span class="o">(){</span>
+</span><span class='line'>        <span class="n">Student</span> <span class="n">student</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">,</span><span class="mi">80</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">Student</span> <span class="n">student1</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">,</span><span class="mi">36</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">Student</span> <span class="n">student2</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;jerry&quot;</span><span class="o">,</span><span class="mi">24</span><span class="o">,</span><span class="mi">90</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">Student</span> <span class="n">student3</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">,</span><span class="mi">80</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========equals===========&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">student2</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">student1</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">student3</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========hashCode===========&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student1</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student3</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+</span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========toString===========&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student1</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student3</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========compareTo===========&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student1</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student2</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student1</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Student</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">Student</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span><span class="kt">int</span> <span class="n">score</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">score</span><span class="o">=</span><span class="n">score</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Student</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">Student</span> <span class="n">that</span> <span class="o">=</span> <span class="o">(</span><span class="n">Student</span><span class="o">)</span> <span class="n">obj</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">that</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">&amp;&amp;</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">that</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">&amp;&amp;</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">score</span><span class="o">,</span> <span class="n">that</span><span class="o">.</span><span class="na">score</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">addValue</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">addValue</span><span class="o">(</span><span class="n">age</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">addValue</span><span class="o">(</span><span class="n">score</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Student</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">score</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsLast</span><span class="o">())</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">result</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">StudentComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">compare</span><span class="o">(</span><span class="n">Student</span> <span class="n">s1</span><span class="o">,</span> <span class="n">Student</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">age</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">score</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">result</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="c1">//=============运行输出===========================</span>
+</span><span class='line'><span class="o">==========</span><span class="n">equals</span><span class="o">===========</span>
+</span><span class='line'><span class="kc">false</span>
+</span><span class='line'><span class="kc">false</span>
+</span><span class='line'><span class="kc">true</span>
+</span><span class='line'><span class="o">==========</span><span class="n">hashCode</span><span class="o">===========</span>
+</span><span class='line'><span class="o">-</span><span class="mi">991998617</span>
+</span><span class='line'><span class="o">-</span><span class="mi">991998617</span>
+</span><span class='line'><span class="o">-</span><span class="mi">1163491205</span>
+</span><span class='line'><span class="o">==========</span><span class="n">toString</span><span class="o">===========</span>
+</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">peida</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">80</span><span class="o">}</span>
+</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">aida</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">36</span><span class="o">}</span>
+</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">jerry</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">90</span><span class="o">}</span>
+</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">peida</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">80</span><span class="o">}</span>
+</span><span class='line'><span class="o">==========</span><span class="n">compareTo</span><span class="o">===========</span>
+</span><span class='line'><span class="o">-</span><span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
 ]]></content>
   </entry>
   

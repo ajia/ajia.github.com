@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-06-18T15:37:04+08:00</updated>
+  <updated>2013-06-21T18:02:12+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -335,6 +335,623 @@ public String apply(Integer input){
 </code></pre>
 
 <p>})
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Guava的使用指南之Basic Utilities]]></title>
+    <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/"/>
+    <updated>2013-05-31T13:44:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities</id>
+    <content type="html"><![CDATA[<h2>从避免使用null开始</h2>
+
+<p>由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。举个例子来说，如果原先有getNickName方法可以传回String，调用它如下：</p>
+
+<p>```java
+String nickName = getNickName("Duke");
+if(nickName == null){</p>
+
+<pre><code>nickName = "Ajia's User";
+</code></pre>
+
+<p>}
+out.println(nickName);
+```</p>
+
+<!-- more -->
+
+
+<p>如果客户端忘了检查null，那么就会直接显示null，在这个简单的例子中并不会怎么样，只是显示的结果令人困惑罢了，但如果后面的执行流程牵涉到至关重要的结果，程序快乐的继续执行下去，错误可能到最后才会呈现发生。</p>
+
+<p>那么可将getNickName修改使一定传回Optional<String>(com.google.common.base)实例，但绝对不要传回null。Optional的语义是它可能包含也可能不包括值，如果你呼叫直接呼叫它的get方法：</p>
+
+<p><code>java
+String nickName = getNickName("Duke").get();
+out.println(nickName);
+</code></p>
+
+<p>在Optional没有包含值的情况下，就会直接抛出IllegalStateException，这实现了速错的概念，开发者可以立即发现错误，并了解到必须作出些检查，可能的方式之一像是：</p>
+
+<p><code>java
+Optional&lt;String&gt; nick = getNickName("Duke");
+String nickname = nick.isPresent()?nick.get():"CodeData User";
+out.println(nickName);
+</code></p>
+
+<p>不过这看来有点啰嗦，一个比较好的方式可以是：</p>
+
+<p><code>java
+String nickName = getNickName("Duke").or("Ajia's User");
+out.println(nickName);
+</code></p>
+
+<p>在getNickName方法内部，原先如果是这样传回值：</p>
+
+<p><code>java
+return rs.next()?rs.getString("nickname"):null;
+</code></p>
+
+<p>则可以使用Optional改为：</p>
+
+<p><code>java
+return rs.next()?Optional.of(rs.getString("nickname")):Optional.absent();
+</code></p>
+
+<p>Optional.of方法用来建立Optional对象包含传入的值，而Optional.absent建立的对象不包含任何值，也就是如果你直接调用后者建立的Optional对象上get方法，就会抛出异常。在有值的情况下使用Optional.of,在原本会传回null的情况下使用Optional.absent。</p>
+
+<p>当然，过去许多程序库中使用了不少的null，这些程序无法说改就改，Guava提供了一些衔接程序库中null的方法。例如，如果原先的getNickName是你无法修改的，那么可以这么修改客户端：</p>
+
+<p><code>java
+String nickName = Optional.fromNullable(getNickName("Duke")).or("Ajia's User");
+out.println(nickName);
+</code></p>
+
+<p>Optional.fromNullable在传入值为null的情况下，传回的Optional实例调用其get方法，就会抛出错误。</p>
+
+<h3>使用Preconditions作参数的与判断</h3>
+
+<p>Guava中提供了一个工作参数检查的工具类-Preconditions,静态导入这个类，可以大大地简化代码中对于参数的预判断和处理。</p>
+
+<p><code>java
+import static com.google.common.base.Preconditions.*;
+</code></p>
+
+<p>在以前，我们需要判断一个参数不为空需要像下面这样写：</p>
+
+<p>```java
+public void testMethod(Object obj){</p>
+
+<pre><code>if(obj == null){
+    throw new NullPointerException();
+}
+//... other operations
+</code></pre>
+
+<p>}
+```</p>
+
+<p>每次都要添加if语句来做判断，重复的工作会做好多次，使用Preconditions可以简化成下面这样</p>
+
+<p>```java
+public void testMethod(Object obj){</p>
+
+<pre><code>Object other = checkNotNull(obj);
+//... other operations
+</code></pre>
+
+<p>}
+```</p>
+
+<p>checkNotNull会检查参数是否为null，当为null的时候会抛出NullPointerException，否则直接返回参数。</p>
+
+<p>checkNotNull, checkArgument和checkState，都有三种形式的参数：
+* public static<T> T checkNotNull(T reference),只包含需要判断的对象，无其他多余的参数，抛出的异常不带有任何异常信息
+* public static<T> T checkNotNull(T reference, @Nullable Object errorMessage),只包含一个错误信息的额外参数，抛出的异常带有errorMessage.toString()的异常信息
+* public static<T> T checkNotNull(T reference, @Nullable String errorMessageTemplate, @Nullable Object…errorMessageArgs),这种是printf风格的错误信息，后面是变参，errorMessageTemplate可以使用一些占位符，例如可以这样写</p>
+
+<p><code>java
+checkArgument(i&gt;=0, "Argument was %s but expected nonnegative", i);
+checkArgument(i&lt;j, "Expected i&lt;j, but %s&gt;%s", i, j);
+</code></p>
+
+<p>捕获异常后可以获取自定义的详细错误信息，对于调试来说很有帮助，而且代码也很简洁。例如，</p>
+
+<p>```java
+Object obj = null;
+try{</p>
+
+<pre><code>checkNotNull(obj, "cannot be null");
+</code></pre>
+
+<p>}catch(Exception e){</p>
+
+<pre><code>System.out.println(e.getMessage());
+</code></pre>
+
+<p>}
+```</p>
+
+<p>运行后可以获得自定义的异常信息“cannot be null”</p>
+
+<p>Preconditions里面的方法还有下面几个</p>
+
+<ul>
+<li>checkArgument(boolean)  检查boolean是否为真，用作方法中检查参数</li>
+<li>checkNotNull(T)检查value不为null，直接返回value</li>
+<li>checkState(boolean)检查对象的一些状态，不依赖方法参数。例如，Iterator可以用来next是否在remove之前被调用</li>
+<li>checkElementIndex(int index, int size)检查index是否为在一个长度为size的list、string或array合法的范围。index的范围区间是[0,size)(包含0不包含size)。无需直接传入list、string或array，只需传入大小。 返回index</li>
+<li>checkPositionIndex(int index, int size)检查位置index是否为在一个长度为size的list、string或array合法的范围。index的范围区间是[0, size)(包含0不包含size). 无需直接传入list, string或array, 只需传入大小</li>
+<li>checkPositionIndexes(int start, int end, int size),检查[start, end)是一个长度为size的list, string或array合法的范围子集.伴随着错误信息.</li>
+</ul>
+
+
+<p>Guava的preconditions有这样几个有点：
+* 在静态导入后，方法很明确无歧义，checkNotNull可以清楚地告诉你他是干什么的，它会抛出怎样的异常
+* checkNotNull在验证通过后直接返回，可以这样方便地写代码：this.field = checkNotNull(field).
+* 简单而又强大的可变参数printf风格的自定义错误信息。</p>
+
+<p>建议将preconditions放置在单独的行上，这样可以在调试的时候清楚地指明哪个precondition出现错误。另外，提供有帮助的错误信息也非常有用。</p>
+
+<h2>Ordering简介</h2>
+
+<p>Ordering是Guava最常用的Comparator类，可以用来操作、扩展和使用comparators。自定义比较器，进行排序判断，进行排序，获取最大值最小值，获取最大最小的前几个值等方法。</p>
+
+<p>几个常用的static方法，提供了三种常用的比较器</p>
+
+<ul>
+<li>natural()     使用Comparable类型的自然排序，例如，整数从小到大，字符串是按字典顺序</li>
+<li>usingToString()       使用toString()返回的字符串按字典顺序进行排序</li>
+</ul>
+
+
+<p>使用Ordering.from(Comparator)从一个已经存在的Comparator来构建Ordering实例</p>
+
+<p>自定义Ordering</p>
+
+<p>```java
+import java.util.Arrays;
+import java.util.List;
+import com.google.common.collect.Ordering;
+ import com.google.common.primitives.Ints;
+public class Demo {</p>
+
+<pre><code> public static void main(String[] args) {
+     Ordering&lt;String&gt; byLengthOrdering = new Ordering&lt;String&gt;() {
+         public int compare(String left, String right) {
+             return Ints.compare(left.length(), right.length());
+         }
+     };
+     List&lt;String&gt; strList = Arrays.asList("abc", "a", "bcd");
+</code></pre>
+
+<p>System.out.println(byLengthOrdering.reverse().isOrdered(strList));</p>
+
+<pre><code>     List&lt;String&gt; strList1 = Arrays.asList("a", "ab", "bcd");
+     System.out.println(byLengthOrdering.isOrdered(strList1));
+ }
+</code></pre>
+
+<p> }
+```</p>
+
+<p>操作方法</p>
+
+<p>reverse()方法，获取了Ordering的反排序。使用自定义的Ordering判断collection是否符合自定义顺序。</p>
+
+<ul>
+<li>reverse()     返回与当前Ordering相反的排序</li>
+<li>nullsFirst()      返回一个将null放在non-null元素之前的Ordering,其他的和原始的Ordering一样</li>
+<li>compound(Comparator)返回一个使用Comparator的Ordering, Comparator作为第二排序元素，例如对bug列表进行排序，先根据bug的级别，再根据优先级进行排序。</li>
+<li>lexicographical()    Returns an Ordering that orders iterables lexicographically by their elements.</li>
+<li>onResultOf(Function)将function应用在各个元素上之后，再使用原始ordering进行排序。</li>
+</ul>
+
+
+<p>假如我们希望按sortedBy字段进行排序,
+```java
+class Foo {
+  @Nullable String sortedBy;
+  int notSortedBy;
+}
+Ordering<Foo> ordering = Ordering.natural().nullsFirst().onResultOf(new Function&lt;Foo, String>() {</p>
+
+<pre><code>public String apply(Foo foo) {  
+  return foo.sortedBy;  
+}  
+</code></pre>
+
+<p>  });<br/>
+```</p>
+
+<p>还有一些很有用的方法
+* greatestOf(Iterable iterable, int k)      Returns the k greatest elements of the specified iterable, according to this ordering, in order from greatest to least. Not necessarily stable.
+* isOrdered(Iterable)       Tests if the specified Iterable is in nondecreasing order according to this ordering.
+* sortedCopy(Iterable)      Returns a sorted copy of the specified elements as a List.
+* min(E, E)     Returns the minimum of its two arguments according to this ordering. If the values compare as equal, the first argument is returned.
+* min(E, E, E, E...)        Returns the minimum of its arguments according to this ordering. If there are multiple least values, the first is returned.
+* min(Iterable)     Returns the minimum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.</p>
+
+<h3>复写Object的常用方法</h3>
+
+<p>在Java中Object类是所有类的父类，其中有几个需要override的方法比如equals,hashCode和toString等方法。每次写这几个方法都要做很多重复性的判断，很多类库提供了复写这几个方法的工具类，Guava也提供了类似的方式。下面我们来看看Guava中这几个方法简单使用。</p>
+
+<h3>equals</h3>
+
+<p>equals是一个经常需要覆写的方法，可以查看Object的equals方法注释，对equals有几个性质的要求：
+* 1.自反性reflexive: 任何非空引用x,x.equals(x)返回为true；
+* 2.对称性symmetric: 任何非空引用x和y,x.equals(y)返回true当且仅当y.equals(x)返回true；
+* 传递性transitive：任何非空引用x和y，如果x.equals(y)返回true，并且y.equals(z)返回true，那么x.equals(z)返回true；
+* 一致性consistent：两个非空引用x和y，x.equals(y)的多次调用应该保持一致的结果，（前提条件是在多次比较之前没有修改x和y用于比较的相关信息）；
+* 对于所有非null的值x，x.equals(null)都要返回false</p>
+
+<p>当我们要覆写的类中某些值可能为null的时候，就需要对null做很多判断和分支处理。使用Guava的Object.equal方法可以避免这个问题，使得equals的方法的覆写变得更加容易，而且可读性强，简洁优雅。</p>
+
+<p>```java
+import org.junit.Test;
+import com.google.common.base.Objects;
+public class ObjectTest {</p>
+
+<pre><code>@Test
+public void equalTest() {
+</code></pre>
+
+<p>System.out.println(Objects.equal("a", "a"));
+System.out.println(Objects.equal(null, "a"));
+System.out.println(Objects.equal("a", null));
+System.out.println(Objects.equal(null, null));</p>
+
+<pre><code>}
+@Test
+public void equalPersonTest() {
+</code></pre>
+
+<p> System.out.println(Objects.equal(new Person("peida",23), new Person("peida",23)));</p>
+
+<pre><code>    Person person=new Person("peida",23);
+</code></pre>
+
+<p>System.out.println(Objects.equal(person,person));</p>
+
+<pre><code>}
+</code></pre>
+
+<p>}
+class Person {</p>
+
+<pre><code>public String name;
+public int age;
+Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>运行输出：</p>
+
+<pre><code>true
+false
+false
+true
+false
+true
+</code></pre>
+
+<h3>hashCode</h3>
+
+<p>当覆写(override)了equals()方法之后，必须也覆写hashCode()方法，反之亦然。这个方法返回一个整型值，如果两个对象被equals()方法判断为相等，那么它们就应该拥有同样的hash code。Object类的hashCode()方法为不同的对象返回不同的值，Object类的hashCode值表示的是对象的地址。</p>
+
+<p>hashCode的一般性契约（需要满足的条件）如下：
+* 1.在Java应用的一次执行过程中，如果对象用于equals比较的信息没有被修改，那么同一个对象多次调用hashCode()方法应该返回同一个整型值。应用的多次执行中，这个值不需要保持一致，即每次执行都是保持着各自不同的值。
+* 2.如果equals()判断两个对象相等，那么它们的hashCode()方法应该返回同样的值。
+* 3.并没有强制要求如果equals()判断两个对象不相等，那么它们的hashCode()方法就应该返回不同的值。即，两个对象用equals()方法比较返回false，它们的hashCode可以相同也可以不同。但是，应该意识到，为两个不相等的对象产生两个不同的hashCode可以改善哈希表的性能。</p>
+
+<p>写一个hashCode本来也不是很难，但是Guava提供给我们一个更加简单的方法--Objects.hashCode(Object …)，这是个可变参数的方法，参数列表可以是任意数量，所以可以像这样使用Object.hashCode(field1, field2, … ,fieldn)。非常方便和简洁。</p>
+
+<p>```java
+import org.junit.Test;
+import com.google.common.base.Objects;
+public class ObjectTest {</p>
+
+<pre><code>@Test
+public void hashcodeTest() {
+</code></pre>
+
+<p>System.out.println(Objects.hashCode("a"));
+System.out.println(Objects.hashCode("a"));
+System.out.println(Objects.hashCode("a","b"));
+System.out.println(Objects.hashCode("b","a"));
+System.out.println(Objects.hashCode("a","b","c"));
+Person person=new Person("peida",23);
+System.out.println(Objects.hashCode(person));
+System.out.println(Objects.hashCode(person));</p>
+
+<pre><code>}
+</code></pre>
+
+<p>}
+class Person {</p>
+
+<pre><code>public String name;
+public int age;
+Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<h3>toString()</h3>
+
+<p>因为每个类都直接或间接地继承自Object,因此每个类都有toString()方法。这个方法是用得最多的，覆写得最多，一个好的toString方法对于调试来说是非常重要的，但是写起来确实很不爽。Guava也提供了toString()方法。</p>
+
+<p>```java
+import org.junit.Test;
+import com.google.common.base.Objects;
+public class ObjectTest {</p>
+
+<pre><code>@Test
+public void toStringTest() {
+</code></pre>
+
+<p>System.out.println(Objects.toStringHelper(this).add("x", 1).toString());
+System.out.println(Objects.toStringHelper(Person.class).add("x", 1).toString());</p>
+
+<pre><code>    Person person=new Person("peida",23);
+    String result = Objects.toStringHelper(Person.class)
+    .add("name", person.name)
+    .add("age", person.age).toString();      
+    System.out.print(result);
+}
+</code></pre>
+
+<p>}
+class Person {</p>
+
+<pre><code>public String name;
+public int age;
+Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+}
+</code></pre>
+
+<p>}
+//============输出===============
+ObjectTest{x=1}
+Person{x=1}
+Person{name=peida, age=23}
+```</p>
+
+<h3>compare/compareTo</h3>
+
+<p>compareTo(Object o)方法是java.lang.Comparable<T>接口中的方法，当需要对某个类的对象进行排序时，该类需要实现Comparable<T>接口的，必须重写public int compareTo(T o)方法。java规定，若a,b是两个对象，当a.compareTo(b)>0时，则a大于b，a.compareTo(b)&lt;0时，a&lt;b，即规定对象的比较大小的规则；</p>
+
+<p>compare（Object o1, Object o2）方法是java.util.Comparator<T>接口的方法，compare方法内主要靠定义的compareTo规定的对象大小关系规则来确定对象的大小。</p>
+
+<p>```java
+import org.junit.Test;
+public class ObjectTest {
+@Test</p>
+
+<pre><code>public void compareTest(){
+    Person person=new Person("peida",23);
+    Person person1=new Person("aida",25);
+    Person person2=new Person("aida",25);
+    Person person3=new Person("aida",26);
+    Person person4=new Person("peida",26);
+</code></pre>
+
+<p>System.out.println(person.compareTo(person1));
+System.out.println(person1.compareTo(person2));
+System.out.println(person1.compareTo(person3));
+System.out.println(person.compareTo(person4));
+System.out.println(person4.compareTo(person));</p>
+
+<pre><code>}
+</code></pre>
+
+<p>}
+class Person implements Comparable<Person>{</p>
+
+<pre><code>public String name;
+public int age;
+Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+}
+@Override
+public int compareTo(Person other) {
+    int cmpName = name.compareTo(other.name);
+    if (cmpName != 0) {
+        return cmpName;
+    }
+    if(age&gt;other.age){
+        return 1;
+    }
+    else if(age&lt;other.age){
+        return -1;
+    }
+    return 0;  
+}
+</code></pre>
+
+<p>}
+```：</p>
+
+<p>上面的compareTo方法，代码看上去并不是十分优雅，如果实体属性很多，数据类型丰富，代码可读性将会很差。在guava里, 对所有原始类型都提供了比较的工具函数来避免这个麻烦. 比如对Integer, 可以用Ints.compare()。利用guava的原始类型的compare，我们对上面的方法做一个简化，实现compare方法：</p>
+
+<p>```java
+class PersonComparator implements Comparator<Person> {</p>
+
+<pre><code>@Override 
+public int compare(Person p1, Person p2) {  
+  int result = p1.name.compareTo(p2.name);  
+  if (result != 0) {  
+    return result;  
+  }  
+  return Ints.compare(p1.age, p2.age);  
+}  
+</code></pre>
+
+<p>  }
+```
+上面的代码看上去简单了一点，但还是不那么优雅简单，对此, guava有一个相当聪明的解决办法, 提供了ComparisonChain:</p>
+
+<p>```java
+class Student implements Comparable<Student>{</p>
+
+<pre><code>public String name;
+public int age;
+public int score;    
+Student(String name, int age,int score) {
+    this.name = name;
+    this.age = age;
+    this.score=score;
+}
+@Override
+public int compareTo(Student other) {
+    return ComparisonChain.start()
+    .compare(name, other.name)
+    .compare(age, other.age)
+    .compare(score, other.score, Ordering.natural().nullsLast())
+    .result();
+}
+</code></pre>
+
+<p>}
+class StudentComparator implements Comparator<Student> {</p>
+
+<pre><code>@Override public int compare(Student s1, Student s2) {  
+  return ComparisonChain.start()  
+      .compare(s1.name, s2.name)  
+      .compare(s1.age, s2.age)  
+      .compare(s1.score, s2.score)  
+      .result();  
+}  
+</code></pre>
+
+<p>  }<br/>
+}
+```</p>
+
+<p>ComparisonChain是一个lazy的比较过程， 当比较结果为0的时候， 即相等的时候， 会继续比较下去， 出现非0的情况， 就会忽略后面的比较。ComparisonChain实现的compare和compareTo在代码可读性和性能上都有很大的提高。</p>
+
+<p>下面是个综合应用的实例：</p>
+
+<p>```java
+import java.util.Comparator;
+import org.junit.Test;
+import com.google.common.base.Objects;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Ordering;
+public class ObjectTest {
+@Test
+public void StudentTest(){</p>
+
+<pre><code>    Student student=new Student("peida",23,80);
+    Student student1=new Student("aida",23,36);
+    Student student2=new Student("jerry",24,90);
+    Student student3=new Student("peida",23,80);
+    System.out.println("==========equals===========");
+    System.out.println(student.equals(student2));
+    System.out.println(student.equals(student1));
+    System.out.println(student.equals(student3));
+    System.out.println("==========hashCode===========");
+    System.out.println(student.hashCode());
+    System.out.println(student1.hashCode());
+    System.out.println(student3.hashCode());
+    System.out.println(student2.hashCode());
+    System.out.println("==========toString===========");
+    System.out.println(student.toString());
+    System.out.println(student1.toString());
+    System.out.println(student2.toString());
+    System.out.println(student3.toString());
+    System.out.println("==========compareTo===========");
+    System.out.println(student.compareTo(student1));
+    System.out.println(student.compareTo(student2));
+    System.out.println(student2.compareTo(student1));
+    System.out.println(student2.compareTo(student));
+}
+</code></pre>
+
+<p>}
+class Student implements Comparable<Student>{</p>
+
+<pre><code>public String name;
+public int age;
+public int score;
+Student(String name, int age,int score) {
+    this.name = name;
+    this.age = age;
+    this.score=score;
+}
+@Override
+public int hashCode() {
+    return Objects.hashCode(name, age);
+}
+@Override
+public boolean equals(Object obj) {
+    if (obj instanceof Student) {
+        Student that = (Student) obj;
+        return Objects.equal(name, that.name)
+                &amp;&amp; Objects.equal(age, that.age)
+                &amp;&amp; Objects.equal(score, that.score);
+    }
+    return false;
+}
+@Override
+public String toString() {
+    return Objects.toStringHelper(this)
+            .addValue(name)
+            .addValue(age)
+            .addValue(score)
+            .toString();
+}
+@Override
+public int compareTo(Student other) {
+    return ComparisonChain.start()
+    .compare(name, other.name)
+    .compare(age, other.age)
+    .compare(score, other.score, Ordering.natural().nullsLast())
+    .result();
+}
+</code></pre>
+
+<p>}
+class StudentComparator implements Comparator<Student> {</p>
+
+<pre><code>@Override public int compare(Student s1, Student s2) {  
+  return ComparisonChain.start()  
+      .compare(s1.name, s2.name)  
+      .compare(s1.age, s2.age)  
+      .compare(s1.score, s2.score)  
+      .result();  
+}  
+</code></pre>
+
+<p>  }<br/>
+//=============运行输出===========================
+==========equals===========
+false
+false
+true
+==========hashCode===========
+-991998617
+-991998617
+-1163491205
+==========toString===========
+Student{peida, 23, 80}
+Student{aida, 23, 36}
+Student{jerry, 24, 90}
+Student{peida, 23, 80}
+==========compareTo===========
+-1
 ```</p>
 ]]></content>
   </entry>
@@ -714,61 +1331,6 @@ public static int getMp3AudioLength (String filePath){
 </code></pre>
 
 <p>```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用jave转换音视频格式]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/"/>
-    <updated>2013-05-04T15:54:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi</id>
-    <content type="html"><![CDATA[<p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个Mac OSX版本的。</p>
-
-<p>官网地址：http://www.sauronsoftware.it/projects/jave/。养成去看官网的习惯很重要，英语差点的话可以先看中文的介绍，有个概念再去看官网的说明。</p>
-
-<!-- more -->
-
-
-<p>
-我是直接用源代码跑的，方便调试问题。下面是mp3转换为m4a格式的一个例子，更多的例子和请去官网查看
-```java
-/**</p>
-
-<pre><code> * 转化音频格式
- * @param s
- * @param t
- * @throws IllegalArgumentException
- * @throws InputFormatException
- * @throws EncoderException
- */
-private void convertAudio(String s, String t){
-    File source = new File(s);
-    File target = new File(t);
-    AudioAttributes audio = new AudioAttributes();
-    audio.setCodec("libmp3lame");
-    audio.setBitRate(new Integer(128000));
-    audio.setChannels(new Integer(2));
-    audio.setSamplingRate(new Integer(44100));
-    EncodingAttributes attrs = new EncodingAttributes();
-    attrs.setFormat("mp4");
-    attrs.setAudioAttributes(audio);
-    Encoder encoder = new Encoder();
-    try {
-        encoder.encode(source, target, attrs);
-    } catch (IllegalArgumentException e) {
-        log.error(e.getMessage(), e);
-    } catch (InputFormatException e) {
-        log.error(e.getMessage(), e);
-    } catch (EncoderException e) {
-        log.error(e.getMessage(), e);
-    }
-}
-</code></pre>
-
-<p>```
-转换的时候老是报错，抛出EncoderException异常，我查了一下源码，注释掉Encoder.java的864行</p>
-
-<blockquote><blockquote><p>throw new EncoderException(line);</p></blockquote></blockquote>
 ]]></content>
   </entry>
   
