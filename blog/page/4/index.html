@@ -9,7 +9,12 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="系统是Mac OS X Lion 10.7.5 Step1 安装homebrew ">
+  <meta name="description" content="codeajia1
+2
+3
+4
+String value = java.net.URLEncoder.encode(&quot;中文&quot;,&quot;utf-8&quot;);
+Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +84,100 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/">解决cookie中文出现乱码的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-22T14:13:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>code</span><a href='http://ajia.github.com'>ajia</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">URLEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="s">&quot;中文&quot;</span><span class="o">,</span><span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">Cookie</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="s">&quot;chinese_code&quot;</span><span class="o">,</span><span class="n">value</span><span class="o">);</span>
+</span><span class='line'><span class="n">cookie</span><span class="o">.</span><span class="na">setMaxAge</span><span class="o">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">6</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">遇到resin的java.net.UnknownHostException</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T14:46:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
+问题原因：DNS解析不到本机名。</p>
+
+<h1>解决方案：</h1>
+
+<p>编辑/etc/hosts,添加127.0.0.1 xxxx（本机名）</p>
+
+<h1>问题原因</h1>
+
+<p>resin启动时会根据hostname来拼url地址</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -180,15 +279,23 @@
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.28571428571429%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(14)</a> <a href='/blog/categories/javascript' style='font-size: 125.71428571428572%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 121.42857142857143%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 104.28571428571429%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 104.28571428571429%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 104.28571428571429%'>创业(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.28571428571429%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.57142857142857%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.28571428571429%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(14)</a> <a href='/blog/categories/javascript' style='font-size: 125.71428571428572%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 121.42857142857143%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 112.85714285714286%'>ruby(3)</a> <a href='/blog/categories/solr' style='font-size: 104.28571428571429%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 104.28571428571429%'>创业(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.28571428571429%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.57142857142857%'>生活(2)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (14)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (14)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (3)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/">Sublime Text的一些配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/">解决heroku push timeout错误</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/06/08/chang-yong-sql/">常用sql</a>
@@ -200,14 +307,6 @@
     
       <li class="post">
         <a href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/">数字格式化插件Numeral.js</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/">Guava的使用指南之Collections</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/">Guava的使用指南之Basic Utilities</a>
       </li>
     
   </ul>

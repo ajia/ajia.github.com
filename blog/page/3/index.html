@@ -9,15 +9,18 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="判断方法存不存在 1
+  <meta name="description" content="折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”,否则会出现“the request was rejected because no multipart boundary was found” 1
 2
 3
 4
 5
-6 if(typeof(nl.onBlue)==&quot;function&quot;){ //存在 } else{ //不存在 } 把字符串转换成对象 1
-2
-3
-var str = &#39;{id:&quot;1&quot;,name:&quot; &hellip;">
+6
+7
+8
+9
+10
+11
+12 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +90,176 @@ var str = &#39;{id:&quot;1&quot;,name:&quot; &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/07/httpclientshang-chuan-wen-jian/">HttpClient上传文件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-07T21:44:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/07/httpclientshang-chuan-wen-jian/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”,否则会出现“the request was rejected because no multipart boundary was found”</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PostMethod</span> <span class="n">method</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PostMethod</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">Part</span><span class="o">[]</span> <span class="n">part</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Part</span><span class="o">[</span><span class="n">params</span><span class="o">.</span><span class="na">size</span><span class="o">()+</span><span class="mi">1</span><span class="o">];</span>
+</span><span class='line'>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keySet</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>    <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span> <span class="o">:</span> <span class="n">keySet</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span><span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isNotNull</span><span class="o">(</span><span class="n">value</span><span class="o">)){</span>
+</span><span class='line'>          <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span><span class='line'>          <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringPart</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">i</span><span class="o">++;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="n">FilePart</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span>  <span class="n">FilePart</span><span class="o">(</span><span class="s">&quot;image&quot;</span><span class="o">,</span> <span class="n">file</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">fp</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="n">MIME</span><span class="o">.</span><span class="na">ENC_BINARY</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">part</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">HttpConnectionManagerParams</span> <span class="n">managerParams</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">getHttpConnectionManager</span><span class="o">().</span><span class="na">getParams</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">managerParams</span><span class="o">.</span><span class="na">setConnectionTimeout</span><span class="o">(</span><span class="mi">3000000</span><span class="o">);</span>
+</span><span class='line'>     <span class="n">managerParams</span><span class="o">.</span><span class="na">setSoTimeout</span><span class="o">(</span><span class="mi">12000000</span><span class="o">);</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">statusCode</span><span class="o">;</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">MultipartRequestEntity</span> <span class="n">mrp</span><span class="o">=</span> <span class="k">new</span>  <span class="n">MultipartRequestEntity</span><span class="o">(</span><span class="n">part</span><span class="o">,</span> <span class="n">method</span><span class="o">.</span><span class="na">getParams</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">method</span><span class="o">.</span><span class="na">setRequestEntity</span><span class="o">(</span><span class="n">mrp</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">statusCode</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">executeMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span><span class="o">(</span><span class="n">statusCode</span> <span class="o">!=</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">SC_OK</span><span class="o">){</span>
+</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Method failed code=&quot;</span> <span class="o">+</span> <span class="n">statusCode</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">method</span><span class="o">.</span><span class="na">getStatusLine</span><span class="o">());</span>
+</span><span class='line'>        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span><span class='line'>          <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">getResponseBodyAsStream</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">inputStream</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">));</span>
+</span><span class='line'>            <span class="n">String</span> <span class="n">str</span><span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">while</span><span class="o">((</span><span class="n">str</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+</span><span class='line'>              <span class="n">response</span> <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">HttpException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">finally</span><span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">.</span><span class="na">releaseConnection</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/04/ru-he-huo-de-chuang-ye-dian-zi/">如何获得创业点子</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-04T22:27:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/04/ru-he-huo-de-chuang-ye-dian-zi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>  硅谷创业教父、创业公司孵化器YC创始人保罗·格雷厄姆(Paul Graham)本月发表了一篇题为《如何获得创业点子》的文章，从创业点子的发现、筛选、竞争以及学校教育等多个角度为创业者详细指点了如何才能得到真正有用的创业点子。他指出，创业者需要去发现身边的问题，而不要凭空想象。大多数好的创业点子最初都是只针对很小的特定用户群体。</p>
+
+<p>　　创业之前最需要做的并不是想创业点子，而是去发现问题。说不定你自己头疼的事情就有可能是潜在的商机。</p>
+
+<p>　　最好的创业点子具有三点共性：它们是创始人自己想做而且有能力实现的，另外，很少有人意识到其价值。当今的巨鳄们如微软、苹果、雅虎、谷歌和Facebook都是凭借这样的好点子起家的。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/04/ru-he-huo-de-chuang-ye-dian-zi/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -565,100 +738,6 @@ str.replaceAll("\n","")
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/">解决cookie中文出现乱码的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-22T14:13:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>code</span><a href='http://ajia.github.com'>ajia</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">URLEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="s">&quot;中文&quot;</span><span class="o">,</span><span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">Cookie</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="s">&quot;chinese_code&quot;</span><span class="o">,</span><span class="n">value</span><span class="o">);</span>
-</span><span class='line'><span class="n">cookie</span><span class="o">.</span><span class="na">setMaxAge</span><span class="o">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">6</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">遇到resin的java.net.UnknownHostException</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-11T14:46:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
-问题原因：DNS解析不到本机名。</p>
-
-<h1>解决方案：</h1>
-
-<p>编辑/etc/hosts,添加127.0.0.1 xxxx（本机名）</p>
-
-<h1>问题原因</h1>
-
-<p>resin启动时会根据hostname来拼url地址</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -673,15 +752,23 @@ str.replaceAll("\n","")
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.28571428571429%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(14)</a> <a href='/blog/categories/javascript' style='font-size: 125.71428571428572%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 121.42857142857143%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 104.28571428571429%'>ruby(1)</a> <a href='/blog/categories/solr' style='font-size: 104.28571428571429%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 104.28571428571429%'>创业(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.28571428571429%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.57142857142857%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.28571428571429%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(14)</a> <a href='/blog/categories/javascript' style='font-size: 125.71428571428572%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 121.42857142857143%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 112.85714285714286%'>ruby(3)</a> <a href='/blog/categories/solr' style='font-size: 104.28571428571429%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 104.28571428571429%'>创业(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.28571428571429%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.57142857142857%'>生活(2)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (14)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (1)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (14)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (3)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/">Sublime Text的一些配置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/">解决heroku push timeout错误</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/06/08/chang-yong-sql/">常用sql</a>
@@ -693,14 +780,6 @@ str.replaceAll("\n","")
     
       <li class="post">
         <a href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/">数字格式化插件Numeral.js</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/">Guava的使用指南之Collections</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/">Guava的使用指南之Basic Utilities</a>
       </li>
     
   </ul>
