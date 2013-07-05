@@ -111,27 +111,28 @@
 
 <p>git push heroku master出现Operation/Connecting timed out错误。</p>
 
-<p>用“ssh -v git@heroku.com”检查后发现原因在于fuck GFW!!!以下节点全部不可用:
-174.129.23.118
-174.129.22.35
-50.16.233.102
-50.19.85.154
-50.19.85.132
-50.16.215.67
-50.19.85.156
-184.73.165.65
-50.16.215.104
-107.21.106.77
-107.21.105.64
+<p>用“ssh -v git@heroku.com”检查后发现原因在于fuck GFW!!!以下节点全部不可用:<br/>
+174.129.23.118<br/>
+174.129.22.35<br/>
+50.16.233.102<br/>
+50.19.85.154<br/>
+50.19.85.132<br/>
+50.16.215.67<br/>
+50.19.85.156<br/>
+184.73.165.65<br/>
+50.16.215.104<br/>
+107.21.106.77<br/>
+107.21.105.64<br/>
 107.22.234.17</p>
 
 <p>仅有以下节点可用：
 107.21.95.3</p>
 
-<p>故手动配置vi ~/.ssh/config：
-Host heroku.com
-User freemember007
-Hostname 107.21.95.3 #关键设置，替代proxy.heroku.com，直接走IP。
+<p>故手动配置vi ~/.ssh/config：</p>
+
+<p>Host heroku.com<br/>
+User freemember007<br/>
+Hostname 107.21.95.3 #关键设置，替代proxy.heroku.com，直接走IP。<br/>
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
 port 22</p>
