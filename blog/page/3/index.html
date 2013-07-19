@@ -9,24 +9,9 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="jquery请求： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-var action = form.attr(&quot;action&quot;);
-$.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
+  <meta name="description" content="Create session cookie: 1
+$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); Create expiring cookie, 7 days: 1
+$.cookie(&#39;the_cookie&#39;, &#39; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,6 +81,97 @@ $.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/">Jquery插件之cookie</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-09T11:59:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Create session cookie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create expiring cookie, 7 days:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">expires</span><span class="o">:</span> <span class="mi">7</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create expiring cookie, valid across entire site:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">expires</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Read cookie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">);</span> <span class="c1">// =&gt; &quot;the_value&quot;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;not_existing&#39;</span><span class="p">);</span> <span class="c1">// =&gt; undefined</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Read all available cookies:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">();</span> <span class="c1">// =&gt; { &quot;the_cookie&quot;: &quot;the_value&quot;, &quot;...remaining&quot;: &quot;cookies&quot; }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Delete cookie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// Returns true when cookie was found, false when no cookie was found...</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">removeCookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// Same path as when the cookie was written...</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">removeCookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -813,45 +889,6 @@ Awesome code snippet
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/27/tui-jian-wei-xin/">推荐微信</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-27T21:42:00+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/27/tui-jian-wei-xin/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>推荐一个微信公众账号，带给你一些关于情侣和夫妻之间好玩的事
-<img class="center" src="/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -866,15 +903,19 @@ Awesome code snippet
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 112.0%'>ruby(3)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 108.0%'>创业(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 108.0%'>创业(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (15)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (3)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (2)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (15)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (4)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (2)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/">用Git做版本控制</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/19/chuang-ye-jian-yi/">创业12条建议</a>
@@ -890,10 +931,6 @@ Awesome code snippet
     
       <li class="post">
         <a href="/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/">解决heroku push timeout错误</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/08/chang-yong-sql/">常用sql</a>
       </li>
     
   </ul>
