@@ -9,7 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”,否则会出现“the request was rejected because no multipart boundary was found” 1
+  <meta name="description" content="jquery请求： 1
 2
 3
 4
@@ -20,7 +20,13 @@
 9
 10
 11
-12 &hellip;">
+12
+13
+14
+15
+16
+var action = form.attr(&quot;action&quot;);
+$.ajax({ type:&quot;get&quot;, data: { mobile : $(&#39;# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +96,208 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/">Jquery的jsonp方式的ajax提交解决跨域的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-08T17:45:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>jquery请求：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;get&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">mobile</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mobile&#39;</span><span class="o">+</span><span class="nx">id</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">url</span><span class="o">:</span><span class="nx">action</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">dataType</span><span class="o">:</span><span class="s2">&quot;jsonp&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">jsonp</span><span class="o">:</span><span class="s2">&quot;callback&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">resultObj</span><span class="p">.</span><span class="nx">result</span><span class="p">){</span>
+</span><span class='line'>          <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;发送成功&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>服务器端：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Pragma&quot;</span><span class="o">,</span> <span class="s">&quot;No-cache&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setDateHeader</span><span class="o">(</span><span class="s">&quot;Expires&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Cache-Control&quot;</span><span class="o">,</span> <span class="s">&quot;no-cache&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+</span><span class='line'><span class="c1">//业务逻辑</span>
+</span><span class='line'><span class="n">String</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;callback&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">callback</span><span class="o">+</span><span class="s">&quot;(&quot;</span><span class="o">+</span><span class="n">resultJson</span><span class="o">.</span><span class="na">toString</span><span class="o">()+</span><span class="s">&quot;)&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/">遇上MySql的奇怪问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-08T17:25:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天遇上一个异常：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>2013-04-08 15:35:47 072 [ERROR] JDBC commit failed [org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:124)]
+</span><span class='line'>com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Communications link failure during commit(). Transaction resolution unknown.
+</span><span class='line'>  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+</span><span class='line'>  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+</span><span class='line'>  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+</span><span class='line'>  at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+</span><span class='line'>  at com.mysql.jdbc.Util.handleNewInstance(Util.java:407)
+</span><span class='line'>  at com.mysql.jdbc.Util.getInstance(Util.java:382)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1013)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:987)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:982)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:927)
+</span><span class='line'>  at com.mysql.jdbc.ConnectionImpl.commit(ConnectionImpl.java:1672)
+</span><span class='line'>  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+</span><span class='line'>  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+</span><span class='line'>  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+</span><span class='line'>  at java.lang.reflect.Method.invoke(Method.java:616)
+</span><span class='line'>  at org.logicalcobwebs.proxool.WrappedConnection.invoke(WrappedConnection.java:162)
+</span><span class='line'>  at org.logicalcobwebs.proxool.WrappedConnection.intercept(WrappedConnection.java:87)
+</span><span class='line'>  at $java.sql.Connection$$EnhancerByProxool$$90ddbb0c.commit(&lt;generated&gt;)
+</span><span class='line'>  at org.hibernate.transaction.JDBCTransaction.commitAndResetAutoCommit(JDBCTransaction.java:139)
+</span><span class='line'>  at org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:115)
+</span><span class='line'>  at org.springframework.orm.hibernate3.HibernateTransactionManager.doCommit(HibernateTransactionManager.java:596)
+</span><span class='line'>  at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:709)
+</span><span class='line'>  at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:678)
+</span><span class='line'>  at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:319)
+</span><span class='line'>  at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:116)
+</span><span class='line'>  at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+</span><span class='line'>  at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+</span><span class='line'>  at $Proxy163.importDate(Unknown Source)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找了一个上午和半个下午终于解决了，原因是线上的数据库服务器关掉了innodb引擎，myisam对事务支持有问题，所以修改spring的配置文件，把事务的配置去掉就可以了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -644,100 +852,6 @@ Awesome code snippet
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/">Solr高亮的配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-25T18:07:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>打开solrconfig.xml，找到<lst name="defaults">，比如我要高亮content和title这两个field，配置如下：</p>
-
-<pre><code>&lt;bool name="hl"&gt;true&lt;/bool&gt;
-&lt;str name="hl.fl"&gt;title&lt;/str&gt;
-&lt;str name="hl.fl"&gt;content&lt;/str&gt;
-</code></pre>
-
-<p>然后就不用在参数里加这几个也可以返回高亮后的结果了。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/25/ti-huan-diao-slash-n/">Java中替换掉换行符</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-25T14:14:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/25/ti-huan-diao-slash-n/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>问题：要替换掉内容中出现的“\n”，写成</p>
-
-<pre><code>str.replace("\\n", "")  
-</code></pre>
-
-<p>才能正确执行。
-下面的都不能替换掉</p>
-
-<pre><code>str.replace("\n","") 
-str.replaceAll("\\n","")
-str.replaceAll("\n","")
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -752,15 +866,23 @@ str.replaceAll("\n","")
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.28571428571429%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(14)</a> <a href='/blog/categories/javascript' style='font-size: 125.71428571428572%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 121.42857142857143%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 112.85714285714286%'>ruby(3)</a> <a href='/blog/categories/solr' style='font-size: 104.28571428571429%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 104.28571428571429%'>创业(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.28571428571429%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.57142857142857%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 112.0%'>ruby(3)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 108.0%'>创业(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (14)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (3)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (1)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (15)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (3)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (2)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/19/chuang-ye-jian-yi/">创业12条建议</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/">Guava的使用指南之Cache</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/">Sublime Text的一些配置</a>
@@ -772,14 +894,6 @@ str.replaceAll("\n","")
     
       <li class="post">
         <a href="/blog/2013/06/08/chang-yong-sql/">常用sql</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/">时间格式化插件jquery-dateFormat</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/">数字格式化插件Numeral.js</a>
       </li>
     
   </ul>
