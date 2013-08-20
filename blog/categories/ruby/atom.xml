@@ -4,14 +4,23 @@
   <title><![CDATA[Category: ruby | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-07-19T16:48:36+08:00</updated>
+  <updated>2013-08-20T15:01:34+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
-    
+    <email><![CDATA[DerekLunt@163.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ruby中测试驱动开发]]></title>
+    <link href="http://ajia.github.com/blog/2013/07/21/rubyzhong-ce-shi-qu-dong-kai-fa/"/>
+    <updated>2013-07-21T18:03:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2013/07/21/rubyzhong-ce-shi-qu-dong-kai-fa</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Git做版本控制]]></title>

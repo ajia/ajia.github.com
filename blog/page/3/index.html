@@ -9,9 +9,8 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="Create session cookie: 1
-$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); Create expiring cookie, 7 days: 1
-$.cookie(&#39;the_cookie&#39;, &#39; &hellip;">
+  <meta name="description" content="出错信息： 创建function时 ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
+or READS SQL DATA in its declaration and binary logging is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,10 +27,6 @@ $.cookie(&#39;the_cookie&#39;, &#39; &hellip;">
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
-  <meta name="author" content="Ajia">
-
-<meta name="description" content="Swim in the code, Ajia's blog">
-<meta name="keywords" content="java, solr, cocos2d, game develop, ruby, web development, 设计模式, 数据结构, 算法, 创业">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -81,6 +76,130 @@ $.cookie(&#39;the_cookie&#39;, &#39; &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/">Mysql创建function失败</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-16T16:12:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>出错信息：</p>
+
+<p>创建function时</p>
+
+<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
+or READS SQL DATA in its declaration and binary logging is enabled 
+(you might want to use the less safe log_bin_trust_function_creators variable)
+</code></pre>
+
+<p>原因：</p>
+
+<p>这是我们开启了bin-log, 我们就必须指定我们的函数是否是
+1 DETERMINISTIC 不确定的
+2 NO SQL 没有SQl语句，当然也不会修改数据
+3 READS SQL DATA 只是读取数据，当然也不会修改数据
+4 MODIFIES SQL DATA 要修改数据
+5 CONTAINS SQL 包含了SQL语句</p>
+
+<p>其中在function里面，只有 DETERMINISTIC, NO SQL 和 READS SQL DATA 被支持。如果我们开启了 bin-log, 我们就必须为我们的function指定一个参数。</p>
+
+<p>解决办法</p>
+
+<pre><code>mysql&gt;show variables like '%func%';
++---------------------------------+-------+  
+|Variable_name                  |Value|  
++---------------------------------+-------+  
+|log_bin_trust_function_creators|OFF  |  
++---------------------------------+-------+  
+
+set global log_bin_trust_function_creators=1;  
+
+mysql&gt;show variables like '%func%';  
++---------------------------------+-------+  
+|Variable_name                  |Value|  
++---------------------------------+-------+  
+|log_bin_trust_function_creators|ON   |  
++---------------------------------+-------+  
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/">Hessian版本冲突的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-11T17:53:00+08:00" pubdate data-updated="true">Apr 11<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">HessianProtocolException</span><span class="err">：</span><span class="n">expected</span> <span class="n">integer</span> <span class="n">at</span><span class="err">…</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话</p>
+
+<blockquote><blockquote><p>use hessian-4.<em> spring-3.</em>  resin-4.<em>. for Hessian protocol 2.And resin-3.</em>, spring-2.* hessian before 3.2.0 for Hessian protocol version 1.</p></blockquote></blockquote>
+
+<p>看来是版本的问题，我的环境是resin-4.*、spring-2.*、hessian-4.*，后来改成用resin.3.1.13版本就正常了。接下来试试把spring升级到3。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -716,179 +835,6 @@ rails server
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/28/octopressde-cha-jian/">Octopress的插件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-28T13:27:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/28/octopressde-cha-jian/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>记得去掉{和%之间的空格</p>
-
-<h2>包含代码（Include Code）</h2>
-
-<h5>语法</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code [title] [lang:language] path/to/file % }</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>例子</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code test.js % }</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">sample javascript from xui</span>
-</span><span class='line'><span class="cm">*/</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
-</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
-</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/28/octopressde-cha-jian/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/">在octopress里写博客</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-28T11:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>代码高亮</h3>
-
-<h4>Codeblock</h4>
-
-<h6>语法</h6>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{ % codeblock [title] [lang:language] [url] [link text] % }
-</span><span class='line'>code snippet
-</span><span class='line'>{ % endcodeblock % }</span></code></pre></td></tr></table></div></figure>
-
-
-<h6>例子</h6>
-
-<pre><code>{ % codeblock % }
-Awesome code snippet
-{ % endcodeblock % }
-</code></pre>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -902,16 +848,46 @@ Awesome code snippet
 <aside class="sidebar">
   
     <section>
-  <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 108.0%'>创业(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
+  <ul id="recent_posts">
+      <li class="post">
+      <a href="http://ajia.github.com" alt="Home"><img src="/images/Home.png"></a>
+      <a href="http://ajia.github.com/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
+      <a href="mailto:DerekLunt@163.com" alt="E-Mail"><img src="/images/Envelope.png"></a>
+      <a href="http://ajia.github.com/atom.xml" alt="subscribe feed"><img src="/images/rss_big.png"></a>
+      </li>
+  </ul>
 </section>
 <section>
-  <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (15)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (4)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (2)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>ruby(5)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
 </section>
+  
+<section>  
+  <h1>新浪微博</h1>  
+  <ul id="weibo">  
+    <li>  
+      <iframe   
+        width="100%"   
+        height="550"   
+        class="share_self"   
+        frameborder="0"   
+        scrolling="no"   
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1773810951&verifier=c56fe36a">  
+      </iframe>  
+    </li>  
+  </ul>  
+</section>  
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/">RethinkDB 创始人总结的 57 条创业经验</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/21/rubyzhong-ce-shi-qu-dong-kai-fa/">ruby中测试驱动开发</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/">用Git做版本控制</a>
@@ -923,14 +899,6 @@ Awesome code snippet
     
       <li class="post">
         <a href="/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/">Guava的使用指南之Cache</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/">Sublime Text的一些配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/">解决heroku push timeout错误</a>
       </li>
     
   </ul>
@@ -965,22 +933,6 @@ Awesome code snippet
   <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
-  
-<section>  
-  <h1>新浪微博</h1>  
-  <ul id="weibo">  
-    <li>  
-      <iframe   
-        width="100%"   
-        height="550"   
-        class="share_self"   
-        frameborder="0"   
-        scrolling="no"   
-        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1773810951&verifier=c56fe36a">  
-      </iframe>  
-    </li>  
-  </ul>  
-</section>  
 
 
 <section class="googleplus">

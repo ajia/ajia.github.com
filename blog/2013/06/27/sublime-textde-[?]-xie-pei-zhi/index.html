@@ -26,10 +26,6 @@
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
-  <meta name="author" content="Ajia">
-
-<meta name="description" content="Sublime Text的一些配置">
-<meta name="keywords" content="Sublime Text 配置">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -183,16 +179,46 @@
 <aside class="sidebar">
   
     <section>
-  <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 108.0%'>创业(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
+  <ul id="recent_posts">
+      <li class="post">
+      <a href="http://ajia.github.com" alt="Home"><img src="/images/Home.png"></a>
+      <a href="http://ajia.github.com/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
+      <a href="mailto:DerekLunt@163.com" alt="E-Mail"><img src="/images/Envelope.png"></a>
+      <a href="http://ajia.github.com/atom.xml" alt="subscribe feed"><img src="/images/rss_big.png"></a>
+      </li>
+  </ul>
 </section>
 <section>
-  <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/cocos2d'>cocos2d (1)</a></li><li><a href='/blog/categories/java'>java (15)</a></li><li><a href='/blog/categories/javascript'>javascript (6)</a></li><li><a href='/blog/categories/octopress'>Octopress (5)</a></li><li><a href='/blog/categories/ruby'>ruby (4)</a></li><li><a href='/blog/categories/solr'>solr (1)</a></li><li><a href='/blog/categories/创业'>创业 (2)</a></li><li><a href='/blog/categories/数据库'>数据库 (1)</a></li><li><a href='/blog/categories/生活'>生活 (2)</a></li></ul>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 104.0%'>cocos2d(1)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>ruby(5)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
 </section>
+  
+<section>  
+  <h1>新浪微博</h1>  
+  <ul id="weibo">  
+    <li>  
+      <iframe   
+        width="100%"   
+        height="550"   
+        class="share_self"   
+        frameborder="0"   
+        scrolling="no"   
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1773810951&verifier=c56fe36a">  
+      </iframe>  
+    </li>  
+  </ul>  
+</section>  
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/">RethinkDB 创始人总结的 57 条创业经验</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/21/rubyzhong-ce-shi-qu-dong-kai-fa/">ruby中测试驱动开发</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/">用Git做版本控制</a>
@@ -204,14 +230,6 @@
     
       <li class="post">
         <a href="/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/">Guava的使用指南之Cache</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/">Sublime Text的一些配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/">解决heroku push timeout错误</a>
       </li>
     
   </ul>
@@ -246,22 +264,6 @@
   <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
-  
-<section>  
-  <h1>新浪微博</h1>  
-  <ul id="weibo">  
-    <li>  
-      <iframe   
-        width="100%"   
-        height="550"   
-        class="share_self"   
-        frameborder="0"   
-        scrolling="no"   
-        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1773810951&verifier=c56fe36a">  
-      </iframe>  
-    </li>  
-  </ul>  
-</section>  
 
 
 <section class="googleplus">
