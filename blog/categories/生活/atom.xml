@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 生活 | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/生活/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-10-15T11:38:49+08:00</updated>
+  <updated>2013-10-15T14:09:41+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -19,10 +19,10 @@
     <updated>2013-03-28T15:15:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/28/hao-ting-de-qu-zi</id>
     <content type="html"><![CDATA[<p>Exodus-Maksim Mrvica<br/>
-<audio controls><source src='/downloads/media/exodus.mp3'></audio></p>
+{% audio /downloads/media/exodus.mp3 %}</p>
 
 <p>最后的倾述-韩磊<br/>
-<audio controls><source src='/downloads/media/zhdqs.mp3'></audio></p>
+{% audio /downloads/media/zhdqs.mp3 %}</p>
 ]]></content>
   </entry>
   
@@ -32,7 +32,7 @@
     <updated>2013-03-27T21:42:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin</id>
     <content type="html"><![CDATA[<p>推荐一个微信公众账号，带给你一些关于情侣和夫妻之间好玩的事
-<img class="center" src="/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
+{% img center /images/getqrcode.jpg 300 300 丹丹调戏品 %}</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2013-10-15T11:38:49+08:00</updated>
+  <updated>2013-10-15T14:09:41+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -60,10 +60,10 @@ end
 
 <p>上面的方法只能给每个 post 生成对应的 meta标签，如果要给主页添加 meta 标签，修改 source/_includes/head.html，添加以下内容
 <code>
-&lt;meta name="author" content="Ajia"&gt;
-
-&lt;meta name="description" content="Category: Octopress"&gt;
-&lt;meta name="keywords" content="java, solr, cocos2d, game develop, ruby, web development, 设计模式, 数据结构, 算法, 创业"&gt;
+&lt;meta name="author" content="{{ site.author }}"&gt;
+{% capture description %}{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{%else%}{{ content | raw_content }}{% endif %}{% endcapture %}
+&lt;meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}"&gt;
+{% if page.keywords %}&lt;meta name="keywords" content="{{ page.keywords }}"&gt;{%else%}&lt;meta name="keywords" content="{{ site.keywords }}"&gt;{% endif %}
 </code></p>
 
 <p>在 _config.yml 文件中填充全局的 keywords 和 description, 比如这样</p>
@@ -86,56 +86,17 @@ keywords: java,算法,数据结构,web development,Ajax
 
 <h5>语法</h5>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code [title] [lang:language] path/to/file % }</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+{ % include_code [title] [lang:language] path/to/file % }
+{% endcodeblock %}</p>
 
 <h5>例子</h5>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code test.js % }</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+{ % include_code test.js % }
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">sample javascript from xui</span>
-</span><span class='line'><span class="cm">*/</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
-</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
-</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% include_code test.js %}</p>
 
 <!--more-->
 
@@ -156,21 +117,27 @@ Last night I lay in bed looking up at the stars in the sky and I thought to myse
 { % endblockquote % }
 </code></pre>
 
-<p><blockquote><p>Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.</p></blockquote></p>
+<p>{% blockquote %}
+Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.
+{% endblockquote %}</p>
 
 <pre><code>{ % blockquote Douglas Adams, The Hichhikers Guide to the Galaxy % }
 Flying is learning how to throw yourself at the ground and miss.
 { % endblockquote % }
 </code></pre>
 
-<p><blockquote><p>Flying is learning how to throw yourself at the ground and miss.</p><footer><strong>Douglas Adams</strong> <cite>The Hichhikers Guide to the Galaxy</cite></footer></blockquote></p>
+<p>{% blockquote Douglas Adams, The Hichhikers Guide to the Galaxy %}
+Flying is learning how to throw yourself at the ground and miss.
+{% endblockquote %}</p>
 
 <pre><code>{ % blockquote Seth Godin http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html Welcome to Island Marketing % }
 Every interaction is both precious and an opportunity to delight.
 { % endblockquote % }
 </code></pre>
 
-<p><blockquote><p>Every interaction is both precious and an opportunity to delight.</p><footer><strong>Seth Godin</strong> <cite><a href='http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html'>Welcome to Island Marketing</a></cite></footer></blockquote></p>
+<p>{% blockquote Seth Godin http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html Welcome to Island Marketing %}
+Every interaction is both precious and an opportunity to delight.
+{% endblockquote %}</p>
 ]]></content>
   </entry>
   
@@ -201,12 +168,10 @@ Awesome code snippet
 { % endcodeblock % }
 </code></pre>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>Awesome code snippet</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>{% codeblock %}</p>
+
+<pre><code>Awesome code snippet
+{% endcodeblock %}
 </code></pre>
 
 <!-- more -->
@@ -235,18 +200,12 @@ $ sudo make me a sandwich
 <h4>摘要</h4>
 
 <p>如果不希望显示全文，只需要在你希望首页显示的内容最后，输入：
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;!--more-->
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}</p>
+
+<!--more-->
+
+
+<p>{% endcodeblock %}</p>
 
 <h3>插入图片</h3>
 
@@ -261,8 +220,8 @@ $ sudo make me a sandwich
 { % img center /images/zd.jpg 300 300 丹丹 % }
 </code></pre>
 
-<p><img class="center" src="/images/zy.jpg" width="300" height="300" title="品" >
-<img class="center" src="/images/zd.jpg" width="300" height="300" title="朱朱" ></p>
+<p>{% img center /images/zy.jpg 300 300 品 %}
+{% img center /images/zd.jpg 300 300 朱朱 %}</p>
 
 <h3>插入视频</h3>
 
@@ -276,7 +235,7 @@ $ sudo make me a sandwich
 <pre><code>{ % video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png % }
 </code></pre>
 
-<p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
+<p>{% video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png %}</p>
 
 <h3>插入超链</h3>
 
