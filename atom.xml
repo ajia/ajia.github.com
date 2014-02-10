@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-02-10T15:10:34+08:00</updated>
+  <updated>2014-02-10T15:15:34+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[常用排序算(python实现)]]></title>
+    <title type="html"><![CDATA[常用排序算法(python实现)]]></title>
     <link href="http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/"/>
     <updated>2014-02-10T15:02:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian</id>
