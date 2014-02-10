@@ -1,207 +1,207 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/06/my-first-blog/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/25/ti-huan-diao-slash-n/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/25/solrgao-liang-de-pei-zhi/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/27/tui-jian-wei-xin/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/28/octopressde-cha-jian/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/03/28/hao-ting-de-qu-zi/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/04/04/ru-he-huo-de-chuang-ye-dian-zi/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/04/07/httpclientshang-chuan-wen-jian/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/04/09/jquerycha-jian-zhi-cookie/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/04/27/seoyou-hua/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/06/08/chang-yong-sql/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/07/19/chuang-ye-jian-yi/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://ajia.github.com/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/
-        </loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/404.html</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/archives/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/blog/archives/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/robots.txt</loc>
-        <lastmod>2013-03-29T17:51:25+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://ajia.github.com/search.html</loc>
-        <lastmod>2013-10-15T11:38:20+08:00</lastmod>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://ajia.github.io/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/27/seoyou-hua/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/09/jquerycha-jian-zhi-cookie/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/07/httpclientshang-chuan-wen-jian/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/04/ru-he-huo-de-chuang-ye-dian-zi/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/page/2/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/archives/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/cocos2d/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/java/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/javascript/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/octopress/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/ruby/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/solr/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/创业/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/categories/生活/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/28/hao-ting-de-qu-zi/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/28/octopressde-cha-jian/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/28/zai-octopressli-xie-bo-ke/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/27/tui-jian-wei-xin/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/25/solrgao-liang-de-pei-zhi/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/25/ti-huan-diao-slash-n/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/22/jie-jue-cookiezhong-wen-chu-xian-luan-ma-de-wen-ti/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/06/how-to-install-octopress/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/page/3/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://ajia.github.io/blog/2013/03/06/my-first-blog/</loc>
+  <lastmod>2013-04-27T10:19:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
 </urlset>

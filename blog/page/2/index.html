@@ -9,7 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。看看Guava Collections为我们做了哪些很酷的事情： Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable &hellip;">
+  <meta name="description" content="需要格式化文件大小，发现这个好用的东西，numeral.js ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/">数字格式化插件Numeral.js</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-07T18:00:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>需要格式化文件大小，发现这个好用的东西，<a href="http://numeraljs.com/">numeral.js</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -572,67 +615,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">Sending &#8216;ccColor4B&#8217; (Aka &#8216;Struct _ccColor4B&#8217;) to Parameter of Incompatible Type &#8216;CIColor *&#8217;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-22T15:25:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
-        
-         | <a href="/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">Sending</span> <span class="err">&#39;</span><span class="n">ccColor4B</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">aka</span> <span class="err">&#39;</span><span class="k">struct</span> <span class="n">_ccColor4B</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">to</span> <span class="n">parameter</span>
-</span><span class='line'> <span class="n">of</span> <span class="n">incompatible</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">CIColor</span> <span class="o">*</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>把</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>改成</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[(</span><span class="n">CCColorLayer</span><span class="o">*</span><span class="p">)[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就可以了</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -657,11 +639,15 @@
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/">常用排序算(python实现)</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/">xcode常用快捷键</a>
@@ -677,10 +663,6 @@
     
       <li class="post">
         <a href="/blog/2013/07/19/chuang-ye-jian-yi/">创业12条建议</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/">Guava的使用指南之Cache</a>
       </li>
     
   </ul>
@@ -734,7 +716,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Ajia -
+  Copyright &copy; 2014 - Ajia -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

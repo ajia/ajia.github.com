@@ -5,17 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>在octopress里写博客 - Ajia's Blog</title>
+  <title>Category: 算法 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="代码高亮 Codeblock 语法 1
-2
-3
-{ % codeblock [title] [lang:language] [url] [link text] % }
-code snippet
-{ % endcodeblock % } 例子 { % codeblock % }
-Awesome &hellip;">
+  <meta name="description" content="Category: 算法">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +18,7 @@ Awesome &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/">
+  <link rel="canonical" href="http://ajia.github.comblog/categories/算法/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -80,186 +74,36 @@ Awesome &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">在octopress里写博客</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-28T11:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
-        
-         | <a href="#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: 算法</h1>
     
   </header>
-
-
-<div class="entry-content"><h3>代码高亮</h3>
-
-<h4>Codeblock</h4>
-
-<h6>语法</h6>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{ % codeblock [title] [lang:language] [url] [link text] % }
-</span><span class='line'>code snippet
-</span><span class='line'>{ % endcodeblock % }</span></code></pre></td></tr></table></div></figure>
-
-
-<h6>例子</h6>
-
-<pre><code>{ % codeblock % }
-Awesome code snippet
-{ % endcodeblock % }
-</code></pre>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
-
-
-<h4>Backtick Code Blocks</h4>
-
-<h6>语法</h6>
-
-<pre><code>``` [language] [title] [url] [link text]
-code snippet
-```
-</code></pre>
-
-<h6>例子</h6>
-
-<pre><code>```
-$ sudo make me a sandwich
-```
-</code></pre>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo make me a sandwich</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>摘要</h4>
-
-<p>如果不希望显示全文，只需要在你希望首页显示的内容最后，输入：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!--more--></span></code></pre></td></tr></table></div></figure>
-
-
-<h3>插入图片</h3>
-
-<h4>语法</h4>
-
-<pre><code>{ % img [class names] /path/to/image [width] [height] [title text [alt text]] % }
-</code></pre>
-
-<h4>例子</h4>
-
-<pre><code>{ % img center /images/zy.jpg 300 300 品 % }
-{ % img center /images/zd.jpg 300 300 丹丹 % }
-</code></pre>
-
-<p><img class="center" src="/images/zy.jpg" width="300" height="300" title="品" >
-<img class="center" src="/images/zd.jpg" width="300" height="300" title="朱朱" ></p>
-
-<h3>插入视频</h3>
-
-<h4>语法</h4>
-
-<pre><code>{ % video url/to/video [width height] [url/to/poster] % }
-</code></pre>
-
-<h4>例子</h4>
-
-<pre><code>{ % video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png % }
-</code></pre>
-
-<p><video width='640' height='320' preload='none' controls poster='http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
-
-<h3>插入超链</h3>
-
-<pre><code>[欢迎来到ajia的部落格](http://ajia.github.com "ajia's blog")
-</code></pre>
-
-<p><a href="http://ajia.github.com" title="ajia's blog">欢迎来到ajia的部落格</a></p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Ajia</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2014</h2>
 
-
-<time datetime="2013-03-28T11:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
-      
-
-<span class="categories">
+<article>
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
-  
-</span>
+<h1><a href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/">常用排序算(python实现)</a></h1>
+<time datetime="2014-02-10T15:02:00+08:00" pubdate><span class='month'>Feb</span> <span class='day'>10</span> <span class='year'>2014</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/算法/'>算法</a></span>
+</footer>
 
 
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/03/27/tui-jian-wei-xin/" title="Previous Post: 推荐微信">&laquo; 推荐微信</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/03/28/octopressde-cha-jian/" title="Next Post: Octopress的插件">Octopress的插件 &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -366,10 +210,7 @@ $ sudo make me a sandwich
       var disqus_shortname = 'ajia';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/03/28/zai-octopressli-xie-bo-ke/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
