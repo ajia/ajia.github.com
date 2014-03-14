@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-02-10T15:15:34+08:00</updated>
+  <updated>2014-03-14T10:45:21+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,7 +18,7 @@
     <link href="http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/"/>
     <updated>2014-02-10T15:02:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian</id>
-    <content type="html"><![CDATA[<p>前段时间把主要的排序算法原理看了一遍，心血来潮就用python实现了。</p>
+    <content type="html"><![CDATA[<p>前段时间把主要的排序算法原理看了一遍，光看不行，还是得动手。</p>
 
 <figure class='code'><figcaption><span>排序算法 python (Sort.py)</span> <a href='http://ajia.github.com/downloads/code/Sort.py'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
