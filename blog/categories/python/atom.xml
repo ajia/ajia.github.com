@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2014-03-19T18:29:38+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    <email><![CDATA[DerekLunt@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python的集合运算]]></title>
+    <link href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/"/>
+    <updated>2014-03-19T16:59:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan</id>
+    <content type="html"><![CDATA[<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
+
+<h3>获取两个list的交集</h3>
+
+<p>```python</p>
+
+<h1>方法一:</h1>
+
+<p>a=[2,3,4,5]
+b=[2,5,8]
+tmp = [val for val in a if val in b]
+print tmp</p>
+
+<h1>[2, 5]</h1>
+
+<h1>方法二:</h1>
+
+<p>print list(set(a).intersection(set(b)))
+```</p>
+
+<h3>获取两个list的并集</h3>
+
+<p><code>python
+print list(set(a).union(set(b)))
+</code></p>
+
+<h3>获取两个list的差集</h3>
+
+<p><code>python
+print list(set(b).difference(set(a))) # b中有而a中没有的
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-03-14T10:45:21+08:00</updated>
+  <updated>2014-03-19T18:29:38+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python的集合运算]]></title>
+    <link href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/"/>
+    <updated>2014-03-19T16:59:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan</id>
+    <content type="html"><![CDATA[<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
+
+<h3>获取两个list的交集</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#方法一:</span>
+</span><span class='line'><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+</span><span class='line'><span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>
+</span><span class='line'><span class="k">print</span> <span class="n">tmp</span>
+</span><span class='line'><span class="c">#[2, 5]</span>
+</span><span class='line'><span class="c">#方法二:</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>获取两个list的并集</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>获取两个list的差集</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="c"># b中有而a中没有的</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[常用排序算法(python实现)]]></title>
@@ -3398,97 +3442,6 @@ true
 </span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick=</span><span class="s">&quot;volume(50);&quot;</span> <span class="na">value=</span><span class="s">&quot;Set volume 50%&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>      <span class="nt">&lt;/p&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[seo优化]]></title>
-    <link href="http://ajia.github.com/blog/2013/04/27/seoyou-hua/"/>
-    <updated>2013-04-27T17:10:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/04/27/seoyou-hua</id>
-    <content type="html"><![CDATA[<p>添加 meta data description</p>
-
-<p>文章生产时默认会生成 layout, title, date, comments, categories 这几项，如果多添加2个选项 ‘keywords’, ‘description’，会在 generate 文章的时候自动生成相应的 meta 标签
-如果文章 header 写成这样</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>layout: post
-</span><span class='line'>title: "SEO for Octopress"
-</span><span class='line'>date: 2012-04-22 09:55
-</span><span class='line'>comments: true
-</span><span class='line'>categories: [seo,octopress]
-</span><span class='line'>keywords: seo,octopress
-</span><span class='line'>description: How to optimize Octopress for SEO</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<!-- more -->
-
-
-<p>生成的post head标签中会生成</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;title&gt;SEO for Octopress &lt;/title&gt;
-</span><span class='line'>&lt;meta name="author" content="Yatish Mehta"&gt;
-</span><span class='line'>&lt;meta name="description" content="How to optimize Octopress for SEO"&gt;
-</span><span class='line'>&lt;meta name="keywords" content="seo,octopress"&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果不想每次都得手动添加，可以修改 Rakefile文件</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>open(filename, 'w') do |post|
-</span><span class='line'>  post.puts "---"
-</span><span class='line'>  post.puts "layout: post"
-</span><span class='line'>  post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
-</span><span class='line'>  post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
-</span><span class='line'>  post.puts "comments: true"
-</span><span class='line'>  post.puts "categories: "
-</span><span class='line'>  post.puts "keywords: "
-</span><span class='line'>  post.puts "description: "
-</span><span class='line'>  post.puts "---"
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上面的方法只能给每个 post 生成对应的 meta标签，如果要给主页添加 meta 标签，修改 source/_includes/head.html，添加以下内容</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;meta name="author" content="Ajia"&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;meta name="description" content="Swim in the code, Ajia's blog"&gt;
-</span><span class='line'>&lt;meta name="keywords" content="seo优化, octopress"&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在 _config.yml 文件中填充全局的 keywords 和 description, 比如这样</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>description: Ajia's blog
-</span><span class='line'>keywords: java,算法,数据结构,web development,Ajax</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
