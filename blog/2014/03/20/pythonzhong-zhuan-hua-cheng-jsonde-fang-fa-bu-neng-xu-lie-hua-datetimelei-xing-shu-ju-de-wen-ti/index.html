@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ruby - Ajia's Blog</title>
+  <title>python中转化成json的方法不能序列化datetime类型数据的问题 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="Category: ruby">
-  
+  <meta name="description" content="使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable 查了一下， &hellip;">
+  <meta name="keywords" content="json dumps datetime not serializable">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.comblog/categories/ruby/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -74,78 +74,113 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Ruby</h1>
+    
+      <h1 class="entry-title">Python中转化成json的方法不能序列化datetime类型数据的问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-20T14:01:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>  使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable</p>
 
-  
-  <h2>2013</h2>
+<p>  查了一下，找到如下的方法:
+  &#8220;`python
+  import json
+  from datetime import date, datetime
+  class MyEncoder(json.JSONEncoder):</p>
 
-<article>
-  
-<h1><a href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/">用Git做版本控制</a></h1>
-<time datetime="2013-07-19T15:15:00+08:00" pubdate><span class='month'>Jul</span> <span class='day'>19</span> <span class='year'>2013</span></time>
+<pre><code>def default(self, obj):
+    # if isinstance(obj, datetime.datetime):
+    #     return int(mktime(obj.timetuple()))
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
+    if isinstance(obj, datetime):
+        return obj.strftime('%Y-%m-%d %H:%M:%S')
+    elif isinstance(obj, date):
+        return obj.strftime('%Y-%m-%d')
+    else:
+        return json.JSONEncoder.default(self, obj)
 
+print json.dumps(dataMap, cls=MyEncoder)
+</code></pre>
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/">Sublime Text的一些配置</a></h1>
-<time datetime="2013-06-27T10:37:00+08:00" pubdate><span class='month'>Jun</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/">解决heroku push timeout错误</a></h1>
-<time datetime="2013-06-27T10:24:00+08:00" pubdate><span class='month'>Jun</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/">学习ruby on rails-ruby和rails的安装</a></h1>
-<time datetime="2013-04-01T11:59:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
-
-
-</article>
-
+<p>  &#8220;`</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Ajia</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-20T14:01:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/03/19/pythonde-ji-he-yun-suan/" title="Previous Post: Python的集合运算">&laquo; Python的集合运算</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -252,7 +287,10 @@
       var disqus_shortname = 'ajia';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

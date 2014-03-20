@@ -9,8 +9,15 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="ruby的安装在文章how-to-install-octopress里有说过。 在Lion安装rails gem install rails 创建rails的应用 rails new myapp 启动应用 cd myapp
-rails server 进入 http://localhost:3000 &hellip;">
+  <meta name="description" content="判断方法存不存在 1
+2
+3
+4
+5
+6 if(typeof(nl.onBlue)==&quot;function&quot;){ //存在 } else{ //不存在 } 把字符串转换成对象 1
+2
+3
+var str = &#39;{id:&quot;1&quot;,name:&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +83,75 @@ rails server 进入 http://localhost:3000 &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/">Javascript遇上的几个问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T14:11:00+08:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>判断方法存不存在</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">nl</span><span class="p">.</span><span class="nx">onBlue</span><span class="p">)</span><span class="o">==</span><span class="s2">&quot;function&quot;</span><span class="p">){</span>
+</span><span class='line'>      <span class="c1">//存在</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="c1">//不存在</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>把字符串转换成对象</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;{id:&quot;1&quot;,name:&quot;aaaa&quot;}&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;var obj=&quot;</span><span class="o">+</span><span class="nx">str</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/03/javascriptpan-duan-fang-fa-shi-fou-cun-zai/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -579,51 +655,6 @@ str.replaceAll("\n","")
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/06/how-to-install-octopress/">How-to-install-octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/06/how-to-install-octopress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>系统是Mac OS X Lion 10.7.5</p>
-
-<h1>Step1 安装homebrew</h1>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/06/how-to-install-octopress/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -648,11 +679,15 @@ str.replaceAll("\n","")
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 104.0%'>python(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/">python中转化成json的方法不能序列化datetime类型数据的问题</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/">Python的集合运算</a>
@@ -668,10 +703,6 @@ str.replaceAll("\n","")
     
       <li class="post">
         <a href="/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/">RethinkDB 创始人总结的 57 条创业经验</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/">用Git做版本控制</a>
       </li>
     
   </ul>
