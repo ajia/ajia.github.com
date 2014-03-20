@@ -9,7 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable 查了一下， &hellip;">
+  <meta name="description" content="使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错 TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable 查了一下 &hellip;">
   <meta name="keywords" content="json dumps datetime not serializable">
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,7 +103,10 @@
   </header>
 
 
-<div class="entry-content"><p>  使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable</p>
+<div class="entry-content"><p>  使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
+
+<pre><code>TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable
+</code></pre>
 
 <p>  查了一下，找到如下的方法:
   &#8220;`python
@@ -114,15 +117,13 @@
 <pre><code>def default(self, obj):
     # if isinstance(obj, datetime.datetime):
     #     return int(mktime(obj.timetuple()))
-
     if isinstance(obj, datetime):
         return obj.strftime('%Y-%m-%d %H:%M:%S')
     elif isinstance(obj, date):
         return obj.strftime('%Y-%m-%d')
     else:
         return json.JSONEncoder.default(self, obj)
-
-print json.dumps(dataMap, cls=MyEncoder)
+ print json.dumps(dataMap, cls=MyEncoder)
 </code></pre>
 
 <p>  &#8220;`</p>
