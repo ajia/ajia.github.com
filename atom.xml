@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-03-20T14:14:06+08:00</updated>
+  <updated>2014-04-07T23:03:15+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Unix Create a Symbolic Link]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/"/>
+    <updated>2014-04-07T22:52:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link</id>
+    <content type="html"><![CDATA[<p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
+
+<pre><code>$ ln -s {/path/to/file-name} {link-name}
+$ ln -s /shared/sales/data/file.txt sales.data.txt
+$ vi sales.data.txt
+$ ls -l sales.data.txt
+</code></pre>
+
+<p>怎样删除软连接呢？很简单，这样：</p>
+
+<pre><code>$ rm {link-name}
+$ rm sales.data.txt
+$ ls -l
+$ ls -l /shared/sales/data/file.txt
+</code></pre>
+
+<p>如果你删除了软连接（比如sales.data.txt），它所连接的数据（/shared/sales/data/file.txt）还存在。但是，如果你删除了/shared/sales/data/file.txt，sales.data.txt将成为破坏了的连接，数据也就丢失了</p>
+
+<p>UNIX系统中还可以创建硬连接，用法如下（就是上面的命令中把参数-s去掉）：</p>
+
+<pre><code>$ ln {file.txt} {hard-link}
+$ ln /tmp/file link-here
+</code></pre>
+
+<p>同样可以删除硬连接：</p>
+
+<pre><code>$ rm {hard-link}
+$ rm link-here
+</code></pre>
+
+<p>如果你删除了硬连接，数据还存在。如果删除了/tmp/file，还是可以通过link-here来访问数据。其实就是把数据拷贝了一份。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[python中转化成json的方法不能序列化datetime类型数据的问题]]></title>
@@ -23,7 +62,7 @@
 <pre><code>TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable
 </code></pre>
 
-<p>  查了一下，找到如下的方法:</p>
+<p>查了一下，找到如下的方法:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3270,90 +3309,6 @@ true
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用jave转换音视频格式]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/"/>
-    <updated>2013-05-04T15:54:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi</id>
-    <content type="html"><![CDATA[<p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个Mac OSX版本的。</p>
-
-<p>官网地址：http://www.sauronsoftware.it/projects/jave/。养成去看官网的习惯很重要，英语差点的话可以先看中文的介绍，有个概念再去看官网的说明。</p>
-
-<!-- more -->
-
-
-<p>
-我是直接用源代码跑的，方便调试问题。下面是mp3转换为m4a格式的一个例子，更多的例子和请去官网查看</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">     * 转化音频格式</span>
-</span><span class='line'><span class="cm">     * @param s</span>
-</span><span class='line'><span class="cm">     * @param t</span>
-</span><span class='line'><span class="cm">     * @throws IllegalArgumentException</span>
-</span><span class='line'><span class="cm">     * @throws InputFormatException</span>
-</span><span class='line'><span class="cm">     * @throws EncoderException</span>
-</span><span class='line'><span class="cm">     */</span>
-</span><span class='line'>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">convertAudio</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="n">String</span> <span class="n">t</span><span class="o">){</span>
-</span><span class='line'>      <span class="n">File</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">File</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">AudioAttributes</span> <span class="n">audio</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AudioAttributes</span><span class="o">();</span>
-</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setCodec</span><span class="o">(</span><span class="s">&quot;libmp3lame&quot;</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setBitRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">128000</span><span class="o">));</span>
-</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setChannels</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">2</span><span class="o">));</span>
-</span><span class='line'>      <span class="n">audio</span><span class="o">.</span><span class="na">setSamplingRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">44100</span><span class="o">));</span>
-</span><span class='line'>      <span class="n">EncodingAttributes</span> <span class="n">attrs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EncodingAttributes</span><span class="o">();</span>
-</span><span class='line'>      <span class="n">attrs</span><span class="o">.</span><span class="na">setFormat</span><span class="o">(</span><span class="s">&quot;mp4&quot;</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">attrs</span><span class="o">.</span><span class="na">setAudioAttributes</span><span class="o">(</span><span class="n">audio</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">Encoder</span> <span class="n">encoder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">();</span>
-</span><span class='line'>      <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">encoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">target</span><span class="o">,</span> <span class="n">attrs</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InputFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">EncoderException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>转换的时候老是报错，抛出EncoderException异常，我查了一下源码，注释掉Encoder.java的864行</p>
-
-<blockquote><blockquote><p>throw new EncoderException(line);</p></blockquote></blockquote>
 ]]></content>
   </entry>
   

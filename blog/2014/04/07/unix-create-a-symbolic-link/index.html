@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>my first blog - Ajia's Blog</title>
+  <title>Unix Create a Symbolic Link - Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="折腾了几天，终于把部落格搞定了，咱也有了自己的地盘了，庆贺一下，接下来要折腾的事情还很多，enjoy it！ # 朱丹宝贝我爱你！
-">
-  
+  <meta name="description" content="linux/unix/mac常用命令">
+  <meta name="keywords" content="ln unix">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/03/06/my-first-blog/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -79,7 +78,7 @@
   
   <header>
     
-      <h1 class="entry-title">My First Blog</h1>
+      <h1 class="entry-title">Unix Create a Symbolic Link</h1>
     
     
       <p class="meta">
@@ -95,7 +94,7 @@
   
 
 
-<time datetime="2013-03-06T17:20:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+<time datetime="2014-04-07T22:52:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2014</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -104,14 +103,37 @@
   </header>
 
 
-<div class="entry-content"><h1>折腾了几天，终于把部落格搞定了，咱也有了自己的地盘了，庆贺一下，接下来要折腾的事情还很多，<strong>enjoy it</strong>！</h1>
+<div class="entry-content"><p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
 
-<!--more-->
+<pre><code>$ ln -s {/path/to/file-name} {link-name}
+$ ln -s /shared/sales/data/file.txt sales.data.txt
+$ vi sales.data.txt
+$ ls -l sales.data.txt
+</code></pre>
 
+<p>怎样删除软连接呢？很简单，这样：</p>
 
-<p>#</p>
+<pre><code>$ rm {link-name}
+$ rm sales.data.txt
+$ ls -l
+$ ls -l /shared/sales/data/file.txt
+</code></pre>
 
-<h3>朱丹宝贝我爱你！</h3>
+<p>如果你删除了软连接（比如sales.data.txt），它所连接的数据（/shared/sales/data/file.txt）还存在。但是，如果你删除了/shared/sales/data/file.txt，sales.data.txt将成为破坏了的连接，数据也就丢失了</p>
+
+<p>UNIX系统中还可以创建硬连接，用法如下（就是上面的命令中把参数-s去掉）：</p>
+
+<pre><code>$ ln {file.txt} {hard-link}
+$ ln /tmp/file link-here
+</code></pre>
+
+<p>同样可以删除硬连接：</p>
+
+<pre><code>$ rm {hard-link}
+$ rm link-here
+</code></pre>
+
+<p>如果你删除了硬连接，数据还存在。如果删除了/tmp/file，还是可以通过link-here来访问数据。其实就是把数据拷贝了一份。</p>
 </div>
 
 
@@ -134,12 +156,12 @@
   
 
 
-<time datetime="2013-03-06T17:20:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+<time datetime="2014-04-07T22:52:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/常用命令/'>常用命令</a>
   
 </span>
 
@@ -155,8 +177,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/" title="Previous Post: python中转化成json的方法不能序列化datetime类型数据的问题">&laquo; python中转化成json的方法不能序列化datetime类型数据的问题</a>
       
-        <a class="basic-alignment right" href="/blog/2013/03/06/how-to-install-octopress/" title="Next Post: how-to-install-octopress">how-to-install-octopress &raquo;</a>
       
     </p>
   </footer>
@@ -274,8 +296,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/06/my-first-blog/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/03/06/my-first-blog/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/';
         var disqus_script = 'embed.js';
       
     (function () {

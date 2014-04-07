@@ -9,7 +9,8 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="系统是Mac OS X Lion 10.7.5 Step1 安装homebrew ">
+  <meta name="description" content="linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
+问题原因：DNS解析不到本机名。 解决方案： 编辑/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +76,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/">遇到resin的java.net.UnknownHostException</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T14:46:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
+问题原因：DNS解析不到本机名。</p>
+
+<h1>解决方案：</h1>
+
+<p>编辑/etc/hosts,添加127.0.0.1 xxxx（本机名）</p>
+
+<h1>问题原因</h1>
+
+<p>resin启动时会根据hostname来拼url地址</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -186,11 +234,15 @@
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 104.0%'>常用命令(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/04/07/unix-create-a-symbolic-link/">Unix Create a Symbolic Link</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/">python中转化成json的方法不能序列化datetime类型数据的问题</a>
@@ -206,10 +258,6 @@
     
       <li class="post">
         <a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/">xcode常用快捷键</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/">RethinkDB 创始人总结的 57 条创业经验</a>
       </li>
     
   </ul>
