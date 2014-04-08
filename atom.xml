@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-04-07T23:03:15+08:00</updated>
+  <updated>2014-04-08T19:29:36+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[DOOM3在Mac OSX中的编译过程]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/"/>
+    <updated>2014-04-08T18:51:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng</id>
+    <content type="html"><![CDATA[<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
+
+<ol>
+<li><p>修改Architecture和Target SDK
+把&#8221;Architectures&#8221;从&#8221;ppc i386&#8221;修改为&#8221;32-bit Intel&#8221;
+改变baseSDK 为 &#8220;Latest MacOSX&#8221;</p></li>
+<li><p>修改丢失的框架引用
+ 重新添加Carbon.framework, IOKit.framework, OpenGL.framework, CoreAudio.framework 引用到 Doom3 项目</p></li>
+<li><p>修改ppc_intrinsics.h.（这步已经OK）</p></li>
+<li><p>修改Id linker 参数
+设置Inline Methods Hidden 为 &#8220;No&#8221;
+设置Symbols Hidden by Default 为 &#8220;No&#8221;</p></li>
+<li><p>修改C++代码（这步已OK）</p></li>
+<li><p>修改更多的C++代码
+这步看一下文章的里的说明</p></li>
+<li><p>修改编译器
+把所有的编译器都改成LLVM GCC 4.2</p></li>
+<li><p>修改OpenAL weak reference
+删除-weak_framework OpenAL，并且添加OpenAL.framework</p></li>
+<li><p>删除旧版的curl lib reference
+删除curl项目的引用，添加libcurl.dylib到Doom3项目的框架列表中</p></li>
+<li><p>Don&#8217;t build unused architectures.
+设置&#8221;Build active Architecture only&#8221;为 Yes</p></li>
+<li><p>为链接器添加库
+添加库文件game.dylib、libidklib_pic.a</p></li>
+<li><p>添加游戏资源（assets）
+需要把游戏的base目录考到项目中去</p></li>
+<li><p>链接到game.dylib</p></li>
+</ol>
+
+
+<p>如果你启动游戏的时候出错：</p>
+
+<pre><code>Dyld Error Message:
+Library not loaded: /usr/local/lib/game.dylib
+Referenced from: /Users/dev/TTimo-doom3.gpl-1559777/neo/sys/osx/build/Debug/Doom 3.app/Contents/MacOS/Doom 3
+Reason: image not found
+</code></pre>
+
+<p>有两个解决方案：
+1.拷贝 game.dylib 到 /usr/local/lib，或者用lnm命令建立一个软连接
+2.设置&#8221;Dynamic Library Install Name&#8221;为&#8221;&#8220;,这样Doom3就会在当前目录找game.dylib</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Unix Create a Symbolic Link]]></title>
@@ -3181,132 +3231,6 @@ true
 </span><span class='line'><span class="n">DateTime</span> <span class="n">dt1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
 </span><span class='line'><span class="c1">//伦敦时间  </span>
 </span><span class='line'><span class="n">DateTime</span> <span class="n">dt2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="n">DateTimeZone</span><span class="o">.</span><span class="na">forID</span><span class="o">(</span><span class="s">&quot;Europe/London&quot;</span><span class="o">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[读取音频文件的信息]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/"/>
-    <updated>2013-05-06T18:33:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi</id>
-    <content type="html"><![CDATA[<p>项目里需要读取音频的播放时间，找了一个下午发现这个：jaudiotagger(http://www.jthink.net/jaudiotagger/)，它是一个音频标签JAVA库，目前支持 Mp3, Mp4 (Mp4 audio, M4a and M4p audio) Ogg Vorbis, Flac and Wma, 但是对Wav 和 Real 的支持有限。</p>
-
-<!-- more -->
-
-
-<p>读取m4a格式的播放时间</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 获取m4a格式文件的播放时间</span>
-</span><span class='line'><span class="cm"> * @param filePath</span>
-</span><span class='line'><span class="cm"> * @return</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getMp4AudioLength</span> <span class="o">(</span><span class="n">String</span> <span class="n">filePath</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">filePath</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">Mp4FileReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mp4FileReader</span><span class="o">();</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>    <span class="n">AudioFile</span> <span class="n">f</span><span class="o">;</span>
-</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">f</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">AudioHeader</span> <span class="n">head</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">getAudioHeader</span><span class="o">();</span>
-</span><span class='line'>      <span class="n">length</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">getTrackLength</span><span class="o">();</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CannotReadException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TagException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ReadOnlyFileException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidAudioFrameException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">length</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>读取mp3格式的播放时间</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 获取mp3格式文件的播放时间</span>
-</span><span class='line'><span class="cm"> * @param filePath</span>
-</span><span class='line'><span class="cm"> * @return</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getMp3AudioLength</span> <span class="o">(</span><span class="n">String</span> <span class="n">filePath</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">filePath</span><span class="o">);</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">MP3File</span> <span class="n">f</span> <span class="o">=</span> <span class="o">(</span><span class="n">MP3File</span><span class="o">)</span><span class="n">AudioFileIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">MP3AudioHeader</span> <span class="n">audioHeader</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">getMP3AudioHeader</span><span class="o">();</span>
-</span><span class='line'>      <span class="n">length</span> <span class="o">=</span> <span class="n">audioHeader</span><span class="o">.</span><span class="na">getTrackLength</span><span class="o">();</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CannotReadException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TagException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ReadOnlyFileException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidAudioFrameException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">length</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

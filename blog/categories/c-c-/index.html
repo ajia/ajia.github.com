@@ -5,23 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python的集合运算 - Ajia's Blog</title>
+  <title>Category: C/C++ - Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面： 获取两个list的交集 1
-2
-3
-4
-5
-6
-7
-8
-#方法一:
-a=[2,3,4,5]
-b=[2,5,8]
-tmp = [val for &hellip;">
-  <meta name="keywords" content="python 交集 并集 差集">
+  <meta name="description" content="Category: C/C++">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -29,7 +18,7 @@ tmp = [val for &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/">
+  <link rel="canonical" href="http://ajia.github.comblog/categories/c-c-/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -85,128 +74,36 @@ tmp = [val for &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Python的集合运算</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-19T16:59:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
-        
-         | <a href="#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: C/C++</h1>
     
   </header>
-
-
-<div class="entry-content"><p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
-
-<h3>获取两个list的交集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#方法一:</span>
-</span><span class='line'><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-</span><span class='line'><span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
-</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>
-</span><span class='line'><span class="k">print</span> <span class="n">tmp</span>
-</span><span class='line'><span class="c">#[2, 5]</span>
-</span><span class='line'><span class="c">#方法二:</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>获取两个list的并集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>获取两个list的差集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="c"># b中有而a中没有的</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Ajia</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2014</h2>
 
-
-<time datetime="2014-03-19T16:59:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
-      
-
-<span class="categories">
+<article>
   
-    <a class='category' href='/blog/categories/python/'>python</a>
-  
-</span>
+<h1><a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a></h1>
+<time datetime="2014-04-08T18:51:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>08</span> <span class='year'>2014</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/c-c-/'>C/C++</a></span>
+</footer>
 
 
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/" title="Previous Post: 常用排序算法(python实现)">&laquo; 常用排序算法(python实现)</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/" title="Next Post: python中转化成json的方法不能序列化datetime类型数据的问题">python中转化成json的方法不能序列化datetime类型数据的问题 &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -313,10 +210,7 @@ tmp = [val for &hellip;">
       var disqus_shortname = 'ajia';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/';
-        var disqus_url = 'http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

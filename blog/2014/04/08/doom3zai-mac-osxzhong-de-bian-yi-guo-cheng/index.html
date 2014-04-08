@@ -5,23 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python的集合运算 - Ajia's Blog</title>
+  <title>DOOM3在Mac OSX中的编译过程 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面： 获取两个list的交集 1
-2
-3
-4
-5
-6
-7
-8
-#方法一:
-a=[2,3,4,5]
-b=[2,5,8]
-tmp = [val for &hellip;">
-  <meta name="keywords" content="python 交集 并集 差集">
+  <meta name="description" content="听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章Doom3 compilation instructions for Mac OS X。是2011年写的，有的步骤已经不用做了。 修改Architecture和Target SDK
+把&#8221 &hellip;">
+  <meta name="keywords" content="DOOM3 编译">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -29,7 +19,7 @@ tmp = [val for &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -89,7 +79,7 @@ tmp = [val for &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Python的集合运算</h1>
+      <h1 class="entry-title">DOOM3在Mac OSX中的编译过程</h1>
     
     
       <p class="meta">
@@ -105,7 +95,7 @@ tmp = [val for &hellip;">
   
 
 
-<time datetime="2014-03-19T16:59:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+<time datetime="2014-04-08T18:51:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2014</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -114,42 +104,48 @@ tmp = [val for &hellip;">
   </header>
 
 
-<div class="entry-content"><p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
+<div class="entry-content"><p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
 
-<h3>获取两个list的交集</h3>
+<ol>
+<li><p>修改Architecture和Target SDK
+把&#8221;Architectures&#8221;从&#8221;ppc i386&#8221;修改为&#8221;32-bit Intel&#8221;
+改变baseSDK 为 &#8220;Latest MacOSX&#8221;</p></li>
+<li><p>修改丢失的框架引用
+ 重新添加Carbon.framework, IOKit.framework, OpenGL.framework, CoreAudio.framework 引用到 Doom3 项目</p></li>
+<li><p>修改ppc_intrinsics.h.（这步已经OK）</p></li>
+<li><p>修改Id linker 参数
+设置Inline Methods Hidden 为 &#8220;No&#8221;
+设置Symbols Hidden by Default 为 &#8220;No&#8221;</p></li>
+<li><p>修改C++代码（这步已OK）</p></li>
+<li><p>修改更多的C++代码
+这步看一下文章的里的说明</p></li>
+<li><p>修改编译器
+把所有的编译器都改成LLVM GCC 4.2</p></li>
+<li><p>修改OpenAL weak reference
+删除-weak_framework OpenAL，并且添加OpenAL.framework</p></li>
+<li><p>删除旧版的curl lib reference
+删除curl项目的引用，添加libcurl.dylib到Doom3项目的框架列表中</p></li>
+<li><p>Don&#8217;t build unused architectures.
+设置&#8221;Build active Architecture only&#8221;为 Yes</p></li>
+<li><p>为链接器添加库
+添加库文件game.dylib、libidklib_pic.a</p></li>
+<li><p>添加游戏资源（assets）
+需要把游戏的base目录考到项目中去</p></li>
+<li><p>链接到game.dylib</p></li>
+</ol>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#方法一:</span>
-</span><span class='line'><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-</span><span class='line'><span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
-</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>
-</span><span class='line'><span class="k">print</span> <span class="n">tmp</span>
-</span><span class='line'><span class="c">#[2, 5]</span>
-</span><span class='line'><span class="c">#方法二:</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p>如果你启动游戏的时候出错：</p>
 
-<h3>获取两个list的并集</h3>
+<pre><code>Dyld Error Message:
+Library not loaded: /usr/local/lib/game.dylib
+Referenced from: /Users/dev/TTimo-doom3.gpl-1559777/neo/sys/osx/build/Debug/Doom 3.app/Contents/MacOS/Doom 3
+Reason: image not found
+</code></pre>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>获取两个list的差集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="c"># b中有而a中没有的</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>有两个解决方案：
+1.拷贝 game.dylib 到 /usr/local/lib，或者用lnm命令建立一个软连接
+2.设置&#8221;Dynamic Library Install Name&#8221;为&#8221;&#8220;,这样Doom3就会在当前目录找game.dylib</p>
 </div>
 
 
@@ -172,12 +168,12 @@ tmp = [val for &hellip;">
   
 
 
-<time datetime="2014-03-19T16:59:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+<time datetime="2014-04-08T18:51:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/python/'>python</a>
+    <a class='category' href='/blog/categories/c-c-/'>C/C++</a>
   
 </span>
 
@@ -193,10 +189,8 @@ tmp = [val for &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/" title="Previous Post: 常用排序算法(python实现)">&laquo; 常用排序算法(python实现)</a>
+        <a class="basic-alignment left" href="/blog/2014/04/07/unix-create-a-symbolic-link/" title="Previous Post: Unix Create a Symbolic Link">&laquo; Unix Create a Symbolic Link</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/" title="Next Post: python中转化成json的方法不能序列化datetime类型数据的问题">python中转化成json的方法不能序列化datetime类型数据的问题 &raquo;</a>
       
     </p>
   </footer>
@@ -314,8 +308,8 @@ tmp = [val for &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/';
-        var disqus_url = 'http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: C/C++ | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/c-c-/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2014-04-08T19:29:36+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    <email><![CDATA[DerekLunt@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[DOOM3在Mac OSX中的编译过程]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/"/>
+    <updated>2014-04-08T18:51:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng</id>
+    <content type="html"><![CDATA[<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
+
+<ol>
+<li><p>修改Architecture和Target SDK
+把"Architectures"从"ppc i386"修改为"32-bit Intel"
+改变baseSDK 为 "Latest MacOSX"</p></li>
+<li><p>修改丢失的框架引用
+ 重新添加Carbon.framework, IOKit.framework, OpenGL.framework, CoreAudio.framework 引用到 Doom3 项目</p></li>
+<li><p>修改ppc_intrinsics.h.（这步已经OK）</p></li>
+<li><p>修改Id linker 参数
+设置Inline Methods Hidden 为 "No"
+设置Symbols Hidden by Default 为 "No"</p></li>
+<li><p>修改C++代码（这步已OK）</p></li>
+<li><p>修改更多的C++代码
+这步看一下文章的里的说明</p></li>
+<li><p>修改编译器
+把所有的编译器都改成LLVM GCC 4.2</p></li>
+<li><p>修改OpenAL weak reference
+删除-weak_framework OpenAL，并且添加OpenAL.framework</p></li>
+<li><p>删除旧版的curl lib reference
+删除curl项目的引用，添加libcurl.dylib到Doom3项目的框架列表中</p></li>
+<li><p>Don't build unused architectures.
+设置"Build active Architecture only"为 Yes</p></li>
+<li><p>为链接器添加库
+添加库文件game.dylib、libidklib_pic.a</p></li>
+<li><p>添加游戏资源（assets）
+需要把游戏的base目录考到项目中去</p></li>
+<li><p>链接到game.dylib</p></li>
+</ol>
+
+
+<p>如果你启动游戏的时候出错：</p>
+
+<pre><code>Dyld Error Message:
+Library not loaded: /usr/local/lib/game.dylib
+Referenced from: /Users/dev/TTimo-doom3.gpl-1559777/neo/sys/osx/build/Debug/Doom 3.app/Contents/MacOS/Doom 3
+Reason: image not found
+</code></pre>
+
+<p>有两个解决方案：
+1.拷贝 game.dylib 到 /usr/local/lib，或者用lnm命令建立一个软连接
+2.设置"Dynamic Library Install Name"为"",这样Doom3就会在当前目录找game.dylib</p>
+]]></content>
+  </entry>
+  
+</feed>

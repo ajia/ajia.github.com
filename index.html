@@ -9,10 +9,8 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="UNIX系统中这样来创建一个软连接（symbolic link）: $ ln -s {/path/to/file-name} {link-name}
-$ ln -s /shared/sales/data/file.txt sales.data.txt
-$ vi sales.data.txt
-$ &hellip;">
+  <meta name="description" content="听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章Doom3 compilation instructions for Mac OS X。是2011年写的，有的步骤已经不用做了。 修改Architecture和Target SDK
+把&#8221 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +76,85 @@ $ &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-08T18:51:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
+
+<ol>
+<li><p>修改Architecture和Target SDK
+把&#8221;Architectures&#8221;从&#8221;ppc i386&#8221;修改为&#8221;32-bit Intel&#8221;
+改变baseSDK 为 &#8220;Latest MacOSX&#8221;</p></li>
+<li><p>修改丢失的框架引用
+ 重新添加Carbon.framework, IOKit.framework, OpenGL.framework, CoreAudio.framework 引用到 Doom3 项目</p></li>
+<li><p>修改ppc_intrinsics.h.（这步已经OK）</p></li>
+<li><p>修改Id linker 参数
+设置Inline Methods Hidden 为 &#8220;No&#8221;
+设置Symbols Hidden by Default 为 &#8220;No&#8221;</p></li>
+<li><p>修改C++代码（这步已OK）</p></li>
+<li><p>修改更多的C++代码
+这步看一下文章的里的说明</p></li>
+<li><p>修改编译器
+把所有的编译器都改成LLVM GCC 4.2</p></li>
+<li><p>修改OpenAL weak reference
+删除-weak_framework OpenAL，并且添加OpenAL.framework</p></li>
+<li><p>删除旧版的curl lib reference
+删除curl项目的引用，添加libcurl.dylib到Doom3项目的框架列表中</p></li>
+<li><p>Don&#8217;t build unused architectures.
+设置&#8221;Build active Architecture only&#8221;为 Yes</p></li>
+<li><p>为链接器添加库
+添加库文件game.dylib、libidklib_pic.a</p></li>
+<li><p>添加游戏资源（assets）
+需要把游戏的base目录考到项目中去</p></li>
+<li><p>链接到game.dylib</p></li>
+</ol>
+
+
+<p>如果你启动游戏的时候出错：</p>
+
+<pre><code>Dyld Error Message:
+Library not loaded: /usr/local/lib/game.dylib
+Referenced from: /Users/dev/TTimo-doom3.gpl-1559777/neo/sys/osx/build/Debug/Doom 3.app/Contents/MacOS/Doom 3
+Reason: image not found
+</code></pre>
+
+<p>有两个解决方案：
+1.拷贝 game.dylib 到 /usr/local/lib，或者用lnm命令建立一个软连接
+2.设置&#8221;Dynamic Library Install Name&#8221;为&#8221;&#8220;,这样Doom3就会在当前目录找game.dylib</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -840,56 +917,6 @@ callable callback
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/">Sublime Text的一些配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-27T10:37:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>来源：https://github.com/mhartl/rails_tutorial_sublime_text</p>
-
-<h1>Command-line command</h1>
-
-<p>在Mac OSX上这样创建命令subl：</p>
-
-<pre><code>$ sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
-</code></pre>
-
-<p>如果~/bin/subl不存在:</p>
-
-<pre><code>mkdir ~/bin
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -912,11 +939,15 @@ callable callback
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 104.0%'>常用命令(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 104.0%'>常用命令(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/04/07/unix-create-a-symbolic-link/">Unix Create a Symbolic Link</a>
@@ -932,10 +963,6 @@ callable callback
     
       <li class="post">
         <a href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/">常用排序算法(python实现)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/">xcode常用快捷键</a>
       </li>
     
   </ul>
