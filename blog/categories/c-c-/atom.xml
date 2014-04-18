@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C/C++ | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/c-c-/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-04-18T17:59:58+08:00</updated>
+  <updated>2014-04-18T18:04:10+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -19,6 +19,9 @@
     <updated>2014-04-08T18:51:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng</id>
     <content type="html"><![CDATA[<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
+
+<!-- more -->
+
 
 <ol>
 <li><p>修改Architecture和Target SDK

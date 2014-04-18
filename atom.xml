@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-04-18T17:59:58+08:00</updated>
+  <updated>2014-04-18T18:04:10+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -116,6 +116,9 @@ $cat zhao.part* &gt; zhao.mp3
     <id>http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng</id>
     <content type="html"><![CDATA[<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
 
+<!-- more -->
+
+
 <ol>
 <li><p>修改Architecture和Target SDK
 把&#8221;Architectures&#8221;从&#8221;ppc i386&#8221;修改为&#8221;32-bit Intel&#8221;
@@ -172,6 +175,9 @@ $ ln -s /shared/sales/data/file.txt sales.data.txt
 $ vi sales.data.txt
 $ ls -l sales.data.txt
 </code></pre>
+
+<!-- more -->
+
 
 <p>怎样删除软连接呢？很简单，这样：</p>
 
@@ -293,7 +299,10 @@ $ rm link-here
     <link href="http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/"/>
     <updated>2014-02-10T15:02:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian</id>
-    <content type="html"><![CDATA[<p>前段时间把主要的排序算法原理看了一遍，光看不行，还是得动手。</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>前段时间把主要的排序算法原理看了一遍，光看不行，还是得动手。</p>
 
 <figure class='code'><figcaption><span>排序算法 python (Sort.py)</span> <a href='http://ajia.github.com/downloads/code/Sort.py'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
