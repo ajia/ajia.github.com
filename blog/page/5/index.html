@@ -9,12 +9,9 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="codeajia1
-2
-3
-4
-String value = java.net.URLEncoder.encode(&quot;中文&quot;,&quot;utf-8&quot;);
-Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
+  <meta name="description" content="问题：要替换掉内容中出现的“\n”，写成 str.replace("\\n", "") 才能正确执行。
+下面的都不能替换掉 str.replace("\n","") str.replaceAll("\\n","")
+str.replaceAll("\n","") ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +77,55 @@ Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/25/ti-huan-diao-slash-n/">Java中替换掉换行符</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-25T14:14:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/25/ti-huan-diao-slash-n/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>问题：要替换掉内容中出现的“\n”，写成</p>
+
+<pre><code>str.replace("\\n", "")  
+</code></pre>
+
+<p>才能正确执行。
+下面的都不能替换掉</p>
+
+<pre><code>str.replace("\n","") 
+str.replaceAll("\\n","")
+str.replaceAll("\n","")
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -285,11 +331,15 @@ Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 104.0%'>常用命令(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/04/18/curlyong-fa-zhuan/">curl用法(转)</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
@@ -305,10 +355,6 @@ Cookie cookie = new Cookie(&quot;chinese_code&quot;, &hellip;">
     
       <li class="post">
         <a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/">Python的集合运算</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/">常用排序算法(python实现)</a>
       </li>
     
   </ul>

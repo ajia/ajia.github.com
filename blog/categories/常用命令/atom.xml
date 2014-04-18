@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 常用命令 | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/常用命令/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-04-08T19:29:36+08:00</updated>
+  <updated>2014-04-18T17:57:27+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[curl用法(转)]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/18/curlyong-fa-zhuan/"/>
+    <updated>2014-04-18T17:52:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/18/curlyong-fa-zhuan</id>
+    <content type="html"><![CDATA[<p>curl可以模仿浏览器，可以当下载器，当你只是在处理一些shell工作时、测试，要图形界面干嘛？或者，要一个下载器干嘛。（转自：http://www.cnblogs.com/bugY/archive/2012/06/05/2537030.html）</p>
+
+<p>基本用法（配合sed/awk/grep）</p>
+
+<pre><code>$curl http: //bpsky.net
+</code></pre>
+
+<p>下载保存</p>
+
+<pre><code>$curl http://bpsky.net &gt; index.html
+$curl -o index.html http://bpsky.net
+$curl -O http://bpsky.net/target.tar.gz
+</code></pre>
+
+<p>通过代理</p>
+
+<pre><code>$curl -x  123.45 . 67.89 : 1080  -o page.html http://bpsky.net
+</code></pre>
+
+<p>保存cookie</p>
+
+<pre><code>$curl -x  123.45 . 67.89 : 1080  -o page1.html -D cookie0001.txt http://bpsky.net
+</code></pre>
+
+<p>使用cookie</p>
+
+<pre><code>$curl -x  123.45 . 67.89 : 1080  -o page1.html -D cookie0002.txt -b cookie0001.txt http://bpsky.net
+</code></pre>
+
+<p>模仿浏览器</p>
+
+<pre><code>$curl -A  "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)"  -x  123.45 . 67.89 : 1080  -o page.html -D cookie0001.txt http://bpsky.net
+</code></pre>
+
+<p>伪造referer</p>
+
+<pre><code>$curl -A  "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)"  -x  123.45 . 67.89 : 1080  -e  "mail.yahoo.com"  -o page.html -D cookie0001.txt http://bpsky.net
+</code></pre>
+
+<p>循环下载</p>
+
+<pre><code>$curl -O http://cgi2.tky.3web.ne.jp/~zzh/screen[1-10].JPG
+</code></pre>
+
+<p>循环（匹配）下载</p>
+
+<pre><code>$curl -O http://cgi2.tky.3web.ne.jp/~{zzh,nick}/[001-201].JPG  # &gt;like zzh/001.JPG
+</code></pre>
+
+<p>循环（引用）下载</p>
+
+<pre><code>$curl -o #2_#1.jpg http://cgi2.tky.3web.ne.jp/~{zzh,nick}/[001-201].JPG # like &gt;001_zzh.jpg
+</code></pre>
+
+<p>断点续传</p>
+
+<pre><code>$curl -c -O http://cgi2.tky.3wb.ne.jp/~zzh/screen1.JPG 
+</code></pre>
+
+<p>分块下载</p>
+
+<pre><code>$curl -r  0 - 10240  -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3 &amp;\ 
+$curl -r 10241 - 20480  -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3 &amp;\ 
+$curl -r 20481 - 40960  -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3 &amp;\ 
+$curl -r 40961 - -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3
+...
+$cat zhao.part* &gt; zhao.mp3
+</code></pre>
+
+<p>GET 上传</p>
+
+<pre><code>$curl http://www.yahoo.com/login.cgi?user=nickwolfe&amp;password=12345  
+</code></pre>
+
+<p>POST 上传</p>
+
+<pre><code>$curl -d "user=nickwolfe&amp;password=12345" http://www.yahoo.com/login.cgi
+</code></pre>
+
+<p>POST 文件上传</p>
+
+<pre><code>$curl -F upload= $localfile  -F $btn_name=$btn_value http://cgi2.tky.3web.ne.jp/~zzh/up_file.cgi
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Unix Create a Symbolic Link]]></title>

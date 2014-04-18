@@ -9,7 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="折腾了一下用HttpClient上传文件，主要是不需要设置“multipart/form-data”,否则会出现“the request was rejected because no multipart boundary was found” 1
+  <meta name="description" content="今天遇上一个异常： 1
 2
 3
 4
@@ -20,7 +20,26 @@
 9
 10
 11
-12 &hellip;">
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+2013-04-08 15:35:47 072 [ERROR] JDBC commit failed [org. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +105,108 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/">遇上MySql的奇怪问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-08T17:25:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/08/yu-shang-mysqlde-qi-guai-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天遇上一个异常：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>2013-04-08 15:35:47 072 [ERROR] JDBC commit failed [org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:124)]
+</span><span class='line'>com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Communications link failure during commit(). Transaction resolution unknown.
+</span><span class='line'>  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+</span><span class='line'>  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+</span><span class='line'>  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+</span><span class='line'>  at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+</span><span class='line'>  at com.mysql.jdbc.Util.handleNewInstance(Util.java:407)
+</span><span class='line'>  at com.mysql.jdbc.Util.getInstance(Util.java:382)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1013)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:987)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:982)
+</span><span class='line'>  at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:927)
+</span><span class='line'>  at com.mysql.jdbc.ConnectionImpl.commit(ConnectionImpl.java:1672)
+</span><span class='line'>  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+</span><span class='line'>  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+</span><span class='line'>  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+</span><span class='line'>  at java.lang.reflect.Method.invoke(Method.java:616)
+</span><span class='line'>  at org.logicalcobwebs.proxool.WrappedConnection.invoke(WrappedConnection.java:162)
+</span><span class='line'>  at org.logicalcobwebs.proxool.WrappedConnection.intercept(WrappedConnection.java:87)
+</span><span class='line'>  at $java.sql.Connection$$EnhancerByProxool$$90ddbb0c.commit(&lt;generated&gt;)
+</span><span class='line'>  at org.hibernate.transaction.JDBCTransaction.commitAndResetAutoCommit(JDBCTransaction.java:139)
+</span><span class='line'>  at org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:115)
+</span><span class='line'>  at org.springframework.orm.hibernate3.HibernateTransactionManager.doCommit(HibernateTransactionManager.java:596)
+</span><span class='line'>  at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:709)
+</span><span class='line'>  at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:678)
+</span><span class='line'>  at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:319)
+</span><span class='line'>  at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:116)
+</span><span class='line'>  at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+</span><span class='line'>  at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+</span><span class='line'>  at $Proxy163.importDate(Unknown Source)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找了一个上午和半个下午终于解决了，原因是线上的数据库服务器关掉了innodb引擎，myisam对事务支持有问题，所以修改spring的配置文件，把事务的配置去掉就可以了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -685,55 +806,6 @@ Awesome code snippet
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/25/ti-huan-diao-slash-n/">Java中替换掉换行符</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-25T14:14:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/25/ti-huan-diao-slash-n/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>问题：要替换掉内容中出现的“\n”，写成</p>
-
-<pre><code>str.replace("\\n", "")  
-</code></pre>
-
-<p>才能正确执行。
-下面的都不能替换掉</p>
-
-<pre><code>str.replace("\n","") 
-str.replaceAll("\\n","")
-str.replaceAll("\n","")
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -758,11 +830,15 @@ str.replaceAll("\n","")
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 104.0%'>常用命令(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/04/18/curlyong-fa-zhuan/">curl用法(转)</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
@@ -778,10 +854,6 @@ str.replaceAll("\n","")
     
       <li class="post">
         <a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/">Python的集合运算</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/">常用排序算法(python实现)</a>
       </li>
     
   </ul>

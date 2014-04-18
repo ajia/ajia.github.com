@@ -9,7 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="来源：https://github.com/mhartl/rails_tutorial_sublime_text Command-line command 在Mac OSX上这样创建命令subl： $ sudo ln -s "/Applications/Sublime Text 2.app/ &hellip;">
+  <meta name="description" content="创建cache 可以通过两种方式来创建cache： cacheLoader callable callback 通过这两种方法创建的cache，和通常用map来缓存的做法比，不同在于，这两种方法都实现了一种逻辑——从缓存中取key X的值，如果该值已经缓存过了，则返回缓存中的值，如果没有缓存过， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,160 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/">Guava的使用指南之Cache</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-05T17:42:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>创建cache</h3>
+
+<p>可以通过两种方式来创建cache：</p>
+
+<pre><code>cacheLoader
+
+callable callback
+</code></pre>
+
+<p>通过这两种方法创建的cache，和通常用map来缓存的做法比，不同在于，这两种方法都实现了一种逻辑——从缓存中取key X的值，如果该值已经缓存过了，则返回缓存中的值，如果没有缓存过，可以通过某个方法来获取这个值。</p>
+
+<p>但不同的在于cacheloader的定义比较宽泛，是针对整个cache定义的，可以认为是统一的根据key值load value的方法。</p>
+
+<p>而callable的方式较为灵活，允许你在get的时候指定。</p>
+
+<p>下面是两种方法的例子:</p>
+
+<p>首先是基于cacheloader的方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCacheBuilder</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ExecutionException</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">LoadingCache</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">graphs</span> <span class="o">=</span> <span class="n">CacheBuilder</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">().</span><span class="na">maximumSize</span><span class="o">(</span><span class="mi">1000</span><span class="o">)</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="k">new</span> <span class="n">CacheLoader</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class='line'>                <span class="kd">public</span> <span class="n">String</span> <span class="nf">load</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                    <span class="c1">// 这里是key根据实际去取值的方法，例如根据这个key去数据库或者properties文件中取值</span>
+</span><span class='line'>                    <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;E:/WorkDir/struts2practice/GuavaTest/WebRoot/WEB-INF/xml/springConfig.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>                    <span class="n">JdbcCustomerDAO</span> <span class="n">aJdbcCustomerDAO</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">JdbcCustomerDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;load method has been invoked&quot;</span><span class="o">);</span>
+</span><span class='line'>                    <span class="k">return</span> <span class="n">aJdbcCustomerDAO</span><span class="o">.</span><span class="na">findValue</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>                <span class="o">}</span>
+</span><span class='line'>            <span class="o">});</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">resultVal</span> <span class="o">=</span> <span class="n">graphs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;first time value is: &quot;</span> <span class="o">+</span> <span class="n">resultVal</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">resultVal1</span> <span class="o">=</span> <span class="n">graphs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;second time values is: &quot;</span> <span class="o">+</span> <span class="n">resultVal1</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其次是基于实现callable的方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCallable</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ExecutionException</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// 没有使用CacheLoader</span>
+</span><span class='line'>        <span class="n">Cache</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">cache</span> <span class="o">=</span> <span class="n">CacheBuilder</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">().</span><span class="na">maximumSize</span><span class="o">(</span><span class="mi">1000</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">resultVal</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="kd">public</span> <span class="n">String</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>                <span class="c1">// 这里先根据key实际去取值的方法，例如根据这个key去数据库或者properties文件中取值</span>
+</span><span class='line'>                <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;E:/WorkDir/struts2practice/GuavaTest/WebRoot/WEB-INF/xml/springConfig.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">JdbcCustomerDAO</span> <span class="n">aJdbcCustomerDAO</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">JdbcCustomerDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;resultVal call method is invoked&quot;</span><span class="o">);</span>
+</span><span class='line'>                <span class="k">return</span> <span class="n">aJdbcCustomerDAO</span><span class="o">.</span><span class="na">findValue</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">});</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;first time value is: &quot;</span> <span class="o">+</span> <span class="n">resultVal</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">resultVal1</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="kd">public</span> <span class="n">String</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>                <span class="c1">// 这里先根据key实际去取值的方法，例如根据这个key去数据库或者properties文件中取值</span>
+</span><span class='line'>                <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;E:/WorkDir/struts2practice/GuavaTest/WebRoot/WEB-INF/xml/springConfig.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">JdbcCustomerDAO</span> <span class="n">aJdbcCustomerDAO</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">JdbcCustomerDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;resultVal1 call method is invoked&quot;</span><span class="o">);</span>
+</span><span class='line'>                <span class="k">return</span> <span class="n">aJdbcCustomerDAO</span><span class="o">.</span><span class="na">findValue</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">});</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;second time values is: &quot;</span> <span class="o">+</span> <span class="n">resultVal1</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -583,49 +737,6 @@ port 22</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/24/jodari-qi-ji-suan/">Joda日期计算</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-24T10:19:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/05/24/jodari-qi-ji-suan/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成。<a href="http://joda-time.sourceforge.net/">项目地址</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/05/24/jodari-qi-ji-suan/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -650,11 +761,15 @@ port 22</p>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 104.0%'>常用命令(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/04/18/curlyong-fa-zhuan/">curl用法(转)</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
@@ -670,10 +785,6 @@ port 22</p>
     
       <li class="post">
         <a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/">Python的集合运算</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/">常用排序算法(python实现)</a>
       </li>
     
   </ul>
