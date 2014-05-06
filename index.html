@@ -9,7 +9,8 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="curl可以模仿浏览器，可以当下载器，当你只是在处理一些shell工作时、测试，要图形界面干嘛？或者，要一个下载器干嘛。 ">
+  <meta name="description" content="步骤如下：
+1. 打开终端，把IOS镜像转换为DMG格式： HDIUTIL CONVERT -FORMAT UDRW -O ubuntukylin-13.04-desktop-i386 ubuntukylin-13.04-desktop-i386.iso 查看U盘的disk编号 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +76,334 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/">Mac下制作Ubuntu安装U盘</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T12:02:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>步骤如下：
+1. 打开终端，把IOS镜像转换为DMG格式：</p>
+
+<pre><code>HDIUTIL CONVERT -FORMAT UDRW -O ubuntukylin-13.04-desktop-i386 ubuntukylin-13.04-desktop-i386.iso
+</code></pre>
+
+<ol>
+<li>查看U盘的disk编号</li>
+</ol>
+
+
+<p>不接入U盘的情况下在终端中输入 diskutil list</p>
+
+<p>将U盘接入Mac，再次输入diskutil list</p>
+
+<p>对比2次的输出，确定U盘的disk编号</p>
+
+<p>我这里的disk编号是1</p>
+
+<p>3、卸载USB盘（插入时已经自动挂载了），但是不要推出。在终端下：</p>
+
+<pre><code>diskutil umountDisk /dev/disk1    
+</code></pre>
+
+<ol>
+<li><p>将dmg写入U盘</p>
+
+<p> sudo dd if=./ubuntukylin-13.04-desktop-i386.dmg of=/dev/rdisk1 bs=1m</p></li>
+</ol>
+
+
+<p>5、推出USB盘。在上面复制之后，系统可能会报错，“此电脑不难读取能插入的磁盘”，不必理会，直接推出即可。也可以在终端下推出：</p>
+
+<pre><code>diskutil eject /dev/disk1
+</code></pre>
+
+<p>使用该USB盘引导启动即可进行Linux的安装。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/">读Lua程序设计笔记&#8211;类型与值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-19T18:30:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">读《Lua程序设计》笔记&#8211;函数</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-19T10:02:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">Du Luacheng Xu She Ji Bi Ji</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-19T00:00:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, &#8216;Palatino Linotype&#8217;, Times, &#8216;Times New Roman&#8217;,
+              &#8220;Hiragino Sans GB&#8221;, &#8220;STXihei&#8221;, &#8220;微软雅黑&#8221;, serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: &#8221; (&#8221; attr(href) &#8220;)&#8221;; }
+  abbr[title]:after { content: &#8221; (&#8221; attr(title) &#8220;)&#8221;; }
+  .ir a:after, a[href^=&#8221;javascript:&#8221;]:after, a[href^=&#8221;#&#8221;]:after { content: &#8220;&#8221;; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>2014-04-19-du-luacheng-xu-she-ji-bi-ji</title></head><body><hr />
+<p>layout: post
+title: &#8220;读《Lua程序设计》笔记&#8211;函数&#8221;
+date: 2014-04-19 10:02
+comments: true
+categories: L
+keywords: 笔记 学习 读书
+description: 读《Lua程序设计》笔记</p>
+<hr />
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -399,182 +728,6 @@ $ ls -l sales.data.txt
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/">Xcode常用快捷键</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-15T10:48:00+08:00" pubdate data-updated="true">Oct 15<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>熟练使用快捷键能极大的提高效率，在此记录一下常用的xcode快捷键：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/">RethinkDB 创始人总结的 57 条创业经验</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-19T15:51:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>总部位于旧金山的云计算数据库服务公司RethinkDB创始人斯拉瓦·阿克麦切特（Slava Akhmechet）日前发表文章，总结了57条创业经验，其中涉及团队、融资、市场、产品、营销、销售、产品开发、公司管理、个人状态等9个方面。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/">用Git做版本控制</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-19T15:15:00+08:00" pubdate data-updated="true">Jul 19<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>版本控制系统可以跟踪项目代码的变化，便于和他人协作，如果出现问题（例如不小心删除了文件）还可以回滚到以前的版本。每个软件开发者都应该学习使用版本控制系统。</p>
-
-<p>版本控制工具很多，Rails 社区更多的会使用 Git，它最初是由 Linus Torvalds 开发用来存储 Linux 内核代码的。Git 的知识很多，这里我们只会介绍一些简单的内容，网络上有很多免费的资料可以阅读，我特别推荐 Scott Chacon 的《Pro Git》（Apress 2009 年出版。<a href="http://git-scm.com/book/zh">中文版</a>）。之所以推荐你将代码放到 Git 这个版本控制系统中是因为这几乎是 Rails 社区的普遍做法，还因为这样做更利于代码的分享，也便于程序的部署。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/19/chuang-ye-jian-yi/">创业12条建议</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-19T14:46:00+08:00" pubdate data-updated="true">Jul 19<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/07/19/chuang-ye-jian-yi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文来自Squawk Messenger的联合创始人及StreetArtSF.com的创始人Chloë Bregman。</p>
-
-<p>这些不是道听途说来的狗屁东西，而是我自己摸索总结出来的点点滴滴。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/07/19/chuang-ye-jian-yi/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -597,30 +750,30 @@ $ ls -l sales.data.txt
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/l' style='font-size: 104.0%'>L(1)</a> <a href='/blog/categories/lua' style='font-size: 104.0%'>Lua(1)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/折腾' style='font-size: 104.0%'>折腾(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/">Mac下制作Ubuntu安装U盘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/">读Lua程序设计笔记&#8211;类型与值</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">读《Lua程序设计》笔记&#8211;函数</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">Du Luacheng Xu She Ji Bi Ji</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/04/18/curlyong-fa-zhuan/">curl用法(转)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/07/unix-create-a-symbolic-link/">Unix Create a Symbolic Link</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/">python中转化成json的方法不能序列化datetime类型数据的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/">Python的集合运算</a>
       </li>
     
   </ul>

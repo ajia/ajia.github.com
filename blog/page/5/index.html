@@ -9,9 +9,9 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="问题：要替换掉内容中出现的“\n”，写成 str.replace("\\n", "") 才能正确执行。
-下面的都不能替换掉 str.replace("\n","") str.replaceAll("\\n","")
-str.replaceAll("\n","") ">
+  <meta name="description" content="记得去掉{和%之间的空格 包含代码（Include Code） 语法 1
+{ % include_code [title] [lang:language] path/to/file % } 例子 1
+{ % include_code test.js % } (test.js) download 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,263 @@ str.replaceAll("\n","") ">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/28/octopressde-cha-jian/">Octopress的插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-28T13:27:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/28/octopressde-cha-jian/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>记得去掉{和%之间的空格</p>
+
+<h2>包含代码（Include Code）</h2>
+
+<h5>语法</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code [title] [lang:language] path/to/file % }</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>例子</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % include_code test.js % }</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">sample javascript from xui</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
+</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/28/octopressde-cha-jian/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/">在octopress里写博客</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-28T11:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>代码高亮</h3>
+
+<h4>Codeblock</h4>
+
+<h6>语法</h6>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ % codeblock [title] [lang:language] [url] [link text] % }
+</span><span class='line'>code snippet
+</span><span class='line'>{ % endcodeblock % }</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>例子</h6>
+
+<pre><code>{ % codeblock % }
+Awesome code snippet
+{ % endcodeblock % }
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Awesome code snippet</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/28/zai-octopressli-xie-bo-ke/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/27/tui-jian-wei-xin/">推荐微信</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-27T21:42:00+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/27/tui-jian-wei-xin/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>推荐一个微信公众账号，带给你一些关于情侣和夫妻之间好玩的事
+<img class="center" src="/images/getqrcode.jpg" width="300" height="300" title="丹丹调戏品" ></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/">Solr高亮的配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-25T18:07:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/25/solrgao-liang-de-pei-zhi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>打开solrconfig.xml，找到<lst name="defaults">，比如我要高亮content和title这两个field，配置如下：</p>
+
+<pre><code>&lt;bool name="hl"&gt;true&lt;/bool&gt;
+&lt;str name="hl.fl"&gt;title&lt;/str&gt;
+&lt;str name="hl.fl"&gt;content&lt;/str&gt;
+</code></pre>
+
+<p>然后就不用在参数里加这几个也可以返回高亮后的结果了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -331,30 +588,30 @@ str.replaceAll("\n","")
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/l' style='font-size: 104.0%'>L(1)</a> <a href='/blog/categories/lua' style='font-size: 104.0%'>Lua(1)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/折腾' style='font-size: 104.0%'>折腾(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/">Mac下制作Ubuntu安装U盘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/">读Lua程序设计笔记&#8211;类型与值</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">读《Lua程序设计》笔记&#8211;函数</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">Du Luacheng Xu She Ji Bi Ji</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/04/18/curlyong-fa-zhuan/">curl用法(转)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/07/unix-create-a-symbolic-link/">Unix Create a Symbolic Link</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/">python中转化成json的方法不能序列化datetime类型数据的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/">Python的集合运算</a>
       </li>
     
   </ul>

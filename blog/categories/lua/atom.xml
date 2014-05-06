@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Lua | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/lua/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2014-05-06T14:04:03+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    <email><![CDATA[DerekLunt@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[读Lua程序设计笔记--类型与值]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/"/>
+    <updated>2014-04-19T18:30:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h6>table的创建是通过“构造表达式”完成的，最简单的构造表达式就是{}。</h6>
+
+<p>```lua</p>
+
+<pre><code>a = {} --创建一个table, 并将它的引用存储到a
+k = "x"
+a[k] = 10  --新条目，key="x", value=10
+a[20] = "great"  --新条目, key=20, value="great"
+print(a["x"])  --&gt;10
+k = 20
+print(a[k])  --&gt;"great"
+a["x"] = a["x"] + 1  --递增条目"x"
+print(a["x"])  --&gt;11
+</code></pre>
+
+<p>```</p>
+
+<h6>所有table都可以用不同类型的索引来访问值,当需要容纳新条目时，table会自动增长。</h6>
+
+<p>```lua</p>
+
+<pre><code>a = {}  --空的table
+--创建1000个新条目
+for i=1,10000 do a[i] = i*2 end
+print(a[9]) --&gt;18
+a["x"] = 10
+print(a["x"])  --&gt;10
+print(a["y"])  --&gt;nil
+a.x = 10  -- 等同于a["x"] = 10
+print(a.x)  -- 等同于print(a["x"])
+print(a.y)  -- 等同于print(a["y"])
+-- a.x和a[x]是不同的。前者表示a["x"]，后者表示以变量x的值来索引table。
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

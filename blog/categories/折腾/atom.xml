@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 折腾 | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/折腾/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2014-05-06T14:04:03+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    <email><![CDATA[DerekLunt@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mac下制作Ubuntu安装U盘]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/"/>
+    <updated>2014-05-06T12:02:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan</id>
+    <content type="html"><![CDATA[<p>步骤如下：
+1. 打开终端，把IOS镜像转换为DMG格式：</p>
+
+<pre><code>HDIUTIL CONVERT -FORMAT UDRW -O ubuntukylin-13.04-desktop-i386 ubuntukylin-13.04-desktop-i386.iso
+</code></pre>
+
+<ol>
+<li>查看U盘的disk编号</li>
+</ol>
+
+
+<p>不接入U盘的情况下在终端中输入 diskutil list</p>
+
+<p>将U盘接入Mac，再次输入diskutil list</p>
+
+<p>对比2次的输出，确定U盘的disk编号</p>
+
+<p>我这里的disk编号是1</p>
+
+<p>3、卸载USB盘（插入时已经自动挂载了），但是不要推出。在终端下：</p>
+
+<pre><code>diskutil umountDisk /dev/disk1    
+</code></pre>
+
+<ol>
+<li><p>将dmg写入U盘</p>
+
+<p> sudo dd if=./ubuntukylin-13.04-desktop-i386.dmg of=/dev/rdisk1 bs=1m</p></li>
+</ol>
+
+
+<p>5、推出USB盘。在上面复制之后，系统可能会报错，“此电脑不难读取能插入的磁盘”，不必理会，直接推出即可。也可以在终端下推出：</p>
+
+<pre><code>diskutil eject /dev/disk1
+</code></pre>
+
+<p>使用该USB盘引导启动即可进行Linux的安装。</p>
+]]></content>
+  </entry>
+  
+</feed>

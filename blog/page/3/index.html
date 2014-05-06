@@ -9,7 +9,7 @@
   <meta name="author" content="Ajia">
 
   
-  <meta name="description" content="Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成。项目地址 ">
+  <meta name="description" content="Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。看看Guava Collections为我们做了哪些很酷的事情： Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,263 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/">Guava的使用指南之Collections</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T13:45:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。看看Guava Collections为我们做了哪些很酷的事情：</p>
+
+<ul>
+<li>Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable Collections这才是真正的不可修改的集合</li>
+<li>Multiset:看看如何把重复的元素放入一个集合</li>
+<li>Multimaps:需要在一个key对应多个value的时候，自己写一个实现比较繁琐，让Multimaps来帮帮</li>
+<li>BiMap:java.util.Map只能保证key的不重复，BiMap保证value也不重复</li>
+<li>MapMaker:超级强大的Map构造类</li>
+<li>Ordering class:大家知道用Comparator作为比较器来对集合排序，但是对于多关键字排序Ordering class可以简化很多的代码</li>
+<li>其他特性</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/">Guava的使用指南之Basic Utilities</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T13:44:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>从避免使用null开始</h2>
+
+<p>由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。举个例子来说，如果原先有getNickName方法可以传回String，调用它如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="k">if</span><span class="o">(</span><span class="n">nickName</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">nickName</span> <span class="o">=</span> <span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/31/gsonde-shi-yong-zhi-nan/">Gson的使用指南</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T13:42:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/31/gsonde-shi-yong-zhi-nan/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>介绍</h1>
+
+<p>Gson是一个可以把Java对象转化成JSON格式的字符串，也可以从一个JSON字符串转换为一个Java对象。Gson是一个开源项目，<a href="http://code.google.com/p/google-gson">这里是地址</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/05/31/gsonde-shi-yong-zhi-nan/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/24/javacha-jian-zhi-timer/">Java插件之timer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-24T14:20:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/24/javacha-jian-zhi-timer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JQuery Timers应用知识<br/>
+提供了三个函式<br/>
+1. everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*************************************************************</span>
+</span><span class='line'><span class="cm">*   everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</span>
+</span><span class='line'><span class="cm">*************************************************************/</span>
+</span><span class='line'><span class="c1">//每1秒执行函式test()</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">test</span><span class="p">(){</span>
+</span><span class='line'>   <span class="c1">//do something...</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="nx">test</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//每1秒执行</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="c1">//每1秒执行，并命名计时器名称为A</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="c1">//每20秒执行，最多5次，并命名计时器名称为B</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'><span class="c1">//do something...</span>
+</span><span class='line'><span class="p">},</span><span class="mi">5</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//每20秒执行，无限次，并命名计时器名称为C</span>
+</span><span class='line'><span class="c1">//若时间间隔抵到，但函式程序仍未完成则需等待执行函式完成后再继续计时</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="c1">//执行一个会超过20秒以上的程式</span>
+</span><span class='line'><span class="p">},</span><span class="mi">0</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/05/24/javacha-jian-zhi-timer/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -376,321 +633,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/">Mysql创建function失败</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-16T16:12:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>出错信息：</p>
-
-<p>创建function时</p>
-
-<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
-or READS SQL DATA in its declaration and binary logging is enabled 
-(you might want to use the less safe log_bin_trust_function_creators variable)
-</code></pre>
-
-<p>原因：</p>
-
-<p>这是我们开启了bin-log, 我们就必须指定我们的函数是否是
-1 DETERMINISTIC 不确定的
-2 NO SQL 没有SQl语句，当然也不会修改数据
-3 READS SQL DATA 只是读取数据，当然也不会修改数据
-4 MODIFIES SQL DATA 要修改数据
-5 CONTAINS SQL 包含了SQL语句</p>
-
-<p>其中在function里面，只有 DETERMINISTIC, NO SQL 和 READS SQL DATA 被支持。如果我们开启了 bin-log, 我们就必须为我们的function指定一个参数。</p>
-
-<p>解决办法</p>
-
-<pre><code>mysql&gt;show variables like '%func%';
-+---------------------------------+-------+  
-|Variable_name                  |Value|  
-+---------------------------------+-------+  
-|log_bin_trust_function_creators|OFF  |  
-+---------------------------------+-------+  
-
-set global log_bin_trust_function_creators=1;  
-
-mysql&gt;show variables like '%func%';  
-+---------------------------------+-------+  
-|Variable_name                  |Value|  
-+---------------------------------+-------+  
-|log_bin_trust_function_creators|ON   |  
-+---------------------------------+-------+  
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/">Hessian版本冲突的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-11T17:53:00+08:00" pubdate data-updated="true">Apr 11<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/04/11/hessianban-ben-chong-tu-de-wen-ti/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>项目需要调用远程的接口，用的是hessian，写了一段代码测试，结果报错</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">HessianProtocolException</span><span class="err">：</span><span class="n">expected</span> <span class="n">integer</span> <span class="n">at</span><span class="err">…</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>非常简短，让人摸不着头脑。寻找了一段时间，在网上发现这样一句话</p>
-
-<blockquote><blockquote><p>use hessian-4.<em> spring-3.</em>  resin-4.<em>. for Hessian protocol 2.And resin-3.</em>, spring-2.* hessian before 3.2.0 for Hessian protocol version 1.</p></blockquote></blockquote>
-
-<p>看来是版本的问题，我的环境是resin-4.*、spring-2.*、hessian-4.*，后来改成用resin.3.1.13版本就正常了。接下来试试把spring升级到3。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/">Jquery插件之cookie</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-09T11:59:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Create session cookie:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Create expiring cookie, 7 days:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">expires</span><span class="o">:</span> <span class="mi">7</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Create expiring cookie, valid across entire site:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;the_value&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">expires</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Read cookie:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">);</span> <span class="c1">// =&gt; &quot;the_value&quot;</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;not_existing&#39;</span><span class="p">);</span> <span class="c1">// =&gt; undefined</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Read all available cookies:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">cookie</span><span class="p">();</span> <span class="c1">// =&gt; { &quot;the_cookie&quot;: &quot;the_value&quot;, &quot;...remaining&quot;: &quot;cookies&quot; }</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Delete cookie:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// Returns true when cookie was found, false when no cookie was found...</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">removeCookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="c1">// Same path as when the cookie was written...</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">removeCookie</span><span class="p">(</span><span class="s1">&#39;the_cookie&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/04/09/jquerycha-jian-zhi-cookie/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/">Jquery的jsonp方式的ajax提交解决跨域的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-08T17:45:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/04/08/jqueryde-jsonpfang-shi-de-ajaxti-jiao-jie-jue-kua-yu-de-wen-ti/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>jquery请求：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class='line'>  <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;get&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">mobile</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mobile&#39;</span><span class="o">+</span><span class="nx">id</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>  <span class="nx">url</span><span class="o">:</span><span class="nx">action</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">dataType</span><span class="o">:</span><span class="s2">&quot;jsonp&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">jsonp</span><span class="o">:</span><span class="s2">&quot;callback&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">resultObj</span><span class="p">.</span><span class="nx">result</span><span class="p">){</span>
-</span><span class='line'>          <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;发送成功&quot;</span><span class="p">);</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>服务器端：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Pragma&quot;</span><span class="o">,</span> <span class="s">&quot;No-cache&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setDateHeader</span><span class="o">(</span><span class="s">&quot;Expires&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-</span><span class='line'><span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Cache-Control&quot;</span><span class="o">,</span> <span class="s">&quot;no-cache&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
-</span><span class='line'><span class="c1">//业务逻辑</span>
-</span><span class='line'><span class="n">String</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;callback&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">callback</span><span class="o">+</span><span class="s">&quot;(&quot;</span><span class="o">+</span><span class="n">resultJson</span><span class="o">.</span><span class="na">toString</span><span class="o">()+</span><span class="s">&quot;)&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -715,30 +657,30 @@ mysql&gt;show variables like '%func%';
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/c-c-' style='font-size: 104.0%'>C/C++(1)</a> <a href='/blog/categories/cocos2d' style='font-size: 108.0%'>cocos2d(2)</a> <a href='/blog/categories/java' style='font-size: 160.0%'>java(15)</a> <a href='/blog/categories/javascript' style='font-size: 124.0%'>javascript(6)</a> <a href='/blog/categories/l' style='font-size: 104.0%'>L(1)</a> <a href='/blog/categories/lua' style='font-size: 104.0%'>Lua(1)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>Octopress(5)</a> <a href='/blog/categories/python' style='font-size: 108.0%'>python(2)</a> <a href='/blog/categories/ruby' style='font-size: 116.0%'>ruby(4)</a> <a href='/blog/categories/solr' style='font-size: 104.0%'>solr(1)</a> <a href='/blog/categories/创业' style='font-size: 112.0%'>创业(3)</a> <a href='/blog/categories/常用命令' style='font-size: 108.0%'>常用命令(2)</a> <a href='/blog/categories/折腾' style='font-size: 104.0%'>折腾(1)</a> <a href='/blog/categories/数据库' style='font-size: 104.0%'>数据库(1)</a> <a href='/blog/categories/生活' style='font-size: 108.0%'>生活(2)</a> <a href='/blog/categories/算法' style='font-size: 104.0%'>算法(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/">Mac下制作Ubuntu安装U盘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/">读Lua程序设计笔记&#8211;类型与值</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">读《Lua程序设计》笔记&#8211;函数</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/">Du Luacheng Xu She Ji Bi Ji</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/04/18/curlyong-fa-zhuan/">curl用法(转)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/07/unix-create-a-symbolic-link/">Unix Create a Symbolic Link</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/">python中转化成json的方法不能序列化datetime类型数据的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/">Python的集合运算</a>
       </li>
     
   </ul>

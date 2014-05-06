@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-04-18T18:04:10+08:00</updated>
+  <updated>2014-05-06T14:04:03+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,384 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac下制作Ubuntu安装U盘]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/"/>
+    <updated>2014-05-06T12:02:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan</id>
+    <content type="html"><![CDATA[<p>步骤如下：
+1. 打开终端，把IOS镜像转换为DMG格式：</p>
+
+<pre><code>HDIUTIL CONVERT -FORMAT UDRW -O ubuntukylin-13.04-desktop-i386 ubuntukylin-13.04-desktop-i386.iso
+</code></pre>
+
+<ol>
+<li>查看U盘的disk编号</li>
+</ol>
+
+
+<p>不接入U盘的情况下在终端中输入 diskutil list</p>
+
+<p>将U盘接入Mac，再次输入diskutil list</p>
+
+<p>对比2次的输出，确定U盘的disk编号</p>
+
+<p>我这里的disk编号是1</p>
+
+<p>3、卸载USB盘（插入时已经自动挂载了），但是不要推出。在终端下：</p>
+
+<pre><code>diskutil umountDisk /dev/disk1    
+</code></pre>
+
+<ol>
+<li><p>将dmg写入U盘</p>
+
+<p> sudo dd if=./ubuntukylin-13.04-desktop-i386.dmg of=/dev/rdisk1 bs=1m</p></li>
+</ol>
+
+
+<p>5、推出USB盘。在上面复制之后，系统可能会报错，“此电脑不难读取能插入的磁盘”，不必理会，直接推出即可。也可以在终端下推出：</p>
+
+<pre><code>diskutil eject /dev/disk1
+</code></pre>
+
+<p>使用该USB盘引导启动即可进行Linux的安装。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[读Lua程序设计笔记--类型与值]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/"/>
+    <updated>2014-04-19T18:30:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h6>table的创建是通过“构造表达式”完成的，最简单的构造表达式就是{}。</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">--创建一个table, 并将它的引用存储到a</span>
+</span><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">x&quot;</span>
+</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1">--新条目，key=&quot;x&quot;, value=10</span>
+</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">great&quot;</span>  <span class="c1">--新条目, key=20, value=&quot;great&quot;</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;10</span>
+</span><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="mi">20</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>  <span class="c1">--&gt;&quot;great&quot;</span>
+</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1">--递增条目&quot;x&quot;</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;11</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>所有table都可以用不同类型的索引来访问值,当需要容纳新条目时，table会自动增长。</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">--空的table</span>
+</span><span class='line'><span class="c1">--创建1000个新条目</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span> <span class="k">do</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span> <span class="k">end</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="c1">--&gt;18</span>
+</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;10</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">y&quot;</span><span class="p">])</span>  <span class="c1">--&gt;nil</span>
+</span><span class='line'><span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1">-- 等同于a[&quot;x&quot;] = 10</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;x&quot;])</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;y&quot;])</span>
+</span><span class='line'><span class="c1">-- a.x和a[x]是不同的。前者表示a[&quot;x&quot;]，后者表示以变量x的值来索引table。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[读《Lua程序设计》笔记--函数]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/"/>
+    <updated>2014-04-19T10:02:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>a.多重返回值</p>
+
+<p>Lua允许函数返回多个结果，只需在return关键字后列出所有的返回值即可</p>
+
+<figure class='code'><figcaption><span>查找数组中的最大元素</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span><span class='line'><span class="kd">local</span> <span class="n">mi</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1">--最大值的索引</span>
+</span><span class='line'><span class="kd">local</span> <span class="n">m</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mi</span><span class="p">]</span>  <span class="c1">--最大值</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">val</span><span class="o">&gt;</span><span class="n">m</span> <span class="k">then</span>
+</span><span class='line'>      <span class="n">mi</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">m</span><span class="o">=</span><span class="n">val</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">mi</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">print</span> <span class="p">(</span><span class="n">maximum</span><span class="p">({</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">}))</span>  <span class="c1">--&gt;23  3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>b.变长参数</p>
+
+<figure class='code'><figcaption><span>返回所有参数的总和</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">({</span><span class="o">...</span><span class="p">})</span> <span class="k">do</span>  <span class="c1">--ipairs({...})可以简写为ipairs{...}</span>
+</span><span class='line'>        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">v</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">s</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span> <span class="c1">--&gt;54</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>表达式“&#8230;”的行为类似于一个具有多重返回值的函数，它返回的是当前函数的所有变长参数</p>
+
+<p>c.具名参数
+虽然Lua不支持</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">rename</span><span class="p">(</span><span class="n">old</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp.lua&quot;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp1.lua&quot;</span><span class="p">)</span>  <span class="c1">--无效的演示代码</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样的语法，但是可以将所有的实参组织到一个table中，并将这个table作为唯一的实参传给函数。当实参只有一个table的构造式时，函数调用中的圆括号是可有可无的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">rename</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">os.rename</span><span class="p">(</span><span class="n">arg</span><span class="p">.</span><span class="n">old</span><span class="p">,</span> <span class="n">arg</span><span class="p">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">rename</span><span class="p">{</span><span class="n">old</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp.lua&quot;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp1.lua&quot;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Du Luacheng Xu She Ji Bi Ji]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/"/>
+    <updated>2014-04-19T00:00:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji</id>
+    <content type="html"><![CDATA[<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, &#8216;Palatino Linotype&#8217;, Times, &#8216;Times New Roman&#8217;,
+              &#8220;Hiragino Sans GB&#8221;, &#8220;STXihei&#8221;, &#8220;微软雅黑&#8221;, serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: &#8221; (&#8221; attr(href) &#8220;)&#8221;; }
+  abbr[title]:after { content: &#8221; (&#8221; attr(title) &#8220;)&#8221;; }
+  .ir a:after, a[href^=&#8221;javascript:&#8221;]:after, a[href^=&#8221;#&#8221;]:after { content: &#8220;&#8221;; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>2014-04-19-du-luacheng-xu-she-ji-bi-ji</title></head><body><hr />
+<p>layout: post
+title: &#8220;读《Lua程序设计》笔记&#8211;函数&#8221;
+date: 2014-04-19 10:02
+comments: true
+categories: L
+keywords: 笔记 学习 读书
+description: 读《Lua程序设计》笔记</p>
+<hr />
+<!-- more -->
+
+<p>a.多重返回值</p>
+<p>Lua允许函数返回多个结果，只需在return关键字后列出所有的返回值即可
+<figure class='code'><figcaption><span>查找数组中的最大元素</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span><span class='line'><span class="kd">local</span> <span class="n">mi</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1">--最大值的索引</span>
+</span><span class='line'><span class="kd">local</span> <span class="n">m</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mi</span><span class="p">]</span>  <span class="c1">--最大值</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">val</span><span class="err">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">m</span> <span class="k">then</span>
+</span><span class='line'>      <span class="n">mi</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">m</span><span class="o">=</span><span class="n">val</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">mi</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">print</span> <span class="p">(</span><span class="n">maximum</span><span class="p">({</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">}))</span>  <span class="c1">--&amp;gt;23  3&lt;/p&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
+</span><span class='line'><span class="n">b</span><span class="p">.</span><span class="err">变长参数</span>
+</span></code></pre></td></tr></table></div></figure>lua 返回所有参数的总和
+    function add(&#8230;)
+        local s = 0
+        for i,v in ipairs({&#8230;}) do  &#8211;ipairs({&#8230;})可以简写为ipairs{&#8230;}
+            s = s + v
+        end
+        return s
+    end
+    print(add(3,4,10,25,12)) &#8211;&gt;54
+</code></pre>
+
+<p>表达式“&#8230;”的行为类似于一个具有多重返回值的函数，它返回的是当前函数的所有变长参数</p>
+<p>c.具名参数
+虽然Lua不支持 </p>
+<pre><code class="lua">rename(old=&quot;temp.lua&quot;, new=&quot;temp1.lua&quot;)  --无效的演示代码
+```这样的语法，但是可以将所有的实参组织到一个table中，并将这个table作为唯一的实参传给函数。当实参只有一个table的构造式时，函数调用中的圆括号是可有可无的：
+```lua
+    function rename(arg)
+        return os.rename(arg.old, arg.new)
+    end
+    rename{old=&quot;temp.lua&quot;, new=&quot;temp1.lua&quot;}
+</code></pre></body></html>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[curl用法(转)]]></title>
@@ -1478,1577 +1856,6 @@ var value = number.value();
 </code></pre>
 
 <p>最重要的是还支持中文</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava的使用指南之Collections]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/"/>
-    <updated>2013-05-31T13:45:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections</id>
-    <content type="html"><![CDATA[<p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。看看Guava Collections为我们做了哪些很酷的事情：</p>
-
-<ul>
-<li>Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable Collections这才是真正的不可修改的集合</li>
-<li>Multiset:看看如何把重复的元素放入一个集合</li>
-<li>Multimaps:需要在一个key对应多个value的时候，自己写一个实现比较繁琐，让Multimaps来帮帮</li>
-<li>BiMap:java.util.Map只能保证key的不重复，BiMap保证value也不重复</li>
-<li>MapMaker:超级强大的Map构造类</li>
-<li>Ordering class:大家知道用Comparator作为比较器来对集合排序，但是对于多关键字排序Ordering class可以简化很多的代码</li>
-<li>其他特性</li>
-</ul>
-
-
-<!-- more -->
-
-
-<p>当然，如果没有Guava Collections你也可以用Java Collections Framework完成上面的功能。但是Guava Collections提供的这些API经过精心设计，而且还有2500个单元测试来保障它的质量。所以我们没必要重新发明轮子。接下来我们来详细看看Guava Collections的一些具体功能。</p>
-
-<h2>Immutable Collections：真正的不可修改的集合</h2>
-
-<p>大家都用过Collections.unmodifiableXXX()来做一个不可修改的集合。例如你要构造存储常量的Set,你可以这样做：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&quot;RED&quot;</span><span class="o">,</span><span class="s">&quot;GREEN&quot;</span><span class="o">}));</span>
-</span><span class='line'><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">unmodifiableSet</span> <span class="o">=</span> <span class="n">Collections</span><span class="o">.</span><span class="na">unmodifiableSet</span><span class="o">(</span><span class="n">set</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这看上去似乎不错，因为每次调unmodifiableSet.add()都会抛出一个UnsupportedOperationException。感觉安全了？慢！如果有人在原来的set上add或者remove元素会怎么样？结果unmodifiableSet也是被add或者remove元素了。而且构造这样一个简单的set写了两句长的代码。下面看看ImmutableSet是怎么来做地更安全和简洁：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableSet</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&quot;RED&quot;</span><span class="o">,</span><span class="s">&quot;GREEN&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就这样一句就够了，而且试图调add方法的时候，它一样会抛出UnsupportedOperationException。重要的是代码的可读性增强了不少，非常直观的展现了代码的用意。如果像之前这个代码保护一个set怎么做呢？你可以：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableSet</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">set</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>从构造的方式来说，ImmutableSet集合还提供了Builder模式来构造一个集合：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Builder</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">builder</span><span class="o">();</span>
-</span><span class='line'><span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableSet</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;RED&quot;</span><span class="o">).</span><span class="na">addAll</span><span class="o">(</span><span class="n">set</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在这个例子里面Builder不但能加入单个元素还能加入既有的集合。</p>
-
-<p>除此之外，Guava Collections还提供了各种Immutable集合的实现：ImmutableList, ImmutableMap, ImmutableSortedSet, ImmutableSortedMap。</p>
-
-<h2>Multiset:把重复的元素放入集合</h2>
-
-<p>你可能会说这和Set接口的契约冲突，因为Set接口的javaDoc里面规定不能放入重复元素。事实上，Multiset并没有实现java.util.Set接口，它更像是一个Bag。普通的Set就像这样：[car,ship,bike],而Multiset会是这样：[carx2,shipx6,bikex3]。</p>
-
-<p>譬如一个List里面有各种字符，然后你要统计每个字符串在List里面出现的次数：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;();</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="nl">word:</span><span class="n">wordList</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">Integer</span> <span class="n">count</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">word</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="o">(</span><span class="n">count</span><span class="o">==</span><span class="kc">null</span><span class="o">)?</span><span class="mi">1</span><span class="o">:</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="c1">//count word &quot;the&quot;</span>
-</span><span class='line'><span class="n">Integer</span> <span class="n">count</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;the&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果用Multiset就可以这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">HashMultiset</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">multiSet</span> <span class="o">=</span> <span class="n">HashMultiset</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-</span><span class='line'><span class="n">multiSet</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">wordList</span><span class="o">);</span>
-</span><span class='line'><span class="c1">//count word &quot;the&quot;</span>
-</span><span class='line'><span class="n">Integer</span> <span class="n">count</span> <span class="o">=</span> <span class="n">multiSet</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="s">&quot;the&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样连循环都不用了，而且Multiset用的方法叫count，显然比在Map里面调用get有更好的可读性。Multiset还提供了setCount这样设定元素重复次数的方法，虽然你可以通过使用Map来实现类似的功能，但是程序的可读性比Multiset差了很多。</p>
-
-<p>常用实现Multiset接口的类有：
-* HashMultiset:元素存放于HashMap
-* LinkedHashMultiset:元素存放于LinkedHashMap,即元素的排列顺序由第一次放入的顺序决定
-* TreeMultiset:元素被排序存放于TreeMap
-* EnumMultiset:元素必须是enum类型
-* ImmutableMultiset:不可修改的Mutiset</p>
-
-<p>看到这里你可能已经发现Guava Collections都是以create或是of这样的静态方法来构造对象。这是因为这些集合类大多有多个参数的私有构造方法，由于参数数目很多，客户代码程序员使用起来就很不方便。而且以这种方式可以返回原类型的子类型对象。另外，对于创建范型对象来讲，这种方式更加简洁。</p>
-
-<h2>Muitimap:在Map的value里面放多个元素</h2>
-
-<p>Muitimap就是一个key对应多个value的数据结构。看上去它很像java.util.Map的结构，但是Muitimap不是Map，没有实现Map的接口。设想你对Map调了2次参数key一样的put方法，结果就是第2次的value覆盖了第一次的value。但是对Muitimap来说这个key同时对应了2个value。所以Map看上去是：{k1=v1,k2=v2,…}，而Muitimap是：{k1=[v1,v2,v3],k2=[v7,v8],…}。</p>
-
-<p>举个记名投票的例子。所有选票都放在一个List<Ticket>里面，List的每个元素包括投票人和选举人的名字。我们可以这样写:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Key is cadidate name, its value is his voters</span>
-</span><span class='line'><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">hMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;();</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Ticket</span> <span class="nl">ticket:</span><span class="n">tickets</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">hMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getCandidate</span><span class="o">());</span>
-</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">set</span><span class="o">==</span><span class="kc">null</span><span class="o">){</span>
-</span><span class='line'>      <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-</span><span class='line'>      <span class="n">hMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getCandidate</span><span class="o">(),</span> <span class="n">set</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getVoter</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我们再来看看Muitimap能做些什么：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">HashMultimap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">HashMultimap</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Ticket</span> <span class="nl">ticket:</span><span class="n">tickets</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getCandidate</span><span class="o">(),</span> <span class="n">ticket</span><span class="o">.</span><span class="na">getVoter</span><span class="o">());</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就这么简单！</p>
-
-<p>Muitimap接口的主要实现类有：
-* HashMultimap:key放在HashMap, 而value放在HashSet, 即一个key对应的value不可重复
-* ArrayListMultimap：key放在HashMap,而value放在ArrayList,即一个key对应的value有顺序可重复
-* LinkedHashMultimap:key放在LinkedHashMap,而value放在LinkedHashSet,即一个key对应的value有顺序不可重复
-* TreeMultimap：key放在TreeMap，而value放在TreeSet，即一个key对应的value有排列顺序
-* ImmutableMultimap:不可修改的Multimap</p>
-
-<h2>BiMap:双向Map</h2>
-
-<p>BiMap实现了java.util.Map接口。它的特点是它的value和它key一样也是不可重复的，换句话说它的key和value是等价的。如果你往BiMap的value里面放了重复的元素，就会得到IllegalArgumentException.</p>
-
-<p>举个例子，你可能经常会碰到在Map里面根据value值来反推它的key值的逻辑：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">Address</span><span class="o">&gt;</span> <span class="nl">entry:</span><span class="n">map</span><span class="o">.</span><span class="na">entreSet</span><span class="o">()){</span>
-</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getValue</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">anAddress</span><span class="o">)){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果把User和Address都放在BiMap,那么一句代码就得到结果了：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">biMap</span><span class="o">.</span><span class="na">inverse</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">anAddress</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里的inverse方法就是把BiMap的key集合value集合对调，因此biMap==biMap.inverse().inverse()。</p>
-
-<p>BiMap的常用实现有：
-* HashBiMap:key集合与value集合都有HashMap实现
-* EnumBiMap:key与value都必须是enum类型
-* ImmutableBiMap:不可修改的BiMap</p>
-
-<h2>MapMaker:超级强大的Map构造工具</h2>
-
-<p>MapMaker是用来构造ConcurrentMap的工具类。为什么可以把MapMaker叫做超级强大？看了下面的例子你就知道了。首先，它可以用来构造ConcurrentHashMap:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//ConcurrentHashMap with concurrency level 8</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">concurrencyLevel</span><span class="o">(</span><span class="mi">8</span><span class="o">).</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者构造用各种不同reference作为key和value的Map：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//ConcurrentMap with soft reference key and weak reference value</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">softKeys</span><span class="o">().</span><span class="na">weakValues</span><span class="o">().</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者构造有自动移除时间过期项的Map:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Automatically removed entries from map after 30 seconds since they are created</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">expireAfterWrite</span><span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">).</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者构造有最大限制数目的Map：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Map size grows close to the 100, the map vill evict</span>
-</span><span class='line'><span class="c1">//entries that are less likely to be used again</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">maximumSize</span><span class="o">(</span><span class="mi">100</span><span class="o">).</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者提供当Map里面不包含所get的项，而需要自动加入到Map的功能。这个功能当Map作为缓存的时候很有用：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Create an Object to the map, when get() is missing in map</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">makeComputingMap</span><span class="o">(</span><span class="k">new</span> <span class="n">Function</span><span class="o">&lt;&gt;(</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">){</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nf">createObject</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这些还不是最强大的特性，最厉害的是MapMaker可以提供拥有以上所有特性的Map:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Put all features together!</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">mapAll</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">()</span>
-</span><span class='line'><span class="o">.</span><span class="na">concurrencyLevel</span><span class="o">(</span><span class="mi">8</span><span class="o">)</span>
-</span><span class='line'><span class="o">.</span><span class="na">softKeys</span><span class="o">()</span>
-</span><span class='line'><span class="o">.</span><span class="na">weakValues</span><span class="o">()</span>
-</span><span class='line'><span class="o">.</span><span class="na">expireAfterWrite</span><span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
-</span><span class='line'><span class="o">.</span><span class="na">makeComputingMap</span><span class="o">(</span>
-</span><span class='line'>  <span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;(){</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Object</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">){</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nf">createObject</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Ordering class:灵活的多字段排序比较器</h2>
-
-<p>需对集合排序或者求最大值最小值，首推java.util.Collections类，但关键是要提供Comparator接口的实现。假设有个待排序的List<Foo>, 而Foo里面有两个排序关键字int a, int b和int c:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Foo</span> <span class="n">f1</span><span class="o">,</span> <span class="n">Foo</span> <span class="n">f2</span><span class="o">){</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">resultA</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="na">a</span><span class="o">-</span><span class="n">f2</span><span class="o">.</span><span class="na">a</span><span class="o">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">resultB</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="na">b</span><span class="o">-</span><span class="n">f2</span><span class="o">.</span><span class="na">b</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">resultA</span><span class="o">==</span><span class="mi">0</span><span class="o">?(</span><span class="n">resultB</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span><span class="n">fl</span><span class="o">.</span><span class="na">c</span><span class="o">-</span><span class="n">f2</span><span class="o">.</span><span class="na">c</span><span class="o">:</span><span class="n">resultB</span><span class="o">):</span><span class="n">resultA</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">})</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这看上去有点眼晕，如果用一串if-else也好不到哪里去。看看ComparisonChain能做到什么：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">*(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">a</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">a</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">b</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">b</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">c</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">c</span><span class="o">).</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果排序关键字要用自定义比较器，compare方法也有接受Comparator的重载版本。譬如Foo里面每个排序关键字都已经有了各自的Comparator,那么利用ComparisonChain可以：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">a</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">a</span><span class="o">,</span> <span class="n">comparatorA</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">b</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">b</span><span class="o">,</span> <span class="n">comparatorB</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">c</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">c</span><span class="o">,</span> <span class="n">comparatorC</span><span class="o">).</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ordring类还提供了一个组合Comparator对象的方法。而且Ordring本身实现了Comparator接口所以它能直接作为Comparator使用：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">ordering</span> <span class="o">=</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">compound</span><span class="o">(</span>
-</span><span class='line'>  <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">ComparatorA</span><span class="o">,</span> <span class="n">comparatorB</span><span class="o">,</span> <span class="n">comparatorC</span><span class="o">));</span>
-</span><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">ordering</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>其他特性</h2>
-
-<h3>过滤器：利用Collection2.filter()方法过滤集合中不符合条件的元素。譬如过滤一个List<Integer>里面小于10的元素：</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">filterCollection</span> <span class="o">=</span> <span class="n">Collections2</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Integer</span> <span class="n">input</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">input</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>当然，你可以自己写一个循环来实现这个功能，但是这样不能保证之后小于10的元素不被放入集合。filter的强大之处在于返回的filterCollection仍然有排斥小于10的元素的特性，如果调filterCollection.add(9)就会得到一个IllegalArgumentException.</p>
-
-<h3>转换器：利用Collections.transform方法来转换集合中的元素。譬如把一个Set<Integer>里面所有元素都转化成带格式的String来产生新的Collection<String>:</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">formatCollection</span> <span class="o">=</span> <span class="n">Collection2</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">set</span><span class="o">,</span> <span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Integer</span> <span class="n">input</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="k">new</span> <span class="nf">DecimalFormat</span><span class="o">(</span><span class="s">&quot;#,###&quot;</span><span class="o">).</span><span class="na">format</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">})</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava的使用指南之Basic Utilities]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/"/>
-    <updated>2013-05-31T13:44:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities</id>
-    <content type="html"><![CDATA[<h2>从避免使用null开始</h2>
-
-<p>由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。举个例子来说，如果原先有getNickName方法可以传回String，调用它如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="k">if</span><span class="o">(</span><span class="n">nickName</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">nickName</span> <span class="o">=</span> <span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
-
-
-<p>如果客户端忘了检查null，那么就会直接显示null，在这个简单的例子中并不会怎么样，只是显示的结果令人困惑罢了，但如果后面的执行流程牵涉到至关重要的结果，程序快乐的继续执行下去，错误可能到最后才会呈现发生。</p>
-
-<p>那么可将getNickName修改使一定传回Optional<String>(com.google.common.base)实例，但绝对不要传回null。Optional的语义是它可能包含也可能不包括值，如果你呼叫直接呼叫它的get方法：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">).</span><span class="na">get</span><span class="o">();</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在Optional没有包含值的情况下，就会直接抛出IllegalStateException，这实现了速错的概念，开发者可以立即发现错误，并了解到必须作出些检查，可能的方式之一像是：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">nick</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">String</span> <span class="n">nickname</span> <span class="o">=</span> <span class="n">nick</span><span class="o">.</span><span class="na">isPresent</span><span class="o">()?</span><span class="n">nick</span><span class="o">.</span><span class="na">get</span><span class="o">():</span><span class="s">&quot;CodeData User&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>不过这看来有点啰嗦，一个比较好的方式可以是：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">).</span><span class="na">or</span><span class="o">(</span><span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在getNickName方法内部，原先如果是这样传回值：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">()?</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;nickname&quot;</span><span class="o">):</span><span class="kc">null</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>则可以使用Optional改为：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">()?</span><span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;nickname&quot;</span><span class="o">)):</span><span class="n">Optional</span><span class="o">.</span><span class="na">absent</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Optional.of方法用来建立Optional对象包含传入的值，而Optional.absent建立的对象不包含任何值，也就是如果你直接调用后者建立的Optional对象上get方法，就会抛出异常。在有值的情况下使用Optional.of,在原本会传回null的情况下使用Optional.absent。</p>
-
-<p>当然，过去许多程序库中使用了不少的null，这些程序无法说改就改，Guava提供了一些衔接程序库中null的方法。例如，如果原先的getNickName是你无法修改的，那么可以这么修改客户端：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">)).</span><span class="na">or</span><span class="o">(</span><span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Optional.fromNullable在传入值为null的情况下，传回的Optional实例调用其get方法，就会抛出错误。</p>
-
-<h3>使用Preconditions作参数的与判断</h3>
-
-<p>Guava中提供了一个工作参数检查的工具类-Preconditions,静态导入这个类，可以大大地简化代码中对于参数的预判断和处理。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.</span><span class="na">Preconditions</span><span class="o">.*;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在以前，我们需要判断一个参数不为空需要像下面这样写：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMethod</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">){</span>
-</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">obj</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">throw</span> <span class="k">new</span> <span class="nf">NullPointerException</span><span class="o">();</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="c1">//... other operations</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>每次都要添加if语句来做判断，重复的工作会做好多次，使用Preconditions可以简化成下面这样</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMethod</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">Object</span> <span class="n">other</span> <span class="o">=</span> <span class="n">checkNotNull</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
-</span><span class='line'>  <span class="c1">//... other operations</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>checkNotNull会检查参数是否为null，当为null的时候会抛出NullPointerException，否则直接返回参数。</p>
-
-<p>checkNotNull, checkArgument和checkState，都有三种形式的参数：
-* public static<T> T checkNotNull(T reference),只包含需要判断的对象，无其他多余的参数，抛出的异常不带有任何异常信息
-* public static<T> T checkNotNull(T reference, @Nullable Object errorMessage),只包含一个错误信息的额外参数，抛出的异常带有errorMessage.toString()的异常信息
-* public static<T> T checkNotNull(T reference, @Nullable String errorMessageTemplate, @Nullable Object…errorMessageArgs),这种是printf风格的错误信息，后面是变参，errorMessageTemplate可以使用一些占位符，例如可以这样写</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">checkArgument</span><span class="o">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;Argument was %s but expected nonnegative&quot;</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
-</span><span class='line'><span class="n">checkArgument</span><span class="o">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">j</span><span class="o">,</span> <span class="s">&quot;Expected i&lt;j, but %s&gt;%s&quot;</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>捕获异常后可以获取自定义的详细错误信息，对于调试来说很有帮助，而且代码也很简洁。例如，</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-</span><span class='line'><span class="k">try</span><span class="o">{</span>
-</span><span class='line'>  <span class="n">checkNotNull</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="s">&quot;cannot be null&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>运行后可以获得自定义的异常信息“cannot be null”</p>
-
-<p>Preconditions里面的方法还有下面几个</p>
-
-<ul>
-<li>checkArgument(boolean)  检查boolean是否为真，用作方法中检查参数</li>
-<li>checkNotNull(T)检查value不为null，直接返回value</li>
-<li>checkState(boolean)检查对象的一些状态，不依赖方法参数。例如，Iterator可以用来next是否在remove之前被调用</li>
-<li>checkElementIndex(int index, int size)检查index是否为在一个长度为size的list、string或array合法的范围。index的范围区间是[0,size)(包含0不包含size)。无需直接传入list、string或array，只需传入大小。 返回index</li>
-<li>checkPositionIndex(int index, int size)检查位置index是否为在一个长度为size的list、string或array合法的范围。index的范围区间是[0, size)(包含0不包含size). 无需直接传入list, string或array, 只需传入大小</li>
-<li>checkPositionIndexes(int start, int end, int size),检查[start, end)是一个长度为size的list, string或array合法的范围子集.伴随着错误信息.</li>
-</ul>
-
-
-<p>Guava的preconditions有这样几个有点：
-* 在静态导入后，方法很明确无歧义，checkNotNull可以清楚地告诉你他是干什么的，它会抛出怎样的异常
-* checkNotNull在验证通过后直接返回，可以这样方便地写代码：this.field = checkNotNull(field).
-* 简单而又强大的可变参数printf风格的自定义错误信息。</p>
-
-<p>建议将preconditions放置在单独的行上，这样可以在调试的时候清楚地指明哪个precondition出现错误。另外，提供有帮助的错误信息也非常有用。</p>
-
-<h2>Ordering简介</h2>
-
-<p>Ordering是Guava最常用的Comparator类，可以用来操作、扩展和使用comparators。自定义比较器，进行排序判断，进行排序，获取最大值最小值，获取最大最小的前几个值等方法。</p>
-
-<p>几个常用的static方法，提供了三种常用的比较器</p>
-
-<ul>
-<li>natural()     使用Comparable类型的自然排序，例如，整数从小到大，字符串是按字典顺序</li>
-<li>usingToString()       使用toString()返回的字符串按字典顺序进行排序</li>
-</ul>
-
-
-<p>使用Ordering.from(Comparator)从一个已经存在的Comparator来构建Ordering实例</p>
-
-<p>自定义Ordering</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.collect.Ordering</span><span class="o">;</span>
-</span><span class='line'> <span class="kn">import</span> <span class="nn">com.google.common.primitives.Ints</span><span class="o">;</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
-</span><span class='line'>     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>         <span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">byLengthOrdering</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Ordering</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>             <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">String</span> <span class="n">left</span><span class="o">,</span> <span class="n">String</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                 <span class="k">return</span> <span class="n">Ints</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">left</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">right</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
-</span><span class='line'>             <span class="o">}</span>
-</span><span class='line'>         <span class="o">};</span>
-</span><span class='line'>         <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;abc&quot;</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;bcd&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">reverse</span><span class="o">().</span><span class="na">isOrdered</span><span class="o">(</span><span class="n">strList</span><span class="o">));</span>
-</span><span class='line'>         <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strList1</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;ab&quot;</span><span class="o">,</span> <span class="s">&quot;bcd&quot;</span><span class="o">);</span>
-</span><span class='line'>         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">byLengthOrdering</span><span class="o">.</span><span class="na">isOrdered</span><span class="o">(</span><span class="n">strList1</span><span class="o">));</span>
-</span><span class='line'>     <span class="o">}</span>
-</span><span class='line'> <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>操作方法</p>
-
-<p>reverse()方法，获取了Ordering的反排序。使用自定义的Ordering判断collection是否符合自定义顺序。</p>
-
-<ul>
-<li>reverse()     返回与当前Ordering相反的排序</li>
-<li>nullsFirst()      返回一个将null放在non-null元素之前的Ordering,其他的和原始的Ordering一样</li>
-<li>compound(Comparator)返回一个使用Comparator的Ordering, Comparator作为第二排序元素，例如对bug列表进行排序，先根据bug的级别，再根据优先级进行排序。</li>
-<li>lexicographical()    Returns an Ordering that orders iterables lexicographically by their elements.</li>
-<li>onResultOf(Function)将function应用在各个元素上之后，再使用原始ordering进行排序。</li>
-</ul>
-
-
-<p>假如我们希望按sortedBy字段进行排序,</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Foo</span> <span class="o">{</span>
-</span><span class='line'>  <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">sortedBy</span><span class="o">;</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">notSortedBy</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">ordering</span> <span class="o">=</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsFirst</span><span class="o">().</span><span class="na">onResultOf</span><span class="o">(</span><span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Foo</span> <span class="n">foo</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">foo</span><span class="o">.</span><span class="na">sortedBy</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>  <span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>还有一些很有用的方法
-* greatestOf(Iterable iterable, int k)      Returns the k greatest elements of the specified iterable, according to this ordering, in order from greatest to least. Not necessarily stable.
-* isOrdered(Iterable)       Tests if the specified Iterable is in nondecreasing order according to this ordering.
-* sortedCopy(Iterable)      Returns a sorted copy of the specified elements as a List.
-* min(E, E)     Returns the minimum of its two arguments according to this ordering. If the values compare as equal, the first argument is returned.
-* min(E, E, E, E&#8230;)        Returns the minimum of its arguments according to this ordering. If there are multiple least values, the first is returned.
-* min(Iterable)     Returns the minimum element of the specified Iterable. Throws a NoSuchElementException if the Iterable is empty.</p>
-
-<h3>复写Object的常用方法</h3>
-
-<p>在Java中Object类是所有类的父类，其中有几个需要override的方法比如equals,hashCode和toString等方法。每次写这几个方法都要做很多重复性的判断，很多类库提供了复写这几个方法的工具类，Guava也提供了类似的方式。下面我们来看看Guava中这几个方法简单使用。</p>
-
-<h3>equals</h3>
-
-<p>equals是一个经常需要覆写的方法，可以查看Object的equals方法注释，对equals有几个性质的要求：
-* 1.自反性reflexive: 任何非空引用x,x.equals(x)返回为true；
-* 2.对称性symmetric: 任何非空引用x和y,x.equals(y)返回true当且仅当y.equals(x)返回true；
-* 传递性transitive：任何非空引用x和y，如果x.equals(y)返回true，并且y.equals(z)返回true，那么x.equals(z)返回true；
-* 一致性consistent：两个非空引用x和y，x.equals(y)的多次调用应该保持一致的结果，（前提条件是在多次比较之前没有修改x和y用于比较的相关信息）；
-* 对于所有非null的值x，x.equals(null)都要返回false</p>
-
-<p>当我们要覆写的类中某些值可能为null的时候，就需要对null做很多判断和分支处理。使用Guava的Object.equal方法可以避免这个问题，使得equals的方法的覆写变得更加容易，而且可读性强，简洁优雅。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Test</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">equalTest</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;a&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="nd">@Test</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">equalPersonTest</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">),</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">)));</span>
-</span><span class='line'>        <span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">person</span><span class="o">,</span><span class="n">person</span><span class="o">));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>运行输出：</p>
-
-<pre><code>true
-false
-false
-true
-false
-true
-</code></pre>
-
-<h3>hashCode</h3>
-
-<p>当覆写(override)了equals()方法之后，必须也覆写hashCode()方法，反之亦然。这个方法返回一个整型值，如果两个对象被equals()方法判断为相等，那么它们就应该拥有同样的hash code。Object类的hashCode()方法为不同的对象返回不同的值，Object类的hashCode值表示的是对象的地址。</p>
-
-<p>hashCode的一般性契约（需要满足的条件）如下：
-* 1.在Java应用的一次执行过程中，如果对象用于equals比较的信息没有被修改，那么同一个对象多次调用hashCode()方法应该返回同一个整型值。应用的多次执行中，这个值不需要保持一致，即每次执行都是保持着各自不同的值。
-* 2.如果equals()判断两个对象相等，那么它们的hashCode()方法应该返回同样的值。
-* 3.并没有强制要求如果equals()判断两个对象不相等，那么它们的hashCode()方法就应该返回不同的值。即，两个对象用equals()方法比较返回false，它们的hashCode可以相同也可以不同。但是，应该意识到，为两个不相等的对象产生两个不同的hashCode可以改善哈希表的性能。</p>
-
-<p>写一个hashCode本来也不是很难，但是Guava提供给我们一个更加简单的方法&#8211;Objects.hashCode(Object …)，这是个可变参数的方法，参数列表可以是任意数量，所以可以像这样使用Object.hashCode(field1, field2, … ,fieldn)。非常方便和简洁。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Test</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">hashcodeTest</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span><span class="s">&quot;b&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;b&quot;</span><span class="o">,</span><span class="s">&quot;a&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span><span class="s">&quot;b&quot;</span><span class="o">,</span><span class="s">&quot;c&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>toString()</h3>
-
-<p>因为每个类都直接或间接地继承自Object,因此每个类都有toString()方法。这个方法是用得最多的，覆写得最多，一个好的toString方法对于调试来说是非常重要的，但是写起来确实很不爽。Guava也提供了toString()方法。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Test</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">toStringTest</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;x&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;x&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">age</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="c1">//============输出===============</span>
-</span><span class='line'><span class="n">ObjectTest</span><span class="o">{</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">}</span>
-</span><span class='line'><span class="n">Person</span><span class="o">{</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">}</span>
-</span><span class='line'><span class="n">Person</span><span class="o">{</span><span class="n">name</span><span class="o">=</span><span class="n">peida</span><span class="o">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">23</span><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>compare/compareTo</h3>
-
-<p>compareTo(Object o)方法是java.lang.Comparable<T>接口中的方法，当需要对某个类的对象进行排序时，该类需要实现Comparable<T>接口的，必须重写public int compareTo(T o)方法。java规定，若a,b是两个对象，当a.compareTo(b)>0时，则a大于b，a.compareTo(b)&lt;0时，a&lt;b，即规定对象的比较大小的规则；</p>
-
-<p>compare（Object o1, Object o2）方法是java.util.Comparator<T>接口的方法，compare方法内主要靠定义的compareTo规定的对象大小关系规则来确定对象的大小。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
-</span><span class='line'><span class="nd">@Test</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">compareTest</span><span class="o">(){</span>
-</span><span class='line'>        <span class="n">Person</span> <span class="n">person</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">Person</span> <span class="n">person1</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">Person</span> <span class="n">person2</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">25</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">Person</span> <span class="n">person3</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">26</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">Person</span> <span class="n">person4</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">26</span><span class="o">);</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person1</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person2</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person3</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person4</span><span class="o">));</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">person4</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Person</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">cmpName</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">cmpName</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">cmpName</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="k">if</span><span class="o">(</span><span class="n">age</span><span class="o">&gt;</span><span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">){</span>
-</span><span class='line'>            <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">age</span><span class="o">&lt;</span><span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">){</span>
-</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>：</p>
-
-<p>上面的compareTo方法，代码看上去并不是十分优雅，如果实体属性很多，数据类型丰富，代码可读性将会很差。在guava里, 对所有原始类型都提供了比较的工具函数来避免这个麻烦. 比如对Integer, 可以用Ints.compare()。利用guava的原始类型的compare，我们对上面的方法做一个简化，实现compare方法：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">PersonComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Person</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Person</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p2</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">Ints</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">p1</span><span class="o">.</span><span class="na">age</span><span class="o">,</span> <span class="n">p2</span><span class="o">.</span><span class="na">age</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上面的代码看上去简单了一点，但还是不那么优雅简单，对此, guava有一个相当聪明的解决办法, 提供了ComparisonChain:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Student</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
-</span><span class='line'>    <span class="n">Student</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span><span class="kt">int</span> <span class="n">score</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">score</span><span class="o">=</span><span class="n">score</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Student</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">score</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsLast</span><span class="o">())</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">StudentComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">compare</span><span class="o">(</span><span class="n">Student</span> <span class="n">s1</span><span class="o">,</span> <span class="n">Student</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">age</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">score</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ComparisonChain是一个lazy的比较过程， 当比较结果为0的时候， 即相等的时候， 会继续比较下去， 出现非0的情况， 就会忽略后面的比较。ComparisonChain实现的compare和compareTo在代码可读性和性能上都有很大的提高。</p>
-
-<p>下面是个综合应用的实例：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.base.Objects</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.collect.ComparisonChain</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">com.google.common.collect.Ordering</span><span class="o">;</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectTest</span> <span class="o">{</span>
-</span><span class='line'><span class="nd">@Test</span>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">StudentTest</span><span class="o">(){</span>
-</span><span class='line'>        <span class="n">Student</span> <span class="n">student</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">,</span><span class="mi">80</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">Student</span> <span class="n">student1</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;aida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">,</span><span class="mi">36</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">Student</span> <span class="n">student2</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;jerry&quot;</span><span class="o">,</span><span class="mi">24</span><span class="o">,</span><span class="mi">90</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">Student</span> <span class="n">student3</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">(</span><span class="s">&quot;peida&quot;</span><span class="o">,</span><span class="mi">23</span><span class="o">,</span><span class="mi">80</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========equals===========&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">student2</span><span class="o">));</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">student1</span><span class="o">));</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">student3</span><span class="o">));</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========hashCode===========&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student1</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student3</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
-</span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========toString===========&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student1</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student3</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;==========compareTo===========&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student1</span><span class="o">));</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student2</span><span class="o">));</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student1</span><span class="o">));</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">student2</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">student</span><span class="o">));</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">Student</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
-</span><span class='line'>    <span class="n">Student</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span><span class="kt">int</span> <span class="n">score</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">score</span><span class="o">=</span><span class="n">score</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Student</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">Student</span> <span class="n">that</span> <span class="o">=</span> <span class="o">(</span><span class="n">Student</span><span class="o">)</span> <span class="n">obj</span><span class="o">;</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">that</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
-</span><span class='line'>                    <span class="o">&amp;&amp;</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">that</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
-</span><span class='line'>                    <span class="o">&amp;&amp;</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">score</span><span class="o">,</span> <span class="n">that</span><span class="o">.</span><span class="na">score</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
-</span><span class='line'>                <span class="o">.</span><span class="na">addValue</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
-</span><span class='line'>                <span class="o">.</span><span class="na">addValue</span><span class="o">(</span><span class="n">age</span><span class="o">)</span>
-</span><span class='line'>                <span class="o">.</span><span class="na">addValue</span><span class="o">(</span><span class="n">score</span><span class="o">)</span>
-</span><span class='line'>                <span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Student</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">score</span><span class="o">,</span> <span class="n">other</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">natural</span><span class="o">().</span><span class="na">nullsLast</span><span class="o">())</span>
-</span><span class='line'>        <span class="o">.</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">StudentComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">compare</span><span class="o">(</span><span class="n">Student</span> <span class="n">s1</span><span class="o">,</span> <span class="n">Student</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">age</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">age</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">s1</span><span class="o">.</span><span class="na">score</span><span class="o">,</span> <span class="n">s2</span><span class="o">.</span><span class="na">score</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="c1">//=============运行输出===========================</span>
-</span><span class='line'><span class="o">==========</span><span class="n">equals</span><span class="o">===========</span>
-</span><span class='line'><span class="kc">false</span>
-</span><span class='line'><span class="kc">false</span>
-</span><span class='line'><span class="kc">true</span>
-</span><span class='line'><span class="o">==========</span><span class="n">hashCode</span><span class="o">===========</span>
-</span><span class='line'><span class="o">-</span><span class="mi">991998617</span>
-</span><span class='line'><span class="o">-</span><span class="mi">991998617</span>
-</span><span class='line'><span class="o">-</span><span class="mi">1163491205</span>
-</span><span class='line'><span class="o">==========</span><span class="n">toString</span><span class="o">===========</span>
-</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">peida</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">80</span><span class="o">}</span>
-</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">aida</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">36</span><span class="o">}</span>
-</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">jerry</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">90</span><span class="o">}</span>
-</span><span class='line'><span class="n">Student</span><span class="o">{</span><span class="n">peida</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="mi">80</span><span class="o">}</span>
-</span><span class='line'><span class="o">==========</span><span class="n">compareTo</span><span class="o">===========</span>
-</span><span class='line'><span class="o">-</span><span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Gson的使用指南]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan/"/>
-    <updated>2013-05-31T13:42:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan</id>
-    <content type="html"><![CDATA[<h1>介绍</h1>
-
-<p>Gson是一个可以把Java对象转化成JSON格式的字符串，也可以从一个JSON字符串转换为一个Java对象。Gson是一个开源项目，<a href="http://code.google.com/p/google-gson">这里是地址</a></p>
-
-<!-- more -->
-
-
-<h1>开始使用</h1>
-
-<p>可以使用</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">new</span> <span class="nf">Gson</span><span class="o">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>来创建主要的类Gson的实例。也可以使用GsonBuilder来定制你需要的Gson实例，比如版本控制等等。</p>
-
-<h3>基本的例子</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
-</span><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>            <span class="o">==&gt;</span> <span class="n">prints</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="s">&quot;abcd&quot;</span><span class="o">);</span>       <span class="o">==&gt;</span> <span class="n">prints</span> <span class="s">&quot;abcd&quot;</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="k">new</span> <span class="n">Long</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span> <span class="o">==&gt;</span> <span class="n">prints</span> <span class="mi">10</span>
-</span><span class='line'><span class="kt">int</span><span class="o">[]</span> <span class="n">values</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">1</span> <span class="o">};</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">values</span><span class="o">);</span>       <span class="o">==&gt;</span> <span class="n">prints</span> <span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">one</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="n">Integer</span> <span class="n">one</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="n">Long</span> <span class="n">one</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="n">Boolean</span> <span class="kc">false</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;false&quot;</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;\&quot;abc\&quot;&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="n">String</span> <span class="n">anotherStr</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;[\&quot;abc\&quot;]&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<h3>关于对象的例子</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">BagOfPrimitives</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">value1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="n">String</span> <span class="n">value2</span> <span class="o">=</span> <span class="s">&quot;abc&quot;</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">transient</span> <span class="kt">int</span> <span class="n">value3</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">BagOfPrimitives</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="c1">// no-args constructor</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
-</span><span class='line'><span class="n">BagOfPrimitives</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BagOfPrimitives</span><span class="o">();</span>
-</span><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
-</span><span class='line'><span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
-</span><span class='line'><span class="o">==&gt;</span> <span class="n">json</span> <span class="n">is</span> <span class="o">{</span><span class="s">&quot;value1&quot;</span><span class="o">:</span><span class="mi">1</span><span class="o">,</span><span class="s">&quot;value2&quot;</span><span class="o">:</span><span class="s">&quot;abc&quot;</span><span class="o">}</span>
-</span><span class='line'><span class="n">Note</span> <span class="n">that</span> <span class="n">you</span> <span class="n">can</span> <span class="n">not</span> <span class="n">serialize</span> <span class="n">objects</span> <span class="n">with</span> <span class="n">circular</span> <span class="n">references</span> <span class="n">since</span> <span class="n">that</span> <span class="n">will</span> <span class="n">result</span> <span class="n">in</span> <span class="n">infinite</span> <span class="n">recursion</span><span class="o">.</span>
-</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
-</span><span class='line'><span class="n">BagOfPrimitives</span> <span class="n">obj2</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">BagOfPrimitives</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="o">==&gt;</span> <span class="n">obj2</span> <span class="n">is</span> <span class="n">just</span> <span class="n">like</span> <span class="n">obj</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-以下是转换对象的时候几点事项：
-* 建议使用private的成员变量
-* 没有必要对所有的成员变量使用任何的注解来表示这个变量需要被序列化或反序列化
-* 如果一个成员变量被关键字transient修饰，（默认）那么它将在序列化和反序列化的时候被忽略
-* 这样处理nulls是正确的
-<strong> 序列化的时候，一个null变量在输出的时候将被跳过
-</strong> 反序列化的时候，JSON中一个丢失的实体会被设置为null
-* 如果一个成员变量被synthetic修饰，在序列化和反序列化的时候会被忽略
-* 内部类、匿名类、局部类会被忽略掉。</p>
-
-<h3>数组的例子</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
-</span><span class='line'><span class="kt">int</span><span class="o">[]</span> <span class="n">ints</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">};</span>
-</span><span class='line'><span class="n">String</span><span class="o">[]</span> <span class="n">strings</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;abc&quot;</span><span class="o">,</span> <span class="s">&quot;def&quot;</span><span class="o">,</span> <span class="s">&quot;ghi&quot;</span><span class="o">};</span>
-</span><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">ints</span><span class="o">);</span>     <span class="o">==&gt;</span> <span class="n">prints</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">]</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">strings</span><span class="o">);</span>  <span class="o">==&gt;</span> <span class="n">prints</span> <span class="o">[</span><span class="s">&quot;abc&quot;</span><span class="o">,</span> <span class="s">&quot;def&quot;</span><span class="o">,</span> <span class="s">&quot;ghi&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
-</span><span class='line'><span class="kt">int</span><span class="o">[]</span> <span class="n">ints2</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="s">&quot;[1,2,3,4,5]&quot;</span><span class="o">,</span> <span class="kt">int</span><span class="o">[].</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="o">==&gt;</span> <span class="n">ints2</span> <span class="n">will</span> <span class="n">be</span> <span class="n">same</span> <span class="n">as</span> <span class="n">ints</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<h3>集合的例子</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
-</span><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ints</span> <span class="o">=</span> <span class="n">Lists</span><span class="o">.</span><span class="na">immutableList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
-</span><span class='line'><span class="o">(</span><span class="n">Serialization</span><span class="o">)</span>
-</span><span class='line'><span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">ints</span><span class="o">);</span> <span class="o">==&gt;</span> <span class="n">json</span> <span class="n">is</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">]</span>
-</span><span class='line'><span class="o">(</span><span class="n">Deserialization</span><span class="o">)</span>
-</span><span class='line'><span class="n">Type</span> <span class="n">collectionType</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TypeToken</span><span class="o">&lt;</span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;(){}.</span><span class="na">getType</span><span class="o">();</span>
-</span><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ints2</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">collectionType</span><span class="o">);</span>
-</span><span class='line'><span class="n">ints2</span> <span class="n">is</span> <span class="n">same</span> <span class="n">as</span> <span class="n">ints</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>序列化和反序列化通用的类型</h4>
-
-<p>当你在调用toJson(obj)的时候，Gson会调用obj.getClass()来获得即将被序列化的对象的成员变量。然后调用fromJson(json, MyClass.class)方法来得到MyClass的对象。如果这个类没有使用范性的情况下是正常的。但是，如果是使用范型的，由于java的类型擦除机制，就不能正常工作了。如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Foo</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">T</span> <span class="n">value</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
-</span><span class='line'><span class="n">Foo</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;</span> <span class="n">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Foo</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;();</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">foo</span><span class="o">);</span> <span class="c1">// May not serialize foo.value correctly</span>
-</span><span class='line'><span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">foo</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span> <span class="c1">// Fails to deserialize foo.value as Bar</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[java插件之timer]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer/"/>
-    <updated>2013-05-24T14:20:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer</id>
-    <content type="html"><![CDATA[<p>JQuery Timers应用知识<br/>
-提供了三个函式<br/>
-1. everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*************************************************************</span>
-</span><span class='line'><span class="cm">*   everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</span>
-</span><span class='line'><span class="cm">*************************************************************/</span>
-</span><span class='line'><span class="c1">//每1秒执行函式test()</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">test</span><span class="p">(){</span>
-</span><span class='line'>   <span class="c1">//do something...</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="nx">test</span><span class="p">);</span>
-</span><span class='line'><span class="c1">//每1秒执行</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="c1">//每1秒执行，并命名计时器名称为A</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="c1">//每20秒执行，最多5次，并命名计时器名称为B</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">},</span><span class="mi">5</span><span class="p">);</span>
-</span><span class='line'><span class="c1">//每20秒执行，无限次，并命名计时器名称为C</span>
-</span><span class='line'><span class="c1">//若时间间隔抵到，但函式程序仍未完成则需等待执行函式完成后再继续计时</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="c1">//执行一个会超过20秒以上的程式</span>
-</span><span class='line'><span class="p">},</span><span class="mi">0</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<ol>
-<li>oneTime(时间间隔, [计时器名称], 呼叫的函式)</li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/***********************************************************</span>
-</span><span class='line'><span class="cm">*   oneTime(时间间隔, [计时器名称], 呼叫的函式)</span>
-</span><span class='line'><span class="cm">***********************************************************/</span>
-</span><span class='line'><span class="c1">//倒数10秒后执行</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">oneTime</span><span class="p">(</span><span class="s1">&#39;1das&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="c1">//倒数100秒后执行，并命名计时器名称为D</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">oneTime</span><span class="p">(</span><span class="s1">&#39;1hs&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>stopTime ([计时器名称], [函式名称])</li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/************************************************************</span>
-</span><span class='line'><span class="cm">*  stopTime ([计时器名称], [函式名称])</span>
-</span><span class='line'><span class="cm">************************************************************/</span>
-</span><span class='line'><span class="c1">//停止所有的在$(&#39;body&#39;)上计时器</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">stopTime</span> <span class="p">();</span>
-</span><span class='line'><span class="c1">//停止$(&#39;body&#39;)上名称为A的计时器</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">stopTime</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="c1">//停止$(&#39;body&#39;)上所有呼叫test()的计时器</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">stopTime</span> <span class="p">(</span><span class="nx">test</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>自定义时间单位
-打开源代码
-找到</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">powers</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>   <span class="c1">// Yeah this is major overkill...</span>
-</span><span class='line'>   <span class="s1">&#39;ms&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>   <span class="s1">&#39;cs&#39;</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span><span class='line'>   <span class="s1">&#39;ds&#39;</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-</span><span class='line'>   <span class="s1">&#39;s&#39;</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
-</span><span class='line'>   <span class="s1">&#39;das&#39;</span><span class="o">:</span> <span class="mi">10000</span><span class="p">,</span>
-</span><span class='line'>   <span class="s1">&#39;hs&#39;</span><span class="o">:</span> <span class="mi">100000</span><span class="p">,</span>
-</span><span class='line'>   <span class="s1">&#39;ks&#39;</span><span class="o">:</span> <span class="mi">1000000</span>
-</span><span class='line'>  <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
