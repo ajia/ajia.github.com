@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 生活 | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/生活/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T16:35:25+08:00</updated>
+  <updated>2014-05-07T17:49:57+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -19,10 +19,10 @@
     <updated>2013-03-28T15:15:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/28/hao-ting-de-qu-zi</id>
     <content type="html"><![CDATA[<p>Exodus-Maksim Mrvica<br/>
-{% audio /downloads/media/exodus.mp3 %}</p>
+<audio controls><source src='/downloads/media/exodus.mp3'></audio></p>
 
 <p>最后的倾述-韩磊<br/>
-{% audio /downloads/media/zhdqs.mp3 %}</p>
+<audio controls><source src='/downloads/media/zhdqs.mp3'></audio></p>
 ]]></content>
   </entry>
   
