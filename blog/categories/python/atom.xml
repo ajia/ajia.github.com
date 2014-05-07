@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T12:27:10+08:00</updated>
+  <updated>2014-05-07T16:35:25+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,11 +14,16 @@
 
   
   <entry>
-    <title type="html"><![CDATA[python中转化成json的方法不能序列化datetime类型数据的问题]]></title>
+    <title type="html"><![CDATA[解决json.dumps不能序列化datetime类型的问题]]></title>
     <link href="http://ajia.github.com/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/"/>
     <updated>2014-03-20T14:01:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti</id>
-    <content type="html"><![CDATA[<p>使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>使用python自带的json.</p>
+
+<p>dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
 
 <pre><code>TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable
 </code></pre>
@@ -51,7 +56,10 @@
     <link href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/"/>
     <updated>2014-03-19T16:59:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan</id>
-    <content type="html"><![CDATA[<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
 
 <h3>获取两个list的交集</h3>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cocos2d | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/cocos2d/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T12:27:10+08:00</updated>
+  <updated>2014-05-07T16:35:25+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,10 +18,10 @@
     <link href="http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/"/>
     <updated>2013-10-15T10:48:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian</id>
-    <content type="html"><![CDATA[<p>熟练使用快捷键能极大的提高效率，在此记录一下常用的xcode快捷键：</p>
+    <content type="html"><![CDATA[<!-- more -->
 
-<!-- more -->
 
+<p>熟练使用快捷键能极大的提高效率，在此记录一下常用的xcode快捷键：</p>
 
 <ol>
 <li><p>esc 　　　　           自动完成, 作用和VS中的ctrl+j类似，像 Eclipse 的 alt+/</p></li>
@@ -69,7 +69,10 @@
     <link href="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/"/>
     <updated>2013-04-22T15:25:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star</id>
-    <content type="html"><![CDATA[<p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错
 ```objective-c</p>
 
 <pre><code>Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter

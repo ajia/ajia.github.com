@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T12:27:10+08:00</updated>
+  <updated>2014-05-07T16:35:25+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,7 +18,10 @@
     <link href="http://ajia.github.com/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/"/>
     <updated>2013-07-19T15:15:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi</id>
-    <content type="html"><![CDATA[<p>版本控制系统可以跟踪项目代码的变化，便于和他人协作，如果出现问题（例如不小心删除了文件）还可以回滚到以前的版本。每个软件开发者都应该学习使用版本控制系统。</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>版本控制系统可以跟踪项目代码的变化，便于和他人协作，如果出现问题（例如不小心删除了文件）还可以回滚到以前的版本。每个软件开发者都应该学习使用版本控制系统。</p>
 
 <p>版本控制工具很多，Rails 社区更多的会使用 Git，它最初是由 Linus Torvalds 开发用来存储 Linux 内核代码的。Git 的知识很多，这里我们只会介绍一些简单的内容，网络上有很多免费的资料可以阅读，我特别推荐 Scott Chacon 的《Pro Git》（Apress 2009 年出版。<a href="http://git-scm.com/book/zh">中文版</a>）。之所以推荐你将代码放到 Git 这个版本控制系统中是因为这几乎是 Rails 社区的普遍做法，还因为这样做更利于代码的分享，也便于程序的部署。</p>
 
@@ -249,7 +252,10 @@ $ git branch -D topic-branch
     <link href="http://ajia.github.com/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/"/>
     <updated>2013-06-27T10:37:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/27/sublime-textde-[?]-xie-pei-zhi</id>
-    <content type="html"><![CDATA[<p>来源：https://github.com/mhartl/rails_tutorial_sublime_text</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>来源：https://github.com/mhartl/rails_tutorial_sublime_text</p>
 
 <h1>Command-line command</h1>
 
@@ -270,7 +276,10 @@ $ git branch -D topic-branch
     <link href="http://ajia.github.com/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/"/>
     <updated>2013-06-27T10:24:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu</id>
-    <content type="html"><![CDATA[<p>转自http://ruby-china.org/topics/10813</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>转自http://ruby-china.org/topics/10813</p>
 
 <p>git push heroku master出现Operation/Connecting timed out错误。</p>
 
@@ -309,7 +318,10 @@ port 22</p>
     <link href="http://ajia.github.com/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/"/>
     <updated>2013-04-01T11:59:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang</id>
-    <content type="html"><![CDATA[<p>ruby的安装在文章<a href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/" title="点击查看">how-to-install-octopress</a>里有说过。</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>ruby的安装在文章<a href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/" title="点击查看">how-to-install-octopress</a>里有说过。</p>
 
 <h3>在Lion安装rails</h3>
 

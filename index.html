@@ -195,7 +195,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/l/'>L</a>
+	<a class='category' href='/blog/categories/lua/'>Lua</a>
 
 
 </div>
@@ -214,9 +214,7 @@
 			Curl用法(转)</a>
 	</h2>
 	<div class="entry-content">
-		<p>curl可以模仿浏览器，可以当下载器，当你只是在处理一些shell工作时、测试，要图形界面干嘛？或者，要一个下载器干嘛。</p>
-
-
+		
 		
 		<a href="/blog/2014/04/18/curlyong-fa-zhuan/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -258,9 +256,7 @@
 			DOOM3在Mac OSX中的编译过程</a>
 	</h2>
 	<div class="entry-content">
-		<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
-
-
+		
 		
 		<a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -302,15 +298,7 @@
 			Unix Create a Symbolic Link</a>
 	</h2>
 	<div class="entry-content">
-		<p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
-
-<pre><code>$ ln -s {/path/to/file-name} {link-name}
-$ ln -s /shared/sales/data/file.txt sales.data.txt
-$ vi sales.data.txt
-$ ls -l sales.data.txt
-</code></pre>
-
-
+		
 		
 		<a href="/blog/2014/04/07/unix-create-a-symbolic-link/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -349,49 +337,12 @@ $ ls -l sales.data.txt
 		
 		<a href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/">
 		
-			Python中转化成json的方法不能序列化datetime类型数据的问题</a>
+			解决json.dumps不能序列化datetime类型的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
-
-<pre><code>TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable
-</code></pre>
-
-<p>查了一下，找到如下的方法:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>  <span class="kn">import</span> <span class="nn">json</span>
-</span><span class='line'>  <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">datetime</span>
-</span><span class='line'>  <span class="k">class</span> <span class="nc">MyEncoder</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-</span><span class='line'>        <span class="c"># if isinstance(obj, datetime.datetime):</span>
-</span><span class='line'>        <span class="c">#     return int(mktime(obj.timetuple()))</span>
-</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">datetime</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
-</span><span class='line'>     <span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataMap</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">MyEncoder</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
 		
 		
+		<a href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -431,45 +382,9 @@ $ ls -l sales.data.txt
 			Python的集合运算</a>
 	</h2>
 	<div class="entry-content">
-		<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
-
-<h3>获取两个list的交集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#方法一:</span>
-</span><span class='line'><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-</span><span class='line'><span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
-</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>
-</span><span class='line'><span class="k">print</span> <span class="n">tmp</span>
-</span><span class='line'><span class="c">#[2, 5]</span>
-</span><span class='line'><span class="c">#方法二:</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>获取两个list的并集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>获取两个list的差集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="c"># b中有而a中没有的</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
 		
 		
+		<a href="/blog/2014/03/19/pythonde-ji-he-yun-suan/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -551,9 +466,7 @@ $ ls -l sales.data.txt
 			Xcode常用快捷键</a>
 	</h2>
 	<div class="entry-content">
-		<p>熟练使用快捷键能极大的提高效率，在此记录一下常用的xcode快捷键：</p>
-
-
+		
 		
 		<a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -593,10 +506,10 @@ $ ls -l sales.data.txt
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">2014
 
     Ajia
-
+. Powered by Octopress
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>

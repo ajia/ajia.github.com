@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Lua | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/lua/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T12:27:10+08:00</updated>
+  <updated>2014-05-07T16:35:25+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -53,6 +53,68 @@ a.x = 10  -- 等同于a["x"] = 10
 print(a.x)  -- 等同于print(a["x"])
 print(a.y)  -- 等同于print(a["y"])
 -- a.x和a[x]是不同的。前者表示a["x"]，后者表示以变量x的值来索引table。
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[读《Lua程序设计》笔记--函数]]></title>
+    <link href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/"/>
+    <updated>2014-04-19T10:02:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>a.多重返回值</p>
+
+<p>Lua允许函数返回多个结果，只需在return关键字后列出所有的返回值即可
+```lua 查找数组中的最大元素</p>
+
+<pre><code>function maximum(a)
+local mi = 1  --最大值的索引
+local m = a[mi]  --最大值
+  for i,val in ipairs(a) do
+    if val&gt;m then
+      mi = i; m=val
+    end
+  end
+return m, mi
+end
+print (maximum({8,10,23,12,5}))  --&gt;23  3
+</code></pre>
+
+<p>```</p>
+
+<p>b.变长参数
+```lua 返回所有参数的总和</p>
+
+<pre><code>function add(...)
+    local s = 0
+    for i,v in ipairs({...}) do  --ipairs({...})可以简写为ipairs{...}
+        s = s + v
+    end
+    return s
+end
+print(add(3,4,10,25,12)) --&gt;54
+</code></pre>
+
+<p>```</p>
+
+<p>表达式“...”的行为类似于一个具有多重返回值的函数，它返回的是当前函数的所有变长参数</p>
+
+<p>c.具名参数
+虽然Lua不支持
+<code>lua
+rename(old="temp.lua", new="temp1.lua")  --无效的演示代码
+</code>这样的语法，但是可以将所有的实参组织到一个table中，并将这个table作为唯一的实参传给函数。当实参只有一个table的构造式时，函数调用中的圆括号是可有可无的：
+```lua</p>
+
+<pre><code>function rename(arg)
+    return os.rename(arg.old, arg.new)
+end
+rename{old="temp.lua", new="temp1.lua"}
 </code></pre>
 
 <p>```</p>

@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>python中转化成json的方法不能序列化datetime类型数据的问题 - Ajia's Blog</title>
+	<title>解决json.dumps不能序列化datetime类型的问题 - Ajia's Blog</title>
 	<meta name="author" content="Ajia">
 
 	
-	<meta name="description" content="使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错 TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable 查了一下， &hellip;">
+	<meta name="description" content="使用python自带的json. dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错 TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable &hellip;">
 	<meta name="keywords" content="json dumps datetime not serializable">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -78,8 +78,13 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">Python中转化成json的方法不能序列化datetime类型数据的问题</h2>
-	<div class="entry-content"><p>使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
+	<h2 class="title">解决json.dumps不能序列化datetime类型的问题</h2>
+	<div class="entry-content"><!-- more -->
+
+
+<p>使用python自带的json.</p>
+
+<p>dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
 
 <pre><code>TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable
 </code></pre>
@@ -164,10 +169,10 @@
 </div>
 </section>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">2014
 
     Ajia
-
+. Powered by Octopress
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>

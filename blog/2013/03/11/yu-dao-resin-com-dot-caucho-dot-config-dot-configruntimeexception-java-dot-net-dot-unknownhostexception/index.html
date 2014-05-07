@@ -7,8 +7,8 @@
 	<meta name="author" content="Ajia">
 
 	
-	<meta name="description" content="linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
-问题原因：DNS解析不到本机名。 解决方案： 编辑/ &hellip;">
+	<meta name="description" content="linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报 com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException 网上找了一下，
+问题原因：DNS解析不到本机名。 解决方案： &hellip;">
 	<meta name="keywords" content="解决 resin 问题">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,7 +80,15 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">遇到resin的java.net.UnknownHostException</h2>
-	<div class="entry-content"><p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException，网上找了一下，
+	<div class="entry-content"><!--more-->
+
+
+<p>linux启动resin4.0.23的时候，没有报错，但是应用也没有启动，访问的时候报</p>
+
+<pre><code>com.caucho.config.ConfigRuntimeException: java.net.UnknownHostException
+</code></pre>
+
+<p>网上找了一下，
 问题原因：DNS解析不到本机名。</p>
 
 <h1>解决方案：</h1>
@@ -138,10 +146,10 @@
 </div>
 </section>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">2014
 
     Ajia
-
+. Powered by Octopress
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T12:27:10+08:00</updated>
+  <updated>2014-05-07T16:35:25+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,7 +18,10 @@
     <link href="http://ajia.github.com/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/"/>
     <updated>2013-07-05T17:42:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache</id>
-    <content type="html"><![CDATA[<h3>创建cache</h3>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h3>创建cache</h3>
 
 <p>可以通过两种方式来创建cache：</p>
 
@@ -188,7 +191,12 @@ LoadingCache&lt;Key, Graph> graphs = CacheBuilder.newBuilder()</p>
     <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/"/>
     <updated>2013-05-31T13:45:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections</id>
-    <content type="html"><![CDATA[<p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。看看Guava Collections为我们做了哪些很酷的事情：</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。</p>
+
+<p>看看Guava Collections为我们做了哪些很酷的事情：</p>
 
 <ul>
 <li>Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable Collections这才是真正的不可修改的集合</li>
@@ -199,9 +207,6 @@ LoadingCache&lt;Key, Graph> graphs = CacheBuilder.newBuilder()</p>
 <li>Ordering class:大家知道用Comparator作为比较器来对集合排序，但是对于多关键字排序Ordering class可以简化很多的代码</li>
 <li>其他特性</li>
 </ul>
-
-
-<!-- more -->
 
 
 <p>当然，如果没有Guava Collections你也可以用Java Collections Framework完成上面的功能。但是Guava Collections提供的这些API经过精心设计，而且还有2500个单元测试来保障它的质量。所以我们没必要重新发明轮子。接下来我们来详细看看Guava Collections的一些具体功能。</p>
@@ -514,7 +519,10 @@ public String apply(Integer input){
     <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/"/>
     <updated>2013-05-31T13:44:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities</id>
-    <content type="html"><![CDATA[<h2>从避免使用null开始</h2>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h2>从避免使用null开始</h2>
 
 <p>由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。举个例子来说，如果原先有getNickName方法可以传回String，调用它如下：</p>
 
@@ -528,9 +536,6 @@ if(nickName == null){</p>
 <p>}
 out.println(nickName);
 ```</p>
-
-<!-- more -->
-
 
 <p>如果客户端忘了检查null，那么就会直接显示null，在这个简单的例子中并不会怎么样，只是显示的结果令人困惑罢了，但如果后面的执行流程牵涉到至关重要的结果，程序快乐的继续执行下去，错误可能到最后才会呈现发生。</p>
 
@@ -1131,12 +1136,12 @@ Student{peida, 23, 80}
     <link href="http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan/"/>
     <updated>2013-05-31T13:42:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/31/gsonde-shi-yong-zhi-nan</id>
-    <content type="html"><![CDATA[<h1>介绍</h1>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h1>介绍</h1>
 
 <p>Gson是一个可以把Java对象转化成JSON格式的字符串，也可以从一个JSON字符串转换为一个Java对象。Gson是一个开源项目，<a href="http://code.google.com/p/google-gson">这里是地址</a></p>
-
-<!-- more -->
-
 
 <h1>开始使用</h1>
 
@@ -1246,10 +1251,10 @@ gson.fromJson(json, foo.getClass()); // Fails to deserialize foo.value as Bar
     <link href="http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/"/>
     <updated>2013-05-24T10:19:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan</id>
-    <content type="html"><![CDATA[<p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成。<a href="http://joda-time.sourceforge.net/">项目地址</a></p>
+    <content type="html"><![CDATA[<!-- more -->
 
-<!-- more -->
 
+<p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成。<a href="http://joda-time.sourceforge.net/">项目地址</a></p>
 
 <p>获取DateTime:<br/>
 <code>java

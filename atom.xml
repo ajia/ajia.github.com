@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T12:27:10+08:00</updated>
+  <updated>2014-05-07T16:34:40+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -205,10 +205,10 @@
     <link href="http://ajia.github.com/blog/2014/04/18/curlyong-fa-zhuan/"/>
     <updated>2014-04-18T17:52:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/04/18/curlyong-fa-zhuan</id>
-    <content type="html"><![CDATA[<p>curl可以模仿浏览器，可以当下载器，当你只是在处理一些shell工作时、测试，要图形界面干嘛？或者，要一个下载器干嘛。</p>
+    <content type="html"><![CDATA[<!-- more -->
 
-<!-- more -->
 
+<p>curl可以模仿浏览器，可以当下载器，当你只是在处理一些shell工作时、测试，要图形界面干嘛？或者，要一个下载器干嘛。</p>
 
 <p>基本用法（配合sed/awk/grep）</p>
 
@@ -301,10 +301,10 @@ $cat zhao.part* &gt; zhao.mp3
     <link href="http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/"/>
     <updated>2014-04-08T18:51:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng</id>
-    <content type="html"><![CDATA[<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
+    <content type="html"><![CDATA[<!-- more -->
 
-<!-- more -->
 
+<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
 
 <ol>
 <li><p>修改Architecture和Target SDK
@@ -355,16 +355,16 @@ Reason: image not found
     <link href="http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/"/>
     <updated>2014-04-07T22:52:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link</id>
-    <content type="html"><![CDATA[<p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
 
 <pre><code>$ ln -s {/path/to/file-name} {link-name}
 $ ln -s /shared/sales/data/file.txt sales.data.txt
 $ vi sales.data.txt
 $ ls -l sales.data.txt
 </code></pre>
-
-<!-- more -->
-
 
 <p>怎样删除软连接呢？很简单，这样：</p>
 
@@ -393,11 +393,16 @@ $ rm link-here
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[python中转化成json的方法不能序列化datetime类型数据的问题]]></title>
+    <title type="html"><![CDATA[解决json.dumps不能序列化datetime类型的问题]]></title>
     <link href="http://ajia.github.com/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/"/>
     <updated>2014-03-20T14:01:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti</id>
-    <content type="html"><![CDATA[<p>使用python自带的json.dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>使用python自带的json.</p>
+
+<p>dumps方法转换数据为json的时候，如果格式化的数据中有datetime类型的数据时会报错</p>
 
 <pre><code>TypeError: datetime.datetime(2014, 03, 20, 12, 10, 44) is not JSON serializable
 </code></pre>
@@ -442,7 +447,10 @@ $ rm link-here
     <link href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/"/>
     <updated>2014-03-19T16:59:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan</id>
-    <content type="html"><![CDATA[<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
 
 <h3>获取两个list的交集</h3>
 
@@ -676,10 +684,10 @@ $ rm link-here
     <link href="http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/"/>
     <updated>2013-10-15T10:48:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian</id>
-    <content type="html"><![CDATA[<p>熟练使用快捷键能极大的提高效率，在此记录一下常用的xcode快捷键：</p>
+    <content type="html"><![CDATA[<!-- more -->
 
-<!-- more -->
 
+<p>熟练使用快捷键能极大的提高效率，在此记录一下常用的xcode快捷键：</p>
 
 <ol>
 <li><p>esc 　　　　           自动完成, 作用和VS中的ctrl+j类似，像 Eclipse 的 alt+/</p></li>
@@ -727,7 +735,10 @@ $ rm link-here
     <link href="http://ajia.github.com/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan/"/>
     <updated>2013-08-19T15:51:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/08/19/rethinkdb-chuang-shi-ren-zong-jie-de-57-tiao-chuang-ye-jing-yan</id>
-    <content type="html"><![CDATA[<p>总部位于旧金山的云计算数据库服务公司RethinkDB创始人斯拉瓦·阿克麦切特（Slava Akhmechet）日前发表文章，总结了57条创业经验，其中涉及团队、融资、市场、产品、营销、销售、产品开发、公司管理、个人状态等9个方面。</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>总部位于旧金山的云计算数据库服务公司RethinkDB创始人斯拉瓦·阿克麦切特（Slava Akhmechet）日前发表文章，总结了57条创业经验，其中涉及团队、融资、市场、产品、营销、销售、产品开发、公司管理、个人状态等9个方面。</p>
 
 <!-- more -->
 
@@ -854,7 +865,10 @@ $ rm link-here
     <link href="http://ajia.github.com/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/"/>
     <updated>2013-07-19T15:15:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi</id>
-    <content type="html"><![CDATA[<p>版本控制系统可以跟踪项目代码的变化，便于和他人协作，如果出现问题（例如不小心删除了文件）还可以回滚到以前的版本。每个软件开发者都应该学习使用版本控制系统。</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>版本控制系统可以跟踪项目代码的变化，便于和他人协作，如果出现问题（例如不小心删除了文件）还可以回滚到以前的版本。每个软件开发者都应该学习使用版本控制系统。</p>
 
 <p>版本控制工具很多，Rails 社区更多的会使用 Git，它最初是由 Linus Torvalds 开发用来存储 Linux 内核代码的。Git 的知识很多，这里我们只会介绍一些简单的内容，网络上有很多免费的资料可以阅读，我特别推荐 Scott Chacon 的《Pro Git》（Apress 2009 年出版。<a href="http://git-scm.com/book/zh">中文版</a>）。之所以推荐你将代码放到 Git 这个版本控制系统中是因为这几乎是 Rails 社区的普遍做法，还因为这样做更利于代码的分享，也便于程序的部署。</p>
 
@@ -1085,7 +1099,10 @@ $ git branch -D topic-branch
     <link href="http://ajia.github.com/blog/2013/07/19/chuang-ye-jian-yi/"/>
     <updated>2013-07-19T14:46:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/07/19/chuang-ye-jian-yi</id>
-    <content type="html"><![CDATA[<p>本文来自Squawk Messenger的联合创始人及StreetArtSF.com的创始人Chloë Bregman。</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>本文来自Squawk Messenger的联合创始人及StreetArtSF.com的创始人Chloë Bregman。</p>
 
 <p>这些不是道听途说来的狗屁东西，而是我自己摸索总结出来的点点滴滴。</p>
 
@@ -1154,7 +1171,10 @@ $ git branch -D topic-branch
     <link href="http://ajia.github.com/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/"/>
     <updated>2013-07-05T17:42:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache</id>
-    <content type="html"><![CDATA[<h3>创建cache</h3>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h3>创建cache</h3>
 
 <p>可以通过两种方式来创建cache：</p>
 
@@ -1382,7 +1402,10 @@ callable callback
     <link href="http://ajia.github.com/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/"/>
     <updated>2013-06-27T10:37:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/27/sublime-textde-[?]-xie-pei-zhi</id>
-    <content type="html"><![CDATA[<p>来源：https://github.com/mhartl/rails_tutorial_sublime_text</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>来源：https://github.com/mhartl/rails_tutorial_sublime_text</p>
 
 <h1>Command-line command</h1>
 
@@ -1403,7 +1426,10 @@ callable callback
     <link href="http://ajia.github.com/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/"/>
     <updated>2013-06-27T10:24:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu</id>
-    <content type="html"><![CDATA[<p>转自http://ruby-china.org/topics/10813</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>转自http://ruby-china.org/topics/10813</p>
 
 <p>git push heroku master出现Operation/Connecting timed out错误。</p>
 
@@ -1442,7 +1468,10 @@ port 22</p>
     <link href="http://ajia.github.com/blog/2013/06/08/chang-yong-sql/"/>
     <updated>2013-06-08T11:22:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/08/chang-yong-sql</id>
-    <content type="html"><![CDATA[<h1>查询重复的userid</h1>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h1>查询重复的userid</h1>
 
 <pre><code>select * from WebsiteUser where userid in 
 (select userid from WebsiteUser group by userid having(count(*)&gt;1))
@@ -1457,12 +1486,12 @@ port 22</p>
     <link href="http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/"/>
     <updated>2013-06-07T18:01:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat</id>
-    <content type="html"><![CDATA[<p>做项目难免遇上格式化时间，而且可能不是每个地方都显示成一个样子，所以服务器端做这个不太方便。</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>做项目难免遇上格式化时间，而且可能不是每个地方都显示成一个样子，所以服务器端做这个不太方便。</p>
 
 <p><a href="https://github.com/phstc/jquery-dateFormat#examples">jquery-dateFormat</a></p>
-
-<!-- more -->
-
 
 <h1>Format patterns</h1>
 
@@ -1547,10 +1576,10 @@ jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
     <link href="http://ajia.github.com/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/"/>
     <updated>2013-06-07T18:00:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js</id>
-    <content type="html"><![CDATA[<p>需要格式化文件大小，发现这个好用的东西，<a href="http://numeraljs.com/">numeral.js</a></p>
+    <content type="html"><![CDATA[<!-- more -->
 
-<!-- more -->
 
+<p>需要格式化文件大小，发现这个好用的东西，<a href="http://numeraljs.com/">numeral.js</a></p>
 
 <p>首先当然是要引入它</p>
 
@@ -1673,7 +1702,12 @@ var value = number.value();
     <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/"/>
     <updated>2013-05-31T13:45:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections</id>
-    <content type="html"><![CDATA[<p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。看看Guava Collections为我们做了哪些很酷的事情：</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。</p>
+
+<p>看看Guava Collections为我们做了哪些很酷的事情：</p>
 
 <ul>
 <li>Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable Collections这才是真正的不可修改的集合</li>
@@ -1684,9 +1718,6 @@ var value = number.value();
 <li>Ordering class:大家知道用Comparator作为比较器来对集合排序，但是对于多关键字排序Ordering class可以简化很多的代码</li>
 <li>其他特性</li>
 </ul>
-
-
-<!-- more -->
 
 
 <p>当然，如果没有Guava Collections你也可以用Java Collections Framework完成上面的功能。但是Guava Collections提供的这些API经过精心设计，而且还有2500个单元测试来保障它的质量。所以我们没必要重新发明轮子。接下来我们来详细看看Guava Collections的一些具体功能。</p>

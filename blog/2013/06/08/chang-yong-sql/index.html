@@ -79,7 +79,10 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">常用sql</h2>
-	<div class="entry-content"><h1>查询重复的userid</h1>
+	<div class="entry-content"><!-- more -->
+
+
+<h1>查询重复的userid</h1>
 
 <pre><code>select * from WebsiteUser where userid in 
 (select userid from WebsiteUser group by userid having(count(*)&gt;1))
@@ -134,10 +137,10 @@
 </div>
 </section>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">2014
 
     Ajia
-
+. Powered by Octopress
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>

@@ -7,7 +7,7 @@
 	<meta name="author" content="Ajia">
 
 	
-	<meta name="description" content="从避免使用null开始 由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。 &hellip;">
+	<meta name="description" content=" Read on &rarr; May 31st, 2013 java Comments ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -88,26 +88,7 @@
 			Guava的使用指南之Basic Utilities</a>
 	</h2>
 	<div class="entry-content">
-		<h2>从避免使用null开始</h2>
-
-<p>由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。举个例子来说，如果原先有getNickName方法可以传回String，调用它如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">nickName</span> <span class="o">=</span> <span class="n">getNickName</span><span class="o">(</span><span class="s">&quot;Duke&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="k">if</span><span class="o">(</span><span class="n">nickName</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">nickName</span> <span class="o">=</span> <span class="s">&quot;Ajia&#39;s User&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-
+		
 		
 		<a href="/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-basic-utilities/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -149,11 +130,7 @@
 			Gson的使用指南</a>
 	</h2>
 	<div class="entry-content">
-		<h1>介绍</h1>
-
-<p>Gson是一个可以把Java对象转化成JSON格式的字符串，也可以从一个JSON字符串转换为一个Java对象。Gson是一个开源项目，<a href="http://code.google.com/p/google-gson">这里是地址</a></p>
-
-
+		
 		
 		<a href="/blog/2013/05/31/gsonde-shi-yong-zhi-nan/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -192,67 +169,10 @@
 		
 		<a href="/blog/2013/05/24/javacha-jian-zhi-timer/">
 		
-			Java插件之timer</a>
+			Jquery插件之timer</a>
 	</h2>
 	<div class="entry-content">
-		<p>JQuery Timers应用知识<br/>
-提供了三个函式<br/>
-1. everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*************************************************************</span>
-</span><span class='line'><span class="cm">*   everyTime(时间间隔, [计时器名称], 函式名称, [次数限制], [等待函式程序完成])</span>
-</span><span class='line'><span class="cm">*************************************************************/</span>
-</span><span class='line'><span class="c1">//每1秒执行函式test()</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">test</span><span class="p">(){</span>
-</span><span class='line'>   <span class="c1">//do something...</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="nx">test</span><span class="p">);</span>
-</span><span class='line'><span class="c1">//每1秒执行</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="c1">//每1秒执行，并命名计时器名称为A</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="c1">//每20秒执行，最多5次，并命名计时器名称为B</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'><span class="c1">//do something...</span>
-</span><span class='line'><span class="p">},</span><span class="mi">5</span><span class="p">);</span>
-</span><span class='line'><span class="c1">//每20秒执行，无限次，并命名计时器名称为C</span>
-</span><span class='line'><span class="c1">//若时间间隔抵到，但函式程序仍未完成则需等待执行函式完成后再继续计时</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">everyTime</span><span class="p">(</span><span class="s1">&#39;2das&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="c1">//执行一个会超过20秒以上的程式</span>
-</span><span class='line'><span class="p">},</span><span class="mi">0</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+		
 		
 		<a href="/blog/2013/05/24/javacha-jian-zhi-timer/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -294,9 +214,7 @@
 			Joda日期计算</a>
 	</h2>
 	<div class="entry-content">
-		<p>Joda-Time提供了一组Java类包用于处理包括ISO8601标准在内的date和time。可以利用它把JDK Date和Calendar类完全替换掉，而且仍然能够提供很好的集成。<a href="http://joda-time.sourceforge.net/">项目地址</a></p>
-
-
+		
 		
 		<a href="/blog/2013/05/24/jodari-qi-ji-suan/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -338,9 +256,7 @@
 			读取音频文件的信息</a>
 	</h2>
 	<div class="entry-content">
-		<p>项目里需要读取音频的播放时间，找了一个下午发现这个：jaudiotagger(http://www.jthink.net/jaudiotagger/)，它是一个音频标签JAVA库，目前支持 Mp3, Mp4 (Mp4 audio, M4a and M4p audio) Ogg Vorbis, Flac and Wma, 但是对Wav 和 Real 的支持有限。</p>
-
-
+		
 		
 		<a href="/blog/2013/05/06/du-qu-yin-pin-wen-jian-de-xin-xi/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -382,11 +298,7 @@
 			使用jave转换音视频格式</a>
 	</h2>
 	<div class="entry-content">
-		<p>JAVE是用java包装ffmpeg的一个类库，可以自由的在各种音视频格式之间转换，它的jar包里就包含了ffmpeg的可执行文件，有linux和windows的，我为了在本机上调试，去ffmpeg的官网下了一个Mac OSX版本的。</p>
-
-<p>官网地址：http://www.sauronsoftware.it/projects/jave/。养成去看官网的习惯很重要，英语差点的话可以先看中文的介绍，有个概念再去看官网的说明。</p>
-
-
+		
 		
 		<a href="/blog/2013/05/04/shi-yong-javezhuan-huan-yin-shi-pin-ge-shi/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -428,10 +340,7 @@
 			音乐播放器dewplayer的使用</a>
 	</h2>
 	<div class="entry-content">
-		<p>介绍一个flash音乐播放器：dewplayer(法国的)<br/>
-官网地址：http://www.alsacreations.fr/dewplayer.html。它提供几种风格，根据自己的需要选择一种风格。下面说一下用javascript来操作dewplayer</p>
-
-
+		
 		
 		<a href="/blog/2013/05/04/yin-le-bo-fang-qi-dewplayerde-shi-yong/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -473,30 +382,7 @@
 			Seo优化</a>
 	</h2>
 	<div class="entry-content">
-		<p>添加 meta data description</p>
-
-<p>文章生产时默认会生成 layout, title, date, comments, categories 这几项，如果多添加2个选项 ‘keywords’, ‘description’，会在 generate 文章的时候自动生成相应的 meta 标签
-如果文章 header 写成这样</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>layout: post
-</span><span class='line'>title: "SEO for Octopress"
-</span><span class='line'>date: 2012-04-22 09:55
-</span><span class='line'>comments: true
-</span><span class='line'>categories: [seo,octopress]
-</span><span class='line'>keywords: seo,octopress
-</span><span class='line'>description: How to optimize Octopress for SEO</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-
+		
 		
 		<a href="/blog/2013/04/27/seoyou-hua/" class="more-link">Read on &rarr;</a>
 	</div>
@@ -538,33 +424,9 @@
 			Sending &#8216;ccColor4B&#8217; (Aka &#8216;Struct _ccColor4B&#8217;) to Parameter of Incompatible Type &#8216;CIColor *&#8217;</a>
 	</h2>
 	<div class="entry-content">
-		<p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">Sending</span> <span class="err">&#39;</span><span class="n">ccColor4B</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">aka</span> <span class="err">&#39;</span><span class="k">struct</span> <span class="n">_ccColor4B</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">to</span> <span class="n">parameter</span>
-</span><span class='line'> <span class="n">of</span> <span class="n">incompatible</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">CIColor</span> <span class="o">*</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>把</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>改成</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[(</span><span class="n">CCColorLayer</span><span class="o">*</span><span class="p">)[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就可以了</p>
-
 		
 		
+		<a href="/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -604,47 +466,9 @@
 			Mysql创建function失败</a>
 	</h2>
 	<div class="entry-content">
-		<p>出错信息：</p>
-
-<p>创建function时</p>
-
-<pre><code>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
-or READS SQL DATA in its declaration and binary logging is enabled 
-(you might want to use the less safe log_bin_trust_function_creators variable)
-</code></pre>
-
-<p>原因：</p>
-
-<p>这是我们开启了bin-log, 我们就必须指定我们的函数是否是
-1 DETERMINISTIC 不确定的
-2 NO SQL 没有SQl语句，当然也不会修改数据
-3 READS SQL DATA 只是读取数据，当然也不会修改数据
-4 MODIFIES SQL DATA 要修改数据
-5 CONTAINS SQL 包含了SQL语句</p>
-
-<p>其中在function里面，只有 DETERMINISTIC, NO SQL 和 READS SQL DATA 被支持。如果我们开启了 bin-log, 我们就必须为我们的function指定一个参数。</p>
-
-<p>解决办法</p>
-
-<pre><code>mysql&gt;show variables like '%func%';
-+---------------------------------+-------+  
-|Variable_name                  |Value|  
-+---------------------------------+-------+  
-|log_bin_trust_function_creators|OFF  |  
-+---------------------------------+-------+  
-
-set global log_bin_trust_function_creators=1;  
-
-mysql&gt;show variables like '%func%';  
-+---------------------------------+-------+  
-|Variable_name                  |Value|  
-+---------------------------------+-------+  
-|log_bin_trust_function_creators|ON   |  
-+---------------------------------+-------+  
-</code></pre>
-
 		
 		
+		<a href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -684,10 +508,10 @@ mysql&gt;show variables like '%func%';
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">2014
 
     Ajia
-
+. Powered by Octopress
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>

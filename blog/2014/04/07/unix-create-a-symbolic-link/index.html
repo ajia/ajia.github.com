@@ -79,16 +79,16 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Unix Create a Symbolic Link</h2>
-	<div class="entry-content"><p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
+	<div class="entry-content"><!-- more -->
+
+
+<p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
 
 <pre><code>$ ln -s {/path/to/file-name} {link-name}
 $ ln -s /shared/sales/data/file.txt sales.data.txt
 $ vi sales.data.txt
 $ ls -l sales.data.txt
 </code></pre>
-
-<!-- more -->
-
 
 <p>怎样删除软连接呢？很简单，这样：</p>
 
@@ -154,11 +154,17 @@ $ rm link-here
 </div>
 
 
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+</section>
+</div>
+	<footer id="footer" class="inner">2014
 
     Ajia
-
+. Powered by Octopress
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>
@@ -173,7 +179,10 @@ $ rm link-here
       var disqus_shortname = 'ajia';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

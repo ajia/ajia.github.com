@@ -79,7 +79,10 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Guava的使用指南之Basic Utilities</h2>
-	<div class="entry-content"><h2>从避免使用null开始</h2>
+	<div class="entry-content"><!-- more -->
+
+
+<h2>从避免使用null开始</h2>
 
 <p>由于null的根本问题在于含糊而不明确，要避免使用null的方式，就是确认过去使用null的时机与目的，并使用明确的语义。在过去使用null的情况中，开发者在方法中传回null，通常代表着客户端必须检查是否为null，并在null的情况下使用预设值，以便程序能够继续执行。举个例子来说，如果原先有getNickName方法可以传回String，调用它如下：</p>
 
@@ -94,11 +97,6 @@
 </span><span class='line'><span class="o">}</span>
 </span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nickName</span><span class="o">);</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
 
 
 <p>如果客户端忘了检查null，那么就会直接显示null，在这个简单的例子中并不会怎么样，只是显示的结果令人困惑罢了，但如果后面的执行流程牵涉到至关重要的结果，程序快乐的继续执行下去，错误可能到最后才会呈现发生。</p>
@@ -967,10 +965,10 @@ true
 </div>
 </section>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">2014
 
     Ajia
-
+. Powered by Octopress
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>
