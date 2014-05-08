@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenGL | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/opengl/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-08T19:01:39+08:00</updated>
+  <updated>2014-05-08T19:03:40+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -18,7 +18,10 @@
     <link href="http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/"/>
     <updated>2014-05-08T18:49:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti</id>
-    <content type="html"><![CDATA[<p>想学好OpenGL，已经复习C几周了。</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>想学好OpenGL，已经复习C几周了。</p>
 
 <p>网上有个教程，http://www.opengl-tutorial.org/zh-hans/tutorial-1-opening-a-window-zh/#______</p>
 
