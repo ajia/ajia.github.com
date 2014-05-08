@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-07T17:49:57+08:00</updated>
+  <updated>2014-05-08T19:01:39+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[CMake找不到/Developer目录的问题]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/"/>
+    <updated>2014-05-08T18:49:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti</id>
+    <content type="html"><![CDATA[<p>想学好OpenGL，已经复习C几周了。</p>
+
+<p>网上有个教程，http://www.opengl-tutorial.org/zh-hans/tutorial-1-opening-a-window-zh/#______</p>
+
+<p>照着上面说的做，在Mac上生成项目的时候遇到个问题：</p>
+
+<pre><code>Error: No developer directory found at /Developer.  Run
+/usr/bin/xcode-select to update the developer directory path. 
+</code></pre>
+
+<p>原来，我的Xcode的版本是4.6.3，/Developer这个目录已经改到/Applications/Xcode.app/Contents/Developer，执行这条命令就可以了</p>
+
+<pre><code>sudo /usr/bin/xcode-select -switch /Applications/Xcode.app/Contents/Developer
+</code></pre>
+
+<p>然后，好好学习OpenGL。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mac下制作Ubuntu安装U盘]]></title>
@@ -1694,400 +1718,6 @@ var value = number.value();
 </code></pre>
 
 <p>最重要的是还支持中文</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava的使用指南之Collections]]></title>
-    <link href="http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections/"/>
-    <updated>2013-05-31T13:45:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/05/31/guavade-shi-yong-zhi-nan-zhi-collections</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>Guava Collections可以帮助我们写出更简短精炼、可读性强的代码。</p>
-
-<p>看看Guava Collections为我们做了哪些很酷的事情：</p>
-
-<ul>
-<li>Immutable Collections:还在使用Collections.unmodifiableXXX()? Immutable Collections这才是真正的不可修改的集合</li>
-<li>Multiset:看看如何把重复的元素放入一个集合</li>
-<li>Multimaps:需要在一个key对应多个value的时候，自己写一个实现比较繁琐，让Multimaps来帮帮</li>
-<li>BiMap:java.util.Map只能保证key的不重复，BiMap保证value也不重复</li>
-<li>MapMaker:超级强大的Map构造类</li>
-<li>Ordering class:大家知道用Comparator作为比较器来对集合排序，但是对于多关键字排序Ordering class可以简化很多的代码</li>
-<li>其他特性</li>
-</ul>
-
-
-<p>当然，如果没有Guava Collections你也可以用Java Collections Framework完成上面的功能。但是Guava Collections提供的这些API经过精心设计，而且还有2500个单元测试来保障它的质量。所以我们没必要重新发明轮子。接下来我们来详细看看Guava Collections的一些具体功能。</p>
-
-<h2>Immutable Collections：真正的不可修改的集合</h2>
-
-<p>大家都用过Collections.unmodifiableXXX()来做一个不可修改的集合。例如你要构造存储常量的Set,你可以这样做：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&quot;RED&quot;</span><span class="o">,</span><span class="s">&quot;GREEN&quot;</span><span class="o">}));</span>
-</span><span class='line'><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">unmodifiableSet</span> <span class="o">=</span> <span class="n">Collections</span><span class="o">.</span><span class="na">unmodifiableSet</span><span class="o">(</span><span class="n">set</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这看上去似乎不错，因为每次调unmodifiableSet.add()都会抛出一个UnsupportedOperationException。感觉安全了？慢！如果有人在原来的set上add或者remove元素会怎么样？结果unmodifiableSet也是被add或者remove元素了。而且构造这样一个简单的set写了两句长的代码。下面看看ImmutableSet是怎么来做地更安全和简洁：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableSet</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&quot;RED&quot;</span><span class="o">,</span><span class="s">&quot;GREEN&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就这样一句就够了，而且试图调add方法的时候，它一样会抛出UnsupportedOperationException。重要的是代码的可读性增强了不少，非常直观的展现了代码的用意。如果像之前这个代码保护一个set怎么做呢？你可以：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableSet</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">set</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>从构造的方式来说，ImmutableSet集合还提供了Builder模式来构造一个集合：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Builder</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">builder</span><span class="o">();</span>
-</span><span class='line'><span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">immutableSet</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;RED&quot;</span><span class="o">).</span><span class="na">addAll</span><span class="o">(</span><span class="n">set</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在这个例子里面Builder不但能加入单个元素还能加入既有的集合。</p>
-
-<p>除此之外，Guava Collections还提供了各种Immutable集合的实现：ImmutableList, ImmutableMap, ImmutableSortedSet, ImmutableSortedMap。</p>
-
-<h2>Multiset:把重复的元素放入集合</h2>
-
-<p>你可能会说这和Set接口的契约冲突，因为Set接口的javaDoc里面规定不能放入重复元素。事实上，Multiset并没有实现java.util.Set接口，它更像是一个Bag。普通的Set就像这样：[car,ship,bike],而Multiset会是这样：[carx2,shipx6,bikex3]。</p>
-
-<p>譬如一个List里面有各种字符，然后你要统计每个字符串在List里面出现的次数：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;();</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="nl">word:</span><span class="n">wordList</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">Integer</span> <span class="n">count</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">word</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="o">(</span><span class="n">count</span><span class="o">==</span><span class="kc">null</span><span class="o">)?</span><span class="mi">1</span><span class="o">:</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="c1">//count word &quot;the&quot;</span>
-</span><span class='line'><span class="n">Integer</span> <span class="n">count</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;the&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果用Multiset就可以这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">HashMultiset</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">multiSet</span> <span class="o">=</span> <span class="n">HashMultiset</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-</span><span class='line'><span class="n">multiSet</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">wordList</span><span class="o">);</span>
-</span><span class='line'><span class="c1">//count word &quot;the&quot;</span>
-</span><span class='line'><span class="n">Integer</span> <span class="n">count</span> <span class="o">=</span> <span class="n">multiSet</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="s">&quot;the&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样连循环都不用了，而且Multiset用的方法叫count，显然比在Map里面调用get有更好的可读性。Multiset还提供了setCount这样设定元素重复次数的方法，虽然你可以通过使用Map来实现类似的功能，但是程序的可读性比Multiset差了很多。</p>
-
-<p>常用实现Multiset接口的类有：
-* HashMultiset:元素存放于HashMap
-* LinkedHashMultiset:元素存放于LinkedHashMap,即元素的排列顺序由第一次放入的顺序决定
-* TreeMultiset:元素被排序存放于TreeMap
-* EnumMultiset:元素必须是enum类型
-* ImmutableMultiset:不可修改的Mutiset</p>
-
-<p>看到这里你可能已经发现Guava Collections都是以create或是of这样的静态方法来构造对象。这是因为这些集合类大多有多个参数的私有构造方法，由于参数数目很多，客户代码程序员使用起来就很不方便。而且以这种方式可以返回原类型的子类型对象。另外，对于创建范型对象来讲，这种方式更加简洁。</p>
-
-<h2>Muitimap:在Map的value里面放多个元素</h2>
-
-<p>Muitimap就是一个key对应多个value的数据结构。看上去它很像java.util.Map的结构，但是Muitimap不是Map，没有实现Map的接口。设想你对Map调了2次参数key一样的put方法，结果就是第2次的value覆盖了第一次的value。但是对Muitimap来说这个key同时对应了2个value。所以Map看上去是：{k1=v1,k2=v2,…}，而Muitimap是：{k1=[v1,v2,v3],k2=[v7,v8],…}。</p>
-
-<p>举个记名投票的例子。所有选票都放在一个List<Ticket>里面，List的每个元素包括投票人和选举人的名字。我们可以这样写:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Key is cadidate name, its value is his voters</span>
-</span><span class='line'><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">hMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;();</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Ticket</span> <span class="nl">ticket:</span><span class="n">tickets</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">hMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getCandidate</span><span class="o">());</span>
-</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">set</span><span class="o">==</span><span class="kc">null</span><span class="o">){</span>
-</span><span class='line'>      <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-</span><span class='line'>      <span class="n">hMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getCandidate</span><span class="o">(),</span> <span class="n">set</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getVoter</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我们再来看看Muitimap能做些什么：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">HashMultimap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">HashMultimap</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Ticket</span> <span class="nl">ticket:</span><span class="n">tickets</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">ticket</span><span class="o">.</span><span class="na">getCandidate</span><span class="o">(),</span> <span class="n">ticket</span><span class="o">.</span><span class="na">getVoter</span><span class="o">());</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就这么简单！</p>
-
-<p>Muitimap接口的主要实现类有：
-* HashMultimap:key放在HashMap, 而value放在HashSet, 即一个key对应的value不可重复
-* ArrayListMultimap：key放在HashMap,而value放在ArrayList,即一个key对应的value有顺序可重复
-* LinkedHashMultimap:key放在LinkedHashMap,而value放在LinkedHashSet,即一个key对应的value有顺序不可重复
-* TreeMultimap：key放在TreeMap，而value放在TreeSet，即一个key对应的value有排列顺序
-* ImmutableMultimap:不可修改的Multimap</p>
-
-<h2>BiMap:双向Map</h2>
-
-<p>BiMap实现了java.util.Map接口。它的特点是它的value和它key一样也是不可重复的，换句话说它的key和value是等价的。如果你往BiMap的value里面放了重复的元素，就会得到IllegalArgumentException.</p>
-
-<p>举个例子，你可能经常会碰到在Map里面根据value值来反推它的key值的逻辑：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">Address</span><span class="o">&gt;</span> <span class="nl">entry:</span><span class="n">map</span><span class="o">.</span><span class="na">entreSet</span><span class="o">()){</span>
-</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getValue</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">anAddress</span><span class="o">)){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果把User和Address都放在BiMap,那么一句代码就得到结果了：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">biMap</span><span class="o">.</span><span class="na">inverse</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">anAddress</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里的inverse方法就是把BiMap的key集合value集合对调，因此biMap==biMap.inverse().inverse()。</p>
-
-<p>BiMap的常用实现有：
-* HashBiMap:key集合与value集合都有HashMap实现
-* EnumBiMap:key与value都必须是enum类型
-* ImmutableBiMap:不可修改的BiMap</p>
-
-<h2>MapMaker:超级强大的Map构造工具</h2>
-
-<p>MapMaker是用来构造ConcurrentMap的工具类。为什么可以把MapMaker叫做超级强大？看了下面的例子你就知道了。首先，它可以用来构造ConcurrentHashMap:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//ConcurrentHashMap with concurrency level 8</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">concurrencyLevel</span><span class="o">(</span><span class="mi">8</span><span class="o">).</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者构造用各种不同reference作为key和value的Map：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//ConcurrentMap with soft reference key and weak reference value</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">softKeys</span><span class="o">().</span><span class="na">weakValues</span><span class="o">().</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者构造有自动移除时间过期项的Map:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Automatically removed entries from map after 30 seconds since they are created</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">expireAfterWrite</span><span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">).</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者构造有最大限制数目的Map：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Map size grows close to the 100, the map vill evict</span>
-</span><span class='line'><span class="c1">//entries that are less likely to be used again</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">maximumSize</span><span class="o">(</span><span class="mi">100</span><span class="o">).</span><span class="na">makeMap</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者提供当Map里面不包含所get的项，而需要自动加入到Map的功能。这个功能当Map作为缓存的时候很有用：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Create an Object to the map, when get() is missing in map</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">().</span><span class="na">makeComputingMap</span><span class="o">(</span><span class="k">new</span> <span class="n">Function</span><span class="o">&lt;&gt;(</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">){</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nf">createObject</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这些还不是最强大的特性，最厉害的是MapMaker可以提供拥有以上所有特性的Map:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Put all features together!</span>
-</span><span class='line'><span class="n">ConcurrentMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">mapAll</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapMaker</span><span class="o">()</span>
-</span><span class='line'><span class="o">.</span><span class="na">concurrencyLevel</span><span class="o">(</span><span class="mi">8</span><span class="o">)</span>
-</span><span class='line'><span class="o">.</span><span class="na">softKeys</span><span class="o">()</span>
-</span><span class='line'><span class="o">.</span><span class="na">weakValues</span><span class="o">()</span>
-</span><span class='line'><span class="o">.</span><span class="na">expireAfterWrite</span><span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
-</span><span class='line'><span class="o">.</span><span class="na">makeComputingMap</span><span class="o">(</span>
-</span><span class='line'>  <span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;(){</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Object</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">){</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nf">createObject</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Ordering class:灵活的多字段排序比较器</h2>
-
-<p>需对集合排序或者求最大值最小值，首推java.util.Collections类，但关键是要提供Comparator接口的实现。假设有个待排序的List<Foo>, 而Foo里面有两个排序关键字int a, int b和int c:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Foo</span> <span class="n">f1</span><span class="o">,</span> <span class="n">Foo</span> <span class="n">f2</span><span class="o">){</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">resultA</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="na">a</span><span class="o">-</span><span class="n">f2</span><span class="o">.</span><span class="na">a</span><span class="o">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">resultB</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="na">b</span><span class="o">-</span><span class="n">f2</span><span class="o">.</span><span class="na">b</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">resultA</span><span class="o">==</span><span class="mi">0</span><span class="o">?(</span><span class="n">resultB</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span><span class="n">fl</span><span class="o">.</span><span class="na">c</span><span class="o">-</span><span class="n">f2</span><span class="o">.</span><span class="na">c</span><span class="o">:</span><span class="n">resultB</span><span class="o">):</span><span class="n">resultA</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">})</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这看上去有点眼晕，如果用一串if-else也好不到哪里去。看看ComparisonChain能做到什么：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">*(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">a</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">a</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">b</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">b</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">c</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">c</span><span class="o">).</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果排序关键字要用自定义比较器，compare方法也有接受Comparator的重载版本。譬如Foo里面每个排序关键字都已经有了各自的Comparator,那么利用ComparisonChain可以：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">ComparisonChain</span><span class="o">.</span><span class="na">start</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">a</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">a</span><span class="o">,</span> <span class="n">comparatorA</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">b</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">b</span><span class="o">,</span> <span class="n">comparatorB</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">f1</span><span class="o">.</span><span class="na">c</span><span class="o">,</span> <span class="n">f2</span><span class="o">.</span><span class="na">c</span><span class="o">,</span> <span class="n">comparatorC</span><span class="o">).</span><span class="na">result</span><span class="o">();</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ordring类还提供了一个组合Comparator对象的方法。而且Ordring本身实现了Comparator接口所以它能直接作为Comparator使用：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Ordering</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">ordering</span> <span class="o">=</span> <span class="n">Ordering</span><span class="o">.</span><span class="na">compound</span><span class="o">(</span>
-</span><span class='line'>  <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">ComparatorA</span><span class="o">,</span> <span class="n">comparatorB</span><span class="o">,</span> <span class="n">comparatorC</span><span class="o">));</span>
-</span><span class='line'><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">ordering</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>其他特性</h2>
-
-<h3>过滤器：利用Collection2.filter()方法过滤集合中不符合条件的元素。譬如过滤一个List<Integer>里面小于10的元素：</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">filterCollection</span> <span class="o">=</span> <span class="n">Collections2</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="k">new</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Integer</span> <span class="n">input</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">input</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>当然，你可以自己写一个循环来实现这个功能，但是这样不能保证之后小于10的元素不被放入集合。filter的强大之处在于返回的filterCollection仍然有排斥小于10的元素的特性，如果调filterCollection.add(9)就会得到一个IllegalArgumentException.</p>
-
-<h3>转换器：利用Collections.transform方法来转换集合中的元素。譬如把一个Set<Integer>里面所有元素都转化成带格式的String来产生新的Collection<String>:</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">formatCollection</span> <span class="o">=</span> <span class="n">Collection2</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">set</span><span class="o">,</span> <span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;(){</span>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Integer</span> <span class="n">input</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="k">new</span> <span class="nf">DecimalFormat</span><span class="o">(</span><span class="s">&quot;#,###&quot;</span><span class="o">).</span><span class="na">format</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">})</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

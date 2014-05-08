@@ -112,6 +112,81 @@
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/">CMake找不到/Developer目录的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <a href="https://plus.google.com/110901147063982151312/about?rel=author"><span class="fn">Ajia</span></a></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-08T18:49:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2014</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/opengl/'>OpenGL</a>
+  
+</span>
+
+
+        
+         | <a href="/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>想学好OpenGL，已经复习C几周了。</p>
+
+<p>网上有个教程，http://www.opengl-tutorial.org/zh-hans/tutorial-1-opening-a-window-zh/#______</p>
+
+<p>照着上面说的做，在Mac上生成项目的时候遇到个问题：</p>
+
+<pre><code>Error: No developer directory found at /Developer.  Run
+/usr/bin/xcode-select to update the developer directory path. 
+</code></pre>
+
+<p>原来，我的Xcode的版本是4.6.3，/Developer这个目录已经改到/Applications/Xcode.app/Contents/Developer，执行这条命令就可以了</p>
+
+<pre><code>sudo /usr/bin/xcode-select -switch /Applications/Xcode.app/Contents/Developer
+</code></pre>
+
+<p>然后，好好学习OpenGL。</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/">Mac下制作Ubuntu安装U盘</a></h1>
     
     
@@ -673,69 +748,6 @@ posted in
 
       </article>
     
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/">Xcode常用快捷键</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/110901147063982151312/about?rel=author"><span class="fn">Ajia</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-15T10:48:00+08:00" pubdate data-updated="true">Oct 15<span>th</span>, 2013</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>
-  
-</span>
-
-
-        
-         | <a href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/">Read on &rarr;</a>
-    </footer>
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -759,6 +771,10 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/">CMake找不到/Developer目录的问题</a>
+        </li>
+      
+        <li>
           <a href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/">Mac下制作Ubuntu安装U盘</a>
         </li>
       
@@ -772,10 +788,6 @@ posted in
       
         <li>
           <a href="/blog/2014/04/18/curlyong-fa-zhuan/">curl用法(转)</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/">DOOM3在Mac OSX中的编译过程</a>
         </li>
       
     </ul>

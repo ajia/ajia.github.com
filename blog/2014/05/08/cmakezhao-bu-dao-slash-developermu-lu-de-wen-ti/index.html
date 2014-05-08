@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>how-to-install-octopress - Ajia's Blog</title>
+  <title>CMake找不到/Developer目录的问题 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
   <link rel="author" href="humans.txt">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,28 +13,28 @@
   
     
   
-  <meta name="description" content=" ">
-  
+  <meta name="description" content=" CMake xcode xcode-select Developer 出错 ">
+  <meta name="keywords" content="CMake xcode xcode-select Developer">
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="Ajia's Blog" />
-  <meta name="og:title" content="how-to-install-octopress" />
-  <meta name="og:description" content=" " />
-  <meta name="og:url" content="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/"/>
-  <meta name="url" content="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/">
+  <meta name="og:title" content="CMake找不到/Developer目录的问题" />
+  <meta name="og:description" content=" CMake xcode xcode-select Developer 出错 " />
+  <meta name="og:url" content="http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/"/>
+  <meta name="url" content="http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/">
   
-  <meta name="subject" content="Octopress"/>
-  <meta name="category" content="Octopress"/>
+  <meta name="subject" content="OpenGL"/>
+  <meta name="category" content="OpenGL"/>
   
   <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -88,7 +88,7 @@
 
   <header>
     
-      <h1 class="entry-title">How-to-install-octopress</h1>
+      <h1 class="entry-title">CMake找不到/Developer目录的问题</h1>
     
     
       <p class="meta">
@@ -113,13 +113,13 @@
   
 
 
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time> - 
+<time datetime="2014-05-08T18:49:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2014</time> - 
         
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/opengl/'>OpenGL</a>
   
 </span>
 
@@ -132,120 +132,22 @@ posted in
   </header>
 
 
-  <div class="entry-content"><!--more-->
+  <div class="entry-content"><p>想学好OpenGL，已经复习C几周了。</p>
 
+<p>网上有个教程，http://www.opengl-tutorial.org/zh-hans/tutorial-1-opening-a-window-zh/#______</p>
 
-<p>系统是Mac OS X Lion 10.7.5</p>
+<p>照着上面说的做，在Mac上生成项目的时候遇到个问题：</p>
 
-<h1>Step1 安装homebrew</h1>
-
-<pre><code>ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-brew update  
+<pre><code>Error: No developer directory found at /Developer.  Run
+/usr/bin/xcode-select to update the developer directory path. 
 </code></pre>
 
-<p>如果出现如下错误</p>
+<p>原来，我的Xcode的版本是4.6.3，/Developer这个目录已经改到/Applications/Xcode.app/Contents/Developer，执行这条命令就可以了</p>
 
-<pre><code>error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.commit.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.css' (Permission denied)  
-error: unable to unlink old 'Library/Contributions/cmds/brew-test-bot/brew-test-bot.index.html.erb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/apr-1-config' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/bsdmake' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c89' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/c99' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/clang++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/cpp' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/git' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/i686-apple-darwin11-llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/ld' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-g++-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/llvm-gcc-4.2' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/make' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/mig' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/sed' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/svn' (Permission denied)  
-error: unable to unlink old 'Library/ENV/4.3/xcrun' (Permission denied)  
-error: unable to unlink old 'Library/ENV/libsuperenv.rb' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcrypto.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/leopard/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libcurl.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libexslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxml-2.0.pc' (Permission denied)  
-error: unable to unlink old 'Library/ENV/pkgconfig/mountain_lion/libxslt.pc' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xcode.rb' (Permission denied)  
-error: unable to unlink old 'Library/Homebrew/macos/xquartz.rb' (Permission denied)  
-fatal: Could not reset index file to revision 'origin/master'.  
-Failed during: git reset --hard origin/master  
+<pre><code>sudo /usr/bin/xcode-select -switch /Applications/Xcode.app/Contents/Developer
 </code></pre>
 
-<p><strong>解决办法：sudo chown -R ${USER} /usr/local/Library</strong></p>
-
-<p><strong>如果已经安装了Macports，先卸载掉</strong></p>
-
-<pre><code>sudo rm -rf \  
-/opt/local \  
-/Applications/DarwinPorts \  
-/Applications/MacPorts \  
-/Library/LaunchDaemons/org.macports.* \  
-/Library/Receipts/DarwinPorts*.pkg \  
-/Library/Receipts/MacPorts*.pkg \  
-/Library/StartupItems/DarwinPortsStartup \  
-/Library/Tcl/darwinports1.0 \  
-/Library/Tcl/macports1.0 \  
-~/.macports
-</code></pre>
-
-<h1>Step2 安装RVM</h1>
-
-<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-source ~/.bashrc
-</code></pre>
-
-<h1>Step3 安装Ruby</h1>
-
-<pre><code>rvm install 1.9.3
-rvm use 1.9.3 --default
-</code></pre>
-
-<h1>Step4 安装Octopress</h1>
-
-<pre><code>git clone git://github.com/imathis/octopress.git octopress  
-gem install bundler  
-bundle install
-rake install
-</code></pre>
-
-<h1>Step5 在github中托管</h1>
-
-<p>到目前我止，我们的blog仅能在本机中访问，如何将其托管到github中呢？如何使用我们自己的域名呢？让一切看起来就如同我们自己的站点。</p>
-
-<p>如果你要使用自己的域名，github需要一个CNAME文件，进入source文件夹，新建CNAME文件。</p>
-
-<pre><code>$ ch source
-$ touch CNAME
-</code></pre>
-
-<p>托管到github中</p>
-
-<pre><code>$ rake setup_github_pages
-</code></pre>
-
-<p>系统提示你输入一个形如:git@github.com:username/username.github.com.git,username是你在github.com中注册的用户名，username.github.com.git是你自己在github.com中创建的代码库。输入后按回车确定.</p>
-
-<p>向github提交</p>
-
-<pre><code>$ rake generate
-$ rake deploy
-</code></pre>
-
-<h3>大概的步骤就是这么多，遇见别的问题去请教google大神吧</h3>
+<p>然后，好好学习OpenGL。</p>
 </div>
 
 
@@ -272,13 +174,13 @@ $ rake deploy
   
 
 
-<time datetime="2013-03-06T18:06:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+<time datetime="2014-05-08T18:49:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2014</time>
       
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/opengl/'>OpenGL</a>
   
 </span>
 
@@ -297,10 +199,8 @@ posted in
 
     
     
-      <a class="pull-left" href="/blog/2013/03/06/my-first-blog/" title="Previous Post: my first blog">&laquo; my first blog</a>
+      <a class="pull-left" href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/" title="Previous Post: Mac下制作Ubuntu安装U盘">&laquo; Mac下制作Ubuntu安装U盘</a>
     
-    
-      <a class="pull-right" href="/blog/2013/03/11/yu-dao-resin-com-dot-caucho-dot-config-dot-configruntimeexception-java-dot-net-dot-unknownhostexception/" title="Next Post: 遇到resin的java.net.UnknownHostException">遇到resin的java.net.UnknownHostException &raquo;</a>
     
   </footer>
 
@@ -404,8 +304,8 @@ posted in
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/';
         var disqus_script = 'embed.js';
       
     (function () {
