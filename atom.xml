@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-08T19:03:40+08:00</updated>
+  <updated>2014-05-11T11:08:18+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[REWORK-忘了现实世界]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/11/re-xian-shi-shi-jie/"/>
+    <updated>2014-05-11T09:19:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/11/re-xian-shi-shi-jie</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<pre><code>”这在现实世界中完全行不通。“当你向人们介绍一个新创意时，人们总是这么说。
+
+这个”现实世界“听起来如此令人沮丧，貌似所有的新创意、新提案以及外来概念总是会在”现实世界“中碰壁。在这里，能够立于不败之地的都是那些人们耳熟能详、习以为常的事物，即使这些东西以及漏洞百出或陈腐低效。
+
+撕开这个”现实世界“的遮羞布后，你会发现栖居其中的人们都充满着悲观和绝望的情绪。他们期待看到新概念被斩落马下，他们认为这个社会还没有准备好迎接变革，也无力引发变革。
+
+更糟的是，他们想给其他人灌迷魂汤，让人们也陷进他们的坟墓里。如果你对未来充满期待并野心勃勃，他们就会试图说服你不要为不可能实现的想法浪费时间。
+
+不要相信他们。这个世界对于他们来说可能是”现实“的，但并不意味着你也要生活在这样的”现实“世界中。
+
+我们了解这一点，因为我们的公司在很多方面就通过”现实世界“的测评。在”现实世界“中，你不可能让十几个员工在两个大洲的8个不同城市办公；在”现实世界“中，你不可能不靠任何销售人员或广告投放就赢得上百万的客户；在”现实世界“中，你不能将自己的成功秘诀透露给其他人。问题是这些我们都干了，并且干得轰轰烈烈。
+
+”现实世界“并不存在，那只是个借口，只是某些人为了开脱自己的无所作为，跟你一点关系也没有。
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CMake找不到/Developer目录的问题]]></title>
@@ -1595,132 +1620,6 @@ jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
 <pre><code>#1 Test: 18/12/2009
 #2 18~12~2009
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[数字格式化插件Numeral.js]]></title>
-    <link href="http://ajia.github.com/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/"/>
-    <updated>2013-06-07T18:00:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>需要格式化文件大小，发现这个好用的东西，<a href="http://numeraljs.com/">numeral.js</a></p>
-
-<p>首先当然是要引入它</p>
-
-<pre><code>&lt;script src="numeral.min.js"&gt;&lt;/script&gt;
-</code></pre>
-
-<p>然后就可以格式化了</p>
-
-<pre><code>var string = numeral(1000).format('0,0');
-// '1,000'
-</code></pre>
-
-<p>数字的格式化</p>
-
-<pre><code>Number          Format          String
-10000           '0,0.0000'      10,000.0000
-10000.23        '0,0'           10,000
--10000          '0,0.0'         -10,000.0
-10000.1234      '0.000'         10000.123
-10000.1234      '0[.]00000'     10000.12340
--10000          '(0,0.0000)'    (10,000.0000)
--0.23           '.00'           -.23
--0.23           '(.00)'         (.23)
-0.23            '0.00000'       0.23000
-0.23            '0.0[0000]'     0.23
-1230974         '0.0a'          1.2m
-1460            '0 a'           1 k
--104000         '0a'            -104k
-1               '0o'            1st
-52              '0o'            52nd
-23              '0o'            23rd        
-100             '0o'            100th
-</code></pre>
-
-<p>货币的格式化</p>
-
-<pre><code>Number          Format          String
-1000.234        '$0,0.00'       $1,000.23
-1000.2          '0,0[.]00 $'    1,000.20 $
-1001            '$ 0,0[.]00'    $ 1,001
--1000.234       '($0,0)'        ($1,000)
--1000.234       '$0.00'         -$1000.23
-1230974         '($ 0.00 a)'    $ 1.23 m
-</code></pre>
-
-<p>字节的格式化</p>
-
-<pre><code>Number          Format          String
-100             '0b'            100B
-2048            '0 b'           2 KB
-4194304         '0.0b'          2 MB
-7884486213      '0.00b'         7.3GB
-3467479682787   '0.000 b'       3.154 TB
-</code></pre>
-
-<p>百分比</p>
-
-<pre><code>Number          Format          String
-1               '0%'            100%
-0.974878234     '0.000%'        97.488%
--0.43           '0 %'           -43 %
-0.43            '(0.000 %)'     43.000 %
-</code></pre>
-
-<p>时间</p>
-
-<pre><code>Number          Format          String
-25              '00:00:00'      0:00:25
-238             '00:00:00'      0:03:58
-63846           '00:00:00'      17:44:06
-</code></pre>
-
-<p>还可以反格式化</p>
-
-<pre><code>var string = numeral().unformat('($10,000.00)');
-// '-10000'
-
-String          Function                    Number
-'10,000.123'    .unformat('10,000.123')     10000.123
-'0.12345'       .unformat('0.12345')        0.12345
-'1.23m'         .unformat('1.23m')          1230000
-'23rd'          .unformat('23rd')           23
-'$10,000.00'    .unformat('$10,000.00')     10000
-'100B'          .unformat('100B')           100
-'3.154TB'       .unformat('3.154TB')        3467859674006
-'-76%'          .unformat('-76%')           -0.76
-'2:23:57'       .unformat('2:23:57')        8637
-</code></pre>
-
-<p>还支持运算</p>
-
-<pre><code>var number = numeral(1000);
-
-var added = number.add(10);
-// 1010
-Before          Function            After
-1000            .add(100)           1100
-1100            .subtract(100)      1000
-1000            .multiply(100)      100000
-100000          .divide(100)        1000
-</code></pre>
-
-<p>提供的方法：value 等等&#8230;</p>
-
-<pre><code>var number = numeral(1000);
-
-var string = number.format('0,0');
-// '1,000'
-
-var value = number.value();
-// 1000
-</code></pre>
-
-<p>最重要的是还支持中文</p>
 ]]></content>
   </entry>
   
