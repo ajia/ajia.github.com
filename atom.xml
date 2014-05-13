@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-12T10:01:56+08:00</updated>
+  <updated>2014-05-13T22:30:16+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-哪来的从错误中学习]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/13/rework-na-lai-de-cong-cuo-wu-zhong-xue-xi/"/>
+    <updated>2014-05-13T20:48:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/13/rework-na-lai-de-cong-cuo-wu-zhong-xue-xi</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>在商业社会中，失败成了一种值得期待的典礼。你总能听到“新公司倒闭者十之八九”的说法。你还听说失败能铸造品性。人们常常建议你“早死早超生，失败多经验也多”。</p>
+
+<p>空气中充斥着如此高浓度的失败理论，貌似除了沉沦其中，没有别的办法。千万不要相信这些观念！不要被这些观点愚弄了，其他人的失败仅仅代表其他人栽了跟头而已。</p>
+
+<p>别人的东西卖不出去，与你何干？别人没法凝聚团队，又与你何干？别人的服务定价失当，又与你何干？别人挣的没有花的多&#8230;&#8230;那么，正好你来挣！</p>
+
+<p>另外一种普遍的错误认知是：人要从错误中吸取经验教训。你到底能从错误中学到什么？你能学到的只是不再重蹈覆辙，但这有什么意义呢？你还是不知道下一步该做什么。</p>
+
+<p>相比之下，你更应该从成功中汲取养分。成功才是真正靠得住的教材。做成一件事后，你会知道这条路行得通—然后就会再次这么做，而下一次，你也许还会做得更棒。</p>
+
+<p>失败并不是成功的先决条件。一份来自哈佛商学院的研究报告表明，那些已经成功的企业家们再创造辉煌的可能性远比常人大得多（他们今后创办公司的成功率为34%）。而那些初次创业就失败的企业家们继续创业的成功率则与初次创业一样：只有23%。首战失败的人的成功率并不比那些从未尝试过的新人高。成功是一种极具现实的价值的宝贵经验。</p>
+
+<p>不比感到惊讶：这就是自然规律。逗留在过去的失败中是无法进化的，进化是建立在成功的基础之上的。你也应该如此。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-忘了现实世界]]></title>
@@ -1530,96 +1554,6 @@ port 22</p>
 </code></pre>
 
 <p>作为记录、待续</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[时间格式化插件jquery-dateFormat]]></title>
-    <link href="http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/"/>
-    <updated>2013-06-07T18:01:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>做项目难免遇上格式化时间，而且可能不是每个地方都显示成一个样子，所以服务器端做这个不太方便。</p>
-
-<p><a href="https://github.com/phstc/jquery-dateFormat#examples">jquery-dateFormat</a></p>
-
-<h1>Format patterns</h1>
-
-<ul>
-<li><p>Date and time patterns</p></li>
-<li><p>yy = short year</p></li>
-<li><p>yyyy = long year</p></li>
-<li><p>M = month (1-12)</p></li>
-<li><p>MM = month (01-12)</p></li>
-<li><p>MMM = month abbreviation (Jan, Feb … Dec)</p></li>
-<li><p>MMMM = long month (January, February … December)</p></li>
-<li><p>d = day (1 - 31)</p></li>
-<li><p>dd = day (01 - 31)</p></li>
-<li><p>ddd = day of the week in words (Monday, Tuesday … Sunday)</p></li>
-<li><p>D - Ordinal day (1st, 2nd, 3rd, 21st, 22nd, 23rd, 31st, 4th…)</p></li>
-<li><p>h = hour in am/pm (0-12)</p></li>
-<li><p>hh = hour in am/pm (00-12)</p></li>
-<li><p>H = hour in day (0-23)</p></li>
-<li><p>HH = hour in day (00-23)</p></li>
-<li><p>mm = minute</p></li>
-<li><p>ss = second</p></li>
-<li><p>SSS = milliseconds</p></li>
-<li><p>a = AM/PM marker</p></li>
-<li><p>p = a.m./p.m. marker</p></li>
-</ul>
-
-
-<h1>支持的时间格式</h1>
-
-<ul>
-<li><p>2009-12-18 10:54:50.546 (default java.util.Date.toString output)</p></li>
-<li><p>Wed Jan 13 10:43:41 CET 2010 (???)</p></li>
-<li><p>2010-10-19T11:40:33.527+02:00 (default JAXB formatting of java.util.Date)</p></li>
-<li><p>Sat Mar 05 2011 11:47:35 GMT-0300 (BRT) (default JavaScript new Date().toString() output)</p></li>
-<li><p>Unix Timestamp (e.g. new Date().getTime())</p></li>
-</ul>
-
-
-<h1>例子</h1>
-
-<p><em>使用css来格式化</em></p>
-
-<pre><code>&lt;span class="shortDateFormat"&gt;2009-12-18 10:54:50.546&lt;/span&gt;
-&lt;span class="longDateFormat"&gt;2009-12-18 10:54:50.546&lt;/span&gt;
-</code></pre>
-
-<p>默认的shortDateFormat 和 longDateFormat 这样来定义：</p>
-
-<pre><code>jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
-jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
-</code></pre>
-
-<p>输出</p>
-
-<pre><code>#1 18/12/2009
-#2 18/12/2009 10:54:50
-</code></pre>
-
-<p><em>用javascript来格式化</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">date</span><span class="p">(</span><span class="s2">&quot;2009-12-18 10:54:50.546&quot;</span><span class="p">,</span> <span class="s2">&quot;Test: dd/MM/yyyy&quot;</span><span class="p">));</span>
-</span><span class='line'>      <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">date</span><span class="p">(</span><span class="s2">&quot;Wed Jan 13 10:43:41 CET 2010&quot;</span><span class="p">,</span> <span class="s2">&quot;dd~MM~yyyy&quot;</span><span class="p">));</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>输出</p>
-
-<pre><code>#1 Test: 18/12/2009
-#2 18~12~2009
-</code></pre>
 ]]></content>
   </entry>
   
