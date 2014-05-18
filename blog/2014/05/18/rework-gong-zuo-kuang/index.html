@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python的集合运算 - Ajia's Blog</title>
+  <title>rework-工作狂 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
   <link rel="author" href="humans.txt">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,28 +13,28 @@
   
     
   
-  <meta name="description" content=" ">
-  <meta name="keywords" content="python 交集 并集 差集">
+  <meta name="description" content=" rework-工作狂 ">
+  <meta name="keywords" content="rework 工作狂">
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/05/18/rework-gong-zuo-kuang/">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="Ajia's Blog" />
-  <meta name="og:title" content="Python的集合运算" />
-  <meta name="og:description" content=" " />
-  <meta name="og:url" content="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/"/>
-  <meta name="url" content="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/">
+  <meta name="og:title" content="rework-工作狂" />
+  <meta name="og:description" content=" rework-工作狂 " />
+  <meta name="og:url" content="http://ajia.github.com/blog/2014/05/18/rework-gong-zuo-kuang/"/>
+  <meta name="url" content="http://ajia.github.com/blog/2014/05/18/rework-gong-zuo-kuang/">
   
-  <meta name="subject" content="python"/>
-  <meta name="category" content="python"/>
+  <meta name="subject" content="rework"/>
+  <meta name="category" content="rework"/>
   
   <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -96,7 +96,7 @@
 
   <header>
     
-      <h1 class="entry-title">Python的集合运算</h1>
+      <h1 class="entry-title">Rework-工作狂</h1>
     
     
       <p class="meta">
@@ -121,13 +121,13 @@
   
 
 
-<time datetime="2014-03-19T16:59:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time> - 
+<time datetime="2014-05-18T22:23:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2014</time> - 
         
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/python/'>python</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -140,45 +140,26 @@ posted in
   </header>
 
 
-  <div class="entry-content"><!-- more -->
+  <div class="entry-content"><!--more-->
 
 
-<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
+<p>沉迷工作是企业文化中广受赞颂的一种“优良做派”。我们知道工作狂热衷于通宵达旦、加班加点，甚至在办公室打地铺。这些人以累死在项目中为荣，对他们来说，再大的工作量也不在话下。</p>
 
-<h3>获取两个list的交集</h3>
+<p>工作狂的行为不但没有必要，而且愚蠢至极。过多的工作并不代表你对项目更关注，也不代表你作了更多贡献，这仅仅意味着你干了更多活而已。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#方法一:</span>
-</span><span class='line'><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-</span><span class='line'><span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
-</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>
-</span><span class='line'><span class="k">print</span> <span class="n">tmp</span>
-</span><span class='line'><span class="c">#[2, 5]</span>
-</span><span class='line'><span class="c">#方法二:</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>工作狂能够解决一些问题，但他们制造的麻烦却更多。首先，这种工作状态经不起时间的考验。当职业倦怠感袭来时——这一点基本不可避免——你根本没法“软着陆”。</p>
 
+<p>工作狂往往不得要领。他们花费大把的时间去解决问题，他们以为能靠蛮力来弥补思维上的惰性，其结果就是折腾出一堆粗略无用的解决方案。</p>
 
-<h3>获取两个list的并集</h3>
+<p>不仅如此，他们还凭空制造出危机来。这些人从不寻求高效解决之道，因为他们恰恰就“钟情于”加班加点。这让他们感觉自己像个英雄，并沉迷其中。他们（通常是无意识地）制造问题，看似这样就能享受更多的工作了。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>工作狂的存在使那些不以加班为乐的员工感到无所适从。在工作狂扎堆的企业环境里，就连“按时上下班”都让人觉得是一种无理要求了。这种文化令正常工作的员工心怀愧疚、士气低落。不仅如此，人们还会因此陷入一种“跟风”状态——每个人都在义务加班，根本就不管到底有没有生产力。</p>
 
+<p>如果你只是为了工作而工作，那么你就会丧失判断力。你的价值观和决策方式都是扭曲的。你没有能力去判断哪些工作值得做、哪些工作该放弃，最后搞得自己筋疲力尽，而一个筋疲力尽的人是无法作出明智的决定的。</p>
 
-<h3>获取两个list的差集</h3>
+<p>最后，工作狂实际取得的成就并不比正常人高。他们自诩为完美主义者，但这仅仅代表他们浪费了大量时间去关注次要的细节，而不是推动下一项任务。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="c"># b中有而a中没有的</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>工作狂不是英雄。他们没有力挽狂澜，不过是浪费时间而已。真正的英雄早已想出办法、搞定一切，然后回家了。</p>
 </div>
 
 
@@ -205,13 +186,13 @@ posted in
   
 
 
-<time datetime="2014-03-19T16:59:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+<time datetime="2014-05-18T22:23:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2014</time>
       
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/python/'>python</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -230,10 +211,8 @@ posted in
 
     
     
-      <a class="pull-left" href="/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/" title="Previous Post: 常用排序算法(python实现)">&laquo; 常用排序算法(python实现)</a>
+      <a class="pull-left" href="/blog/2014/05/16/rework-he-bi-zhuang-da-%3F/" title="Previous Post: rework-何必壮大？">&laquo; rework-何必壮大？</a>
     
-    
-      <a class="pull-right" href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/" title="Next Post: 解决json.dumps不能序列化datetime类型的问题">解决json.dumps不能序列化datetime类型的问题 &raquo;</a>
     
   </footer>
 
@@ -337,8 +316,8 @@ posted in
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/';
-        var disqus_url = 'http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/05/18/rework-gong-zuo-kuang/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/05/18/rework-gong-zuo-kuang/';
         var disqus_script = 'embed.js';
       
     (function () {

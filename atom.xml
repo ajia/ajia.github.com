@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-16T22:11:22+08:00</updated>
+  <updated>2014-05-18T22:53:13+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-工作狂]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/18/rework-gong-zuo-kuang/"/>
+    <updated>2014-05-18T22:23:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/18/rework-gong-zuo-kuang</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>沉迷工作是企业文化中广受赞颂的一种“优良做派”。我们知道工作狂热衷于通宵达旦、加班加点，甚至在办公室打地铺。这些人以累死在项目中为荣，对他们来说，再大的工作量也不在话下。</p>
+
+<p>工作狂的行为不但没有必要，而且愚蠢至极。过多的工作并不代表你对项目更关注，也不代表你作了更多贡献，这仅仅意味着你干了更多活而已。</p>
+
+<p>工作狂能够解决一些问题，但他们制造的麻烦却更多。首先，这种工作状态经不起时间的考验。当职业倦怠感袭来时——这一点基本不可避免——你根本没法“软着陆”。</p>
+
+<p>工作狂往往不得要领。他们花费大把的时间去解决问题，他们以为能靠蛮力来弥补思维上的惰性，其结果就是折腾出一堆粗略无用的解决方案。</p>
+
+<p>不仅如此，他们还凭空制造出危机来。这些人从不寻求高效解决之道，因为他们恰恰就“钟情于”加班加点。这让他们感觉自己像个英雄，并沉迷其中。他们（通常是无意识地）制造问题，看似这样就能享受更多的工作了。</p>
+
+<p>工作狂的存在使那些不以加班为乐的员工感到无所适从。在工作狂扎堆的企业环境里，就连“按时上下班”都让人觉得是一种无理要求了。这种文化令正常工作的员工心怀愧疚、士气低落。不仅如此，人们还会因此陷入一种“跟风”状态——每个人都在义务加班，根本就不管到底有没有生产力。</p>
+
+<p>如果你只是为了工作而工作，那么你就会丧失判断力。你的价值观和决策方式都是扭曲的。你没有能力去判断哪些工作值得做、哪些工作该放弃，最后搞得自己筋疲力尽，而一个筋疲力尽的人是无法作出明智的决定的。</p>
+
+<p>最后，工作狂实际取得的成就并不比正常人高。他们自诩为完美主义者，但这仅仅代表他们浪费了大量时间去关注次要的细节，而不是推动下一项任务。</p>
+
+<p>工作狂不是英雄。他们没有力挽狂澜，不过是浪费时间而已。真正的英雄早已想出办法、搞定一切，然后回家了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-何必壮大？]]></title>
@@ -1524,30 +1552,6 @@ callable callback
 <li><p>evictionCount()， 清除的个数</p></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sublime Text的一些配置]]></title>
-    <link href="http://ajia.github.com/blog/2013/06/27/sublime-textde-%5B%3F%5D-xie-pei-zhi/"/>
-    <updated>2013-06-27T10:37:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/06/27/sublime-textde-[?]-xie-pei-zhi</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>来源：https://github.com/mhartl/rails_tutorial_sublime_text</p>
-
-<h1>Command-line command</h1>
-
-<p>在Mac OSX上这样创建命令subl：</p>
-
-<pre><code>$ sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
-</code></pre>
-
-<p>如果~/bin/subl不存在:</p>
-
-<pre><code>mkdir ~/bin
-</code></pre>
 ]]></content>
   </entry>
   
