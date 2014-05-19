@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-18T22:53:13+08:00</updated>
+  <updated>2014-05-19T22:52:54+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-受够了“企业家“]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/19/rework-shou-gou-liao-qi-ye-jia/"/>
+    <updated>2014-05-19T22:41:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/19/rework-shou-gou-liao-qi-ye-jia</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>让“企业家”这个过气的称谓退出历史舞台吧，它已经背负了太多沉重的负担。它给人的感觉就像是一个实行会员准入制度的私人俱乐部，不是谁都能进的。我们应该鼓励每一个人都去开创自己的事业，不要让这等好事只落在那些凤毛麟角、自认为自己才是企业家的人头上。</p>
+
+<p>有这样一群新生代开始走出来创业了。尽管他们获利，但谁也不认为自己是企业家。他们当中的很多人甚至不认为自己是企业主。他们只是在用自己的方式做自己喜欢做的事情，并从中获得回报。</p>
+
+<p>那么，让我们把这个听起来很好的称谓替换成一个更加脚踏实地的说法吧，不要再叫别人企业家了，管他们叫创始人吧。每个创立了自己事业的人都是创始人。你不需要拥有MBA头衔、资质证书、西装革履以及公文包，甚至无须承担常人所不能承受的风险。你所需要的只是一个创意，加一点点自信，以及一点勇气，就可以启程了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-工作狂]]></title>
@@ -1321,237 +1337,6 @@ $ git branch -D topic-branch
 <h2>12. 为胜利而战。</h2>
 
 <p>如果你不全身心投入游戏，你根本没有机会获胜。这世上根本就没有一个由兼职者组成的公司，能够突然膨胀成为一个十亿级别的传奇的。（没错，你可以在大学里编出一个如 SnapChat 的热门应用，但一旦它火起来了，你也就必须全身心投入了。）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Guava的使用指南之Cache]]></title>
-    <link href="http://ajia.github.com/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache/"/>
-    <updated>2013-07-05T17:42:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/07/05/guavade-shi-yong-zhi-nan-zhi-cache</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<h3>创建cache</h3>
-
-<p>可以通过两种方式来创建cache：</p>
-
-<pre><code>cacheLoader
-
-callable callback
-</code></pre>
-
-<p>通过这两种方法创建的cache，和通常用map来缓存的做法比，不同在于，这两种方法都实现了一种逻辑——从缓存中取key X的值，如果该值已经缓存过了，则返回缓存中的值，如果没有缓存过，可以通过某个方法来获取这个值。</p>
-
-<p>但不同的在于cacheloader的定义比较宽泛，是针对整个cache定义的，可以认为是统一的根据key值load value的方法。</p>
-
-<p>而callable的方式较为灵活，允许你在get的时候指定。</p>
-
-<p>下面是两种方法的例子:</p>
-
-<p>首先是基于cacheloader的方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span>
-</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCacheBuilder</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ExecutionException</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">LoadingCache</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">graphs</span> <span class="o">=</span> <span class="n">CacheBuilder</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">().</span><span class="na">maximumSize</span><span class="o">(</span><span class="mi">1000</span><span class="o">)</span>
-</span><span class='line'>            <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="k">new</span> <span class="n">CacheLoader</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>                <span class="kd">public</span> <span class="n">String</span> <span class="nf">load</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="c1">// 这里是key根据实际去取值的方法，例如根据这个key去数据库或者properties文件中取值</span>
-</span><span class='line'>                    <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;E:/WorkDir/struts2practice/GuavaTest/WebRoot/WEB-INF/xml/springConfig.xml&quot;</span><span class="o">);</span>
-</span><span class='line'>                    <span class="n">JdbcCustomerDAO</span> <span class="n">aJdbcCustomerDAO</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">JdbcCustomerDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;load method has been invoked&quot;</span><span class="o">);</span>
-</span><span class='line'>                    <span class="k">return</span> <span class="n">aJdbcCustomerDAO</span><span class="o">.</span><span class="na">findValue</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>                <span class="o">}</span>
-</span><span class='line'>            <span class="o">});</span>
-</span><span class='line'>    <span class="n">String</span> <span class="n">resultVal</span> <span class="o">=</span> <span class="n">graphs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;first time value is: &quot;</span> <span class="o">+</span> <span class="n">resultVal</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">String</span> <span class="n">resultVal1</span> <span class="o">=</span> <span class="n">graphs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;second time values is: &quot;</span> <span class="o">+</span> <span class="n">resultVal1</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其次是基于实现callable的方法：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCallable</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ExecutionException</span> <span class="o">{</span>
-</span><span class='line'>        <span class="c1">// 没有使用CacheLoader</span>
-</span><span class='line'>        <span class="n">Cache</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">cache</span> <span class="o">=</span> <span class="n">CacheBuilder</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">().</span><span class="na">maximumSize</span><span class="o">(</span><span class="mi">1000</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
-</span><span class='line'>      <span class="n">String</span> <span class="n">resultVal</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>            <span class="kd">public</span> <span class="n">String</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>                <span class="c1">// 这里先根据key实际去取值的方法，例如根据这个key去数据库或者properties文件中取值</span>
-</span><span class='line'>                <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;E:/WorkDir/struts2practice/GuavaTest/WebRoot/WEB-INF/xml/springConfig.xml&quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">JdbcCustomerDAO</span> <span class="n">aJdbcCustomerDAO</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">JdbcCustomerDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;resultVal call method is invoked&quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="k">return</span> <span class="n">aJdbcCustomerDAO</span><span class="o">.</span><span class="na">findValue</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>        <span class="o">});</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;first time value is: &quot;</span> <span class="o">+</span> <span class="n">resultVal</span><span class="o">);</span>
-</span><span class='line'>        <span class="n">String</span> <span class="n">resultVal1</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>            <span class="kd">public</span> <span class="n">String</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>                <span class="c1">// 这里先根据key实际去取值的方法，例如根据这个key去数据库或者properties文件中取值</span>
-</span><span class='line'>                <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&quot;E:/WorkDir/struts2practice/GuavaTest/WebRoot/WEB-INF/xml/springConfig.xml&quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">JdbcCustomerDAO</span> <span class="n">aJdbcCustomerDAO</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">JdbcCustomerDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;resultVal1 call method is invoked&quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="k">return</span> <span class="n">aJdbcCustomerDAO</span><span class="o">.</span><span class="na">findValue</span><span class="o">(</span><span class="s">&quot;testKey&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>        <span class="o">});</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;second time values is: &quot;</span> <span class="o">+</span> <span class="n">resultVal1</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
-
-
-<h3>缓存数据的移除</h3>
-
-<h5>基于大小的移除</h5>
-
-<p>看字面意思就知道就是按照缓存的大小来移除，如果即将到达指定的大小，那就会把不常用的键值对从cache中移除。</p>
-
-<p>定义的方式一般为 CacheBuilder.maximumSize(long)，官方还介绍了一种可以算权重的方法，个人认为实际使用中不太用到，暂不讨论。</p>
-
-<p>就这个常用的来看有几个注意点，</p>
-
-<p>其一，这个size指的是cache中的条目数，不是内存大小或是其他；</p>
-
-<p>其二，并不是完全到了指定的size系统才开始移除不常用的数据的，而是接近这个size的时候系统就会开始做移除的动作；</p>
-
-<p>其三，如果一个键值对已经从缓存中被移除了，你再次请求访问的时候，如果cachebuild是使用cacheloader方式的，那依然还是会从cacheloader中再取一次值，如果这样还没有，就会抛出异常</p>
-
-<h5>基于时间的移除</h5>
-
-<p>guava提供了两个基于时间移除的方法</p>
-
-<p>expireAfterAccess(long, TimeUnit)  这个方法是根据某个键值对最后一次访问之后多少时间后移除</p>
-
-<p>expireAfterWrite(long, TimeUnit)   这个方法是根据某个键值对被创建或值被替换后多少时间移除</p>
-
-<h5>基于引用的移除</h5>
-
-<p>这种移除方式主要是基于java的垃圾回收机制，根据键或者值的引用关系决定移除，个人对垃圾回收这块不是非常了解，窃以为不太可靠。。也不常用。。所以没有研究，欢迎补充。</p>
-
-<p>主动移除有三种方法：</p>
-
-<p>单独移除用 Cache.invalidate(key)</p>
-
-<p>批量移除用 Cache.invalidateAll(keys)</p>
-
-<p>移除所有用 Cache.invalidateAll()</p>
-
-<p>如果需要在移除数据的时候有所动作还可以定义Removal Listener，但是有点需要注意的是默认Removal Listener中的行为是和移除动作同步执行的，如果需要改成异步形式，可以考虑使用RemovalListeners.asynchronous(RemovalListener, Executor)</p>
-
-<h3>刷新操作</h3>
-
-<p>refresh 操作， 与evict不同， 是给key一个new value， 同时如果在refresh时有访问，那么将会返回old value， 而evict则会等待evict结束返回new value
-定义refresh一般使用异步的操作</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// Some keys don&#39;t need refreshing, and we want refreshes to be done asynchronously.</span>
-</span><span class='line'><span class="n">LoadingCache</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Graph</span><span class="o">&gt;</span> <span class="n">graphs</span> <span class="o">=</span> <span class="n">CacheBuilder</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
-</span><span class='line'>       <span class="o">.</span><span class="na">maximumSize</span><span class="o">(</span><span class="mi">1000</span><span class="o">)</span>
-</span><span class='line'>       <span class="o">.</span><span class="na">refreshAfterWrite</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">)</span>
-</span><span class='line'>       <span class="o">.</span><span class="na">build</span><span class="o">(</span>
-</span><span class='line'>           <span class="k">new</span> <span class="n">CacheLoader</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Graph</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>             <span class="kd">public</span> <span class="n">Graph</span> <span class="nf">load</span><span class="o">(</span><span class="n">Key</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// no checked exception</span>
-</span><span class='line'>               <span class="k">return</span> <span class="nf">getGraphFromDatabase</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>             <span class="o">}</span>
-</span><span class='line'>             <span class="kd">public</span> <span class="n">ListenableFuture</span><span class="o">&lt;</span><span class="n">Graph</span><span class="o">&gt;</span> <span class="nf">reload</span><span class="o">(</span><span class="kd">final</span> <span class="n">Key</span> <span class="n">key</span><span class="o">,</span> <span class="n">Graph</span> <span class="n">prevGraph</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>               <span class="k">if</span> <span class="o">(</span><span class="n">neverNeedsRefresh</span><span class="o">(</span><span class="n">key</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>                 <span class="k">return</span> <span class="n">Futures</span><span class="o">.</span><span class="na">immediateFuture</span><span class="o">(</span><span class="n">prevGraph</span><span class="o">);</span>
-</span><span class='line'>               <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                 <span class="c1">// asynchronous!</span>
-</span><span class='line'>                 <span class="k">return</span> <span class="n">ListenableFutureTask</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Graph</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>                   <span class="kd">public</span> <span class="n">Graph</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>                     <span class="k">return</span> <span class="nf">getGraphFromDatabase</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>                   <span class="o">}</span>
-</span><span class='line'>                 <span class="o">});</span>
-</span><span class='line'>               <span class="o">}</span>
-</span><span class='line'>             <span class="o">}</span>
-</span><span class='line'>           <span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在refreshAfterWrite方法，会调用reload</p>
-
-<h3>统计</h3>
-
-<p>提供了一些数据采集的方法</p>
-
-<ul>
-<li><p>CacheBuilder.recordStats() 方法启动了 cache的数据收集</p></li>
-<li><p>Cache.stats() 返回了一个CacheStats对象， 提供一些数据方法</p></li>
-<li><p>hitRate()， 请求点击率</p></li>
-<li><p>averageLoadPenalty()， 加载new value，花费的时间， 单位nanosecondes</p></li>
-<li><p>evictionCount()， 清除的个数</p></li>
-</ul>
-
 ]]></content>
   </entry>
   
