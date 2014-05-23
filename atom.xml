@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-21T07:40:28+08:00</updated>
+  <updated>2014-05-23T09:53:16+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-挠自己的痒处]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/22/nao-zi-ji-de-yang-chu/"/>
+    <updated>2014-05-22T22:52:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/22/nao-zi-ji-de-yang-chu</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>想要创造一个伟大的产品或某项卓越的服务，最简单直接的办法就是做你自己想用的东西。设计你了解的产品——你就能很快发现它到底好不好用。</p>
+
+<p>在37signals，我们为自己的业务需要来开发产品。例如，我们需要一个软件来跟踪记录我们和谁交流过、说了什么以及何时需要下一步的跟进。于是我们开发了自己的联络管理软件——Highrise。不需要核心团队、市场调研，也不需要经纪人。就像自己觉得身上痒痒了，就自己挠挠。</p>
+
+<p>一旦发明一种产品或服务，你每天就得为上百个微不足道的决策去劳神费力。如果是帮别人解决问题，就会像瞎子一样在黑暗中不断摸索。但如果你解决的是自己的问题，希望之光就出现了。你非常清楚怎样做才是正确的。</p>
+
+<p>詹姆斯.戴森（James Dyson）就是一位自产自销的发明家。当他打扫房间时，发现袋式真空吸尘器总是失灵——灰尘总把袋子里的气孔堵塞，阻断气流。这不是随便什么人凭空想象出来的问题，恰恰就是他本人的亲身经历。为了解决自己的问题，世界上第一个免纸袋涡卷式真空吸尘器诞生了。</p>
+
+<p>维克.福尔兹（Vic Firth）在波士顿交响乐团演奏定音鼓时，突发奇想要做一只更好的鼓槌。当时市面上卖的鼓槌都不能达到预期的效果，于是他就开始在自家的地下室制作鼓槌并进行销售。然后，有一天，他把一把鼓槌掉在了地上，听到每一只鼓槌的声音都不一样，从那时起，他就开始按照含水量、重量、密度以及音高来配对鼓槌，确保每一对鼓槌都能达到最佳适配水平。结果就有了他如今的产品口号：“绝配的一对。”维克.福尔兹的工厂每天至少要生产85000只鼓槌，市场占有份额达到62%。</p>
+
+<p>田径教练比尔.鲍尔曼（Bill Bowerman）认为他的队员需要更好、更轻的跑鞋。于是他走出训练场，在工作室里尝试着往家用蛋奶烘饼模具里注入橡胶，于是耐克最著名的鉄模鞋底便应运而生了。</p>
+
+<p>这些人解决了自己的燃眉之急，同时也发现了他们的需求背后隐藏着一片巨大的市场，这就是你应该去做的。</p>
+
+<p>自产自销的好处还在于，你可以快速直接的评估产品的质量，而不需要去了解别人的反馈意见。</p>
+
+<p>玫琳凯化妆品的创始人玫琳凯.瓦格纳（Mary Kay Wagner）就是通过亲身使用才确定她的护肤品的质量是一流的。她是从一家本地的美容师那里得到这个产品的，这位美容师在家调制秘方，专为患者、亲属和朋友服务。当这位美容师过世后，瓦格纳从这家人手里买下了秘方。她不必组织测试团队来试用产品，也无须做任何市场调研，只要看看自己的皮肤就好了。</p>
+
+<p>这种“解决自己实际问题”的方法最大的优势就在于能让你爱上自己的产品。你十分了解其中存在的问题以及其价值所在。除此之外别无他途。毕竟你（很有可能）会为这件事奋斗很多年，甚至付出余生，所以，最好还是做自己真正关心的东西。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-在宇宙中留下你的足迹]]></title>
@@ -1053,240 +1083,6 @@ $ rm link-here
 <li><p>57、每隔一段时间，就离开一次。去徒步旅行，看望另一座城市的家人，跳舞，玩象棋，打网球，任何事情。你会让你更有效率，让你周围的人们感觉快乐。</p></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用Git做版本控制]]></title>
-    <link href="http://ajia.github.com/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi/"/>
-    <updated>2013-07-19T15:15:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/07/19/yong-gitzuo-ban-ben-kong-zhi</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>版本控制系统可以跟踪项目代码的变化，便于和他人协作，如果出现问题（例如不小心删除了文件）还可以回滚到以前的版本。每个软件开发者都应该学习使用版本控制系统。</p>
-
-<p>版本控制工具很多，Rails 社区更多的会使用 Git，它最初是由 Linus Torvalds 开发用来存储 Linux 内核代码的。Git 的知识很多，这里我们只会介绍一些简单的内容，网络上有很多免费的资料可以阅读，我特别推荐 Scott Chacon 的《Pro Git》（Apress 2009 年出版。<a href="http://git-scm.com/book/zh">中文版</a>）。之所以推荐你将代码放到 Git 这个版本控制系统中是因为这几乎是 Rails 社区的普遍做法，还因为这样做更利于代码的分享，也便于程序的部署。</p>
-
-<!-- more -->
-
-
-<h3>安装与设置</h3>
-
-<p>第一次运行的设置</p>
-
-<p>安装Git后，你应该做一些只需做一次的事情：系统设置——这样的设置在每台电脑上只需做一次：</p>
-
-<pre><code>$ git config --global user.name "Your Name"
-$ git config --global user.email your.email@example.com
-</code></pre>
-
-<p>我还想用co代替字数较多的checkout命令，那么要做如下设置：</p>
-
-<pre><code>$ git config --global alias.co checkout
-</code></pre>
-
-<p>最后，你还可以设置编辑 Git 提交信息时使用的编辑器。如果你使用的是图形界面的编辑器，例如 Sublime Text、TextMate、gVim 或 MacVim，要加上一个旗标确保编辑器会在终端中保持状态而不是立马结束命令：</p>
-
-<pre><code>$ git config --global core.editor "subl -w"
-</code></pre>
-
-<h3>设置第一个仓库</h3>
-
-<p>下面的步骤你每次新建一个仓库时都要执行。首先进入刚创建的应用程序的根目录，然后初始化一个新仓库：</p>
-
-<pre><code>$ git init 
-Initialized empty Git repository in /Users/mhartl/rails_projects/first_app/.git/
-</code></pre>
-
-<h3>添加文件并提交</h3>
-
-<p>最后我们要把 Rails 项目中的文件添加到 Git 中，然后提交结果。你可以使用下述命令添加所有的文件（除了 .gitignore 中忽略的文件）：</p>
-
-<pre><code>$ git add .
-</code></pre>
-
-<p>这里的点号（.）代表当前目录，Git 会自动的将所有的文件，包括子目录中的文件添加到 Git 中。这个命令会将项目的文件添加到暂存区域（staging area），这个区域包含未提交的改动。你可以使用 status 命令查看暂存区域有哪些文件</p>
-
-<pre><code>$ git status
-# On branch master
-#
-# Initial commit
-#
-# Changes to be committed:
-#   (use "git rm --cached &lt;file&gt;..." to unstage)
-#
-#       new file:   README.rdoc
-#       new file:   Rakefile
-.
-.
-.
-（显示的结果很长，所以我用点号代替了。）
-</code></pre>
-
-<p>用 commit 命令告诉 Git 你想保存这些改动：</p>
-
-<pre><code>$ git commit -m "Initial commit"
-[master (root-commit) df0a62f] Initial commit
-42 files changed, 8461 insertions(+), 0 deletions(-)
-create mode 100644 README.rdoc
-create mode 100644 Rakefile
-.
-.
-.
-</code></pre>
-
-<p>参数 -m 允许你为这次提交添加一个信息，如果没有提供 -m，Git 会打开你在前面设置的编辑器，你需要在编辑器中填写信息。</p>
-
-<p>有一点很重要，Git 提交是针对本地的，数据只存在执行提交的电脑中。这一点和另一个很著名的开源版本控制系统 SVN 不同，SVN 提交时会更新远程仓库。git 将 SVN 中的提交分成了两部分：本地保存的更改（git commit）和将更改推送到远程仓库（git push）。</p>
-
-<p>顺便说一下，你可以使用 log 命令查看提交的历史信息：</p>
-
-<pre><code>$git log
-commit df0a62f3f091e53ffa799309b3e32c27b0b38eb4
-Author: Michael Hartl &lt;michael@michaelhartl.com&gt;
-Date:   Thu Oct 15 11:36:21 2009 -0700
-Initial commit
-</code></pre>
-
-<h3>Git为我们带来了什么好处？</h3>
-
-<p>现在你可能还不是完全清楚将源码纳入版本控制系统有什么好处，那我就举个例子来说明一下吧。（后续章节中还有很多例子）假设你不小心做了一些改动，比如说删除了 app/controllers/ 文件夹：</p>
-
-<pre><code>$ ls app/controllers/
-application_controller.rb
-$ rm -rf app/controllers/
-$ ls app/controllers/
-ls: app/controllers/: No such file or directory
-</code></pre>
-
-<p>我们用 Unix 中的 ls 命令列出 app/controllers/ 文件夹中的内容，用 rm 命令删除这个文件夹。旗标 -rf 的意思是“强制递归”，无需得到确认就递归的删除所有文件、文件夹、子文件夹等。</p>
-
-<p>查看一下状态看看发生了什么：</p>
-
-<pre><code>$ git status
-# On branch master
-# Changed but not updated:
-#   (use "git add/rm &lt;file&gt;..." to update what will be committed)
-#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
-#
-#       deleted:    app/controllers/application_controller.rb
-#
-no changes added to commit (use "git add" and/or "git commit -a")
-</code></pre>
-
-<p>可以看到一个文件被删除了，但是这个改动只发生在工作区，还没有提交。这样我们就可以使用 checkout 命令切换到前一个提交记录来撤销这次改动（其中旗标 -f 意思是覆盖当前的改动）：</p>
-
-<pre><code>$ git checkout -f
-$ git status
-# On branch master
-nothing to commit (working directory clean)
-$ ls app/controllers/
-application_controller.rb
-</code></pre>
-
-<p>删除的文件夹和文件又回来了，这下放心了！</p>
-
-<h3>分支，编辑，提交，合并</h3>
-
-<h4>分支</h4>
-
-<p>Git 中的分支功能很强大，分支是对仓库的复制，在分支中所做的改动（或许是实验性质的）不会影响父级文件。大多数情况下，父级仓库是 master 分支。我们可以使用 checkout 命令，并指定 -b 旗标创建一个新分支：</p>
-
-<pre><code>$ git checkout -b modify-README
-Switched to a new branch 'modify-README'
-$ git branch
-master
-* modify-README
-</code></pre>
-
-<p>第二个命令， git branch, 会将本地所有的分支列出来，分支名前面的星号（*）指明当前所在的分支。注意，git checkout -b modify-README 会创建一个新分支，然后切换到这个分支，modify-README 前面的星号证明了这一点。</p>
-
-<p>分支的唯一价值是在多个开发人员协同开发一个项目时使开发的过程更明了，不过对只有一个开发者的项目（比如本教程）也有用。一般而言，主分支是和从分支隔离开的，所以即便我们搞砸了也只需切换回到主分支并删除从分支来丢掉改动。在本节末尾我们会看到怎么做。</p>
-
-<p>顺便说一下，对于较小的改动我一般不会动用新分支，这里是对好的习惯做一个演示。</p>
-
-<h4>编辑</h4>
-
-<p>创建了从分支后，我们要编辑文件让其更好的描述我们的项目。较之默认的 RDoc 格式，我更喜欢 Markdown 标记语言，如果文件扩展名是 .md，GitHub 会自动为你排版。首先我们使用 Unix 命令 mv（移动，move）的 Git 版本来修改文件名，然后写入代码 1.8 所示的内容：</p>
-
-<pre><code>$ git mv README.rdoc README.md
-$ subl README.md
-</code></pre>
-
-<p>代码 1.8 新的 README 文件，README.md</p>
-
-<pre><code># Ruby on Rails Tutorial: first application
-This is the first application for
-[*Ruby on Rails Tutorial: Learn Rails by Example*](http://railstutorial.org/)
-by [Michael Hartl](http://michaelhartl.com/).
-</code></pre>
-
-<h4>提交</h4>
-
-<p>编辑后，查看一下该分支的状态：</p>
-
-<pre><code>$ git status
-# On branch modify-README
-# Changes to be committed:
-#   (use "git reset HEAD &lt;file&gt;..." to unstage)
-#
-#       renamed:    README.rdoc -&gt; README.md
-#
-# Changed but not updated:
-#   (use "git add &lt;file&gt;..." to update what will be committed)
-#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
-#
-#       modified:   README.md
-#
-</code></pre>
-
-<p>这时，我们可以使用git add .来提交，但是 Git 提供了参数 -a，它的意思是将现有文件的所有改动（包括使用 git mv 创建的文件，对 Git 来说这并不是新的文件）添加进来：</p>
-
-<pre><code>$ git commit -a -m "Improve the README file"
-2 files changed, 5 insertions(+), 243 deletions(-)
-delete mode 100644 README.rdoc
-create mode 100644 README.md
-</code></pre>
-
-<p>千万别误用了 -a 。如果在上次提交之后你向项目添加了新文件的话，首先你要使用 git add 告诉 Git 你添加的文件。</p>
-
-<h4>合并</h4>
-
-<p>我们已经修改完了，现在可以将其合并到主分支了：</p>
-
-<pre><code>$ git checkout master
-Switched to branch 'master'
-$ git merge modify-README
-Updating 34f06b7..2c92bef
-Fast forward
-README.rdoc     |  243 --------------------------------------------------
-README.md       |    5 +
-2 files changed, 5 insertions(+), 243 deletions(-)
-delete mode 100644 README.rdoc
-create mode 100644 README.md
-</code></pre>
-
-<p>合并完后，我们可以清理一下分支了，使用 git branch -d 删除这个从分支：</p>
-
-<pre><code>$ git branch -d modify-README
-Deleted branch modify-README (was 2c92bef).
-</code></pre>
-
-<p>这一步是可选的，事实上一般我们都会留着这个从分支，这样你就可以在主、从分支之间来回切换，在合适的时候将改动合并到主分支中。</p>
-
-<p>如前面提到的，你可以使用 git branch -D 放弃对从分支所做的修改：</p>
-
-<pre><code># For illustration only; don't do this unless you mess up a branch
-$ git checkout -b topic-branch
-$ &lt;really screw up the branch&gt;
-$ git add .
-$ git commit -a -m "Major screw up"
-$ git checkout master
-$ git branch -D topic-branch
-</code></pre>
-
-<p>和参数 -d 不同，即使还未合并 -D 也会删除分支。</p>
 ]]></content>
   </entry>
   
