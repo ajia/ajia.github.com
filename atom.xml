@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-23T23:09:06+08:00</updated>
+  <updated>2014-05-24T23:35:43+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-“没时间”不是借口]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/24/rework-mei-shi-jian-bu-shi-jie-kou/"/>
+    <updated>2014-05-24T23:20:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/24/rework-mei-shi-jian-bu-shi-jie-kou</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>人们最常用的借口就是：“时间不够。”他们声称自己非常想开一家公司、学习一种乐器、推广一项发明、写一本书，等等，但就是没有时间去做。</p>
+
+<p>拜托，只要你善加利用，时间总是有的，你也根本无须辞职去做什么事情，白天好好上你的班，晚上再来干你自己的私人项目就好了。</p>
+
+<p>把看电视或玩魔兽的时间腾出来完成你的创意；把10点上床改成11点上床，我们不是怂恿你通宵达旦或一天干足16个小时——我们要说的是，每周匀出一些业余时间来，就足够你去做些事情了。</p>
+
+<p>一旦这样去做了，你就会明白自己的激情和兴趣到底是真心实意，还是三分钟热度。万一不成，你照样回去每天上你的班就好了。不必承担任何风险，没有任何损失，只是浪费了一点时间而已，还是挺划算的。</p>
+
+<p>当你拥有某种极强烈的渴望时，你就能挤出时间了——不管你身上是否还背负着其他责任。事实上，大部分人的渴望并不是那么强烈。于是他们拿时间当借口来进行自我保护。不要再扔出一堆借口来妄图脱身了，你的终极职责就是让你自己的梦想成真。</p>
+
+<p>另外，永远不会有正当其时的时候，你总会觉得要买年纪太轻，要么太老，要么太忙，抑或是其他什么原因。如果你总是为找不到完美的时刻而困扰，那么，完美的时机永远不会出现。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-着手做点什么]]></title>
@@ -919,57 +941,6 @@ $ rm link-here
 </span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">bubble_sort</span><span class="p">()</span>
 </span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[xcode常用快捷键]]></title>
-    <link href="http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/"/>
-    <updated>2013-10-15T10:48:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>熟练使用快捷键能极大的提高效率，在此记录一下常用的xcode快捷键：</p>
-
-<ol>
-<li><p>esc 　　　　           自动完成, 作用和VS中的ctrl+j类似，像 Eclipse 的 alt+/</p></li>
-<li><p>command + /　　               注释代码和反注释，用 //，相当于 Eclipse 的 ctrl+/</p></li>
-<li><h3>control + command + 上/下箭头　 快速在头文件（.h）和实现文件（.m）之间切换</h3></li>
-<li><p>command + b　　           编译程序，不运行</p></li>
-<li><p>command + r　　      编译并运行程序</p></li>
-<li><p>command + shift + b　　       分析代码，找到潜在内存溢出问题</p></li>
-<li><p>command  + 单击         跳转到声明</p></li>
-<li><p>option + 单击             弹出层中显示帮助信息</p></li>
-<li><p>option + command + 左/右 方向键，折叠/打开当前方法</p></li>
-<li><p>control + command + f           Xcode 全屏，在 Lion 上支持</p></li>
-<li><p>command + shit + y             打开/关闭控制台窗口</p></li>
-<li><p>control + k              清理控制台</p></li>
-<li><p>control + command + 左/右方向键，在历史的上/下一个文件中切换,或用两个手指左右滑动。command 代替 PC 键盘上的许多操作，像 Ctrl+V, Ctrl+C, Ctrl+Z，都该用 cmd+V, Cmd+C, Cmd+Z</p></li>
-<li><p>tab          接受当前的自动完成</p></li>
-<li><p>双击中括号或者大括号，可以选择相应的封闭语句块</p></li>
-<li><h3>command - shift - o: 快速搜索打开文件</h3></li>
-<li><p>control 配合 1/2/3/4/5/6 键 : 可以快速打开相关文件/类或代码，我常用 control+1 显示打开的文件，control+6 显示当前类中的变量或方法，都可以输入来过滤</p></li>
-<li><p>command 配合 1/2/3/4/5/6/7 依次显示左边导航中每一个标签的子视图，commandco+ 0 打开或关闭左边导航</p></li>
-<li><p>option + command 配合 1/2/3/4/5/6 依次打开右边属性窗口的每一个标签视图，特别是在 xib 时 常用，用 option + command + 0 关闭右边属性窗口</p></li>
-<li><p>command + shift + j 在左边导航中定位当前打开的文件</p></li>
-<li><p>command + return 切换到标准编辑器</p></li>
-<li><p>option + command + return 切换到辅助编辑器，左右可以对比，特别方便编辑 xib 时进行拖拉关联</p></li>
-<li><p>command+shift+f        进行 Search</p></li>
-<li><p>f7            调试时 Step Into</p></li>
-<li><p>f6            调试时 Step Over</p></li>
-<li><p>f8            调试时 Step Out</p></li>
-<li><p>control + command + y : debug断点时continue</p></li>
-<li><p>command + \  ： 当前行设置/取消断点</p></li>
-<li><p>command + y  全局激活或禁用所有的断点</p></li>
-<li><p>command+ 左/右方向键 跳到行首/行尾</p></li>
-<li><p>option + 左/右方向键 向前/后跳一个单词</p></li>
-<li><p>option + delete 向前删除一个单词</p></li>
-<li><p>fn + option + delete 向后删除一个单词</p></li>
-<li><p>command + delete 删除当前行中光标前所有字符</p></li>
-<li><p>fn + command + delete 删除当前行中光标后所有字符</p></li>
-</ol>
 
 ]]></content>
   </entry>
