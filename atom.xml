@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-24T23:35:43+08:00</updated>
+  <updated>2014-05-25T14:51:57+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-画沙为界，立场明确]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/25/rework-wei-jie-%2Cli-chang-ming-que/"/>
+    <updated>2014-05-25T14:22:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/25/rework-wei-jie-,li-chang-ming-que</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>起步之后，你必须一直牢记自己到底为什么要做这件事情。有主见方能成大事，创业并不只是一个产品或一项服务那么简单。你必须心怀信念，要有主心骨，要了解自己到底是为什么而奋斗，并且要让世人明白你的信念。</p>
+
+<p>坚定的信念能为你赢得超级粉丝，他们会唯你马首是瞻，会舍身保护你，他们充满激情的口碑传播将胜过世上的一切广告。</p>
+
+<p>强大的主见也是要付出代价的。在这个过程中你得解雇某些人，他们会诋毁你，说你傲慢、冷漠。没办法，这就是人生，有人喜欢你，就会有人憎恨你。如果你的说法没有引起任何人的心烦意乱，只能说明你的推广能力不够。（也可能代表你比较无趣。）</p>
+
+<p>很多人讨厌我们，因为我们的产品功能不像竞争对手那么多。因为我们拒绝在软件中添加他们宠之有加的特色功能，而让这些人恼羞成怒。然而，对于我们来说，我们的产品所不能处理的和我们的产品所能处理的一样令人感到骄傲。</p>
+
+<p>我们追求简洁的设计，因为大多数软件都过于复杂：太多特性、太多按钮、太多困惑。我们要做与之不同的软件。如果我们的产品不适合每一个人，没有关系，我们愿意为了那些更加深爱我们产品的客户而放弃另一部分客户。这就是我们的立场。</p>
+
+<p>如果连你都不知道自己到底相信什么，那么一切都会成为悖论，你做任何事都能被人反驳。然而，一旦你的立场坚定了，那么该如何决策就显而易见了。</p>
+
+<p>例如，全食超市（Whole Foods）坚持向顾客销售最优质、最天然的有机食品。他们绝不会浪费时间去一遍遍地讨论该如何决策。没有人会问：“我们能卖些带人造香料的产品吗？”毋庸置疑，答案非常明确。这就是为什么人们在这家公司买不到可口可乐或士力架的原因。</p>
+
+<p>这种信念就意味着全食超市出售的食物更昂贵。有反对者甚至称其为“全额支票”（Whole Paycheck），并讥笑那些光顾该食品店的人。但那又怎样？全食超市的生意照样出奇的好。</p>
+
+<p>另一个例子是坐落在芝加哥街头的维尼夹馅面包店（Vinnie&#8217;s Sub Shop），就在我们公司楼下。他们在优质的面包（一种类似于赛百味的夹馅面包）上涂抹自制的罗勒酱，然后出售。想要吃他家的面包，你最好早点儿去。想知道他们啥时候关门？柜台里的女士会告诉你：“面包卖完了我们就收工。”</p>
+
+<p>真的吗？“没错，我们都是一大早从街边的面包房进货，拿最新鲜的面包回来做原料。这批面包一卖光（通常是下午2~3点左右），我们就关门。我们当然也可以再去进一批面包回来接着做生意。但这批面包就不如早上的新鲜了。如果面包不新鲜，就做不出绝味的三明治。如果不能卖让我们倍有面子的食物，那那赚再多钱又有什么意思呢？”</p>
+
+<p>和街头的普通三明治餐厅相比，你是不是更愿意到这样一家店里就餐呢？</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-“没时间”不是借口]]></title>
@@ -750,196 +782,6 @@ $ rm link-here
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="c"># b中有而a中没有的</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[常用排序算法(python实现)]]></title>
-    <link href="http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian/"/>
-    <updated>2014-02-10T15:02:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/02/10/chang-yong-pai-xu-suan-pythonshi-xian</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>前段时间把主要的排序算法原理看了一遍，光看不行，还是得动手。</p>
-
-<figure class='code'><figcaption><span>排序算法 python (Sort.py)</span> <a href='http://ajia.github.com/downloads/code/Sort.py'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-</pre></td><td class='code'><pre><code class='py'><span class='line'><span class="c">#!--</span>
-</span><span class='line'><span class="c">#ChooseSort</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Sort</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="nb">list</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">swap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
-</span><span class='line'>        <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">print</span> <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">select_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>            <span class="nb">min</span> <span class="o">=</span> <span class="n">i</span>
-</span><span class='line'>            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)):</span>
-</span><span class='line'>                <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">min</span><span class="p">]:</span>
-</span><span class='line'>                    <span class="nb">min</span> <span class="o">=</span> <span class="n">j</span>
-</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nb">list</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">insert_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)):</span>
-</span><span class='line'>            <span class="n">temp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'>            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span>
-</span><span class='line'>            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-</span><span class='line'>                <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-</span><span class='line'>                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
-</span><span class='line'>            <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">high</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">high</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">low</span><span class="p">],</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span>
-</span><span class='line'>            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'>                <span class="k">while</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">high</span> <span class="ow">and</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">:</span>
-</span><span class='line'>                    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>                <span class="c"># if i &lt; j:</span>
-</span><span class='line'>                <span class="c">#     list[i] = list[j]</span>
-</span><span class='line'>                <span class="c">#     i = i + 1</span>
-</span><span class='line'>                <span class="k">while</span> <span class="n">j</span> <span class="o">!=</span><span class="n">low</span> <span class="ow">and</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">:</span>
-</span><span class='line'>                    <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span>
-</span><span class='line'>                <span class="c"># if i &lt; j:</span>
-</span><span class='line'>                <span class="c">#     list[j] = list[i]</span>
-</span><span class='line'>                <span class="c">#     j = j - 1</span>
-</span><span class='line'>                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
-</span><span class='line'>                    <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-</span><span class='line'>                <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>                    <span class="k">break</span>
-</span><span class='line'>            <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">quick_sort</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">quick_sort</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-</span><span class='line'>                <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
-</span><span class='line'>                    <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>    <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;select_sort&#39;</span>
-</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">Sort</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">select_sort</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;insert_sort&#39;</span>
-</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">Sort</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">insert_sort</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;quick_sort&#39;</span>
-</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">Sort</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">quick_sort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;bubble_sort&#39;</span>
-</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">Sort</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">bubble_sort</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
