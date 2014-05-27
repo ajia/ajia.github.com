@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Unix Create a Symbolic Link - Ajia's Blog</title>
+  <title>rework-不可能的宗旨 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
   <link rel="author" href="humans.txt">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,28 +13,28 @@
   
     
   
-  <meta name="description" content=" linux/unix/mac常用命令 ">
-  <meta name="keywords" content="ln unix">
+  <meta name="description" content=" rework-不可能的宗旨 ">
+  <meta name="keywords" content="rework 不可能的宗旨">
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/05/27/rework-equals-bu-ke-neng-de-zong-zhi/">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="Ajia's Blog" />
-  <meta name="og:title" content="Unix Create a Symbolic Link" />
-  <meta name="og:description" content=" linux/unix/mac常用命令 " />
-  <meta name="og:url" content="http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/"/>
-  <meta name="url" content="http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/">
+  <meta name="og:title" content="rework-不可能的宗旨" />
+  <meta name="og:description" content=" rework-不可能的宗旨 " />
+  <meta name="og:url" content="http://ajia.github.com/blog/2014/05/27/rework-equals-bu-ke-neng-de-zong-zhi/"/>
+  <meta name="url" content="http://ajia.github.com/blog/2014/05/27/rework-equals-bu-ke-neng-de-zong-zhi/">
   
-  <meta name="subject" content="常用命令"/>
-  <meta name="category" content="常用命令"/>
+  <meta name="subject" content="rework"/>
+  <meta name="category" content="rework"/>
   
   <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -96,7 +96,7 @@
 
   <header>
     
-      <h1 class="entry-title">Unix Create a Symbolic Link</h1>
+      <h1 class="entry-title">Rework-不可能的宗旨</h1>
     
     
       <p class="meta">
@@ -121,13 +121,13 @@
   
 
 
-<time datetime="2014-04-07T22:52:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2014</time> - 
+<time datetime="2014-05-27T22:25:00+08:00" pubdate data-updated="true">May 27<span>th</span>, 2014</time> - 
         
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/常用命令/'>常用命令</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -140,40 +140,26 @@ posted in
   </header>
 
 
-  <div class="entry-content"><!-- more -->
+  <div class="entry-content"><!--more-->
 
 
-<p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
+<p>在“真正坚定立场”和“在宣言书中声称自己秉持某种立场”之间，是有天壤之别的。你知道，那些“提供最佳服务”的标语，仅仅是人们做出来贴在墙上的噱头。这些口号听上去虚情假意、脱离现实。</p>
 
-<pre><code>$ ln -s {/path/to/file-name} {link-name}
-$ ln -s /shared/sales/data/file.txt sales.data.txt
-$ vi sales.data.txt
-$ ls -l sales.data.txt
-</code></pre>
+<p>假设你站在一家汽车租赁公司里，房间里很冷，地毯很脏，前台没有人，然后你看到一张皱巴巴的、贴着剪贴画的纸张贴在公告栏里，上面写着公司的宗旨：</p>
 
-<p>怎样删除软连接呢？很简单，这样：</p>
+<blockquote><p>我们的任务是提供轿车及商务车出租、租赁、销售等客户所需的服务。我们要提供超出客户预期的服务、品质和价值。</p>
 
-<pre><code>$ rm {link-name}
-$ rm sales.data.txt
-$ ls -l
-$ ls -l /shared/sales/data/file.txt
-</code></pre>
+<p>我们将努力赢得客户的长期信赖。为此我们将为客户提供承诺的服务，力求公平和诚信，我们愿意为了打造独特的个性化服务和令人愉悦的客户体验而多行一步。</p>
 
-<p>如果你删除了软连接（比如sales.data.txt），它所连接的数据（/shared/sales/data/file.txt）还存在。但是，如果你删除了/shared/sales/data/file.txt，sales.data.txt将成为破坏了的连接，数据也就丢失了</p>
+<p>我们将支持员工的发展和个人成长，并对员工的成就和贡献给予丰厚的回报，以激励员工努力为客户提供独到的服务。</p></blockquote>
 
-<p>UNIX系统中还可以创建硬连接，用法如下（就是上面的命令中把参数-s去掉）：</p>
+<p>这些“宗旨”就这样喋喋不休的继续着，你坐在那里一边读着这些废话一边寻思：“他们当我是傻子吗？”纸上的那些东西和现实体验完全不搭界。</p>
 
-<pre><code>$ ln {file.txt} {hard-link}
-$ ln /tmp/file link-here
-</code></pre>
+<p>这就好像是当你打电话到一家公司时，接线的是一个语音应答机，不断地在电话那头告诉你他们公司如何如何重视客户。果真如此？那就多雇些技术支持人员好了，不要让人在电话边苦等30分钟后才获得帮助。</p>
 
-<p>同样可以删除硬连接：</p>
+<p>或者一言不发也行，就是别拿一个自动语音应答机来糊弄我，说你们多关心我。那不过是个机器人而已。一种是真情实意，另一种是被设定成只说好话的机器人，我非常清楚这其中的差别。</p>
 
-<pre><code>$ rm {hard-link}
-$ rm link-here
-</code></pre>
-
-<p>如果你删除了硬连接，数据还存在。如果删除了/tmp/file，还是可以通过link-here来访问数据。其实就是把数据拷贝了一份。</p>
+<p>坚守某种信念并不仅仅是把它写下来。不但要相信它，还要让它成为你的生活方式。</p>
 </div>
 
 
@@ -200,13 +186,13 @@ $ rm link-here
   
 
 
-<time datetime="2014-04-07T22:52:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2014</time>
+<time datetime="2014-05-27T22:25:00+08:00" pubdate data-updated="true">May 27<span>th</span>, 2014</time>
       
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/常用命令/'>常用命令</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -225,10 +211,8 @@ posted in
 
     
     
-      <a class="pull-left" href="/blog/2014/03/20/pythonzhong-zhuan-hua-cheng-jsonde-fang-fa-bu-neng-xu-lie-hua-datetimelei-xing-shu-ju-de-wen-ti/" title="Previous Post: 解决json.dumps不能序列化datetime类型的问题">&laquo; 解决json.dumps不能序列化datetime类型的问题</a>
+      <a class="pull-left" href="/blog/2014/05/25/rework-wei-jie-%2Cli-chang-ming-que/" title="Previous Post: rework-画沙为界，立场明确">&laquo; rework-画沙为界，立场明确</a>
     
-    
-      <a class="pull-right" href="/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/" title="Next Post: DOOM3在Mac OSX中的编译过程">DOOM3在Mac OSX中的编译过程 &raquo;</a>
     
   </footer>
 
@@ -332,8 +316,8 @@ posted in
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/';
-        var disqus_url = 'http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/05/27/rework-equals-bu-ke-neng-de-zong-zhi/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/05/27/rework-equals-bu-ke-neng-de-zong-zhi/';
         var disqus_script = 'embed.js';
       
     (function () {

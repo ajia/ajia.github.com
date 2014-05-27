@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-25T14:51:57+08:00</updated>
+  <updated>2014-05-27T22:48:29+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-不可能的宗旨]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/27/rework-equals-bu-ke-neng-de-zong-zhi/"/>
+    <updated>2014-05-27T22:25:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/27/rework-equals-bu-ke-neng-de-zong-zhi</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>在“真正坚定立场”和“在宣言书中声称自己秉持某种立场”之间，是有天壤之别的。你知道，那些“提供最佳服务”的标语，仅仅是人们做出来贴在墙上的噱头。这些口号听上去虚情假意、脱离现实。</p>
+
+<p>假设你站在一家汽车租赁公司里，房间里很冷，地毯很脏，前台没有人，然后你看到一张皱巴巴的、贴着剪贴画的纸张贴在公告栏里，上面写着公司的宗旨：</p>
+
+<blockquote><p>我们的任务是提供轿车及商务车出租、租赁、销售等客户所需的服务。我们要提供超出客户预期的服务、品质和价值。</p>
+
+<p>我们将努力赢得客户的长期信赖。为此我们将为客户提供承诺的服务，力求公平和诚信，我们愿意为了打造独特的个性化服务和令人愉悦的客户体验而多行一步。</p>
+
+<p>我们将支持员工的发展和个人成长，并对员工的成就和贡献给予丰厚的回报，以激励员工努力为客户提供独到的服务。</p></blockquote>
+
+<p>这些“宗旨”就这样喋喋不休的继续着，你坐在那里一边读着这些废话一边寻思：“他们当我是傻子吗？”纸上的那些东西和现实体验完全不搭界。</p>
+
+<p>这就好像是当你打电话到一家公司时，接线的是一个语音应答机，不断地在电话那头告诉你他们公司如何如何重视客户。果真如此？那就多雇些技术支持人员好了，不要让人在电话边苦等30分钟后才获得帮助。</p>
+
+<p>或者一言不发也行，就是别拿一个自动语音应答机来糊弄我，说你们多关心我。那不过是个机器人而已。一种是真情实意，另一种是被设定成只说好话的机器人，我非常清楚这其中的差别。</p>
+
+<p>坚守某种信念并不仅仅是把它写下来。不但要相信它，还要让它成为你的生活方式。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-画沙为界，立场明确]]></title>
@@ -737,53 +765,6 @@ $ rm link-here
 
 
 <p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python的集合运算]]></title>
-    <link href="http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan/"/>
-    <updated>2014-03-19T16:59:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/03/19/pythonde-ji-he-yun-suan</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>python用来写一些提高工作效率的脚本真的非常方便，我越来越喜欢这门简单又强大的语言了。为了计算出两个list之间的交集、并集和差集，查了一下记录在下面：</p>
-
-<h3>获取两个list的交集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#方法一:</span>
-</span><span class='line'><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-</span><span class='line'><span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
-</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>
-</span><span class='line'><span class="k">print</span> <span class="n">tmp</span>
-</span><span class='line'><span class="c">#[2, 5]</span>
-</span><span class='line'><span class="c">#方法二:</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>获取两个list的并集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>获取两个list的差集</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="c"># b中有而a中没有的</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
