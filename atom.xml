@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-28T23:12:32+08:00</updated>
+  <updated>2014-05-29T22:23:37+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-你的需求没有想象的那么多]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/29/rework-ni-de-xu-qiu-mei-you-xiang-xiang-de-na-yao-duo/"/>
+    <updated>2014-05-29T22:06:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/29/rework-ni-de-xu-qiu-mei-you-xiang-xiang-de-na-yao-duo</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>你真的需要雇10个人吗，还是先雇2~3个应付当前局面就可以了？</p>
+
+<p>你真的需要50万美元吗，还是目前只要5万或5000就够了？</p>
+
+<p>你真的需要花6个月时间吗，还是可以同时进行两件事情？</p>
+
+<p>你真的需要一间大办公室吗，还是可以暂时和别人共用一间办公室或在家办公？</p>
+
+<p>你真的需要一个仓库吗，还是可以租一个小的存储室（也可以利用你的车库或地下室）或是把这部分工作完全外包？</p>
+
+<p>你真的需要投放广告或聘请公关公司吗，有没有其他方法进行推广？</p>
+
+<p>你真的需要建一个工厂吗，还是可以让其他人来生产你的产品？</p>
+
+<p>你真的需要会计吗，还是可以自己用Quicken软件记账？</p>
+
+<p>你真的需要IT部门吗，还是可以把这部分工作外包？</p>
+
+<p>你真的需要招一个全职的技术支持人员吗，还是你可以亲力亲为？</p>
+
+<p>你真的需要开一家零售店吗，还是可以在网上销售？</p>
+
+<p>你真的需要漂亮的名片、公司信签和产品图册吗，还是可以先放弃这些？</p>
+
+<p>现在你明白我的意思了？也许你最终会需要去走大手笔、高消费的路线，但不是现在。</p>
+
+<p>节俭不是罪过。当我推出第一个产品时，是非常节省的。我们没有自己的办公室，得和其他公司共用办公空间。我们没有一堆服务器，只有一台。我们没有做广告，只是通过网上经验分享来传播。我们没有雇佣专人来回复客户邮件，公司的创始人亲自答复客户邮件。一切都运作良好。</p>
+
+<p>伟大的公司基本上都起于微末。你的也一样。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-万不得已不筹资]]></title>
@@ -705,48 +745,6 @@ Reason: image not found
 1.拷贝 game.dylib 到 /usr/local/lib，或者用lnm命令建立一个软连接</p>
 
 <p>2.设置&#8221;Dynamic Library Install Name&#8221;为&#8221;&#8220;,这样Doom3就会在当前目录找game.dylib</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Unix Create a Symbolic Link]]></title>
-    <link href="http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link/"/>
-    <updated>2014-04-07T22:52:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/04/07/unix-create-a-symbolic-link</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>UNIX系统中这样来创建一个软连接（symbolic link）:</p>
-
-<pre><code>$ ln -s {/path/to/file-name} {link-name}
-$ ln -s /shared/sales/data/file.txt sales.data.txt
-$ vi sales.data.txt
-$ ls -l sales.data.txt
-</code></pre>
-
-<p>怎样删除软连接呢？很简单，这样：</p>
-
-<pre><code>$ rm {link-name}
-$ rm sales.data.txt
-$ ls -l
-$ ls -l /shared/sales/data/file.txt
-</code></pre>
-
-<p>如果你删除了软连接（比如sales.data.txt），它所连接的数据（/shared/sales/data/file.txt）还存在。但是，如果你删除了/shared/sales/data/file.txt，sales.data.txt将成为破坏了的连接，数据也就丢失了</p>
-
-<p>UNIX系统中还可以创建硬连接，用法如下（就是上面的命令中把参数-s去掉）：</p>
-
-<pre><code>$ ln {file.txt} {hard-link}
-$ ln /tmp/file link-here
-</code></pre>
-
-<p>同样可以删除硬连接：</p>
-
-<pre><code>$ rm {hard-link}
-$ rm link-here
-</code></pre>
-
-<p>如果你删除了硬连接，数据还存在。如果删除了/tmp/file，还是可以通过link-here来访问数据。其实就是把数据拷贝了一份。</p>
 ]]></content>
   </entry>
   
