@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-29T22:23:37+08:00</updated>
+  <updated>2014-05-31T14:32:38+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-要成就事业，不能只是创业]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/31/rrework-yao-cheng-jiu-shi-ye-%2Cbu-neng-zhi-shi-chuang-ye/"/>
+    <updated>2014-05-31T14:18:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/31/rrework-yao-cheng-jiu-shi-ye-,bu-neng-zhi-shi-chuang-ye</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>啊，创业了！有这样一种公司，他们在启动的时候往往备受瞩目（尤其是在科技领域）。</p>
+
+<p>创业是一块神奇的地域，创业的时候，花钱是别人的事情，令人烦恼的收入问题也不会在此时来败兴。你可以在初创时期一直花别人的钱，直到你找到自己的盈利之路。此处不讲求经营法则。</p>
+
+<p>这个神奇之地的问题在于，它是个神话。而真相是业务不论新老，都是由相同的市场力量和经济规则所主导。人们得创造收入，承担花销，公司要么盈利，要么倒闭。</p>
+
+<p>有些创业公司会无视这一现实。这些公司的经营者们努力拖延着，不愿意面对那些不可避免的现实，例如，成长、盈利、成为一个真正能够可持续发展的企业。</p>
+
+<p>任何人如果在创业初期抱着“我们以后会想到办法赚钱”的态度，他们的创业终将成为笑谈。这就好像在开始制造太空船时，自欺欺人地说“让我们假设地心引力不存在”一样可笑。无法通往盈利之路的事业不能称为事业，只是嗜好。</p>
+
+<p>所以，创业之初不要有任何依赖思想。相反，要创立真正的事业。真正的事业永远与现实的问题息息相关，比如说账单和员工薪水。真正的事业从创始的第一天开始就要求你去操心如何盈利的问题。真正的事业拒绝创业者用“没关系，创业嘛！”这样的借口去掩盖深层次的问题。一开始就要去做真正的事业，这样才能大大提高成功率。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-你的需求没有想象的那么多]]></title>
@@ -691,60 +713,6 @@ $cat zhao.part* &gt; zhao.mp3
 </code></pre>
 
 <h6>#（转自：http://www.cnblogs.com/bugY/archive/2012/06/05/2537030.html）</h6>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[DOOM3在Mac OSX中的编译过程]]></title>
-    <link href="http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng/"/>
-    <updated>2014-04-08T18:51:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/04/08/doom3zai-mac-osxzhong-de-bian-yi-guo-cheng</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>听说DOOM3的源码编写的很优美，所以就想亲自编译试试。这个过程中果然出现了很多问题，就找到了这篇文章<a href="http://fabiensanglard.net/doom3_macosx/index.php">Doom3 compilation instructions for Mac OS X</a>。是2011年写的，有的步骤已经不用做了。</p>
-
-<ol>
-<li><p>修改Architecture和Target SDK
-把&#8221;Architectures&#8221;从&#8221;ppc i386&#8221;修改为&#8221;32-bit Intel&#8221;
-改变baseSDK 为 &#8220;Latest MacOSX&#8221;</p></li>
-<li><p>修改丢失的框架引用
- 重新添加Carbon.framework, IOKit.framework, OpenGL.framework, CoreAudio.framework 引用到 Doom3 项目</p></li>
-<li><p>修改ppc_intrinsics.h.（这步已经OK）</p></li>
-<li><p>修改Id linker 参数
-设置Inline Methods Hidden 为 &#8220;No&#8221;
-设置Symbols Hidden by Default 为 &#8220;No&#8221;</p></li>
-<li><p>修改C++代码（这步已OK）</p></li>
-<li><p>修改更多的C++代码
-这步看一下文章的里的说明</p></li>
-<li><p>修改编译器
-把所有的编译器都改成LLVM GCC 4.2</p></li>
-<li><p>修改OpenAL weak reference
-删除-weak_framework OpenAL，并且添加OpenAL.framework</p></li>
-<li><p>删除旧版的curl lib reference
-删除curl项目的引用，添加libcurl.dylib到Doom3项目的框架列表中</p></li>
-<li><p>Don&#8217;t build unused architectures.
-设置&#8221;Build active Architecture only&#8221;为 Yes</p></li>
-<li><p>为链接器添加库
-添加库文件game.dylib、libidklib_pic.a</p></li>
-<li><p>添加游戏资源（assets）
-需要把游戏的base目录考到项目中去</p></li>
-<li><p>链接到game.dylib</p></li>
-</ol>
-
-
-<p>如果你启动游戏的时候出错：</p>
-
-<pre><code>Dyld Error Message:
-Library not loaded: /usr/local/lib/game.dylib
-Referenced from: /Users/dev/TTimo-doom3.gpl-1559777/neo/sys/osx/build/Debug/Doom 3.app/Contents/MacOS/Doom 3
-Reason: image not found
-</code></pre>
-
-<p>有两个解决方案：
-1.拷贝 game.dylib 到 /usr/local/lib，或者用lnm命令建立一个软连接</p>
-
-<p>2.设置&#8221;Dynamic Library Install Name&#8221;为&#8221;&#8220;,这样Doom3就会在当前目录找game.dylib</p>
 ]]></content>
   </entry>
   
