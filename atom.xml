@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-31T14:32:38+08:00</updated>
+  <updated>2014-05-31T22:52:56+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-破釜沉舟]]></title>
+    <link href="http://ajia.github.com/blog/2014/05/31/rework-po-fu-chen-zhou/"/>
+    <updated>2014-05-31T22:22:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/05/31/rework-po-fu-chen-zhou</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>还有一种说法也十分常见：“你的退出策略是什么？（万一不成功，你怎么办？）”甚至在你刚刚准备起步时就会有人这样问你。一个连事业都没创立起来的人，就是在考虑如何拔腿逃跑，到底在搞什么？至于那么着急吗？还没有进去就想着怎么出来，这种逻辑不是一般的混乱！</p>
+
+<p>你会和一个计划着如何跟你分手的人谈恋爱吗？你会在第一次约会时就写离婚协议吗？你会在婚礼当天的早上去约见办理离婚案件的律师吗？荒谬至极，对吧？</p>
+
+<p>你需要的是承诺策略，而不是退出策略。你应该考虑的是如何把项目做起来，而不是如何跳船逃生。如果你的整个策略都是建立在逃跑的基础上，那么你一开始就不会走得太远。</p>
+
+<p>那么多有抱负的商人都把希望寄托在卖掉自己的公司上。但是能被收购的可谓少之又少。想要被财力雄厚的大公司看中，卖上一个好价钱？这样的机会十分渺茫，也许是千分之一？或者是万分之一？</p>
+
+<p>另外，当你怀着被收购的想法去创业时，你强调的重点就是错误的。你关注的是谁会来收购你，而不是如何让客户喜欢上你。为这种事情去操心简直就是大错特错。</p>
+
+<p>假设你不接受我们的这些建议，就是要去做这么一个跳板。你创立了自己的公司，然后把它卖掉了，你拿到了一大笔钱，接下来怎么办？移居到一个小岛上整天喝着朗姆度日？你真的会满足于这样的生活吗？你确定你更喜欢这样过日子，而不是去经营一家你真正喜爱并信赖的企业？</p>
+
+<p>正是由于这样的原因，我们常常听说有些老板卖掉了自己的公司，退休六个月后，又重返市场继续战斗。他们怀念那些已经失去的东西。而且，他们再次创办的企业，往往都不如第一次创办的好。</p>
+
+<p>不要重蹈他们的覆辙。如果你真的想努力做有奔头的事，那就不要放手。天上掉下的馅饼不会一直砸在你头上，不要让你的大好事业成为别人的嫁衣。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-要成就事业，不能只是创业]]></title>
@@ -617,102 +643,6 @@
 </span><span class='line'><span class="n">rename</span><span class="p">{</span><span class="n">old</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp.lua&quot;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp1.lua&quot;</span><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[curl用法(转)]]></title>
-    <link href="http://ajia.github.com/blog/2014/04/18/curlyong-fa-zhuan/"/>
-    <updated>2014-04-18T17:52:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/04/18/curlyong-fa-zhuan</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>curl可以模仿浏览器，可以当下载器，当你只是在处理一些shell工作时、测试，要图形界面干嘛？或者，要一个下载器干嘛。</p>
-
-<p>基本用法（配合sed/awk/grep）</p>
-
-<pre><code>$curl http: //bpsky.net
-</code></pre>
-
-<p>下载保存</p>
-
-<pre><code>$curl http://bpsky.net &gt; index.html
-$curl -o index.html http://bpsky.net
-$curl -O http://bpsky.net/target.tar.gz
-</code></pre>
-
-<p>通过代理</p>
-
-<pre><code>$curl -x  123.45 . 67.89 : 1080  -o page.html http://bpsky.net
-</code></pre>
-
-<p>保存cookie</p>
-
-<pre><code>$curl -x  123.45 . 67.89 : 1080  -o page1.html -D cookie0001.txt http://bpsky.net
-</code></pre>
-
-<p>使用cookie</p>
-
-<pre><code>$curl -x  123.45 . 67.89 : 1080  -o page1.html -D cookie0002.txt -b cookie0001.txt http://bpsky.net
-</code></pre>
-
-<p>模仿浏览器</p>
-
-<pre><code>$curl -A  "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)"  -x  123.45 . 67.89 : 1080  -o page.html -D cookie0001.txt http://bpsky.net
-</code></pre>
-
-<p>伪造referer</p>
-
-<pre><code>$curl -A  "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)"  -x  123.45 . 67.89 : 1080  -e  "mail.yahoo.com"  -o page.html -D cookie0001.txt http://bpsky.net
-</code></pre>
-
-<p>循环下载</p>
-
-<pre><code>$curl -O http://cgi2.tky.3web.ne.jp/~zzh/screen[1-10].JPG
-</code></pre>
-
-<p>循环（匹配）下载</p>
-
-<pre><code>$curl -O http://cgi2.tky.3web.ne.jp/~{zzh,nick}/[001-201].JPG  # &gt;like zzh/001.JPG
-</code></pre>
-
-<p>循环（引用）下载</p>
-
-<pre><code>$curl -o #2_#1.jpg http://cgi2.tky.3web.ne.jp/~{zzh,nick}/[001-201].JPG # like &gt;001_zzh.jpg
-</code></pre>
-
-<p>断点续传</p>
-
-<pre><code>$curl -c -O http://cgi2.tky.3wb.ne.jp/~zzh/screen1.JPG 
-</code></pre>
-
-<p>分块下载</p>
-
-<pre><code>$curl -r  0 - 10240  -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3 &amp;\ 
-$curl -r 10241 - 20480  -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3 &amp;\ 
-$curl -r 20481 - 40960  -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3 &amp;\ 
-$curl -r 40961 - -o  "zhao.part1"  http://cgi2.tky.3web.ne.jp/~zzh/zhao1.mp3
-...
-$cat zhao.part* &gt; zhao.mp3
-</code></pre>
-
-<p>GET 上传</p>
-
-<pre><code>$curl http://www.yahoo.com/login.cgi?user=nickwolfe&amp;password=12345  
-</code></pre>
-
-<p>POST 上传</p>
-
-<pre><code>$curl -d "user=nickwolfe&amp;password=12345" http://www.yahoo.com/login.cgi
-</code></pre>
-
-<p>POST 文件上传</p>
-
-<pre><code>$curl -F upload= $localfile  -F $btn_name=$btn_value http://cgi2.tky.3web.ne.jp/~zzh/up_file.cgi
-</code></pre>
-
-<h6>#（转自：http://www.cnblogs.com/bugY/archive/2012/06/05/2537030.html）</h6>
 ]]></content>
   </entry>
   
