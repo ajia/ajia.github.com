@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-05-31T22:52:56+08:00</updated>
+  <updated>2014-06-02T15:15:42+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-轻装上阵]]></title>
+    <link href="http://ajia.github.com/blog/2014/06/02/rework-qing-zhuang-shang-zhen/"/>
+    <updated>2014-06-02T15:03:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/06/02/rework-qing-zhuang-shang-zhen</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>一定要轻装上阵。此时，你正处于最小巧、最轻松、跑得最快的阶段。从现在开始，你会在接下来的旅程中背上种种负累。一个物体越大，想要改变它的运行轨迹就越费劲。物理世界中的规则在商业世界中同样适用。</p>
+
+<p>负担来自于……</p>
+
+<blockquote><ol>
+<li>长期合约</li>
+<li>人员过剩</li>
+<li>永久性的决定</li>
+<li>会议</li>
+<li>烦琐的流程</li>
+<li>资产（物理上和精神上的兼而有之）</li>
+<li>被硬件、软件和技术“套牢”</li>
+<li>长期路线图</li>
+<li>办公室政治</li>
+</ol>
+</blockquote>
+
+<p>不论何时都不要把以上枷锁套到自己的脖子上。这样，你的公司才能保持灵活、易于转向。变革成本越高，你就越难作出改变。</p>
+
+<p>航母级的公司想要作出改变，得花上很多年的时间。他们说得多，做得少；会议多，实干少。但如果你始终保持轻装上阵，就能快速作出改变：包括你的整个业务模式、产品、特性设置以及/或者营销手段。一旦出错，都能够很快修正。还能随需要改变优先级、产品组合和关注点。最重要的是，你可以随时改变主意。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-破釜沉舟]]></title>
@@ -558,89 +589,6 @@
 </span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;x&quot;])</span>
 </span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;y&quot;])</span>
 </span><span class='line'><span class="c1">-- a.x和a[x]是不同的。前者表示a[&quot;x&quot;]，后者表示以变量x的值来索引table。</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[读《Lua程序设计》笔记--函数]]></title>
-    <link href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/"/>
-    <updated>2014-04-19T10:02:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>a.多重返回值</p>
-
-<p>Lua允许函数返回多个结果，只需在return关键字后列出所有的返回值即可</p>
-
-<figure class='code'><figcaption><span>查找数组中的最大元素</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</span><span class='line'><span class="kd">local</span> <span class="n">mi</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1">--最大值的索引</span>
-</span><span class='line'><span class="kd">local</span> <span class="n">m</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mi</span><span class="p">]</span>  <span class="c1">--最大值</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">val</span><span class="o">&gt;</span><span class="n">m</span> <span class="k">then</span>
-</span><span class='line'>      <span class="n">mi</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">m</span><span class="o">=</span><span class="n">val</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">mi</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">print</span> <span class="p">(</span><span class="n">maximum</span><span class="p">({</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">}))</span>  <span class="c1">--&gt;23  3</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>b.变长参数</p>
-
-<figure class='code'><figcaption><span>返回所有参数的总和</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span><span class='line'>    <span class="kd">local</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">({</span><span class="o">...</span><span class="p">})</span> <span class="k">do</span>  <span class="c1">--ipairs({...})可以简写为ipairs{...}</span>
-</span><span class='line'>        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">v</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">s</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span> <span class="c1">--&gt;54</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>表达式“&#8230;”的行为类似于一个具有多重返回值的函数，它返回的是当前函数的所有变长参数</p>
-
-<p>c.具名参数
-虽然Lua不支持</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">rename</span><span class="p">(</span><span class="n">old</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp.lua&quot;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp1.lua&quot;</span><span class="p">)</span>  <span class="c1">--无效的演示代码</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样的语法，但是可以将所有的实参组织到一个table中，并将这个table作为唯一的实参传给函数。当实参只有一个table的构造式时，函数调用中的圆括号是可有可无的：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">rename</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nb">os.rename</span><span class="p">(</span><span class="n">arg</span><span class="p">.</span><span class="n">old</span><span class="p">,</span> <span class="n">arg</span><span class="p">.</span><span class="n">new</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">rename</span><span class="p">{</span><span class="n">old</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp.lua&quot;</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">temp1.lua&quot;</span><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
