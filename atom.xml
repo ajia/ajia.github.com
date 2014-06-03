@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-06-02T15:15:42+08:00</updated>
+  <updated>2014-06-03T22:41:48+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-条件受限是好事]]></title>
+    <link href="http://ajia.github.com/blog/2014/06/03/rework-tiao-jian-shou-xian-shi-hao-shi/"/>
+    <updated>2014-06-03T22:19:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/06/03/rework-tiao-jian-shou-xian-shi-hao-shi</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>“我没有足够的时间/钱/人手/经验。”不要再做无谓的抱怨了，“少”不是什么坏事。“条件受限”貌似缺陷，实为优势。有限的资源能激发你在现有条件下完成任务的能力。没有一点浪费的空间，一切都需要你发挥最大的创造力。</p>
+
+<p>见过囚犯用肥皂或汤勺制作武器吗？他们是“物尽其用”的典范。我们不是怂恿你出去砍人——只是希望你能发挥自己的创造力，并最后折服于自己“大材小用”的能力。</p>
+
+<p>作家们常常自我限制，并将其当成是激发创造力的源泉。莎士比亚沉迷于十四行诗的限制中（一种十四行抒情诗，以抑扬格五音步做成，有特定的押韵格式）。俳句和五行打油诗也是在严格的格式限制上激发出作者的无尽创意的。像欧内斯特.海明威以及雷蒙德.卡佛这类的作者就发现，坚持使用简单直白的语言能为作品带来强大的冲击力。</p>
+
+<p>“价格猜猜猜”（The Price Is Right）作为美国历史上风行时间最长的一档电视节目，就是“从窘境中激发创意”的经典案例。该节目包含100多个游戏，每一个游戏都是建立在一个问句的基础上：“这样东西值多少钱？”这个简单的公式在长达30多年的时间里吸引了无数粉丝。</p>
+
+<p>西南航空公司——和许多其他拥有多种机型的航空公司不同——只飞波音737机型。其结果是，西南航空公司的每一名飞行员、空乘人员以及地勤人员都能够处理每一个航班问题。此外，西南航空公司所有飞机的配件都是通用的。这就意味着成本降低了，同时业务运营难度降低了。他们自己就能够轻松搞定所有问题。</p>
+
+<p>当我们开发Basecamp软件时，也面临重重限制。我们让一家设计公司来为现有的客户服务，产品的主要负责人和我们有7个小时的时差（戴维在丹麦做编程工作，其余的人都在美国），我们的团队规模很小，没有外部投资，这些限制让我们必须力保产品的简洁性。</p>
+
+<p>如今，公司的资源和员工人数都有了增长，但是我们仍然主动作出限制。每个产品同时只能有1~2个人去设计。我们还尽量精简产品特性。这样的自我打压能防止我们生产出臃肿的产品来。</p>
+
+<p>因此，在你高唱“始终不够”的悲观论调之前，请试试看自己利用现有的资源能走多远。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-轻装上阵]]></title>
@@ -531,66 +557,6 @@
 </code></pre>
 
 <p>使用该USB盘引导启动即可进行Linux的安装。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[读《Lua程序设计》笔记--类型与值]]></title>
-    <link href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/"/>
-    <updated>2014-04-19T18:30:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<h6>table的创建是通过“构造表达式”完成的，最简单的构造表达式就是{}。</h6>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">--创建一个table, 并将它的引用存储到a</span>
-</span><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">x&quot;</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1">--新条目，key=&quot;x&quot;, value=10</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">great&quot;</span>  <span class="c1">--新条目, key=20, value=&quot;great&quot;</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;10</span>
-</span><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="mi">20</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>  <span class="c1">--&gt;&quot;great&quot;</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1">--递增条目&quot;x&quot;</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;11</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h6>所有table都可以用不同类型的索引来访问值,当需要容纳新条目时，table会自动增长。</h6>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">--空的table</span>
-</span><span class='line'><span class="c1">--创建1000个新条目</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span> <span class="k">do</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span> <span class="k">end</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="c1">--&gt;18</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;10</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">y&quot;</span><span class="p">])</span>  <span class="c1">--&gt;nil</span>
-</span><span class='line'><span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1">-- 等同于a[&quot;x&quot;] = 10</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;x&quot;])</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;y&quot;])</span>
-</span><span class='line'><span class="c1">-- a.x和a[x]是不同的。前者表示a[&quot;x&quot;]，后者表示以变量x的值来索引table。</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
