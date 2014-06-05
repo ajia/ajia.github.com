@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-06-04T23:29:13+08:00</updated>
+  <updated>2014-06-05T22:43:33+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-从核心出发]]></title>
+    <link href="http://ajia.github.com/blog/2014/06/05/rework-cong-he-xin-chu-fa/"/>
+    <updated>2014-06-05T22:33:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/06/05/rework-cong-he-xin-chu-fa</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>从你开始着手做一件事情时，总有一些力量将你拉向不同的方向。这当中包括你能做的、你想做的以及你必须做的事情。你应该从必须做的事情开始下手，即从核心出发。</p>
+
+<p>例如，如果你想开家热狗摊，你可能要考虑调味品、售货车、名称、装饰，等等、但是最应该关注的是热狗。热狗就是中心，其他事情都退而次之。</p>
+
+<p>寻找中心的方法就是问自己：“如果把这样东西去掉了，我还做得成买卖吗？”你可以不要洋葱、不要调味品、不要芥末……但一家热狗摊肯定不能是一家没有热狗的摊子。也许有人不喜欢你这种没有浇料的热狗，但你仍然是个卖热狗的。而没有了热狗，你连卖热狗的都不是。</p>
+
+<p>所以，要判断出你的事业的中心。在你的创业等式中，哪个部分是绝对不能被拿掉的？如果有些东西即使没有了，你也能把事情干下去，那这些东西就不是事业的中心。当你发现事业的中心时，你就会恍然大悟，然后你应该把所有的精力都集中在这个中心上，把它做的越强越好。这是你未来成功的基础。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-与其做个半成品，不如做好半个产品]]></title>
@@ -506,33 +524,6 @@
 
 ”现实世界“并不存在，那只是个借口，只是某些人为了开脱自己的无所作为，跟你一点关系也没有。
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CMake找不到/Developer目录的问题]]></title>
-    <link href="http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti/"/>
-    <updated>2014-05-08T18:49:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/05/08/cmakezhao-bu-dao-slash-developermu-lu-de-wen-ti</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>想学好OpenGL，已经复习C几周了。</p>
-
-<p>网上有个教程，http://www.opengl-tutorial.org/zh-hans/tutorial-1-opening-a-window-zh/#______</p>
-
-<p>照着上面说的做，在Mac上生成项目的时候遇到个问题：</p>
-
-<pre><code>Error: No developer directory found at /Developer.  Run
-/usr/bin/xcode-select to update the developer directory path. 
-</code></pre>
-
-<p>原来，我的Xcode的版本是4.6.3，/Developer这个目录已经改到/Applications/Xcode.app/Contents/Developer，执行这条命令就可以了</p>
-
-<pre><code>sudo /usr/bin/xcode-select -switch /Applications/Xcode.app/Contents/Developer
-</code></pre>
-
-<p>然后，好好学习OpenGL。</p>
 ]]></content>
   </entry>
   
