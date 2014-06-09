@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *' - Ajia's Blog</title>
+  <title>rework-在问题上少投入点精力 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
   <link rel="author" href="humans.txt">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,28 +13,28 @@
   
     
   
-  <meta name="description" content=" ">
-  
+  <meta name="description" content=" rework-在问题上少投入点精力 ">
+  <meta name="keywords" content="rework-在问题上少投入点精力">
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/06/09/rework-zai-wen-ti-shang-shao-tou-ru-dian-jing-li/">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="Ajia's Blog" />
-  <meta name="og:title" content="Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *'" />
-  <meta name="og:description" content=" " />
-  <meta name="og:url" content="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/"/>
-  <meta name="url" content="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/">
+  <meta name="og:title" content="rework-在问题上少投入点精力" />
+  <meta name="og:description" content=" rework-在问题上少投入点精力 " />
+  <meta name="og:url" content="http://ajia.github.com/blog/2014/06/09/rework-zai-wen-ti-shang-shao-tou-ru-dian-jing-li/"/>
+  <meta name="url" content="http://ajia.github.com/blog/2014/06/09/rework-zai-wen-ti-shang-shao-tou-ru-dian-jing-li/">
   
-  <meta name="subject" content="cocos2d"/>
-  <meta name="category" content="cocos2d"/>
+  <meta name="subject" content="rework"/>
+  <meta name="category" content="rework"/>
   
   <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -96,7 +96,7 @@
 
   <header>
     
-      <h1 class="entry-title">Sending 'ccColor4B' (Aka 'Struct _ccColor4B') to Parameter of Incompatible Type 'CIColor *'</h1>
+      <h1 class="entry-title">Rework-在问题上少投入点精力</h1>
     
     
       <p class="meta">
@@ -121,13 +121,13 @@
   
 
 
-<time datetime="2013-04-22T15:25:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time> - 
+<time datetime="2014-06-09T08:07:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2014</time> - 
         
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -140,33 +140,18 @@ posted in
   </header>
 
 
-  <div class="entry-content"><!-- more -->
+  <div class="entry-content"><!--more-->
 
 
-<p>升级cocos2d以后，编译项目，CCLayer.m的layerWithColor:(ccColor4B)color报错</p>
+<p>拜读一下厨师戈登.拉姆齐（Gordon Ramsay）的《厨房噩梦》，你就会发现一个模式：在失败餐馆的菜单上，菜品总是太多。餐馆老板认为做尽天下名菜就能提升餐厅的美誉度，然而上天总是报之以蹩脚的菜品（并带来让人头疼的库存）。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">Sending</span> <span class="err">&#39;</span><span class="n">ccColor4B</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">aka</span> <span class="err">&#39;</span><span class="k">struct</span> <span class="n">_ccColor4B</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">to</span> <span class="n">parameter</span>
-</span><span class='line'> <span class="n">of</span> <span class="n">incompatible</span> <span class="n">type</span> <span class="err">&#39;</span><span class="n">CIColor</span> <span class="o">*</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>这就是为什么拉姆齐工作时第一步几乎总是删减菜单的原因，他总是从30多个菜式减少到10多个品种。想象一下，不是先增加菜品，而是先删减菜品，然后再把菜单上剩下的东西做成精品。</p>
 
+<p>当遇到困难时，人们的本能反应都是加大投入：增加人手、延长时间、加大投资，这一切做法只是使问题变得越大。正确的方法应该是反其道而行之：削减。</p>
 
-<p>把</p>
+<p>所以，少做一点，你的项目遭受的损失不像你想象的那么大。事实上，这是一个使情况好转的绝佳机会。你要被迫使出雷霆手段，筛选出真正有价值的东西来。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>改成</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">return</span> <span class="p">[[(</span><span class="n">CCColorLayer</span><span class="o">*</span><span class="p">)[</span><span class="n">self</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithColor:</span><span class="n">color</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就可以了</p>
+<p>如果你不断推迟最后期限、提高预算，你就会在这条错误的道路上一直走下去。</p>
 </div>
 
 
@@ -193,13 +178,13 @@ posted in
   
 
 
-<time datetime="2013-04-22T15:25:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
+<time datetime="2014-06-09T08:07:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2014</time>
       
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -218,10 +203,8 @@ posted in
 
     
     
-      <a class="pull-left" href="/blog/2013/04/16/mysqlchuang-jian-functionshi-bai/" title="Previous Post: mysql创建function失败">&laquo; mysql创建function失败</a>
+      <a class="pull-left" href="/blog/2014/06/08/rework-dang-hao-bo-wu-guan-chang/" title="Previous Post: rework-当好博物馆长">&laquo; rework-当好博物馆长</a>
     
-    
-      <a class="pull-right" href="/blog/2013/04/27/seoyou-hua/" title="Next Post: seo优化">seo优化 &raquo;</a>
     
   </footer>
 
@@ -325,8 +308,8 @@ posted in
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/06/09/rework-zai-wen-ti-shang-shao-tou-ru-dian-jing-li/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/06/09/rework-zai-wen-ti-shang-shao-tou-ru-dian-jing-li/';
         var disqus_script = 'embed.js';
       
     (function () {
