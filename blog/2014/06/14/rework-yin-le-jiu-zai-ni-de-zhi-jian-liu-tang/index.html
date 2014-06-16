@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>时间格式化插件jquery-dateFormat - Ajia's Blog</title>
+  <title>rework-音乐就在你的指尖流淌 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
   <link rel="author" href="humans.txt">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,28 +13,28 @@
   
     
   
-  <meta name="description" content=" jquery的时间格式化插件 ">
-  <meta name="keywords" content="date format jquery">
+  <meta name="description" content=" rework 音乐就在你的指尖流淌 ">
+  <meta name="keywords" content="rework 音乐就在你的指尖流淌">
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/06/14/rework-yin-le-jiu-zai-ni-de-zhi-jian-liu-tang/">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="Ajia's Blog" />
-  <meta name="og:title" content="时间格式化插件jquery-dateFormat" />
-  <meta name="og:description" content=" jquery的时间格式化插件 " />
-  <meta name="og:url" content="http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/"/>
-  <meta name="url" content="http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/">
+  <meta name="og:title" content="rework-音乐就在你的指尖流淌" />
+  <meta name="og:description" content=" rework 音乐就在你的指尖流淌 " />
+  <meta name="og:url" content="http://ajia.github.com/blog/2014/06/14/rework-yin-le-jiu-zai-ni-de-zhi-jian-liu-tang/"/>
+  <meta name="url" content="http://ajia.github.com/blog/2014/06/14/rework-yin-le-jiu-zai-ni-de-zhi-jian-liu-tang/">
   
-  <meta name="subject" content="javascript"/>
-  <meta name="category" content="javascript"/>
+  <meta name="subject" content="rework"/>
+  <meta name="category" content="rework"/>
   
   <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -96,7 +96,7 @@
 
   <header>
     
-      <h1 class="entry-title">时间格式化插件jquery-dateFormat</h1>
+      <h1 class="entry-title">Rework-音乐就在你的指尖流淌</h1>
     
     
       <p class="meta">
@@ -121,13 +121,13 @@
   
 
 
-<time datetime="2013-06-07T18:01:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2013</time> - 
+<time datetime="2014-06-14T09:46:00+08:00" pubdate data-updated="true">Jun 14<span>th</span>, 2014</time> - 
         
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/javascript/'>javascript</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -140,88 +140,24 @@ posted in
   </header>
 
 
-  <div class="entry-content"><!-- more -->
+  <div class="entry-content"><!--more-->
 
 
-<p>做项目难免遇上格式化时间，而且可能不是每个地方都显示成一个样子，所以服务器端做这个不太方便。</p>
+<p>吉他大师说：“音乐就在你的指尖流淌。”就算你买了和艾迪.范.海伦（Eddie Van Halen）一样的吉他、效果踏板、扩音器，但是当你用这套装备演奏时，弹出来的依然是你自己的风格。</p>
 
-<p><a href="https://github.com/phstc/jquery-dateFormat#examples">jquery-dateFormat</a></p>
+<p>同理，给艾迪配一套从当铺倒腾出来的劣质装备，人家一出手，你还是能听出是艾迪.范.海伦的水平。好的装备的确能带来一些帮助，但事实是你的演奏水平是由你自己的手指决定的。</p>
 
-<h1>Format patterns</h1>
+<p>人们总忍不住要执著于工具，而不关注要用这些工具去做的事情。你见过这类人：能玩转一大堆震撼的艺术字体和漂亮的Photoshop滤镜效果的设计师，却不知道该表达什么。业余摄影爱好者总为使用胶片相机还是数码相机而争论不休，却没人关注拍出绝妙的相片的决定因素是什么。</p>
 
-<ul>
-<li><p>Date and time patterns</p></li>
-<li><p>yy = short year</p></li>
-<li><p>yyyy = long year</p></li>
-<li><p>M = month (1-12)</p></li>
-<li><p>MM = month (01-12)</p></li>
-<li><p>MMM = month abbreviation (Jan, Feb … Dec)</p></li>
-<li><p>MMMM = long month (January, February … December)</p></li>
-<li><p>d = day (1 - 31)</p></li>
-<li><p>dd = day (01 - 31)</p></li>
-<li><p>ddd = day of the week in words (Monday, Tuesday … Sunday)</p></li>
-<li><p>D - Ordinal day (1st, 2nd, 3rd, 21st, 22nd, 23rd, 31st, 4th…)</p></li>
-<li><p>h = hour in am/pm (0-12)</p></li>
-<li><p>hh = hour in am/pm (00-12)</p></li>
-<li><p>H = hour in day (0-23)</p></li>
-<li><p>HH = hour in day (00-23)</p></li>
-<li><p>mm = minute</p></li>
-<li><p>ss = second</p></li>
-<li><p>SSS = milliseconds</p></li>
-<li><p>a = AM/PM marker</p></li>
-<li><p>p = a.m./p.m. marker</p></li>
-</ul>
+<p>很多业余高尔夫球手执著于加入昂贵的俱乐部。但是真正重要的是如何挥杆，而不是加入哪个俱乐部。就算让老虎伍兹加入廉价的俱乐部，他也一样能摆平你。</p>
 
+<p>人们把装备当做取胜的法宝，却不愿意花时间去练习，于是一直泡在专业器材店里。他们想要寻找捷径，然而，最好的工具不是用在普通领域的，而且你在起步阶段肯定用不上它。</p>
 
-<h1>支持的时间格式</h1>
+<p>在商业领域，太多人纠结于工具的好坏、软件技巧、规模大小、舒适办公环境、豪华的家具以及其他浮华的东西，而不去关注真正的要点。真正的要点就是怎样赢得客户、如何赢利。</p>
 
-<ul>
-<li><p>2009-12-18 10:54:50.546 (default java.util.Date.toString output)</p></li>
-<li><p>Wed Jan 13 10:43:41 CET 2010 (???)</p></li>
-<li><p>2010-10-19T11:40:33.527+02:00 (default JAXB formatting of java.util.Date)</p></li>
-<li><p>Sat Mar 05 2011 11:47:35 GMT-0300 (BRT) (default JavaScript new Date().toString() output)</p></li>
-<li><p>Unix Timestamp (e.g. new Date().getTime())</p></li>
-</ul>
+<p>我们还可以看到一些人想要通过博客、播客或拍摄纪录片来宣传他们的业务，却受困于不知选择什么工具。真正要紧的是宣传的内容。你可以花大手笔购买超级棒的设备，但是如果没有什么内容可表达……那么，你还真没什么可说的。</p>
 
-
-<h1>例子</h1>
-
-<p><em>使用css来格式化</em></p>
-
-<pre><code>&lt;span class="shortDateFormat"&gt;2009-12-18 10:54:50.546&lt;/span&gt;
-&lt;span class="longDateFormat"&gt;2009-12-18 10:54:50.546&lt;/span&gt;
-</code></pre>
-
-<p>默认的shortDateFormat 和 longDateFormat 这样来定义：</p>
-
-<pre><code>jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
-jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
-</code></pre>
-
-<p>输出</p>
-
-<pre><code>#1 18/12/2009
-#2 18/12/2009 10:54:50
-</code></pre>
-
-<p><em>用javascript来格式化</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">date</span><span class="p">(</span><span class="s2">&quot;2009-12-18 10:54:50.546&quot;</span><span class="p">,</span> <span class="s2">&quot;Test: dd/MM/yyyy&quot;</span><span class="p">));</span>
-</span><span class='line'>      <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">date</span><span class="p">(</span><span class="s2">&quot;Wed Jan 13 10:43:41 CET 2010&quot;</span><span class="p">,</span> <span class="s2">&quot;dd~MM~yyyy&quot;</span><span class="p">));</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>输出</p>
-
-<pre><code>#1 Test: 18/12/2009
-#2 18~12~2009
-</code></pre>
+<p>就用你现在手头有的或者能负担得起的，然后开始做吧。工具不重要，就用现有的工具也可以做得一样棒，音乐就在你的指尖流淌。</p>
 </div>
 
 
@@ -248,13 +184,13 @@ jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
   
 
 
-<time datetime="2013-06-07T18:01:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2013</time>
+<time datetime="2014-06-14T09:46:00+08:00" pubdate data-updated="true">Jun 14<span>th</span>, 2014</time>
       
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/javascript/'>javascript</a>
+    <a class='category' href='/blog/categories/rework/'>rework</a>
   
 </span>
 
@@ -273,10 +209,10 @@ posted in
 
     
     
-      <a class="pull-left" href="/blog/2013/06/07/shu-zi-ge-shi-hua-cha-jian-numeral-dot-js/" title="Previous Post: 数字格式化插件Numeral.js">&laquo; 数字格式化插件Numeral.js</a>
+      <a class="pull-left" href="/blog/2014/06/11/rework-guan-zhu-bu-bian-yin-su/" title="Previous Post: rework-关注不变因素">&laquo; rework-关注不变因素</a>
     
     
-      <a class="pull-right" href="/blog/2013/06/08/chang-yong-sql/" title="Next Post: 常用sql">常用sql &raquo;</a>
+      <a class="pull-right" href="/blog/2014/06/15/rework-mai-diao-fu-chan-pin/" title="Next Post: rework-卖掉副产品">rework-卖掉副产品 &raquo;</a>
     
   </footer>
 
@@ -380,8 +316,8 @@ posted in
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/';
-        var disqus_url = 'http://ajia.github.com/blog/2013/06/07/shi-jian-ge-shi-hua-cha-jian-jquery-dateformat/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/06/14/rework-yin-le-jiu-zai-ni-de-zhi-jian-liu-tang/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/06/14/rework-yin-le-jiu-zai-ni-de-zhi-jian-liu-tang/';
         var disqus_script = 'embed.js';
       
     (function () {
