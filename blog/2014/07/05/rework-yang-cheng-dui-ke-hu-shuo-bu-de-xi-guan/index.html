@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>读《Lua程序设计》笔记--类型与值 - Ajia's Blog</title>
+  <title>rework-养成对客户说“不”的习惯 - Ajia's Blog</title>
   <meta name="author" content="Ajia">
   <link rel="author" href="humans.txt">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,28 +13,28 @@
   
     
   
-  <meta name="description" content=" 读《Lua程序设计》笔记 ">
-  <meta name="keywords" content="笔记 学习 读书">
+  <meta name="description" content=" 养成对客户说“不”的习惯 ">
+  <meta name="keywords" content="养成对客户说“不”的习惯">
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/">
+  <link rel="canonical" href="http://ajia.github.com/blog/2014/07/05/rework-yang-cheng-dui-ke-hu-shuo-bu-de-xi-guan/">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Ajia's Blog" type="application/atom+xml">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="Ajia's Blog" />
-  <meta name="og:title" content="读《Lua程序设计》笔记--类型与值" />
-  <meta name="og:description" content=" 读《Lua程序设计》笔记 " />
-  <meta name="og:url" content="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/"/>
-  <meta name="url" content="http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/">
+  <meta name="og:title" content="rework-养成对客户说“不”的习惯" />
+  <meta name="og:description" content=" 养成对客户说“不”的习惯 " />
+  <meta name="og:url" content="http://ajia.github.com/blog/2014/07/05/rework-yang-cheng-dui-ke-hu-shuo-bu-de-xi-guan/"/>
+  <meta name="url" content="http://ajia.github.com/blog/2014/07/05/rework-yang-cheng-dui-ke-hu-shuo-bu-de-xi-guan/">
   
-  <meta name="subject" content="lua"/>
-  <meta name="category" content="lua"/>
+  <meta name="subject" content="post"/>
+  <meta name="category" content="post"/>
   
   <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -96,7 +96,7 @@
 
   <header>
     
-      <h1 class="entry-title">读《Lua程序设计》笔记--类型与值</h1>
+      <h1 class="entry-title">Rework-养成对客户说“不”的习惯</h1>
     
     
       <p class="meta">
@@ -121,13 +121,13 @@
   
 
 
-<time datetime="2014-04-19T18:30:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2014</time> - 
+<time datetime="2014-07-05T22:32:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2014</time> - 
         
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/lua/'>lua</a>
+    <a class='category' href='/blog/categories/post/'>post</a>
   
 </span>
 
@@ -140,58 +140,29 @@ posted in
   </header>
 
 
-  <div class="entry-content"><!-- more -->
+  <div class="entry-content"><!--more-->
 
 
-<h6>table的创建是通过“构造表达式”完成的，最简单的构造表达式就是{}。</h6>
+<blockquote><p>如果一味听顾客的，我就只能给他们弄一匹快马。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">--创建一个table, 并将它的引用存储到a</span>
-</span><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">x&quot;</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1">--新条目，key=&quot;x&quot;, value=10</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">great&quot;</span>  <span class="c1">--新条目, key=20, value=&quot;great&quot;</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;10</span>
-</span><span class='line'><span class="n">k</span> <span class="o">=</span> <span class="mi">20</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>  <span class="c1">--&gt;&quot;great&quot;</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1">--递增条目&quot;x&quot;</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;11</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code>                                  ——亨利.福特
+</code></pre></blockquote>
 
+<p>唯唯诺诺很容易。人们很容易同意添加一项功能、接受一个过于乐观的最后期限、笑纳一个平庸的设计。很快，这些轻易过关的事物堆积起来，在你眼前越堆越高，你甚至都看不到现在该做的事情了。</p>
 
-<h6>所有table都可以用不同类型的索引来访问值,当需要容纳新条目时，table会自动增长。</h6>
+<p>现在就开始培养说“不”的习惯——即使是面对自己最好的创意。利用拒绝的力量，成就你的优先顺序。人们很少会因为拒绝而后悔，却常常宁愿自己当初没有答应别人。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">--空的table</span>
-</span><span class='line'><span class="c1">--创建1000个新条目</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span> <span class="k">do</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span> <span class="k">end</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="c1">--&gt;18</span>
-</span><span class='line'><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">])</span>  <span class="c1">--&gt;10</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">y&quot;</span><span class="p">])</span>  <span class="c1">--&gt;nil</span>
-</span><span class='line'><span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1">-- 等同于a[&quot;x&quot;] = 10</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;x&quot;])</span>
-</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>  <span class="c1">-- 等同于print(a[&quot;y&quot;])</span>
-</span><span class='line'><span class="c1">-- a.x和a[x]是不同的。前者表示a[&quot;x&quot;]，后者表示以变量x的值来索引table。</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>人们不愿意开口拒绝，是因为针锋相对的感觉并不舒服。但是另一个选择的后果会更糟。你自找麻烦，把事情弄得更复杂，最后连你自己都不知道自己在干什么。</p>
 
+<p>这就像两性关系：分手很难，但是因为自己的懦弱而一直忍受下去，情况会更糟。长痛不如短痛。</p>
+
+<p>不要相信“客户永远是正确的”这种废话。假设你是个厨师，如果很多食客说你炒菜太咸、太辣，你可以改变这一状况。但是如果某些挑剔的美食家叫你在宽面里面加点香蕉，千万别搭理他们，那样就很好。为迎合某些客户而与大多数人背道而驰，就得不偿失了。</p>
+
+<p>ING Direct通过说“不”而建立起了全美成长最快的银行。当客户们要信用卡时，他们说“不”；当客户要求网上交易时，他们说“不”；当客户问是否能开立一个百万美元的账户时，答案也是“不”（这家银行的存款上限控制非常严格）。ING的想法是，事情越简单越好。于是这家银行只是提供储蓄账户。存款证明以及共同基金——这就够了。</p>
+
+<p>不要觉得“不”字难以出口，坦然些，如果你不愿意迎合某个客户的需求，只要彬彬有礼地解释清楚就可以了。当你花时间解释自己的想法后，人们的谅解能力通常会超出你的想象。你甚至可能会让他们赞同并追随你的思路。如果行不通，就推荐一个能提供更好的解决方案的竞争对手。让客户开心地使用别人的产品，强过让人憋屈地使用你的产品。</p>
+
+<p>这样做的目标是确保你的产品就是你自己的产品，你是自己产品最忠实的粉丝。这样一来，你就能宣称：“我觉得你会爱上它的，因为我爱上它了。”</p>
 </div>
 
 
@@ -218,13 +189,13 @@ posted in
   
 
 
-<time datetime="2014-04-19T18:30:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2014</time>
+<time datetime="2014-07-05T22:32:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2014</time>
       
 
 posted in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/lua/'>lua</a>
+    <a class='category' href='/blog/categories/post/'>post</a>
   
 </span>
 
@@ -243,10 +214,8 @@ posted in
 
     
     
-      <a class="pull-left" href="/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji/" title="Previous Post: 读《Lua程序设计》笔记--函数">&laquo; 读《Lua程序设计》笔记--函数</a>
+      <a class="pull-left" href="/blog/2014/07/05/rework-shui-guan-ta-men-zai-zuo-shi-yao-%3F/" title="Previous Post: rework-谁管他们在做什么？">&laquo; rework-谁管他们在做什么？</a>
     
-    
-      <a class="pull-right" href="/blog/2014/05/06/macxia-zhi-zuo-ubuntuan-zhuang-upan/" title="Next Post: Mac下制作Ubuntu安装U盘">Mac下制作Ubuntu安装U盘 &raquo;</a>
     
   </footer>
 
@@ -350,8 +319,8 @@ posted in
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/';
-        var disqus_url = 'http://ajia.github.com/blog/2014/04/19/du-luacheng-xu-she-ji-bi-ji-yu-zhi/';
+        var disqus_identifier = 'http://ajia.github.com/blog/2014/07/05/rework-yang-cheng-dui-ke-hu-shuo-bu-de-xi-guan/';
+        var disqus_url = 'http://ajia.github.com/blog/2014/07/05/rework-yang-cheng-dui-ke-hu-shuo-bu-de-xi-guan/';
         var disqus_script = 'embed.js';
       
     (function () {
