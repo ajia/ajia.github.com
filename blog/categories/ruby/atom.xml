@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-07-05T22:51:31+08:00</updated>
+  <updated>2014-07-30T22:57:59+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,214 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ruby学习笔记——容器、Blocks和迭代器]]></title>
+    <link href="http://ajia.github.com/blog/2014/07/17/rubyxue-xi-bi-ji-rong-qi-blockshe-die-dai-qi/"/>
+    <updated>2014-07-17T15:51:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/07/17/rubyxue-xi-bi-ji-rong-qi-blockshe-die-dai-qi</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>数组，通过字面量(literal)定义:</p>
+
+<p>```ruby
+a = [ 1, 3, 5, 7, 9 ]
+a[-1] ->    9
+a[-2] ->    7
+a[-99] ->   nil</p>
+
+<h1>也可以使用一对数字[start, count]来访问数组。这将返回一个包含start开始的count个对象引用的新数组</h1>
+
+<p>a[1, 3] ->  [3, 5, 7]
+a[3, 1] ->  [7]
+a[-3, 2]    ->  [5, 7]</p>
+
+<h1>可以使用range来对数组进行索引，其开始和结束位置被两个或3个点分割开。两个点的形式包含结束位置，而3个点的形式不包含</h1>
+
+<p>a[1..3] ->  [3, 5, 7]
+a[1...3]    ->  [3, 5]
+a[3..3] ->  [7]
+a[-3..-1]   ->  [5, 7, 9]
+```</p>
+
+<p>散列表</p>
+
+<p><code>ruby
+h = { 'dog' =&gt; 'canine', 'cat' =&gt; 'feline', 'donkey' =&gt; 'asinine'}
+h.length    -&gt;  3
+h['dog']    -&gt;  'canine'
+h['cow']    =   'bovine'
+h[12]   =   'dodecine'
+h['cat']    =   99
+h   -&gt;  {"cow"=&gt;"bovine", "cat"=&gt;99, 12=&gt;"dodecine", "donkey"=&gt;"asinine", "dog"=&gt;"canine"}
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby学习笔记——类]]></title>
+    <link href="http://ajia.github.com/blog/2014/07/05/rubyxue-xi-bi-ji/"/>
+    <updated>2014-07-05T23:15:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/07/05/rubyxue-xi-bi-ji</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>类的定义:</p>
+
+<p>```ruby
+class Song</p>
+
+<pre><code>def initialize(name, artist, duration)
+    @name = name        #实例变量
+    @artist = artist
+    @duration = duration
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>在Ruby中，类永远都不是封闭的：你总可以向一个已有的类中添加方法。这个适用于你自己编写的类，同样适用于标准的内建（built-in）类。只要打开某个已有类的类定义，你就可以将指定的新内容添加进去，比如向上面已经定义的Song添加to_s方法：</p>
+
+<p>```ruby
+class Song
+  def to_s</p>
+
+<pre><code>"Song: #@name--#@artist(#@duration)"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>类的实例化：</p>
+
+<p><code>ruby
+song = Song.new("Bicyclops", "Fleck", 260)
+song.to_s
+</code></p>
+
+<p>继承：</p>
+
+<p>```ruby
+class KaraoKeSong &lt; Song</p>
+
+<pre><code>def initialize(name, artist, duration, lyrics){
+    super(name, artist, duration)
+    @lyrics = lyrics
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>读对象的属性</p>
+
+<p>```ruby
+class Song</p>
+
+<pre><code>attr_reader :name, :artist, :duration
+</code></pre>
+
+<p>end
+```</p>
+
+<p>可写的属性，创建一个名字以等号结尾的方法来设置对象属性，或者使用attr_writer</p>
+
+<p>```ruby
+class Song</p>
+
+<pre><code>attr_writer :duration
+</code></pre>
+
+<p>end
+```</p>
+
+<p>类变量，只存在一份拷贝，由@@开头，例如@@count
+```ruby
+class Song</p>
+
+<pre><code>@@plays = 0
+def initialize(name, artist, duration)
+    @name       = name
+    @artist = artist
+    @duration   = duration
+    @plays      = 0
+end
+def play
+    @plays += 1 #same as @plays = @plays + 1
+    @@plays += 1
+    "This song:# #@plays plays. Total #@@plays plays."
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>类方法，通过在方法名之前放置类名以及一个句点来定义</p>
+
+<p>```ruby
+class Example</p>
+
+<pre><code>def instance_method #实例方法
+end
+def Example.class_method    #类方法
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>单例模式</p>
+
+<p>```ruby
+class MyLogger</p>
+
+<pre><code>private_class_method :new
+@@logger = nil
+def MyLogger.create
+    @@logger = new unless @@logger
+    @@logger
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>访问控制</p>
+
+<p>```ruby
+class Accounts</p>
+
+<pre><code>def initialize(checking, savings)
+    @checking = checking
+    @savings = savings
+end
+</code></pre>
+
+<p>private</p>
+
+<pre><code>def debit(account, amount)
+    account.balance -= amount
+end
+def credit(account, amount)
+    account.balance += amount
+end
+</code></pre>
+
+<p>public</p>
+
+<pre><code>def transfer_to_savings(amount)
+    debit(@checking, amount)
+    credit(@savings, amount)
+end
+</code></pre>
+
+<p>end
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Git做版本控制]]></title>
@@ -310,40 +518,6 @@ IdentityFile ~/.ssh/id_rsa
 port 22</p>
 
 <p>用了上面的方法，问题解决。感谢分享。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[学习ruby on rails-ruby和rails的安装]]></title>
-    <link href="http://ajia.github.com/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang/"/>
-    <updated>2013-04-01T11:59:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2013/04/01/xue-xi-ruby-on-rails-rubyhe-railsde-an-zhuang</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>ruby的安装在文章<a href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/" title="点击查看">how-to-install-octopress</a>里有说过。</p>
-
-<h3>在Lion安装rails</h3>
-
-<pre><code>gem install rails
-</code></pre>
-
-<h3>创建rails的应用</h3>
-
-<pre><code>rails new myapp
-</code></pre>
-
-<h3>启动应用</h3>
-
-<pre><code>cd myapp
-rails server
-</code></pre>
-
-<h3>进入</h3>
-
-<pre><code>http://localhost:3000
-"Welcome aboard: You're riding Ruby on Rails!"
-</code></pre>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-07-05T22:51:31+08:00</updated>
+  <updated>2014-07-30T22:57:59+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[python笔记]]></title>
+    <link href="http://ajia.github.com/blog/2014/07/08/pythonxue-xi-bi-ji/"/>
+    <updated>2014-07-08T09:56:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/07/08/pythonxue-xi-bi-ji</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Dictionary是 Python 的内置数据类型之一,它定义了键和值之间一对一的关系。</p>
+
+<p>```python
+def DictionaryTest():</p>
+
+<pre><code>#定义Dictionary
+d = {"server":"mpilgrim", "database":"master"} 
+#通过key来引用值  print d["server"] --&gt; 'mpilgrim'    print d["database"] --&gt; 'master'    print d["mpilgrim"] --&gt; Traceback (innermost last):
+#修改Dictionary
+#在一个 dictionary中不能有重复的key。给一个存在的key赋值会覆盖原有的值。
+d["database"] = "pubs"
+print d["database"] --&gt; 'pubs'
+d["uid"] = "sa"
+print d["uid"] --&gt; 'sa'
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[解决json.dumps不能序列化datetime类型的问题]]></title>

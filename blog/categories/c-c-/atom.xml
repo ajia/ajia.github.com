@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C/C++ | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/c-c-/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-07-05T22:51:31+08:00</updated>
+  <updated>2014-07-30T22:57:59+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C语言笔记——字符串]]></title>
+    <link href="http://ajia.github.com/blog/2014/07/07/cyu-yan-bi-ji/"/>
+    <updated>2014-07-07T11:39:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/07/07/cyu-yan-bi-ji</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>C没有为字符串定义专门的变量类型，而是把它存储在char数组中，数组的最后一个位置存放的是\0，表示字符串的结束。空字符的存在意味着数组的单元数必须至少比要存储的字符数多1。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[DOOM3在Mac OSX中的编译过程]]></title>
