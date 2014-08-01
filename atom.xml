@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-07-30T22:57:59+08:00</updated>
+  <updated>2014-07-31T22:17:46+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-受不了时再招人]]></title>
+    <link href="http://ajia.github.com/blog/2014/07/31/rework-shou-bu-liao-shi-zai-zhao-ren/"/>
+    <updated>2014-07-31T22:06:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/07/31/rework-shou-bu-liao-shi-zai-zhao-ren</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>不要为了贪图一时高兴而招人，招人是为了解除痛苦的。要时时提醒自己：如果我们不招人又会怎样？这项额外的工作真的给我们带来了很大的负担吗？我们能不能用一套软件或者改变一下操作来解决这个问题呢？我们不做这个行不行？</p>
+
+<p>同理，如果有人离职了，不要立即招人来顶替他。看看如果没有人在这个职位上，你们能坚持多久。你往往会发现自己需要的人远没有想象得那么多。</p>
+
+<p>当你在很长一段时间内都被超负荷的工作所困扰，这才是招人的正确时机。此时出现了一些你无法再亲力亲为的事情，你发现工作质量有所下滑，令你感到受不了了，这时才是招人的最佳时机，不要提前招人。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-亲力亲为]]></title>
@@ -465,212 +481,6 @@
 <p>没有用过你们产品的客户永远比用过的多。要确保你的产品让这些人容易上手。这就是你持续成长的潜力所在。</p>
 
 <p>人在变，环境也在变，你不可能满足所有人的所有要求。公司要对某一类型的客户全情投入，而不是对某一个善变的客户唯唯诺诺。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby学习笔记——类]]></title>
-    <link href="http://ajia.github.com/blog/2014/07/05/rubyxue-xi-bi-ji/"/>
-    <updated>2014-07-05T23:15:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/07/05/rubyxue-xi-bi-ji</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>类的定义:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Song</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">artist</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>        <span class="c1">#实例变量</span>
-</span><span class='line'>      <span class="vi">@artist</span> <span class="o">=</span> <span class="n">artist</span>
-</span><span class='line'>      <span class="vi">@duration</span> <span class="o">=</span> <span class="n">duration</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在Ruby中，类永远都不是封闭的：你总可以向一个已有的类中添加方法。这个适用于你自己编写的类，同样适用于标准的内建（built-in）类。只要打开某个已有类的类定义，你就可以将指定的新内容添加进去，比如向上面已经定义的Song添加to_s方法：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Song</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">to_s</span>
-</span><span class='line'>    <span class="s2">&quot;Song: </span><span class="si">#@name</span><span class="s2">--</span><span class="si">#@artist</span><span class="s2">(</span><span class="si">#@duration</span><span class="s2">)&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>类的实例化：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">song</span> <span class="o">=</span> <span class="no">Song</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Bicyclops&quot;</span><span class="p">,</span> <span class="s2">&quot;Fleck&quot;</span><span class="p">,</span> <span class="mi">260</span><span class="p">)</span>
-</span><span class='line'><span class="n">song</span><span class="o">.</span><span class="n">to_s</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>继承：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">KaraoKeSong</span> <span class="o">&lt;</span> <span class="no">Song</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">artist</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">lyrics</span><span class="p">){</span>
-</span><span class='line'>      <span class="k">super</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">artist</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@lyrics</span> <span class="o">=</span> <span class="n">lyrics</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>读对象的属性</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Song</span>
-</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:artist</span><span class="p">,</span> <span class="ss">:duration</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可写的属性，创建一个名字以等号结尾的方法来设置对象属性，或者使用attr_writer</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Song</span>
-</span><span class='line'>  <span class="kp">attr_writer</span> <span class="ss">:duration</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>类变量，只存在一份拷贝，由@@开头，例如@@count</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Song</span>
-</span><span class='line'>  <span class="vc">@@plays</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">artist</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@name</span>       <span class="o">=</span> <span class="nb">name</span>
-</span><span class='line'>      <span class="vi">@artist</span> <span class="o">=</span> <span class="n">artist</span>
-</span><span class='line'>      <span class="vi">@duration</span>   <span class="o">=</span> <span class="n">duration</span>
-</span><span class='line'>      <span class="vi">@plays</span>      <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">play</span>
-</span><span class='line'>      <span class="vi">@plays</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1">#same as @plays = @plays + 1</span>
-</span><span class='line'>      <span class="vc">@@plays</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="s2">&quot;This song:# </span><span class="si">#@plays</span><span class="s2"> plays. Total </span><span class="si">#@@plays</span><span class="s2"> plays.&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>类方法，通过在方法名之前放置类名以及一个句点来定义</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Example</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">instance_method</span>  <span class="c1">#实例方法</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">Example</span><span class="o">.</span><span class="nf">class_method</span>  <span class="c1">#类方法</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>单例模式</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyLogger</span>
-</span><span class='line'>  <span class="nb">private_class_method</span> <span class="ss">:new</span>
-</span><span class='line'>  <span class="vc">@@logger</span> <span class="o">=</span> <span class="kp">nil</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">MyLogger</span><span class="o">.</span><span class="nf">create</span>
-</span><span class='line'>      <span class="vc">@@logger</span> <span class="o">=</span> <span class="kp">new</span> <span class="k">unless</span> <span class="vc">@@logger</span>
-</span><span class='line'>      <span class="vc">@@logger</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>访问控制</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Accounts</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">checking</span><span class="p">,</span> <span class="n">savings</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@checking</span> <span class="o">=</span> <span class="n">checking</span>
-</span><span class='line'>      <span class="vi">@savings</span> <span class="o">=</span> <span class="n">savings</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="kp">private</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">debit</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">account</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">credit</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">account</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="kp">public</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">transfer_to_savings</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">debit</span><span class="p">(</span><span class="vi">@checking</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">credit</span><span class="p">(</span><span class="vi">@savings</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   
