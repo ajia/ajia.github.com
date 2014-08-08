@@ -143,7 +143,7 @@ posted in
   <div class="entry-content"><!--more-->
 
 
-<p>Dictionary是 Python 的内置数据类型之一,它定义了键和值之间一对一的关系。</p>
+<h1>Dictionary</h1>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -158,19 +158,114 @@ posted in
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">DictionaryTest</span><span class="p">():</span>
-</span><span class='line'>  <span class="c">#定义Dictionary</span>
-</span><span class='line'>  <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;server&quot;</span><span class="p">:</span><span class="s">&quot;mpilgrim&quot;</span><span class="p">,</span> <span class="s">&quot;database&quot;</span><span class="p">:</span><span class="s">&quot;master&quot;</span><span class="p">}</span>
-</span><span class='line'>  <span class="c">#通过key来引用值</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;server&quot;</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="s">&#39;mpilgrim&#39;</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;database&quot;</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="s">&#39;master&#39;</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;mpilgrim&quot;</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">innermost</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>  <span class="c">#修改Dictionary</span>
-</span><span class='line'>  <span class="c">#在一个 dictionary中不能有重复的key。给一个存在的key赋值会覆盖原有的值。</span>
-</span><span class='line'>  <span class="n">d</span><span class="p">[</span><span class="s">&quot;database&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;pubs&quot;</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;database&quot;</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="s">&#39;pubs&#39;</span>
-</span><span class='line'>  <span class="n">d</span><span class="p">[</span><span class="s">&quot;uid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;sa&quot;</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;uid&quot;</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="s">&#39;sa&#39;</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#定义Dictionary</span>
+</span><span class='line'><span class="c">#方法1</span>
+</span><span class='line'><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;server&quot;</span><span class="p">:</span><span class="s">&quot;mpilgrim&quot;</span><span class="p">,</span> <span class="s">&quot;database&quot;</span><span class="p">:</span><span class="s">&quot;master&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="c">#方法2</span>
+</span><span class='line'><span class="n">fdict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(([</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+</span><span class='line'><span class="c">#方法3 </span>
+</span><span class='line'><span class="c">#从Python 2.3 版本起, 可以用一个很方便的内建方法fromkeys() 来创建一个&quot;默认&quot;字典, 字典中元素具有相同的值 (如果没有给出， 默认为None):</span>
+</span><span class='line'><span class="n">ddict</span> <span class="o">=</span> <span class="p">{}</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">((</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c">#------------------------------------------------------</span>
+</span><span class='line'><span class="c">#通过key来引用值</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;server&quot;</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="s">&#39;mpilgrim&#39;</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;database&quot;</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="s">&#39;master&#39;</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;mpilgrim&quot;</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">innermost</span> <span class="n">last</span><span class="p">):</span>
+</span><span class='line'><span class="c">#------------------------------------------------------</span>
+</span><span class='line'><span class="c">#修改Dictionary</span>
+</span><span class='line'><span class="c">#在一个 dictionary中不能有重复的key。给一个存在的key赋值会覆盖原有的值。</span>
+</span><span class='line'><span class="n">d</span><span class="p">[</span><span class="s">&quot;database&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;pubs&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;database&quot;</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="s">&#39;pubs&#39;</span>
+</span><span class='line'><span class="n">d</span><span class="p">[</span><span class="s">&quot;uid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;sa&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;uid&quot;</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="s">&#39;sa&#39;</span>
+</span><span class='line'><span class="c">#------------------------------------------------------</span>
+</span><span class='line'><span class="c">#判断是否存在key</span>
+</span><span class='line'><span class="s">&#39;server&#39;</span> <span class="ow">in</span> <span class="n">dict2</span> <span class="c"># 或 </span>
+</span><span class='line'><span class="n">dict2</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;server&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#------------------------------------------------------</span>
+</span><span class='line'><span class="c">#删除字典元素和字典</span>
+</span><span class='line'><span class="k">del</span> <span class="n">dict2</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span> <span class="c"># 删除键为“name”的条目</span>
+</span><span class='line'><span class="n">dict2</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span> <span class="c"># 删除dict2 中所有的条目</span>
+</span><span class='line'><span class="k">del</span> <span class="n">dict2</span> <span class="c"># 删除整个dict2 字典</span>
+</span><span class='line'><span class="n">dict2</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span> <span class="c"># 删除并返回键为“name”的条目</span>
+</span><span class='line'><span class="c">#------------------------------------------------------</span>
+</span><span class='line'><span class="c">#获取所有key、value</span>
+</span><span class='line'><span class="n">dict2</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;earth&#39;</span><span class="p">,</span> <span class="s">&#39;port&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+</span><span class='line'><span class="n">dict2</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="s">&#39;port&#39;</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">dict2</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="s">&#39;earth&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">dict2</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[(</span><span class="s">&#39;port&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;earth&#39;</span><span class="p">)]</span>
+</span><span class='line'><span class="c">#------------------------------------------------------</span>
+</span><span class='line'><span class="c">#排序</span>
+</span><span class='line'><span class="c">#按照value的值从大到小的顺序来排序</span>
+</span><span class='line'><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span><span class="mi">31</span><span class="p">,</span> <span class="s">&#39;bc&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;asd&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;aa&#39;</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</span><span class='line'><span class="nb">dict</span><span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">dict</span>
+</span><span class='line'><span class="c">#对字典按键（key）排序</span>
+</span><span class='line'><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span><span class="mi">31</span><span class="p">,</span> <span class="s">&#39;bc&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;asd&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;aa&#39;</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</span><span class='line'><span class="nb">dict</span><span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c">#d[0]表示字典的键</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">dict</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>List</h1>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#定义List</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;mpilgrim&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&quot;example&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span>
+</span><span class='line'><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;mpilgrim&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&quot;example&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'><span class="s">&#39;a&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</span><span class='line'><span class="s">&#39;example&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="s">&#39;example&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+</span><span class='line'><span class="s">&#39;mpilgrim&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -251,6 +346,10 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/08/09/rework-ren-ren-du-de-gan-huo/">rework-人人都得干活</a>
+        </li>
+      
+        <li>
           <a href="/blog/2014/08/07/rework-chang-gui-jiao-yu-bu-zhi-ti/">rework-常规教育不值一提</a>
         </li>
       
@@ -264,10 +363,6 @@ posted in
       
         <li>
           <a href="/blog/2014/08/03/rework-ji-wei-jiu-hui-shang-de-mo-sheng-ren/">rework-鸡尾酒会上的陌生人</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/08/02/rework-fang-qi-niu-ren/">rework-放弃牛人</a>
         </li>
       
     </ul>

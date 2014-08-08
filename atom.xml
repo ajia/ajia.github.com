@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-08-08T15:06:48+08:00</updated>
+  <updated>2014-08-09T00:08:09+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-人人都得干活]]></title>
+    <link href="http://ajia.github.com/blog/2014/08/09/rework-ren-ren-du-de-gan-huo/"/>
+    <updated>2014-08-09T00:01:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/08/09/rework-ren-ren-du-de-gan-huo</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>在一个小团队里，你需要的是干活的人，而不是监工。每个人都得做事，没有人可以袖手旁观。</p>
+
+<p>这就意味着你在招聘中要避免招到监工型的人物，这些人喜欢对别人敦敦教导。对于小团队来讲，监工型的人就是累赘。他们想出各种事情让别人去做，在丢下自己的工作去安排别人时，他们制造出了更多的工作——不管这些工作是否需要去做。</p>
+
+<p>监工们还喜欢把人拖去开会。实际上，会议是监工们最好的朋友，因为只有在开会时才显示出他们的重要。与此同时，每个被他们拉去开会的人都没办法踏实干活了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-常规教育不值一提]]></title>
@@ -462,22 +478,6 @@
 </span><span class='line'><span class="n">h</span>  <span class="o">-&gt;</span>    <span class="p">{</span><span class="s2">&quot;cow&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;bovine&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">=&gt;</span><span class="mi">99</span><span class="p">,</span> <span class="mi">12</span><span class="o">=&gt;</span><span class="s2">&quot;dodecine&quot;</span><span class="p">,</span> <span class="s2">&quot;donkey&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;asinine&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;canine&quot;</span><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rework-不必逐字记下客户需求]]></title>
-    <link href="http://ajia.github.com/blog/2014/07/15/rework-bu-zi-ji-xia-ke-hu-xu-qiu/"/>
-    <updated>2014-07-15T22:04:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/07/15/rework-bu-zi-ji-xia-ke-hu-xu-qiu</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>你应该怎样跟踪、了解客户的需求？完全不必！倾听，然后忘掉他们说的话就行了。这可不是开玩笑！</p>
-
-<p>你根本不需要用电子表格、数据库或录入系统去记录这些东西。真正有意义的需求，客户会一次又一次地跟在你屁股后面提出来。你根本就不可能忘记。你的客户就是你的记事本，他们会反复提醒你，会展示给你哪些事情是真正需要去考虑的。</p>
-
-<p>如果某个要求被你一次一次地遗忘在脑后，这就说明这个要求并不是太重要——真正重要的东西是忘不掉的。</p>
 ]]></content>
   </entry>
   

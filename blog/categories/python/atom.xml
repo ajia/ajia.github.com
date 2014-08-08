@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-08-08T15:06:48+08:00</updated>
+  <updated>2014-08-09T00:08:09+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -21,20 +21,73 @@
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Dictionary是 Python 的内置数据类型之一,它定义了键和值之间一对一的关系。</p>
+<h1>Dictionary</h1>
 
-<p>```python
-def DictionaryTest():</p>
+<p>```python</p>
 
 <pre><code>#定义Dictionary
+#方法1
 d = {"server":"mpilgrim", "database":"master"} 
-#通过key来引用值  print d["server"] --&gt; 'mpilgrim'    print d["database"] --&gt; 'master'    print d["mpilgrim"] --&gt; Traceback (innermost last):
+#方法2
+fdict = dict((['x', 1], ['y', 2]))
+#方法3 
+#从Python 2.3 版本起, 可以用一个很方便的内建方法fromkeys() 来创建一个"默认"字典, 字典中元素具有相同的值 (如果没有给出， 默认为None):
+ddict = {}.fromkeys(('x', 'y'), -1)
+#------------------------------------------------------
+#通过key来引用值  print d["server"] -&gt; 'mpilgrim' print d["database"] -&gt; 'master' print d["mpilgrim"] -&gt; Traceback (innermost last):
+#------------------------------------------------------
 #修改Dictionary
 #在一个 dictionary中不能有重复的key。给一个存在的key赋值会覆盖原有的值。
 d["database"] = "pubs"
-print d["database"] --&gt; 'pubs'
+print d["database"] -&gt; 'pubs'
 d["uid"] = "sa"
-print d["uid"] --&gt; 'sa'
+print d["uid"] -&gt; 'sa'
+#------------------------------------------------------
+#判断是否存在key
+'server' in dict2 # 或 
+dict2.has_key('server')
+#------------------------------------------------------
+#删除字典元素和字典
+del dict2['name'] # 删除键为“name”的条目
+dict2.clear() # 删除dict2 中所有的条目
+del dict2 # 删除整个dict2 字典
+dict2.pop('name') # 删除并返回键为“name”的条目
+#------------------------------------------------------
+#获取所有key、value
+dict2 = {'name': 'earth', 'port': 80}
+dict2.keys() -&gt; ['port', 'name']
+dict2.values() -&gt; [80, 'earth']
+dict2.items() -&gt; [('port', 80), ('name', 'earth')]
+#------------------------------------------------------
+#排序
+#按照value的值从大到小的顺序来排序
+dic = {'a':31, 'bc':5, 'c':3, 'asd':4, 'aa':74, 'd':0}
+dict= sorted(dic.iteritems(), key=lambda d:d[1], reverse = True)
+print dict
+#对字典按键（key）排序
+dic = {'a':31, 'bc':5, 'c':3, 'asd':4, 'aa':74, 'd':0}
+dict= sorted(dic.iteritems(), key=lambda d:d[0])  #d[0]表示字典的键
+print dict
+</code></pre>
+
+<p>```</p>
+
+<h1>List</h1>
+
+<p>```python</p>
+
+<pre><code>#定义List
+&gt;&gt;&gt;li = ["a", "b", "mpilgrim", "z", "example"]
+&gt;&gt;&gt;li
+["a", "b", "mpilgrim", "z", "example"]
+&gt;&gt;&gt;li[0]
+'a'
+&gt;&gt;&gt;li[4]
+'example'
+&gt;&gt;&gt;li[-1]
+'example'
+&gt;&gt;&gt;li[-3]
+'mpilgrim'
 </code></pre>
 
 <p>```</p>
