@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-08-11T10:20:43+08:00</updated>
+  <updated>2014-08-12T07:00:49+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rework-聘用独挡一面的经理人]]></title>
+    <link href="http://ajia.github.com/blog/2014/08/12/rework-pin-yong-du-dang-yi-mian-de-jing-li-ren/"/>
+    <updated>2014-08-12T06:50:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2014/08/12/rework-pin-yong-du-dang-yi-mian-de-jing-li-ren</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>独当一面的经理人有自己的目标，并能够坚定地执行这些目标。他们不需要过多的指导，也不需要每天检查。他们做的都是经理人该做的事情——定基调、派任务、做决策，等等——但都是亲力亲为，自我审查。</p>
+
+<p>有了这些人，你就省去了失察之苦。他们能自己确定方向。只要把他们扔在那儿干活，你就会惊讶于他们的工作效率。他们不需要手把手的指导或监督。</p>
+
+<p>怎样才能找到这样的人才？方法就是看他们的背景。他们在做其他工作时都有自己独特的基调，他们自己运营过业务，也亲自做过某些项目。</p>
+
+<p>你需要那种能够变图纸为实物、并能实干到底的人。一旦找到这样的人，你的团队就能从管理中解脱出来去做更多的工作了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-人人都得干活]]></title>
@@ -418,66 +436,6 @@
 <p>如果有上百万的用户在使用你的产品，那么你做的每一点改变都会产生放大效应。在此之前，你作出的改变可能只会让一百来人感到不满，现在，则可能会让好几千人感到纠结。面对100个人你还能解释，面对上万个愤怒的顾客，你就只能躲到防暴盾牌后面去了。</p>
 
 <p>这样籍籍无名的日子一去就不会再回来。现在就是毫无顾忌地进行冒险的绝佳机会。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby学习笔记——容器、Blocks和迭代器]]></title>
-    <link href="http://ajia.github.com/blog/2014/07/17/rubyxue-xi-bi-ji-rong-qi-blockshe-die-dai-qi/"/>
-    <updated>2014-07-17T15:51:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/07/17/rubyxue-xi-bi-ji-rong-qi-blockshe-die-dai-qi</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>数组，通过字面量(literal)定义:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="o">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span> <span class="o">]</span>
-</span><span class='line'><span class="n">a</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="o">-&gt;</span>   <span class="mi">9</span>
-</span><span class='line'><span class="n">a</span><span class="o">[-</span><span class="mi">2</span><span class="o">]</span> <span class="o">-&gt;</span>   <span class="mi">7</span>
-</span><span class='line'><span class="n">a</span><span class="o">[-</span><span class="mi">99</span><span class="o">]</span> <span class="o">-&gt;</span>  <span class="kp">nil</span>
-</span><span class='line'><span class="c1"># 也可以使用一对数字[start, count]来访问数组。这将返回一个包含start开始的count个对象引用的新数组</span>
-</span><span class='line'><span class="n">a</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span> <span class="o">-&gt;</span>  <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="o">]</span>
-</span><span class='line'><span class="n">a</span><span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-&gt;</span>  <span class="o">[</span><span class="mi">7</span><span class="o">]</span>
-</span><span class='line'><span class="n">a</span><span class="o">[-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span>  <span class="o">-&gt;</span>    <span class="o">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="o">]</span>
-</span><span class='line'><span class="c1"># 可以使用range来对数组进行索引，其开始和结束位置被两个或3个点分割开。两个点的形式包含结束位置，而3个点的形式不包含</span>
-</span><span class='line'><span class="n">a</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="o">]</span>    <span class="o">-&gt;</span>    <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="o">]</span>
-</span><span class='line'><span class="n">a</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">3</span><span class="o">]</span>    <span class="o">-&gt;</span>    <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
-</span><span class='line'><span class="n">a</span><span class="o">[</span><span class="mi">3</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="o">]</span>    <span class="o">-&gt;</span>    <span class="o">[</span><span class="mi">7</span><span class="o">]</span>
-</span><span class='line'><span class="n">a</span><span class="o">[-</span><span class="mi">3</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>   <span class="o">-&gt;</span>    <span class="o">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>散列表</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;dog&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;canine&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;feline&#39;</span><span class="p">,</span> <span class="s1">&#39;donkey&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;asinine&#39;</span><span class="p">}</span>
-</span><span class='line'><span class="n">h</span><span class="o">.</span><span class="n">length</span> <span class="o">-&gt;</span>    <span class="mi">3</span>
-</span><span class='line'><span class="n">h</span><span class="o">[</span><span class="s1">&#39;dog&#39;</span><span class="o">]</span> <span class="o">-&gt;</span>    <span class="s1">&#39;canine&#39;</span>
-</span><span class='line'><span class="n">h</span><span class="o">[</span><span class="s1">&#39;cow&#39;</span><span class="o">]</span> <span class="o">=</span>    <span class="s1">&#39;bovine&#39;</span>
-</span><span class='line'><span class="n">h</span><span class="o">[</span><span class="mi">12</span><span class="o">]</span>    <span class="o">=</span>    <span class="s1">&#39;dodecine&#39;</span>
-</span><span class='line'><span class="n">h</span><span class="o">[</span><span class="s1">&#39;cat&#39;</span><span class="o">]</span> <span class="o">=</span>    <span class="mi">99</span>
-</span><span class='line'><span class="n">h</span>  <span class="o">-&gt;</span>    <span class="p">{</span><span class="s2">&quot;cow&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;bovine&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">=&gt;</span><span class="mi">99</span><span class="p">,</span> <span class="mi">12</span><span class="o">=&gt;</span><span class="s2">&quot;dodecine&quot;</span><span class="p">,</span> <span class="s2">&quot;donkey&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;asinine&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;canine&quot;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
