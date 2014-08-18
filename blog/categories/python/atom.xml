@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-08-13T23:37:13+08:00</updated>
+  <updated>2014-08-16T13:55:57+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -91,6 +91,12 @@ print dict
 #分片(slice)
 &gt;&gt;&gt;li[1:3]
 ["b", "mpilgrim"]
+#多列排序
+&gt;&gt;&gt;list = [{"name":"aa", "sort":1}, {"name":"bb", "sort":8}, {"name":"zz", "sort":5}, {"name":"ff", "sort":3}]
+&gt;&gt;&gt;from operator import itemgetter, attrgetter
+&gt;&gt;&gt;list.sort(key=itemgetter("sort", "name"), reverse=True)
+&gt;&gt;&gt;list
+[{'sort': 8, 'name': 'bb'}, {'sort': 5, 'name': 'zz'}, {'sort': 3, 'name': 'ff'}, {'sort': 1, 'name': 'aa'}]
 </code></pre>
 
 <p>```</p>
