@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-08-16T13:55:57+08:00</updated>
+  <updated>2014-08-21T21:32:05+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -88,9 +88,24 @@ print dict
 'example'
 &gt;&gt;&gt;li[-3]
 'mpilgrim'
+#添加元素
+&gt;&gt;&gt;li.append("cc")
+&gt;&gt;&gt; li
+['a', 'b', 'mpilgrim', 'z', 'example', 'cc']
+#合并列表
+&gt;&gt;&gt; li.extend([1,2,3,4])
+&gt;&gt;&gt; li
+['a', 'b', 'mpilgrim', 'z', 'example', 'cc', 1, 2, 3, 4]
+#删除元素
+&gt;&gt;&gt; del li[0]
+&gt;&gt;&gt; li
+['b', 'mpilgrim', 'z', 'example', 'cc', 1, 2, 3, 4]
 #分片(slice)
 &gt;&gt;&gt;li[1:3]
 ["b", "mpilgrim"]
+&gt;&gt;&gt; li.remove('b')
+&gt;&gt;&gt; li
+['mpilgrim', 'z', 'example', 'cc', 1, 2, 3, 4]
 #多列排序
 &gt;&gt;&gt;list = [{"name":"aa", "sort":1}, {"name":"bb", "sort":8}, {"name":"zz", "sort":5}, {"name":"ff", "sort":3}]
 &gt;&gt;&gt;from operator import itemgetter, attrgetter
@@ -100,6 +115,30 @@ print dict
 </code></pre>
 
 <p>```</p>
+
+<h1>Tuple# tuple是不可变的list, 一旦创建了一个tuple，就不能以任何方式改变它。tuple没有方法，使用tuple的好处：</h1>
+
+<ul>
+<li>tuple比list操作速度快；</li>
+<li>对不需要修改的数据进行“写保护”，使代码更安全；</li>
+<li>tuple可以在dictionary中被用做key，但是list不行。</li>
+</ul>
+
+
+<p>```python</p>
+
+<h1>定义tuple</h1>
+
+<blockquote><blockquote><blockquote><p>t = ("a", "b", "mpilgrim", "z", "example")
+t
+("a", "b", "mpilgrim", "z", "example")
+t[0]
+'a'
+t[-1]
+'example'
+t[1:3]
+('b', 'mpilgrim')
+```</p></blockquote></blockquote></blockquote>
 ]]></content>
   </entry>
   

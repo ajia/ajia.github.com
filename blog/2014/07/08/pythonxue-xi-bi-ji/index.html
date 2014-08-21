@@ -264,6 +264,21 @@ posted in
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#定义List</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;mpilgrim&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&quot;example&quot;</span><span class="p">]</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span>
@@ -276,15 +291,62 @@ posted in
 </span><span class='line'><span class="s">&#39;example&#39;</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
 </span><span class='line'><span class="s">&#39;mpilgrim&#39;</span>
+</span><span class='line'><span class="c">#添加元素</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;cc&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span>
+</span><span class='line'><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;mpilgrim&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;example&#39;</span><span class="p">,</span> <span class="s">&#39;cc&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="c">#合并列表</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span>
+</span><span class='line'><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;mpilgrim&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;example&#39;</span><span class="p">,</span> <span class="s">&#39;cc&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span><span class='line'><span class="c">#删除元素</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span>
+</span><span class='line'><span class="p">[</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;mpilgrim&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;example&#39;</span><span class="p">,</span> <span class="s">&#39;cc&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </span><span class='line'><span class="c">#分片(slice)</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </span><span class='line'><span class="p">[</span><span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;mpilgrim&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span>
+</span><span class='line'><span class="p">[</span><span class="s">&#39;mpilgrim&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;example&#39;</span><span class="p">,</span> <span class="s">&#39;cc&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </span><span class='line'><span class="c">#多列排序</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="nb">list</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&quot;name&quot;</span><span class="p">:</span><span class="s">&quot;aa&quot;</span><span class="p">,</span> <span class="s">&quot;sort&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span><span class="s">&quot;bb&quot;</span><span class="p">,</span> <span class="s">&quot;sort&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span><span class="s">&quot;zz&quot;</span><span class="p">,</span> <span class="s">&quot;sort&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span><span class="s">&quot;ff&quot;</span><span class="p">,</span> <span class="s">&quot;sort&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">}]</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span><span class="p">,</span> <span class="n">attrgetter</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="nb">list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="s">&quot;sort&quot;</span><span class="p">,</span> <span class="s">&quot;name&quot;</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="nb">list</span>
 </span><span class='line'><span class="p">[{</span><span class="s">&#39;sort&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;bb&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;sort&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;zz&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;sort&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;ff&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;sort&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;aa&#39;</span><span class="p">}]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Tuple# tuple是不可变的list, 一旦创建了一个tuple，就不能以任何方式改变它。tuple没有方法，使用tuple的好处：</h1>
+
+<ul>
+<li>tuple比list操作速度快；</li>
+<li>对不需要修改的数据进行“写保护”，使代码更安全；</li>
+<li>tuple可以在dictionary中被用做key，但是list不行。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#定义tuple</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;mpilgrim&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&quot;example&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">t</span>
+</span><span class='line'><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;mpilgrim&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&quot;example&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'><span class="s">&#39;a&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="s">&#39;example&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</span><span class='line'><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;mpilgrim&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -365,6 +427,14 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/08/21/rework-shen-shen-shen-hu-xi/">rework-深深深呼吸</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2014/08/18/rework-rang-mei-ge-ren-du-shang-qian-xian/">rework-让每个人都上前线</a>
+        </li>
+      
+        <li>
           <a href="/blog/2014/08/16/rework-dao-qian/">rework-如何道歉</a>
         </li>
       
@@ -374,14 +444,6 @@ posted in
       
         <li>
           <a href="/blog/2014/08/13/rework-zhu-dong-zhang-kong-fu-mian-xin-wen/">rework-主动掌控负面新闻</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/08/12/rework-shi-yong-qi-bi-bu-ke-shao/">rework-试用期必不可少</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/08/12/rework-gao-shou-bian-bu-shi-jie-ge-di/">rework-高手遍布世界各地</a>
         </li>
       
     </ul>
