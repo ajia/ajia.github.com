@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2014-08-21T21:32:05+08:00</updated>
+  <updated>2014-08-22T10:59:06+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -116,7 +116,9 @@ print dict
 
 <p>```</p>
 
-<h1>Tuple# tuple是不可变的list, 一旦创建了一个tuple，就不能以任何方式改变它。tuple没有方法，使用tuple的好处：</h1>
+<h1>Tuple#</h1>
+
+<p>tuple是不可变的list, 一旦创建了一个tuple，就不能以任何方式改变它。tuple没有方法，使用tuple的好处：</p>
 
 <ul>
 <li>tuple比list操作速度快；</li>
