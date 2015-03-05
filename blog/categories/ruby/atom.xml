@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ruby | Ajia's Blog]]></title>
+  <title><![CDATA[Category: Ruby | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-01-10T19:17:26+08:00</updated>
+  <updated>2015-03-05T16:28:51+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -99,7 +99,7 @@ h   -&gt;  {"cow"=&gt;"bovine", "cat"=&gt;99, 12=&gt;"dodecine", "donkey"=&gt;"a
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[ruby学习笔记——类]]></title>
+    <title type="html"><![CDATA[Ruby学习笔记——类]]></title>
     <link href="http://ajia.github.com/blog/2014/07/05/rubyxue-xi-bi-ji/"/>
     <updated>2014-07-05T23:15:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/07/05/rubyxue-xi-bi-ji</id>
@@ -521,7 +521,7 @@ $ git branch -D topic-branch
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[解决heroku push timeout错误]]></title>
+    <title type="html"><![CDATA[解决heroku Push Timeout错误]]></title>
     <link href="http://ajia.github.com/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu/"/>
     <updated>2013-06-27T10:24:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/06/27/jie-jue-heroku-push-timeoutcuo-wu</id>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: rework | Ajia's Blog]]></title>
+  <title><![CDATA[Category: Rework | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/rework/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-01-10T19:17:26+08:00</updated>
+  <updated>2015-03-05T16:28:51+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[rework-灵感稍纵即逝]]></title>
+    <title type="html"><![CDATA[Rework-灵感稍纵即逝]]></title>
     <link href="http://ajia.github.com/blog/2014/09/06/rework-ling-gan-shao-zong-ji-shi/"/>
     <updated>2014-09-06T11:58:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/09/06/rework-ling-gan-shao-zong-ji-shi</id>
@@ -34,7 +34,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[rework-越快越好是毒药]]></title>
+    <title type="html"><![CDATA[Rework-越快越好是毒药]]></title>
     <link href="http://ajia.github.com/blog/2014/09/06/rework-yue-kuai-yue-hao-shi-du-yao/"/>
     <updated>2014-09-06T10:48:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/09/06/rework-yue-kuai-yue-hao-shi-du-yao</id>
@@ -54,7 +54,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[rework-需要避开的词汇]]></title>
+    <title type="html"><![CDATA[Rework-需要避开的词汇]]></title>
     <link href="http://ajia.github.com/blog/2014/09/06/rework-xu-yao-bi-kai-de-ci-hui/"/>
     <updated>2014-09-06T10:26:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/09/06/rework-xu-yao-bi-kai-de-ci-hui</id>
@@ -80,7 +80,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[rework-发出你的心声]]></title>
+    <title type="html"><![CDATA[Rework-发出你的心声]]></title>
     <link href="http://ajia.github.com/blog/2014/09/06/rework-fa-chu-ni-de-xin-sheng/"/>
     <updated>2014-09-06T07:58:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/09/06/rework-fa-chu-ni-de-xin-sheng</id>
@@ -106,7 +106,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[rework-不要听风就是雨]]></title>
+    <title type="html"><![CDATA[Rework-不要听风就是雨]]></title>
     <link href="http://ajia.github.com/blog/2014/09/05/rework-bu-yao-ting-feng-jiu-shi-yu/"/>
     <updated>2014-09-05T20:58:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/09/05/rework-bu-yao-ting-feng-jiu-shi-yu</id>

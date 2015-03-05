@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: javascript | Ajia's Blog]]></title>
+  <title><![CDATA[Category: Javascript | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-01-10T19:17:26+08:00</updated>
+  <updated>2015-03-05T16:28:51+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -229,7 +229,7 @@ var value = number.value();
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[jquery插件之timer]]></title>
+    <title type="html"><![CDATA[Jquery插件之timer]]></title>
     <link href="http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer/"/>
     <updated>2013-05-24T14:20:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/24/javacha-jian-zhi-timer</id>
@@ -406,7 +406,7 @@ function play() {</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[jquery插件之cookie]]></title>
+    <title type="html"><![CDATA[Jquery插件之cookie]]></title>
     <link href="http://ajia.github.com/blog/2013/04/09/jquerycha-jian-zhi-cookie/"/>
     <updated>2013-04-09T11:59:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/04/09/jquerycha-jian-zhi-cookie</id>

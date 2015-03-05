@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: java | Ajia's Blog]]></title>
+  <title><![CDATA[Category: Java | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-01-10T19:17:26+08:00</updated>
+  <updated>2015-03-05T16:28:51+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -1247,7 +1247,7 @@ gson.fromJson(json, foo.getClass()); // Fails to deserialize foo.value as Bar
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[joda日期计算]]></title>
+    <title type="html"><![CDATA[Joda日期计算]]></title>
     <link href="http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan/"/>
     <updated>2013-05-24T10:19:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/05/24/jodari-qi-ji-suan</id>

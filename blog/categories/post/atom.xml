@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: post | Ajia's Blog]]></title>
+  <title><![CDATA[Category: Post | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/post/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-01-10T19:17:26+08:00</updated>
+  <updated>2015-03-05T16:28:51+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[rework-养成对客户说“不”的习惯]]></title>
+    <title type="html"><![CDATA[Rework-养成对客户说“不”的习惯]]></title>
     <link href="http://ajia.github.com/blog/2014/07/05/rework-yang-cheng-dui-ke-hu-shuo-bu-de-xi-guan/"/>
     <updated>2014-07-05T22:32:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/07/05/rework-yang-cheng-dui-ke-hu-shuo-bu-de-xi-guan</id>
