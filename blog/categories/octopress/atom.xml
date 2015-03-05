@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-03-05T16:28:51+08:00</updated>
+  <updated>2015-03-05T17:27:46+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Seo优化]]></title>
+    <title type="html"><![CDATA[seo优化]]></title>
     <link href="http://ajia.github.com/blog/2013/04/27/seoyou-hua/"/>
     <updated>2013-04-27T17:10:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/04/27/seoyou-hua</id>
@@ -288,7 +288,7 @@ $ sudo make me a sandwich
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[How-to-install-octopress]]></title>
+    <title type="html"><![CDATA[how-to-install-octopress]]></title>
     <link href="http://ajia.github.com/blog/2013/03/06/how-to-install-octopress/"/>
     <updated>2013-03-06T18:06:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/06/how-to-install-octopress</id>
@@ -410,7 +410,7 @@ $ rake deploy
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[My First Blog]]></title>
+    <title type="html"><![CDATA[my first blog]]></title>
     <link href="http://ajia.github.com/blog/2013/03/06/my-first-blog/"/>
     <updated>2013-03-06T17:20:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/03/06/my-first-blog</id>

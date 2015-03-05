@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Python | Ajia's Blog]]></title>
+  <title><![CDATA[Category: python | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-03-05T16:28:51+08:00</updated>
+  <updated>2015-03-05T17:27:46+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Python笔记-内置数据类型]]></title>
+    <title type="html"><![CDATA[python笔记-内置数据类型]]></title>
     <link href="http://ajia.github.com/blog/2014/07/08/pythonxue-xi-bi-ji/"/>
     <updated>2014-07-08T09:56:00+08:00</updated>
     <id>http://ajia.github.com/blog/2014/07/08/pythonxue-xi-bi-ji</id>

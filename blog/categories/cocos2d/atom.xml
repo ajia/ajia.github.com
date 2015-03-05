@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Cocos2d | Ajia's Blog]]></title>
+  <title><![CDATA[Category: cocos2d | Ajia's Blog]]></title>
   <link href="http://ajia.github.com/blog/categories/cocos2d/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-03-05T16:28:51+08:00</updated>
+  <updated>2015-03-05T17:27:46+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Xcode常用快捷键]]></title>
+    <title type="html"><![CDATA[xcode常用快捷键]]></title>
     <link href="http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian/"/>
     <updated>2013-10-15T10:48:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/10/15/xcodechang-yong-kuai-jie-jian</id>
@@ -65,7 +65,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Sending 'ccColor4B' (Aka 'Struct _ccColor4B') to Parameter of Incompatible Type 'CIColor *']]></title>
+    <title type="html"><![CDATA[Sending 'ccColor4B' (aka 'struct _ccColor4B') to parameter of incompatible type 'CIColor *']]></title>
     <link href="http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star/"/>
     <updated>2013-04-22T15:25:00+08:00</updated>
     <id>http://ajia.github.com/blog/2013/04/22/sending-cccolor4b-aka-struct-cccolor4b-to-parameter-of-incompatible-type-cicolor-star</id>
