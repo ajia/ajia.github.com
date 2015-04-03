@@ -68,14 +68,16 @@
 <h1>查询多字段重复</h1>
 
 <pre><code>select * from case_chart_key a
-where (a.mruid,a.fnumber) in (select mruid,fnumber from case_chart_key group by mruid,fnumber having count(*)&gt;1)
+where (a.mruid,a.fnumber) in
+(select mruid,fnumber from case_chart_key group by mruid,fnumber having count(*)&gt;1)
 and a.ftype=1
 </code></pre>
 
 <h1>删除重复数据</h1>
 
 <pre><code>create table tmp (
-select a.ckid, a.mruid, a.fnumber from case_chart_key a where a.ckid&lt; (select max(b.ckid) from case_chart_key b where a.mruid=b.mruid and a.fnumber=b.fnumber)
+select a.ckid, a.mruid, a.fnumber from case_chart_key a
+where a.ckid&lt; (select max(b.ckid) from case_chart_key b where a.mruid=b.mruid and a.fnumber=b.fnumber)
 and a.ftype=1)
 
 delete from case_chart_key where ckid in (select ckid from tmp)
