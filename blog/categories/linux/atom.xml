@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 常用命令 | Ajia's Blog]]></title>
-  <link href="http://ajia.github.com/blog/categories/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/atom.xml" rel="self"/>
+  <title><![CDATA[Category: linux | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-04-03T16:09:25+08:00</updated>
+  <updated>2015-10-20T00:10:27+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>

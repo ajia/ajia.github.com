@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Erlang | Ajia's Blog]]></title>
+  <link href="http://ajia.github.com/blog/categories/erlang/atom.xml" rel="self"/>
+  <link href="http://ajia.github.com/"/>
+  <updated>2015-10-20T00:10:27+08:00</updated>
+  <id>http://ajia.github.com/</id>
+  <author>
+    <name><![CDATA[Ajia]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Erlang Programming 笔记]]></title>
+    <link href="http://ajia.github.com/blog/2015/04/29/erlang-programming-bi-ji/"/>
+    <updated>2015-04-29T23:16:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2015/04/29/erlang-programming-bi-ji</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<h1>入门</h1>
+
+<h2>关于变量</h2>
+
+<ul>
+<li>变量不变</li>
+</ul>
+
+
+<p>Erlang的变量的值只能一次性给定。一个变量一旦被赋了值，就不能再赋给它其它值。一个变量如果含有一个被赋予的值，就称为绑定变量，否则，则被称作自由变量。</p>
+
+<ul>
+<li>模式匹配</li>
+</ul>
+
+
+<p>在Erlang中，=表示一个模式匹配操作。Lhs=Rhs实际上是这样一个过程，对右端求值（Rhs），然后将结果与左端（Lhs）进行模式匹配。</p>
+]]></content>
+  </entry>
+  
+</feed>

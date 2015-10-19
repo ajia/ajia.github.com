@@ -4,7 +4,7 @@
   <title><![CDATA[Ajia's Blog]]></title>
   <link href="http://ajia.github.com/atom.xml" rel="self"/>
   <link href="http://ajia.github.com/"/>
-  <updated>2015-04-03T16:09:25+08:00</updated>
+  <updated>2015-10-20T00:10:27+08:00</updated>
   <id>http://ajia.github.com/</id>
   <author>
     <name><![CDATA[Ajia]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Erlang Programming 笔记]]></title>
+    <link href="http://ajia.github.com/blog/2015/04/29/erlang-programming-bi-ji/"/>
+    <updated>2015-04-29T23:16:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2015/04/29/erlang-programming-bi-ji</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<h1>入门</h1>
+
+<h2>关于变量</h2>
+
+<ul>
+<li>变量不变</li>
+</ul>
+
+
+<p>Erlang的变量的值只能一次性给定。一个变量一旦被赋了值，就不能再赋给它其它值。一个变量如果含有一个被赋予的值，就称为绑定变量，否则，则被称作自由变量。</p>
+
+<ul>
+<li>模式匹配</li>
+</ul>
+
+
+<p>在Erlang中，=表示一个模式匹配操作。Lhs=Rhs实际上是这样一个过程，对右端求值（Rhs），然后将结果与左端（Lhs）进行模式匹配。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[把时间当做朋友-笔记]]></title>
+    <link href="http://ajia.github.com/blog/2015/04/24/ba-shi-jian-dang-zuo-peng-you-de-yao-dian/"/>
+    <updated>2015-04-24T16:27:00+08:00</updated>
+    <id>http://ajia.github.com/blog/2015/04/24/ba-shi-jian-dang-zuo-peng-you-de-yao-dian</id>
+    <content type="html"><![CDATA[<p>所有学习上的成功,都只靠两件事:策略和坚持,而坚持本身就应该是最重要的策 略之一。</p>
+
+<h2>控制自己的大脑</h2>
+
+<h2>控制自己的情绪</h2>
+
+<h2>推迟满足感</h2>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rework-灵感稍纵即逝]]></title>
@@ -399,40 +442,6 @@
 <p>这是因为，一个优秀的写手，其优点并不仅仅在于写作。文法清晰代表思路明晰。优秀的写手都懂得如何与人沟通。他们是事情变得易于理解，他们善于换位思考，懂得抓住重点、砍枝节，这些都是合格的应聘者身上应具备的特点。</p>
 
 <p>今天，社会上再次掀起了写作热潮。你可以看到有多少人不用电话聊天，而是转向写点子邮件和文本消息。也可以看看有多少人选择通过即使消息和博客进行交流。如今，会写就代表会思考。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rework-聘用独挡一面的经理人]]></title>
-    <link href="http://ajia.github.com/blog/2014/08/12/rework-pin-yong-du-dang-yi-mian-de-jing-li-ren/"/>
-    <updated>2014-08-12T06:50:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/08/12/rework-pin-yong-du-dang-yi-mian-de-jing-li-ren</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>独当一面的经理人有自己的目标，并能够坚定地执行这些目标。他们不需要过多的指导，也不需要每天检查。他们做的都是经理人该做的事情——定基调、派任务、做决策，等等——但都是亲力亲为，自我审查。</p>
-
-<p>有了这些人，你就省去了失察之苦。他们能自己确定方向。只要把他们扔在那儿干活，你就会惊讶于他们的工作效率。他们不需要手把手的指导或监督。</p>
-
-<p>怎样才能找到这样的人才？方法就是看他们的背景。他们在做其他工作时都有自己独特的基调，他们自己运营过业务，也亲自做过某些项目。</p>
-
-<p>你需要那种能够变图纸为实物、并能实干到底的人。一旦找到这样的人，你的团队就能从管理中解脱出来去做更多的工作了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rework-人人都得干活]]></title>
-    <link href="http://ajia.github.com/blog/2014/08/09/rework-ren-ren-du-de-gan-huo/"/>
-    <updated>2014-08-09T00:01:00+08:00</updated>
-    <id>http://ajia.github.com/blog/2014/08/09/rework-ren-ren-du-de-gan-huo</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>在一个小团队里，你需要的是干活的人，而不是监工。每个人都得做事，没有人可以袖手旁观。</p>
-
-<p>这就意味着你在招聘中要避免招到监工型的人物，这些人喜欢对别人敦敦教导。对于小团队来讲，监工型的人就是累赘。他们想出各种事情让别人去做，在丢下自己的工作去安排别人时，他们制造出了更多的工作——不管这些工作是否需要去做。</p>
-
-<p>监工们还喜欢把人拖去开会。实际上，会议是监工们最好的朋友，因为只有在开会时才显示出他们的重要。与此同时，每个被他们拉去开会的人都没办法踏实干活了。</p>
 ]]></content>
   </entry>
   
